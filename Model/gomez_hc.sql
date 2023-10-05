@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 25, 2023 at 02:38 PM
+-- Generation Time: Oct 05, 2023 at 08:09 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -59,6 +59,8 @@ CREATE TABLE IF NOT EXISTS `user_db` (
   `User_Id` int NOT NULL,
   `Username` varchar(45) NOT NULL,
   `Password` varchar(64) NOT NULL,
+  `Email` varchar(45) NOT NULL,
+  `usertype` varchar(15) NOT NULL,
   PRIMARY KEY (`User_Id`),
   UNIQUE KEY `User_Id` (`User_Id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
@@ -67,8 +69,13 @@ CREATE TABLE IF NOT EXISTS `user_db` (
 -- Dumping data for table `user_db`
 --
 
-INSERT INTO `user_db` (`User_Id`, `Username`, `Password`) VALUES
-(1, 'Shaf', 'Shaf@234');
+INSERT INTO `user_db` (`User_Id`, `Username`, `Password`, `Email`, `usertype`) VALUES
+(1, 'Shaf', 'Shaf@234', 'Shaf@live.com', 'Admin'),
+(2, 'Sam', 'Sam@123', 'Sam@live.com', 'Patient'),
+(3, 'Saj', 'Saj@789', 'Saj@live.com', 'Doctor'),
+(4, 'Malsh', 'Malsh@820', 'Malsh@live.com', 'Nurse'),
+(5, 'Tharo', 'Tharo@875', 'Tharo@live.com', 'Receiptionist'),
+(6, 'Bhag', 'Bhag@245', 'Bhag@live.com', 'Lab-Assistant');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
