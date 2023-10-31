@@ -1,0 +1,11 @@
+RewriteEngine On
+RewriteBase /Gomez/
+
+# Redirect /View/Login to /Login
+RewriteRule ^View/Login$ /Login [L]
+
+# Redirect all requests to index.php
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?url=$1 [QSA,L]
+
