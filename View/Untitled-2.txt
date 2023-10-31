@@ -1,0 +1,36 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+long long main() {
+    long long y;
+    std::cin >> y;
+    
+    std::string x;
+    std::cin >> x;
+
+    std::vector<long long> z(y);
+    for (long long i = 0; i < y; i++) {
+        z[i] = i + 1;
+    }
+
+    long long t_count = 0;
+
+    do {
+        bool valid = true;
+        for (long long j = 0; j < x.length(); j++) {
+            if ((x[j] == '<' && z[j] >= z[j + 1]) || (x[j] == '>' && z[j] <= z[j + 1])) {
+                valid = false;
+                break;
+            }
+        }
+
+        if (valid) {
+            t_count++;
+        }
+    } while (std::next_permutation(z.begin(), z.end()));
+
+    std::cout << t_count << std::endl;
+
+    return 0;
+}
