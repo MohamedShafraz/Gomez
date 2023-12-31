@@ -246,7 +246,8 @@ justify-content: center;
 :root{
 --Gomez-highlight:#0972ea;
 --Gomez-Purple: #8693D1;
---Gomez-Blue: #242c52;
+--Gomez-Blue:#174E95;
+ /* #242c52; */
 --Gomez-Pears: #eaf5e0;
 --Gomez-Gray: #d9d9d9;
 --Gomez-White: #fafafa;
