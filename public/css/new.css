@@ -90,7 +90,8 @@ background-color: var(--Gomez-Purple);
 padding-top: 17px;
 margin: -4px 0px 0px -8px;
 padding-bottom: 52px;
-width: 102%;
+width: 101.6%;
+
     }
     .footer{
         background-color: var(--Gomez-Blue);
@@ -194,6 +195,7 @@ border-bottom: 0.1vh solid white;
 padding: 1rem 0;
 font-size: 1.5rem;
 line-height: 1.8;
+text-align: center;
     }
     .navbar {
 /*padding:0.5rem 5%;*/
