@@ -1,5 +1,5 @@
 <?php
-    require_once(APPROOT.'/models/LoginModel.php');
+    require_once(APPROOT.'/models/login_model.php');
 
     class Users extends Controller {
         private $loginModel;
@@ -40,5 +40,6 @@
             }
         }
     }
+    
     
 ?>
