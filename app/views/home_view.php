@@ -5,23 +5,23 @@ include_once(APPROOT.'/views/header_view.php');
     <div>
         <div class="images" id="b1">
             <div>
-        <img src=<?=URLROOT."/resources/medical-report.png"?> alt="online lab reports" id="lab"><br><b style="color: #054f7d;" >lab reports</b></div>
+        <img src=<?=URLROOT."/resources/medical-report.png"?> alt="online lab reports" id="lab"><br><a href="Users/labreport"><b style="color: #054f7d;" >lab reports</b></a></div>
         <div>
-        <img src=<?=URLROOT."/resources/payment-method.png"?> alt="online payment" id="payment"><br><b style="color: #054f7d;" >online payment</b></div>
+        <img src=<?=URLROOT."/resources/payment-method.png"?> alt="online payment" id="payment"><br><a href="Users/onlinepayment"><b style="color: #054f7d;" >online payment</b></a></div>
         <div>
-        <img src=<?=URLROOT."/resources/consultation.png"?> alt="online consultation" id="consult"><br><b style="color: #054f7d;" >online consultation</b></div>
+        <img src=<?=URLROOT."/resources/consultation.png"?> alt="online consultation" id="consult"><br><a href="Users/onlineconsultation"><b style="color: #054f7d;" >online consultation</b></a></div>
     <div>
-        <img src=<?=URLROOT."/resources/registration.png"?> alt="pre registration" id="prereg"><br><b style="color: #054f7d;" >pre registration</b></div>
+        <img src=<?=URLROOT."/resources/registration.png"?> alt="pre registration" id="prereg"><br><a href="/Users/preregistration"><b style="color: #054f7d;" >pre registration</b></a></div>
     </div>
     <div>
         <img src=<?=URLROOT."/resources/home.jpg"?> alt="" width="100%" height="2%" style="position: relative;margin-left: -2%;width: 103%;height: 95vh;">
         
         <div  style="background-color: rgb(164,193,201,-2.9);position: absolute;top: 10%;left: 0%;z-index: 2;width: 53%;margin-top: 81px;">
             <b><p style="font-size: 67px;color: rgb(42, 42, 152);margin-left: 6%;margin-top: 162px;">Welcome to Gomez</p></b>
-            <p style="font-size: 51px;color: rgb(36, 44, 82);margin-left: 29px;"><b>Serving your health <br>
+            <p style="font-size: 51px;color: rgb(36, 44, 82);margin-left: 13%;"><b>Serving your health <br>
                  needs is our priority</b></p>
-                 <p style="font-size: 20px;color: rgb(36, 44, 82);margin-left: 42px;">There nothing more important than our good health,cause <br>that's our principal capital asset for our good future.</p>
-                 <a href="login.php" style="
+                 <p style="font-size: 20px;color: rgb(36, 44, 82);margin-left: 14%;">There nothing more important than our good health,cause <br>that's our principal capital asset for our good future.</p>
+                 <a href="#" style="
     text-decoration: none;
 "><div class='logbutton' id="make1">
                     <font class="font1">Make appointment</font></div>
@@ -683,7 +683,7 @@ include_once(APPROOT.'/views/header_view.php');
             <div class="column">
                 <h3>Quick Links</h3>
                 <ul>
-                <li><a href="#">  Home </a></li>
+                <li><a href="<?=URLROOT?>">  Home </a></li>
                 <li><a href="contactus.html">  Contact us </a></li>
             </ul>
             </div><hr>

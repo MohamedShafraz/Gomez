@@ -9,7 +9,7 @@
             $url = $this->getURL();
             
             // check the controller exist or not
-            if(file_exists('../app/controllers/'.ucwords($url[0]).'.php')){
+            if(file_exists(APPROOT.'/controllers/'.ucwords($url[0]).'.php')){
                 //if the controller exist
                 $this->currentController = ucwords($url[0]);
 
@@ -21,7 +21,7 @@
                 //print_r($url);
 
                 //call the controller
-                require_once '../app/controllers/'.$this->currentController.'.php';
+                require_once APPROOT.'/controllers/'.$this->currentController.'.php';
 
                 //intestiate controller (string to object)
                 $this->currentController = new $this->currentController;
