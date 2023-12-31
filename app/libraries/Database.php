@@ -1,11 +1,10 @@
 <?php
-// Create a file named Database.php
 
 class Database {
-    private $host = ; // Your host
-    private $username = "username"; // Your username
-    private $password = "password"; // Your password
-    private $database = "dbname"; // Your database name
+    private $host = Hostname; // Your host
+    private $username = Username; // Your username
+    private $password = Password; // Your password
+    private $database = Dbname; // Your database name
     private $connection;
 
     // Constructor to establish the connection
