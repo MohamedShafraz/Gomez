@@ -1,5 +1,6 @@
 <?php
 include_once(APPROOT.'/views/header_view.php');
+$message = "";
 ?>
 <br>
 
@@ -45,7 +46,7 @@ border-radius: 8px 0px 0px 8px;"></div>
     //             echo $usertype;
     //             //echo $_SESSION["userType"];
     if(isset($_POST['submit'])){
-     echo $message;
+     echo "<div style='color:red'>Incorrect Email or Password</div>";
     }
     //             }
     ?>

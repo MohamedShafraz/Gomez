@@ -17,7 +17,14 @@
         }
     
         public function login() {
+            $_SESSION["userType"]=null;
+            session_start();
+            if($_SESSION["userType"]!=null){
+                header('Location: '.URLROOT.'/Dashboard');
+                exit;
+            }
             if (isset($_POST["submit"]) && $_POST["submit"] == "Log in") {
+                
                 $username = $_POST["username"];
                 $password = $_POST["password"];
     
@@ -25,16 +32,16 @@
     
                 if ($result && count($result) > 0) {
                     $user = $result[0];
+                    
                     $_SESSION["userType"] = $user['usertype'];
                     $_SESSION["uname"] = md5($user["Username"]);
-                    
                     header('Location: '.URLROOT.'/Dashboard');
                     exit;
                 } else {
                     // Handle messages or further actions here
                     // header("Location: ../");
                     // exit;
-                    $message = "hello";
+                    $this->view('login_view');
                 }
             } else {
                 $this->view('login_view');

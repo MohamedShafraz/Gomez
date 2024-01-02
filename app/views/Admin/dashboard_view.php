@@ -15,7 +15,7 @@
         <nav class="navbar">
             <img src="<?=URLROOT."/resources/user.png"?>" class="profilepic">
             <a href="#make"><div class="selected">
-                <font class="GMfont" style="font-family: 'inter';">Hello, Shaf</font></div>
+                <font class="GMfont" style="font-family: 'inter';"> Hello, Shaf</font></div>
             </a>
         </nav>
     </header>
