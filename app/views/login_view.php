@@ -21,7 +21,7 @@ include_once(APPROOT.'/views/header_view.php');
         </nav>
 </header> -->
     <br><br><br><br>
-    <form action="/Gomez/" method="post">
+    <form action="" method="post">
         <div class="container" style="
   margin-top: 2%;width:64%;padding: 0%;
   height: 100%;

@@ -32,8 +32,9 @@
                     exit;
                 } else {
                     // Handle messages or further actions here
-                    header("Location: ../");
-                    exit;
+                    // header("Location: ../");
+                    // exit;
+                    $message = "hello";
                 }
             } else {
                 $this->view('login_view');
