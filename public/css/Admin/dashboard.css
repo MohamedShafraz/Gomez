@@ -1,8 +1,26 @@
+    /* Hide the scrollbar for webkit-based browsers */
+    .scrollable-container {
+        width: 100%; /* Adjust this width according to your layout */
+        overflow-x: auto;
+        white-space: nowrap;
+        scrollbar-width: none; /* Firefox */
+        -ms-overflow-style: none; /* IE/Edge */
+    }
+    
+    .scrollable-container::-webkit-scrollbar {
+        display: none; /* Hide scrollbar for WebKit (Chrome, Safari, etc.) */
+    }
+    
+    .horizontal-scroll {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        display: inline-flex; /* Display items in a row */
+    }
 .dashboard ul{
-    display: grid;
-grid-template-columns: repeat(auto-fit, minmax(17rem, 0fr));
-gap: 1.5rem;
-margin-left: 28%;
+    
+gap: 3.1rem;
+margin: 2% 24%;
 
 }
 ul li{
@@ -16,9 +34,9 @@ ul li{
     font-family: inter;
     display: flex;
     flex-direction: row;
-    padding:10%;
+    padding: 3% 4%;
     box-sizing: border-box;
-    background-image: linear-gradient(90deg,rgba(13, 71, 128, 1),rgba(9, 114, 234, 1));
+    background-image: linear-gradient(45deg,rgba(13, 71, 128, 1),rgba(9, 114, 234, 1));
 }
 .sidenav{
     width: 22%;

@@ -17,9 +17,8 @@
         }
     
         public function login() {
-            $_SESSION["userType"]=null;
-            session_start();
-            if($_SESSION["userType"]!=null){
+            
+            if(isset($_SESSION["userType"])!=null){
                 header('Location: '.URLROOT.'/Dashboard');
                 exit;
             }
@@ -32,7 +31,7 @@
     
                 if ($result && count($result) > 0) {
                     $user = $result[0];
-                    
+                    session_start();
                     $_SESSION["userType"] = $user['usertype'];
                     $_SESSION["uname"] = md5($user["Username"]);
                     header('Location: '.URLROOT.'/Dashboard');
