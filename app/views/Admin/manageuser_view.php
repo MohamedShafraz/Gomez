@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<?=URLROOT?>/css/new.css">
 <style>
     .complaint{
-        margin-left: 60%;
+        margin-left: 1%;
     }
     .complaint tr{
         display: flex;
@@ -14,22 +14,29 @@
   align-content: center;
   gap: 90px;
   font-size: large;
+  /* width: 795px; */
+  background-color: beige;
+  width: 679px;
+  padding: 0% 52% 0% 58%;
+  line-height: 7vh;
+  border-radius: 8px;
+
     }
     .complainttext{
         margin-left: 28%;
-  font-size: large;
+  font-size: x-large;
   background-color: var(--Gomez-Blue);
   color: white;
-  width: 68%;
+  width: 66%;
   border-radius: 9px;
   padding: 1%;
   text-align: center;
   font-family: inter;
     }
     .complainttable{
-        background-color: beige;
+        /* background-color: beige; */
   width: 70%;
-  margin-left: 28%;
+  margin-left: 27%;
   padding: 8px 10px;
   border-radius: 9px;
   color: var(--Gomez-Blue);
@@ -37,24 +44,10 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(13rem, 0fr));
   gap: 1.5rem;
-  margin-top: 1%;
     }
 </style>
 <!-- background-color:#E9F3FD -->
-<body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
-<img src="<?=URLROOT."/resources/gomezlogo2.png"?>" alt="" class="image">
-<br>
-<br>
-<br>
-
-<header class="header">
-        <nav class="navbar">
-            <img src="<?=URLROOT."/resources/user.png"?>" class="profilepic">
-            <a href="#make"><div class="selected">
-                <font class="GMfont" style="font-family: 'inter';"> Hello, Shaf</font></div>
-            </a>
-        </nav>
-    </header>
+<?php require_once(APPROOT."/views/Admin/navbar_view.php");?>
 <aside class="sidenav">
     <ul>
         <img src="<?=URLROOT."/resources/user.png"?>" alt=""><br><br>
@@ -86,21 +79,23 @@
                 <td>Type</td>
                 <td>Description</td>
                 <td>Date</td>
-                <td>Time</td>
+                <td>&emsp;&emsp;Time</td>
             </tr>
+            <tr style="color:white;margin: 3%;"></tr>
             <tr>
-            <td>Sam</td>
-            <td>Doc</td>
-            <td>Delete</td>
+            <td>Saj &emsp;</td>
+            <td>&nbsp;Doc</td>
+            <td>&nbsp;Reactivate</td>
             <td>4/1/2024</td>
             <td>11:59</td>
             </tr>
+            <tr style="color:white;margin: 3%;"></tr>
             <tr>
-            <td>Sam</td>
-            <td>Doc</td>
-            <td>Delete</td>
-            <td>4/1/2024</td>
-            <td>11:59</td>
+            <td>Sam&emsp;</td>
+            <td>pat&emsp;</td>
+            <td>Access Denied</td>
+            <td>3/1/2024</td>
+            <td>10:12</td>
             </tr>
         </tbody>
 

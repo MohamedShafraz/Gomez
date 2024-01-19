@@ -38,9 +38,29 @@ include_once(APPROOT.'/views/header_view.php');
             box-sizing: border-box;
         }
         .button {
-           
+            /* background-color: var(--gomez-blue);
             padding: 5px;
-            box-sizing: border-box;
+            box-sizing: border-box; */
+            display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-shrink: 0;
+  color: var(--Gomez-White);
+  font-family: 'inter-bold';
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  flex-shrink: 0;
+  border-radius: 10px;
+  background: var(--Gomez-highlight);
+  position: relative;
+  padding: 1.4%;
+  filter: drop-shadow(3px 3px 7px --Gomez-Black);
+  width: max-content;
+  border-style: none;
+  box-shadow: 2px 2px 1px var(--Gomez-Black);
+  font-family: inter;
         }
         .images{
             display: flex;
@@ -57,7 +77,7 @@ include_once(APPROOT.'/views/header_view.php');
         }
         
     </style>
-    <title>Lab Report Form</title>
+    <title>Lab Report</title>
 </head>
 
 

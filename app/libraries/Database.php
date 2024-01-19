@@ -6,8 +6,8 @@ class Database {
     private $password = Password; 
     private $database = Dbname; 
     private $connection;
+    private $table;
 
-    
     public function __construct() {
         $this->connection = new mysqli($this->host, $this->username, $this->password, $this->database);
 
@@ -16,14 +16,24 @@ class Database {
         }
     }
 
-    
+    public function setTable($table){
+        $this->table = $table;
+    }
     public function executeQuery($query) {
         $result = $this->connection->query($query);
         return $result;
     }
+    public function check(){
+        $this->connection = new mysqli($this->host, $this->username, $this->password, $this->database);
 
+        if ($this->connection->connect_error) {
+            die("Connection failed: " . $this->connection->connect_error);
+        }
+    }
     
-    public function fetchData($query) {
+    public function fetchData($where) {
+        $query = "Select * FROM ".$this->table." WHERE ".$where;
+        
         $result = $this->executeQuery($query);
         $data = [];
 
@@ -36,27 +46,31 @@ class Database {
         return $data;
     }
 
+    public function insertData($data) {
+        $fields = implode(', ', array_keys($data));
+        $values = "'" . implode("', '", array_values($data)) . "'";
+        $query = "INSERT INTO " . $this->table . " ($fields) VALUES ($values)";
+        
     
-    public function insertData($query) {
-        $result = $this->executeQuery($query);
-        return $result;
+        return $this->executeQuery($query);
     }
 
-    
-    public function updateData($query) {
-        $result = $this->executeQuery($query);
-        return $result;
-    }
+    public function getcount($where){
+        $query = "SELECT usertype, COUNT(*) as count FROM ".$this->table." WHERE ".$where;
+       
+        $data = [];
+        $result = $this->executeQuery($query);if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[] = $row;
+            }
+        }
 
-    
-    public function deleteData($query) {
-        $result = $this->executeQuery($query);
-        return $result;
+        return $data;
     }
+    
+    // public function __destruct() {
+    //     $this->connection->close();
+    // }
 
-    
-    public function __destruct() {
-        $this->connection->close();
-    }
 }
 ?>

@@ -1,5 +1,5 @@
 <?php
-    require_once(APPROOT.'/models/login_model.php');
+    // require_once(APPROOT.'/models/login_model.php');
 
     class Users extends Controller {
         private $loginModel;
@@ -13,6 +13,7 @@
         }
     
         public function __construct() {
+            $this->model("login_model");
             $this->loginModel = new LoginModel(new Database());
         }
     
@@ -37,9 +38,6 @@
                     header('Location: '.URLROOT.'/Dashboard');
                     exit;
                 } else {
-                    // Handle messages or further actions here
-                    // header("Location: ../");
-                    // exit;
                     $this->view('login_view');
                 }
             } else {

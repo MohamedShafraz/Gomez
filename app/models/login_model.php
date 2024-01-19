@@ -1,17 +1,12 @@
 <?php
 
-class LoginModel {
-  private $db;
-
-  public function __construct($database) {
-      $this->db = $database;
-  }
-
+class LoginModel extends Database{
   public function loginUser($username, $password) {
-      $Password = md5($password);
-      $query = "SELECT `Username`, `usertype` FROM user_db WHERE `Username`='$username' AND `Password`='$Password'";
-      $result = $this->db->fetchData($query);
-      return $result;
-  }
+    $Password = md5($password);
+    $where = "`Username`='$username' AND `Password`='$Password'";
+    $this->setTable(User);
+    $result = $this->fetchData($where);
+    return $result;
+}
 }
 ?>

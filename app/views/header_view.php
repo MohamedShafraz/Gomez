@@ -12,7 +12,7 @@
         <div class="navbar-image">
             <img src=<?=URLROOT."/resources/gomezlogo1.jpg"?> class="logo">
         </div>
-            <a href="#" id="set1" onmouseenter="select()" onmouseleave="unselect()" class="">Home</a>
+            <a href="./" id="set1" onmouseenter="select()" onmouseleave="unselect()" class="">Home</a>
             <a href="contactus.html" id="set" onmouseenter="select1()" onmouseleave="unselect1()" class="">Contact us</a>
             <a href="#b1" id="set2" onmouseenter="select2()" onmouseleave="unselect2()" class="">Facilities</a>
             </a>

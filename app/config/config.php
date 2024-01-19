@@ -9,6 +9,8 @@
     define('Hostname','localhost');
     //User name
     define('Username','root');
+    //User Table
+    define("User","user_db");
     //Password
     define('Password','');
     //Database name

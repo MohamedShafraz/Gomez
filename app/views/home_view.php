@@ -3,20 +3,11 @@ include_once(APPROOT.'/views/header_view.php');
 ?>
     
     <div>
-        <div class="images" id="b1">
-            <div>
-        <img src=<?=URLROOT."/resources/medical-report.png"?> alt="online lab reports" id="lab"><br><b style="color: #054f7d;" >lab reports</b></div>
-        <div>
-        <img src=<?=URLROOT."/resources/payment-method.png"?> alt="online payment" id="payment"><br><b style="color: #054f7d;" >online payment</b></div>
-        <div>
-        <img src=<?=URLROOT."/resources/consultation.png"?> alt="online consultation" id="consult"><br><b style="color: #054f7d;" >online consultation</b></div>
-    <div>
-        <img src=<?=URLROOT."/resources/registration.png"?> alt="pre registration" id="prereg"><br><b style="color: #054f7d;" >pre registration</b></div>
-    </div>
+        
     <div>
         <img src=<?=URLROOT."/resources/home.jpg"?> alt="" width="100%" height="2%" style="position: relative;margin-left: -2%;width: 103%;height: 95vh;">
         
-        <div  style="background-color: rgb(164,193,201,-2.9);position: absolute;top: 10%;left: 0%;z-index: 2;width: 53%;margin-top: 81px;">
+        <div  style="background-color: rgb(164,193,201,-2.9);position: absolute;bottom: 16%;;left: 0%;z-index: 2;width: 53%;margin-top: 81px;">
             <b><p style="font-size: 67px;color: rgb(42, 42, 152);margin-left: 6%;margin-top: 162px;">Welcome to Gomez</p></b>
             <p style="font-size: 51px;color: rgb(36, 44, 82);margin-left: 29px;"><b>Serving your health <br>
                  needs is our priority</b></p>
@@ -29,14 +20,18 @@ include_once(APPROOT.'/views/header_view.php');
         </div>      
         
     </div>
-    <div class="Welcome"><h1>Welcome to Gomez, Your Trusted Healthcare Partner for Over 35 Years!</h1></div>
-    <div class="aboutus">
-        <p> Gomez is a healthcare institution known for its commitment to quality care and continuous investment in staff training. They offer a wide range of services, from routine check-ups to complex surgeries, with a state-of-the-art OPD lab facility for quick and accurate diagnostics. They prioritize patient health and are at the forefront of medical technology, incorporating minimally invasive procedures and shorter recovery times. They treat patients like family, creating personalized treatment plans and adhering to infection control protocols. Gomez is conveniently located, providing immediate care for medical emergencies.  </p>
+    <div class="images" id="b1">
+            <div><a href=<?=URLROOT."/Users/labreport"?> style="text-decoration: none;">
+        <img src=<?=URLROOT."/resources/medical-report.png"?> alt="online lab reports" id="lab"><br><b style="color: #054f7d;" >lab reports</b></a></div>
+        <div><a href=<?=URLROOT."/Users/consultation"?> style="text-decoration: none;">
+        <img src=<?=URLROOT."/resources/consultation.png"?> alt="online consultation" id="consult"><br><b style="color: #054f7d;" >online consultation</b></a></div>
+    <div><a href=<?=URLROOT."/Users/registration"?> style="text-decoration: none;">
+        <img src=<?=URLROOT."/resources/registration.png"?> alt="pre registration" id="prereg"><br><b style="color: #054f7d;" >pre registration</b></a></div>
     </div>
-    
-</div>
+    <div class="Welcome"><h1>Welcome to Gomez, Your Trusted Healthcare Partner for Over 35 Years!</h1></div>
+    </div>
     <div class="container">
-    <section class="make">
+    <section class="make"id="make" >
         <h1>Make Appointment</h1>
         <label for="Doctor">Doctor Name</label>
         <input type="text" name="userName" id="Doctor" placeholder="Max- 20 Characters" class="holder">
@@ -665,7 +660,7 @@ include_once(APPROOT.'/views/header_view.php');
                                                     </select>
         <label for="Date">Date</label>
         <input type="date" name="userName" id="Date" date-placeholder="11/6/2023" class="holder">
-        <div class='logbutton' id="make">
+        <div class='logbutton' id="maked">
             <font class="font1">Make appointment</font></div>
             <br>    
     </section>
@@ -678,6 +673,11 @@ include_once(APPROOT.'/views/header_view.php');
             </a>
     </section>
     </div>
+    <div class="aboutus">
+        <p> Gomez is a healthcare institution known for its commitment to quality care and continuous investment in staff training. They offer a wide range of services, from routine check-ups to complex surgeries, with a state-of-the-art OPD lab facility for quick and accurate diagnostics. They prioritize patient health and are at the forefront of medical technology, incorporating minimally invasive procedures and shorter recovery times. They treat patients like family, creating personalized treatment plans and adhering to infection control protocols. Gomez is conveniently located, providing immediate care for medical emergencies.  </p>
+    </div>
+    
+
     <section class="footer">
         <div class="box-container">
             <div class="column">
