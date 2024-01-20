@@ -20,3 +20,17 @@
             </a>
         </nav>
     </header>
+    <aside class="sidenav">
+    <ul>
+        <img src="<?=URLROOT."/resources/user.png"?>" alt=""><br><br>
+        <li id="Dashboard" onclick="y('Dashboard')">Dashboard
+        </li><br>
+        <li  id="manageuser" onclick="y('manageuser')">
+            Manage User
+        </li><br>
+        <li id="UserInfo" onclick="y('UserInfo')">
+            User information
+        </li>
+    </ul>
+</aside>
+<article > 

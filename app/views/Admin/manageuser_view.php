@@ -48,20 +48,7 @@
 </style>
 <!-- background-color:#E9F3FD -->
 <?php require_once(APPROOT."/views/Admin/navbar_view.php");?>
-<aside class="sidenav">
-    <ul>
-        <img src="<?=URLROOT."/resources/user.png"?>" alt=""><br><br>
-        <li id="Dashboard" onclick="y('Dashboard')">Dashboard
-        </li><br>
-        <li  id="manageuser" onclick="y('manageuser')">
-            Manage User
-        </li><br>
-        <li id="UserInfo" onclick="y('UserInfo')">
-            User information
-        </li>
-    </ul>
-</aside>
-<article >  
+ 
     <!-- <a>Welcome to Gomez</a> -->
     <ul class="manageuser">
         <li class="options" style="font-size: 3.5vh;"><div><img src=<?php echo URLROOT."/resources/PatientCount2.png"?>></div><div><br>Manage Patients<br></div><br><br></li>
