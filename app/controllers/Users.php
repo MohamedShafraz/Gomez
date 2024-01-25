@@ -35,6 +35,7 @@
                     session_start();
                     $_SESSION["userType"] = $user['usertype'];
                     $_SESSION["uname"] = md5($user["Username"]);
+                    $_SESSION["USER"] = $result[0];
                     header('Location: '.URLROOT.'/Dashboard');
                     exit;
                 } else {
