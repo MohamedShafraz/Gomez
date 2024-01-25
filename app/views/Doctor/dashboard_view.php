@@ -5,13 +5,13 @@
     </ul>
 </aside>
 <article class="dashboard">
-    
+    <div style="margin-left:25%;">
     <h1 style="text-align: center;">THIS IS DOCTOR DASHBOARD</h1>
-    <?php
+        <?php
       var_dump($_SESSION["USER"]);
     ?>
     
-
+    </div>
 </div>
 </div>
 </article>
