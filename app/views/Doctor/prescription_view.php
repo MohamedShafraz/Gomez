@@ -26,10 +26,8 @@
 </aside>
 <article class="dashboard">
     <div style="margin-left:24%;">
-    <h1 style="text-align: center;">THIS IS DOCTOR DASHBOARD</h1>
-        <?php
-      var_dump($_SESSION["USER"]);
-    ?>
+    <h1 style="text-align: center;">Prescription ViewAppointment</h1>
+        
     
     </div>
 </div>

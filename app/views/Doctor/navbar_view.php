@@ -12,6 +12,13 @@
 <br>
 <br>
 
+<?php
+
+if(!isset($_SESSION)){
+    session_start();}
+
+?>
+
 <header class="header">
         <nav class="navbar">
             <img src="<?=URLROOT."/resources/user.png"?>" class="profilepic" >
@@ -20,3 +27,4 @@
             </a>
         </nav>
     </header>
+
