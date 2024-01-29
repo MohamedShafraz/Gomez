@@ -48,8 +48,5 @@ $guardiannic = isset($_POST['guardiannic']) ? $_POST['guardiannic'] : '';
         }
     }
 }
-/*
- *param = hello c
- controller-> method (parameter = param) 
- */
+
 ?>
