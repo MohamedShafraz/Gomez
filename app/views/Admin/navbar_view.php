@@ -22,15 +22,20 @@
     </header>
     <aside class="sidenav">
     <ul>
-        <img src="<?=URLROOT."/resources/user.png"?>" alt=""><br><br>
-        <li id="Dashboard" onclick="y('Dashboard')">Dashboard
+    <script>
+    var $URLROOT = '<?=URLROOT?>';
+</script>
+        <img src="<?=URLROOT."/resources/user.png"?>" alt=""><br>
+        <?='Admin'?><br><br>
+        <li id="dashboard" onclick="y('dashboard')">Dashboard
         </li><br>
         <li  id="manageuser" onclick="y('manageuser')">
             Manage User
         </li><br>
-        <li id="UserInfo" onclick="y('UserInfo')">
+        <li id="userinfo" onclick="y('userinfo')">
             User information
         </li>
     </ul>
 </aside>
 <article > 
+

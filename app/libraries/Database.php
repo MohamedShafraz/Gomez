@@ -54,6 +54,24 @@ class Database {
     
         return $this->executeQuery($query);
     }
+    
+    public function updateData($data, $condition) {
+        $setClause = '';
+        foreach ($data as $key => $value) {
+            $setClause .= "$key = '$value', ";
+        }
+        $setClause = rtrim($setClause, ', ');
+    
+        $query = "UPDATE " . $this->table . " SET $setClause WHERE $condition";
+        
+        return $this->executeQuery($query);
+    }
+    
+    public function deleteData($condition) {
+        $query = "DELETE FROM " . $this->table . " WHERE $condition";
+        
+        return $this->executeQuery($query);
+    }
 
     public function getcount($where){
         $query = "SELECT usertype, COUNT(*) as count FROM ".$this->table." WHERE ".$where;

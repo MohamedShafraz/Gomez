@@ -1,6 +1,6 @@
 function y($id) {
         document.getElementById($id).classList.add("active");
-        window.location.href = $id.toString(); 
+        window.location.href = $URLROOT+"/"+$id.toString();
     }
     function setActiveFromURL() {
   
@@ -10,7 +10,7 @@ function y($id) {
   const parts = url.split('/');
 
  
-  const id = parts[parts.length - 1];
+  const id = parts[4].toLowerCase();
 
    const element = document.getElementById(id);
   if (element) {

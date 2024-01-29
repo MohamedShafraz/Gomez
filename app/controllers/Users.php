@@ -33,6 +33,7 @@
                 if ($result && count($result) > 0) {
                     $user = $result[0];
                     session_start();
+                    $_SESSION['User_Id'] = $user['User_Id'];
                     $_SESSION["userType"] = $user['usertype'];
                     $_SESSION["uname"] = md5($user["Username"]);
                     header('Location: '.URLROOT.'/Dashboard');
@@ -44,6 +45,10 @@
                 $this->view('login_view');
             }
         }
+        public function forgetpassword(){
+            $this->view('forget_password_view');
+        }
+        
     }
     
     

@@ -1,6 +1,6 @@
 <?php
 
-class Dashboard extends Controller
+class dashboard extends Controller
 {
     private $usertype;
     
