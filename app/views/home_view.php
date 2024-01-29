@@ -12,7 +12,7 @@ include_once(APPROOT.'/views/header_view.php');
             <p style="font-size: 51px;color: rgb(36, 44, 82);margin-left: 29px;"><b>Serving your health <br>
                  needs is our priority</b></p>
                  <p style="font-size: 20px;color: rgb(36, 44, 82);margin-left: 42px;">There nothing more important than our good health,cause <br>that's our principal capital asset for our good future.</p>
-                 <a href="login.php" style="
+                 <a href="#make" style="
     text-decoration: none;
 "><div class='logbutton' id="make1">
                     <font class="font1">Make appointment</font></div>
@@ -684,7 +684,7 @@ include_once(APPROOT.'/views/header_view.php');
                 <h3>Quick Links</h3>
                 <ul>
                 <li><a href="#">  Home </a></li>
-                <li><a href="contactus.html">  Contact us </a></li>
+                <li><a href="contactus">  Contact us </a></li>
             </ul>
             </div><hr>
             <div class="column">

@@ -1,17 +1,5 @@
 <?php require_once(APPROOT."/views/Admin/navbar_view.php");?>
-<aside class="sidenav">
-    <ul>
-        <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
-        <li id="Dashboard" onclick="y('Dashboard')">Dashboard
-        </li><br>
-        <li  id="manageuser" onclick="y('manageuser')">
-            Manage User
-        </li><br>
-        <li id="UserInfo" onclick="y('UserInfo')">
-            User information
-        </li>
-    </ul>
-</aside>
+
 <article class="dashboard">
     
     <!-- <a>Welcome to Gomez</a> -->
