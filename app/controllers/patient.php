@@ -48,4 +48,11 @@ $guardiannic = isset($_POST['guardiannic']) ? $_POST['guardiannic'] : '';
         }
     }
 }
+<<<<<<< HEAD
+=======
+/*
+ *param = hello c
+ controller-> method (parameter = param) 
+ */
+>>>>>>> parent of 806d757 (patient.php updated)
 ?>
