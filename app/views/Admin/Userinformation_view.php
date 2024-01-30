@@ -28,7 +28,7 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
 </style>
 <div class="lay" style="
     position: fixed;
-    margin: 1% 0% 0% 31%;
+    margin: 1% 0% 0% 31%;z-index:100
 " id='popup1'>
     <h1>Update Profile</h1>
     <ul>
@@ -38,7 +38,7 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         <li class="users">Phone number : 0777123456<br><br></li>
         <li class="users">Email : Shaf@live.com<br><br></li>
     </ul>
-    <button onclick="m('popup1')" style="float:right" class="button">updated</button>
+    <button onclick="m('popup1')" style="float:right" class="button">Update</button>
 </div>
 <article class="dashboard">
 
@@ -61,11 +61,16 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
 <script>
     if (window.location.href.split('?').length < 2) {
         document.getElementById('popup1').style.visibility = 'hidden';
+        
     }
 
     function m($id) {
         window.location.href = '.';
         document.getElementById($id.toString()).style.visibility = 'hidden';
+    }
+    if (window.location.href.split('?').length == 2) {
+        document.getElementsByClassName('dashboard')[0].style.filter = 'blur(4px)';
+        
     }
 </script>
 <?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
