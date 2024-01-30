@@ -53,7 +53,7 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         <li class="users">Email : Shaf@live.com<br><br></li>
 
         <div id="chartContainer"></div>
-        <button onclick="window.location.href += 'id?'+<?= $_SESSION['User_Id'] ?>" style="float:right" class="button">Edit</button>
+        <button onclick="window.location.href += '/id?'+<?= $_SESSION['User_Id'] ?>" style="float:right" class="button">Edit</button>
     </ul>
     </div>
 </article>
