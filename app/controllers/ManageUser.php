@@ -21,12 +21,17 @@ class manageuser extends Controller{
     }
     public function patient(){
         session_start();
-      
-        $this->view("Admin/patient_view");
+        $this->model("Admin/patient_model");
+        $patientModel = new PatientModel();
+        $patientDetails = $patientModel->getUserDetails();
+        $this->view("Admin/patient_view",$patientDetails);
     }
     public function doctor(){
         session_start();
-        $this->view("Admin/doctor_view");
+        $this->model("Admin/doctor_model");
+        $patientModel = new DoctorModel();
+        $DoctorDetails = $patientModel->getUserDetails();
+        $this->view("Admin/doctor_view",$DoctorDetails);
     }
     public function receptionist(){
         session_start();

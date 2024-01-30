@@ -33,16 +33,15 @@ class Database {
     
     public function fetchData($where) {
         $query = "Select * FROM ".$this->table." WHERE ".$where;
-        
         $result = $this->executeQuery($query);
         $data = [];
-
+        $i = 0;
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
-                $data[] = $row;
+                $data[$i] = $row;
+                $i++;
             }
         }
-
         return $data;
     }
 

@@ -29,7 +29,12 @@
 <?php require_once(APPROOT . "/views/Admin/navbar_view.php"); ?>
 
 
-<div class="complainttext">Doctors</div>
+<div id="actor" class="complainttext"></div>
+<script>
+    var actor = document.getElementById("actor");
+    const position = window.location.href.split('/');
+    actor.innerHTML = position[position.length-1].toUpperCase();
+</script>
 <table class="complainttable">
 
 
@@ -42,7 +47,7 @@
         <tr style='color:white;margin: 3%;'></tr>
         <?php
             for ($index = 0; $index < sizeof($data); $index++) {
-                echo "<tr><td style='width: 120px;'>".$data[$index]['userName']."</td><td style='width: 156px;'>200068300174</td><td style='width: 144px;'>Cardiology</td><td><button class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
+                echo "<tr><td style='width: 120px;'>".$data[$index]['username']."</td><td style='width: 156px;'>200068300174</td><td style='width: 144px;'>Cardiology</td><td><button class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
             }
         ?>
 

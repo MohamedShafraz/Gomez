@@ -34,13 +34,12 @@
 
 
     <tbody class="complaint">
-    <tr><td style="width: 85px;">Name</td><td style="width: 127px;">Type</td><td style="width: 256px;">Mobile Number</td><td></td></tr>
-        <tr style='color:white;margin: 3%;'></tr>
-        <script>
-            for (let index = 0; index < 8; index++) {
-                document.writeln("<tr><td style='width: 77px;'>Saj</td><td style='width: 112px;'>unregister</td><td style='width: 120px';>200068200756</td><td><button class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>")
+    <tr><td style="width: 99px;">Name</td><td style="width: 87px;">Type</td><td style="width: max-content;">Mobile Number</td><td></td></tr>    <tr style='color:white;margin: 3%;'></tr>
+        <?php
+            for ($index = 0; $index < sizeof($data); $index++) {
+                echo "<tr><td style='width:100px'>".$data[$index]['userName']."</td><td style='width: max-content;'>".$data[$index]['type']."</td><td style='width: 144px;'>".$data[$index]['phonenumber']."</td><td><button class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
             }
-        </script>
+        ?>
 
     </tbody>
 
