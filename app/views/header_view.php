@@ -6,7 +6,7 @@
     <title>Home</title>
     <link rel="stylesheet" href="<?=URLROOT.'/css/new.css'?>">
 </head>
-<body style="overflow-x: hidden;">
+<body style="overflow-x: hidden;font-family:inter;">
     <header class="header">
         <nav class="navbar">
         <div class="navbar-image">
