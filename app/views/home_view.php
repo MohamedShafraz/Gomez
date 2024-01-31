@@ -8,7 +8,7 @@ include_once(APPROOT.'/views/header_view.php');
         <img src=<?=URLROOT."/resources/home.jpg"?> alt="" width="100%" height="2%" style="position: relative;margin-left: -2%;width: 103%;height: 95vh;">
         
         <div  style="background-color: rgb(164,193,201,-2.9);position: absolute;bottom: 16%;;left: 0%;z-index: 2;width: 53%;margin-top: 81px;">
-            <b><p style="font-size: 67px;color: rgb(42, 42, 152);margin-left: 6%;margin-top: 162px;">Welcome to Gomez</p></b>
+            <b><p style="font-size: 67px;color: rgb(42, 42, 152);margin-left: 3%;margin-top: 162px;">Welcome to Gomez</p></b>
             <p style="font-size: 51px;color: rgb(36, 44, 82);margin-left: 29px;"><b>Serving your health <br>
                  needs is our priority</b></p>
                  <p style="font-size: 20px;color: rgb(36, 44, 82);margin-left: 42px;">There nothing more important than our good health,cause <br>that's our principal capital asset for our good future.</p>
