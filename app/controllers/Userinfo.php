@@ -1,8 +1,13 @@
 <?php
-class userinfo extends Controller{
-    public function index(){
+class userinfo extends Controller
+{
+    public function index()
+    {
         session_start();
-        $this->view("Admin/Userinformation_view");
+        if (isset($_SESSION["userType"])) {
+            $this->view($_SESSION["userType"] . "/Userinformation_view");
+        } else {
+            header("location:" . URLROOT . "/users/login");
+        }
     }
 }
-?>
