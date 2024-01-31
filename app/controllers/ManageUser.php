@@ -35,11 +35,17 @@ class manageuser extends Controller{
     }
     public function receptionist(){
         session_start();
-        $this->view("Admin/receptionist_view");
+        $this->model("Admin/receptionist_model");
+        $receptionistModel  = new ReceptionistModel();
+        $receptionistAssistantDetails = $receptionistModel->getUserDetails();
+        $this->view("Admin/receptionist_view",$receptionistAssistantDetails);
     }
     public function labAssistant(){
         session_start();
-        $this->view("Admin/lab_assistant_view");
+        $this->model("Admin/lab_assistant_model");
+        $labAssitantModel = new LabAssistantModel();
+        $labAssistantDetails = $labAssitantModel->getUserDetails();
+        $this->view("Admin/lab_assistant_view",$labAssistantDetails);
     }
 }
 ?>
