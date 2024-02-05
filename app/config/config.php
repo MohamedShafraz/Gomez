@@ -15,5 +15,11 @@
     define('Password','');
     //Database name
     define('Dbname', 'gomez_hc');
+    //Doctors Table
+    define('Doctors','doctors'); // this changed
+    //Patients Table
+    define('Patients','patients'); // this changed
+    //Appointments Table
+    define('Appointment','appointment');//
     
 ?>
