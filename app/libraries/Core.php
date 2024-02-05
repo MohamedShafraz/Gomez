@@ -36,6 +36,7 @@
                         // to check comment below code
                         //print_r($url);
                     }
+                    
                 }
                 //get parameter list
                 if(!empty($url)){
@@ -44,6 +45,9 @@
                 
                 }
                 call_user_func_array([$this->currentController,$this->currentMethod],$this->parameters);
+            }
+            else{
+                require_once(APPROOT.'/views/home_view.php');
             }
         }
             else{
