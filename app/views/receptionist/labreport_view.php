@@ -3,6 +3,8 @@
 ?>
 <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 <link rel="stylesheet" href="<?=URLROOT?>/css/Admin/dashboard.css">
+<link rel="stylesheet" href="<?=URLROOT?>/css/patient/appointments.css">
+
 <link rel="stylesheet" href="<?=URLROOT?>/css/new.css">
 <style>
     .buttonspace{
@@ -88,27 +90,58 @@
     
     <!-- <a>Welcome to Gomez</a> -->
     
-    <ul style="background-color: white;padding:5%; width:50%">
-    <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?=URLROOT."/public/resources/user.jpeg"?>" alt="Profile Picture" style="width: 73%;"></div>   
-           <li class="users">Full Name : Samar<br><br></li>
-        <li class="users">Gender : Male<br><br></li>
-        <li class="users">Age : 23<br><br></li>
-        <li class="users">Phone number : 0766414658<br><br></li>
-        <li class="users">Email : samar@gmail.com.com<br><br></li>
-        <a href="edit_profile.php"><button class="button" style="margin-left: 57%;" id="no">Edit Profile</button></a>
-        <button id="deactivate"  class="button">Deactivate Account</button>
-        <!-- <div id="chartContainer"></div> -->
+    <ul style="background-color: white;padding:5%;width: 64%;height:61%; ">
+    <div class="d" style="margin-left: 10%;">
+        <a class="search">
+           <b> Patient: </b>
+            <input type="text" placeholder="Search.." name="search" class="searchbox">
+        </a><br>
+        <a class="search">
+           <b> Category: </b>
+            <input type="text" placeholder="Search.." name="search" class="searchbox">
+        </a>
+        <br>
+        <table class="complainttable" style="margin-left: -11%; width: 111%;">
+
+
+    <tbody class="complaint" style="margin-left: -33%;">
+        <tr>
+            <td style="width: 20%;">Patient ID</td>
+            <td style="width: 20%;">Category</td>
+            <td style="width: 20%;">Date</td>
+            <td style="width: 20%;">Time</td>
+            <td style="width: 20%;"> </td>
+        </tr>
         
-        <div class="popup" style="margin-top:9%;margin-right:29%;margin-left:29%;display:none">
-    Are you sure you want to deactivate your account<br>
-    <br><div class="buttonspace" style="justify-content:center"><button class="button" style="background-color:red;padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;" id ="yes">yes</button><br><button id="no" class="button" style="background-color:green;padding-right: 5%;padding-left: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;">no</button></div>
-</div>
-    <!-- Your JavaScript Code -->
+        <tr style='color:white;margin: 3%;'></tr>
+
+        <tr>
+            <td style='width: 20%;'>001245</td>
+            <td style='width: 20%;'>X-Ray</td>
+            <td style='width: 20%;'>18/03/2024</td>
+            <td style='width: 20%;'>08.00 AM</td>
+            <td style='width: 20%;'><div style="    display: flex;flex-direction: row;gap: 33%;">
+                <div style="margin: auto;"><img src="<?=URLROOT."/public/resources/accept.png"?>"  style="width:34px;"></div>
+                <div><img src="<?=URLROOT."/public/resources/decline.png"?>"  style="width:34px"></div>
+            </div></td>        </tr>
+        <tr style='color:white;margin: 3%;'></tr>
+        <tr>
+            <td style='width: 20%;'>001356</td>
+            <td style='width: 20%;'>Blood Count</td>
+            <td style='width: 20%;'>04/04/2024</td>
+            <td style='width: 20%;'>07.00 PM</td>
+            <td style='width: 20%;'><div style="    display: flex;flex-direction: row;gap: 33%;">
+                <div style="margin: auto;"><img src="<?=URLROOT."/public/resources/accept.png"?>"  style="width:34px;"></div>
+                <div><img src="<?=URLROOT."/public/resources/decline.png"?>"  style="width:34px"></div>
+            </div></td>
+        </tr>
+        <tr style='color:white;margin: 3%;'></tr>
+    </tbody>
+
+</table>
+    </div></div>
+    <!--
+         Your JavaScript Code -->
     <script>
         // Sample Data: Replace this with your actual appointment data
         const appointmentsData = [5, 8, 12, 6, 10, 15, 7];

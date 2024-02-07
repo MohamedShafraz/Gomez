@@ -15,4 +15,3 @@ class Home extends Controller {
  *param = hello c
  controller-> method (parameter = param) 
  */
-?>

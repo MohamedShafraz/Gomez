@@ -62,7 +62,7 @@
         <li id="Dashboard" onclick="y('Dashboard')">Dashboard
         </li><br>
         <li  id="appointments" onclick="y('appointments')">
-            Appointment
+            Appointments
         </li><br>
         <li  id="labreports" onclick="y('labreports')">
             Lab Reports
@@ -97,7 +97,7 @@
         <li class="users">Email : samar@gmail.com.com<br><br></li>
         <a href="edit_profile.php"><button class="button" style="margin-left: 57%;" id="no">Edit Profile</button></a>
         <button id="deactivate"  class="button">Deactivate Account</button>
-        <!-- <div id="chartContainer"></div> -->
+        <div id="chartContainer"></div>
         
         <div class="popup" style="margin-top:9%;margin-right:29%;margin-left:29%;display:none">
     Are you sure you want to deactivate your account<br>
