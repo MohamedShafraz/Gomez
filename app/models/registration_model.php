@@ -1,11 +1,11 @@
 <?php
 
 class registrationmodel extends Database{
-  public function loginUser($ID, $patient_name,$profilepicture,$password,$registration_date,$age,$email,$gender,$address,$phone,$nic,$name,$guardianName,$guardianPhone,$guardianaddress,$guardiannic) {
-
-    $where = "INSERT INTO `patients`(`ID`, `patient_name`, `profilepicture`, `password`, `registration_date`, `age`, `email`, `gender`, `address`, `phone`, `nic`, `name`, `guardianName`, `guardianPhone`, `guardianaddress`, `guardiannic`) VALUES (`ID`, `patient_name`, `profilepicture`, `password`, `registration_date`, `age`, `email`, `gender`, `address`, `phone`, `nic`, `name`, `guardianName`, `guardianPhone`, `guardianaddress`, `guardiannic`)";
+  public function loginUser($patient_name,$password,$registration_date,$date_of_birth,$email,$gender,$address,$phone,$nic) {
+    
+    $where = "INSERT INTO `patients`(`patient_name`, `password`, `registration_date`, `date_of_birth`, `email`, `gender`, `address`, `phone`, `nic`) VALUES('$patient_name','$password','$registration_date','$date_of_birth','$email','$gender','$address','$phone','$nic')";
+    print('where');
     $result = $this->executeQuery ($where);
     return $result;
 }
 }
-?>

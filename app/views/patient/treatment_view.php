@@ -90,15 +90,23 @@
     
     <!-- <a>Welcome to Gomez</a> -->
     
-    <ul style="background-color: white;padding:5%;width: 64%;height:61%; ">
+    <ul style="background-color: white;padding:5%;width: 64%;">
     <div class="d" style="margin-left: 10%;">
-        <a class="search">
+        <a class="search" style="background: white;
+    box-shadow: 1px 1px 7px;
+    padding: 2% 4% 5.2% 4%;
+    border-radius: 44px;
+    height: 7px;margin-left: 6%;">
            <b> Doctor: </b>
-            <input type="text" placeholder="Search.." name="search" class="searchbox">
+            <input type="text" placeholder="Search.." name="search" class="searchbox" style="height: 400%;">
         </a><br>
-        <a class="search">
+        <a class="search" style="background: white;
+    box-shadow: 1px 1px 7px;
+    padding: 2% 4% 5.2% 4%;
+    border-radius: 44px;
+    height: 7px; margin-left: 5%;">
            <b> Date: </b>
-            <input type="text" placeholder="Search.." name="search" class="searchbox">
+            <input type="text" placeholder="Search.." name="search" class="searchbox" style="height: 400%;">
         </a>
         <br>
         <table class="complainttable" style="margin-left: -11%; width: 111%;">
@@ -107,36 +115,36 @@
     <tbody class="complaint" style="margin-left: -33%;">
         <tr>
             <td style="width: 20%;">Reference Number</td>
-            <td style="width: 20%;">Category</td>
+            <td style="width: 20%;">Appointment ID</td>
             <td style="width: 20%;">Date</td>
             <td style="width: 20%;">Time</td>
-            <td style="width: 20%;"> </td>
+            <td style="width: 20%;">Doctor </td>
         </tr>
-        
         <tr style='color:white;margin: 3%;'></tr>
 
         <tr>
             <td style='width: 20%;'>001245</td>
-            <td style='width: 20%;'>X-Ray</td>
+            <td style='width: 20%;'>01</td>
             <td style='width: 20%;'>18/03/2024</td>
             <td style='width: 20%;'>08.00 AM</td>
-            <td style='width: 20%;'><a href="make_appointment.php" style="margin-left: -54%;"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">View More</button></a></td>
+            <td style='width: 20%;'>Sham</td>
         </tr>
         <tr style='color:white;margin: 3%;'></tr>
         <tr>
             <td style='width: 20%;'>001356</td>
-            <td style='width: 20%;'>Blood Count</td>
+            <td style='width: 20%;'>02</td>
             <td style='width: 20%;'>04/04/2024</td>
             <td style='width: 20%;'>07.00 PM</td>
-            <td style='width: 20%;'><a href="make_appointment.php" style="margin-left: -54%;"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">View More</button></a></td>
+            <td style='width: 20%;'>sheran</td>
         </tr>
         <tr style='color:white;margin: 3%;'></tr>
     </tbody>
 
 </table>
-    </div></div>
-    <!--
-         Your JavaScript Code -->
+    </div><br>
+        <a href="make_appointment.php"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">Make appointment</button></a>           
+</div>
+    <!-- Your JavaScript Code -->
     <script>
         // Sample Data: Replace this with your actual appointment data
         const appointmentsData = [5, 8, 12, 6, 10, 15, 7];

@@ -90,7 +90,7 @@
     
     <!-- <a>Welcome to Gomez</a> -->
     
-    <ul style="background-color: white;padding:5%; width:50%">
+    <ul style="background-color: white;padding:5%;width: 64%;">
     <div class="d" style="margin-left: 10%;">
         <a class="search">
            <b> Doctor: </b>
@@ -101,45 +101,40 @@
             <input type="text" placeholder="Search.." name="search" class="searchbox">
         </a>
         <br>
-        <table >
-        <thead >
-            <tr>
-                <th >Reference Number</th>
-                <th >Appointment ID</th>
-                <th >Date</th>
-                <th>Time</th>
-                <th>Payment</th>
-                <th></th>
-            </tr>
-        </thead>
-        <tbody>
-        <tr>
-                <td></td>
-            </tr>
-            <tr>
-                <td>001245</td>
-                <td>01</td>
-                <td>18/09/2024</td>
-                <td>08.00 AM</td>
-                <td>Paid</td>
-                <td><a href="view_appointment_details.php"><button class="" style="width:110%;border-radius: 6px;">more</button></a></td>
-            </tr>
-            <tr>
-                <td></td>
-            </tr>
-            <tr>
-                <td>001246</td>
-                <td>02</td>
-                <td>30/09/2024</td>
-                <td>07.00 PM</td>
-                <td>Pending</td>
-                <td><a href="view_appointment_details.php"><button class="" style="width:110%;border-radius: 6px; ">more</button></a></td>
+        <table class="complainttable" style="margin-left: -11%; width: 111%;">
 
-            </tr>
-        </tbody>
-        </table>
+
+    <tbody class="complaint" style="margin-left: -33%;">
+        <tr>
+            <td style="width: 20%;">Reference Number</td>
+            <td style="width: 20%;">Appointment ID</td>
+            <td style="width: 20%;">Date</td>
+            <td style="width: 20%;">Time</td>
+            <td style="width: 20%;">Doctor </td>
+        </tr>
+        <tr style='color:white;margin: 3%;'></tr>
+
+        <tr>
+            <td style='width: 20%;'>001245</td>
+            <td style='width: 20%;'>01</td>
+            <td style='width: 20%;'>18/03/2024</td>
+            <td style='width: 20%;'>08.00 AM</td>
+            <td style='width: 20%;'>Sham</td>
+        </tr>
+        <tr style='color:white;margin: 3%;'></tr>
+        <tr>
+            <td style='width: 20%;'>001356</td>
+            <td style='width: 20%;'>02</td>
+            <td style='width: 20%;'>04/04/2024</td>
+            <td style='width: 20%;'>07.00 PM</td>
+            <td style='width: 20%;'>sheran</td>
+        </tr>
+        <tr style='color:white;margin: 3%;'></tr>
+    </tbody>
+
+</table>
     </div><br>
-        <a href="make_appointment.php"><button class="button" style="margin-left: 55%;">Make appointment</button></a>           
+        <a href="make_appointment.php"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">Make appointment</button></a>           
 </div>
     <!-- Your JavaScript Code -->
     <script>

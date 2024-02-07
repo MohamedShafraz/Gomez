@@ -1,6 +1,4 @@
-.navbar a{
-    width: fit-content;
-}
+
 .lay{
     width: max-content;
 }
@@ -23,7 +21,7 @@
     display: grid;
     font-size: 30px;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: 4rem;
+  gap: 4rem 5rem;
     
 }
 .dashboard ul li{

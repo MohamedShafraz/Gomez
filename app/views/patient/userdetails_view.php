@@ -95,7 +95,7 @@
         <li class="users">Age : 23<br><br></li>
         <li class="users">Phone number : 0766414658<br><br></li>
         <li class="users">Email : samar@gmail.com.com<br><br></li>
-        <a href="edit_profile.php"><button class="button" style="margin-left: 80%;" id="no">Edit Profile</button></a>
+        <a href="edit_profile.php"><button class="button" style="margin-left: 57%;" id="no">Edit Profile</button></a>
         <button id="deactivate"  class="button">Deactivate Account</button>
         <div id="chartContainer"></div>
         

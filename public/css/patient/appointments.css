@@ -60,6 +60,47 @@ tr:nth-child(even) {
 }
 .searchbox{
     border-radius: 15px; 
-    height:190%;
+    height:145%;
     
+}
+
+.complaint{
+    margin-left: 1%;
+}
+.complaint tr{
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 16px;
+    font-size: large;
+    /* width: 795px; */
+    background-color: beige;
+    width: 1023px;
+    padding: 0% 5% 0% 5%;
+    line-height: 7vh;
+    border-radius: 8px;
+
+}
+.complainttext{
+    margin-left: 28%;
+font-size: x-large;
+background-color: var(--Gomez-Blue);
+color: white;
+width: 66%;
+border-radius: 9px;
+padding: 1%;
+text-align: center;
+font-family: inter;
+}
+.complainttable{
+    /* background-color: beige; */
+width: 70%;
+margin-left: 27%;
+padding: 8px 10px;
+border-radius: 9px;
+color: var(--Gomez-Blue);
+font-family: inter;
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(13rem, 0fr));
+gap: 1.5rem;
 }
