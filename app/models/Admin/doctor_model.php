@@ -9,6 +9,7 @@ $data = $this->fetchData($where);
     $users = [];
     $i = 0;
     foreach ($data as $row) {
+        $users[$i]['id'] = $row["Doctor_id"];
         $users[$i]['userName'] = $row["fullname"];
         $users[$i]['phonenumber'] = $row['phonenumber'];
         $users[$i]['specialization'] = $row['Specialization'];

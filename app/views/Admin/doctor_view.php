@@ -41,8 +41,11 @@
         </tr>
         <tr style='color:white;margin: 3%;'></tr>
         <?php
+       
             for ($index = 0; $index < sizeof($data); $index++) {
-                echo "<tr><td style='width: 120px;'>".$data[$index]['userName']."</td><td style='width: 156px;'>200068300174</td><td style='width: 144px;'>Cardiology</td><td><button class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
+                $id = $data[$index]['id'];
+                $_SESSION['id'] = $data[$index]['id'];
+                echo "<tr><td style='width: 120px;'>".$data[$index]['userName']."</td><td style='width: 156px;'>200068300174</td><td style='width: 144px;'>Cardiology</td><td><button onclick = 'z($id)' class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
             }
         ?>
 
