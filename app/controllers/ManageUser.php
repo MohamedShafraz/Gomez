@@ -19,13 +19,21 @@ class manageuser extends Controller{
             header("location:" . URLROOT . "/users/login");
         }
     }
-    public function patient(){
+    public function patient($id = null){
         session_start();
         $this->model("Admin/patient_model");
         $patientModel = new PatientModel();
         $patientDetails = $patientModel->getUserDetails();
-        $this->view("Admin/patient_view",$patientDetails);
+        if($id != null){
+            $uid = explode('=', $id);;
+            $_SESSION['uid'] = $uid[1];
+            $this->view("Admin/patient_details_view",$patientDetails[$_SESSION['uid']]);
+        }
+        else{
+            $this->view("Admin/patient_view",$patientDetails);
+        }
     }
+    
     public function doctor(){
         session_start();
         $this->model("Admin/doctor_model");
