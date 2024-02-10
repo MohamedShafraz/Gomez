@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<?=URLROOT?>/css/new.css">
 
 <!-- background-color:#E9F3FD -->
-<body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
+<body style="background-image:linear-gradient(90deg,white,#E9F3FD);overflow:hidden">
 <img src="<?=URLROOT."/resources/gomezlogo2.png"?>" alt="" class="image">
 <br>
 <br>
@@ -20,22 +20,6 @@
             </a>
         </nav>
     </header>
-    <aside class="sidenav">
-    <ul>
-    <script>
-    var $URLROOT = '<?=URLROOT?>';
-</script>
-        <img src="<?=URLROOT."/resources/user.png"?>" alt=""><br>
-        <?='Admin'?><br><br>
-        <li id="dashboard" onclick="y('dashboard')">Dashboard
-        </li><br>
-        <li  id="manageuser" onclick="y('manageuser')">
-            Manage User
-        </li><br>
-        <li id="userinfo" onclick="y('userinfo')">
-            User information
-        </li>
-    </ul>
-</aside>
+    <?php include APPROOT.'/views/Admin/sidebar.php'?>
 <article > 
 
