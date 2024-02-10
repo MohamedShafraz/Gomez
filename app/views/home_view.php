@@ -690,7 +690,7 @@ include_once(APPROOT.'/views/header_view.php');
             <div class="column">
                 <h3>Facilities</h3>
                 <ul>
-                <li><a href="#b1"> Prescrption</a></li>
+                <li><a href="#b1"> Prescription</a></li>
                 <li><a href="#b1"> Pre Registeration </a></li>
                 <li><a href="#b1"> online consultation </a></li>
                 <li><a href="#b1"> online payment </a></li>
