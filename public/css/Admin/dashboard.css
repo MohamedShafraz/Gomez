@@ -45,7 +45,7 @@ position: fixed;
 z-index: 100;
 top: 0%;
 left: 0;
-background-color: var(--Gomez-Blue);
+background: var(--Gomez-Blue);
 
 color: var(--Gomez-Purple);
 overflow-x: hidden;

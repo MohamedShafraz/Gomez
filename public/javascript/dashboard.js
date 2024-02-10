@@ -1,3 +1,7 @@
+function z($id) {
+  window.location.href += "/id="+$id.toString();
+}
+
 function y($id) {
         document.getElementById($id).classList.add("active");
         window.location.href = $URLROOT+"/"+$id.toString();
@@ -17,6 +21,7 @@ function y($id) {
     element.classList.add("active");
   }
 }
+
 window.onload = function() {
   setActiveFromURL();
 };

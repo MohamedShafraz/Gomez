@@ -1,4 +1,6 @@
-
+body{
+  background-image:var(--Gomez-Login-Box-Purple);
+}
     .complaint{
         margin-left: 1%;
     }
