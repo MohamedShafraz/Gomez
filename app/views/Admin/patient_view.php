@@ -37,7 +37,9 @@
     <tr><td style="width: 99px;">Name</td><td style="width: 65px;">Type</td><td style="width: max-content;">Mobile Number</td><td></td></tr>    <tr style='color:white;margin: 3%;'></tr>
         <?php
             for ($index = 0; $index < sizeof($data); $index++) {
-                echo "<tr><td style='width:100px'>".$data[$index]['userName']."</td><td style='width: max-content;'>".$data[$index]['type']."</td><td style='width: 144px;'>".$data[$index]['phonenumber']."</td><td><button class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
+                $id = $data[$index]['id'];
+                $_SESSION['id'] = $data[$index]['id'];
+                echo "<tr><td style='width:100px'>".$data[$index]['userName']."</td><td style='width: max-content;'>".$data[$index]['type']."</td><td style='width: 144px;'>".$data[$index]['phonenumber']."</td><td><button onclick = 'z($index)' class=test >view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
             }
         ?>
 
