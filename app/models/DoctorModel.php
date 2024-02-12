@@ -33,6 +33,12 @@ class DoctorModel extends Database{
         return $result;
     }
 
+    public function addPrescription($data)
+    {
+        $this->setTable(Prescription);
+        $result = $this->insertData($data);
+        return $result;
+    }
 
 }
 

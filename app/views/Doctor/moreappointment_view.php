@@ -2,10 +2,10 @@
 <aside class="sidenav">
     <ul>
         <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
-        <li><a href="<?=URLROOT."/DoctorController"?>">Dashboard</a></li>
-        <li><a href="<?=URLROOT."/DoctorController/ViewAppointment/"?>">Appointment</a></li>
-        <li><a href="<?=URLROOT."/DoctorController/ViewPrescription"?>">Prescription</a></li>
-        <li><a href="<?=URLROOT."/DoctorController/ViewReminder"?>">Reminder</a></li>
+        <li id="Dashboard" onclick="y('Dashboard')" >Dashboard</li>
+        <li id="DoctorController/ViewAppointment" onclick="y('DoctorController/ViewAppointment')" >Appointment</li>
+        <li id="DoctorController/ViewPrescription" onclick="y('DoctorController/ViewPrescription')" > Prescription </li>
+        <li id="DoctorController/ViewReminder" onclick="y('DoctorController/ViewReminder')" > Reminder </li>
     </ul>
 </aside>
 

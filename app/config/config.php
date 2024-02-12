@@ -21,5 +21,6 @@
     define('Patients','patients'); // this changed
     //Appointments Table
     define('Appointment','appointment');//
-    
+    //Prescription Table
+    define('Prescription','prescription');//
 ?>
