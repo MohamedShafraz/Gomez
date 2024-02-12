@@ -27,9 +27,7 @@ $message = "";
   margin-top: 2%;width:64%;padding: 0%;
   height: 100%;
   margin-left: 2%;">
-        <div class="column" style="margin-left: 25%;
-  width: max-content;
-padding: 0%;
+<div class="column" style="margin-left: 25%;width: max-content;padding: 0%;
 margin: 0% 0% 0% 8%;
 height: initial;">
                 <!-- sdnfjfnj -->

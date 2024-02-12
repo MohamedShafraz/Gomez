@@ -5,7 +5,7 @@
         <li id="Dashboard" onclick="y('Dashboard')" >Dashboard</li>
         <li id="DoctorController/ViewAppointment" onclick="y('DoctorController/ViewAppointment')" >Appointment</li>
         <li id="DoctorController/ViewPrescription" onclick="y('DoctorController/ViewPrescription')" > Prescription </li>
-        <li id="DoctorController/ViewReminder" onclick="y('DoctorController/ViewReminder')" > Reminder </li>
+        <li id="DoctorController/ViewReminder" onclick="y('DoctorController/ViewReminder')" >Reminder</li>
     </ul>
 
     <style>
@@ -42,7 +42,6 @@
                 echo '<th> Total_Amount </th>';
                 echo '<th> Patient_ID </th>';
                 echo '<th> More </th>';
-                echo '<th> Cancel </th>';
             echo '</tr>';
 
             foreach ($appointments as $row) {
@@ -56,7 +55,7 @@
                     echo '<td>'.$row['Total_Amount'].'</td>';
                     echo '<td>'.$row['Patient_ID'].'</td>';
                     echo '<td><button class="bluebutton" onclick="window.location.href=\''.URLROOT.'/DoctorController/ViewMoreAppoinment/'.$row['Appointment_Id'].'\'">More</button></td>';
-                    echo '<td><button class="orangebutton" onclick="window.location.href=\''.URLROOT.'/DoctorController/CancelAppointment/'.$row['Appointment_Id'].'\'">Cancel</button></td>';                    
+                    
                 echo '</tr>';
             }
             echo '</table>';

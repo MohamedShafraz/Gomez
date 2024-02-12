@@ -30,7 +30,23 @@ class DoctorController extends Controller {
 
 
     public function ViewPrescription() {
-        $this->view('Doctor/prescription_view');
+
+        if(!isset($_SESSION)){
+            session_start();}
+        $user = $_SESSION["USER"];
+
+        if ($user["usertype"] == "Doctor"){
+            
+            $this->model("DoctorModel");
+            $this->doctorModel = new DoctorModel(new Database());
+            $doctor = $this->doctorModel->getDoctor($user["Username"]);
+            $prescriptions = $this->doctorModel->getPrescriptionbyDoctor($doctor[0]["Doctor_id"]);
+            $this->view('Doctor/prescription_view', ['prescriptions' => $prescriptions, 'doctor' => $doctor[0]['Doctor_id'] , 'user' => $user]);
+        }
+        else {
+            header("Location: ".URLROOT."/Users/login"); 
+            exit(); 
+        } 
     }
 
     public function ViewReminder() {
@@ -133,7 +149,25 @@ class DoctorController extends Controller {
                 }
             }
 
+            public function ViewMorePrescription($prescriptionid , $appointmentid) {
+        
+                if(!isset($_SESSION)){
+                    session_start();}
+                $user = $_SESSION["USER"];
+                if ($user["usertype"] == "Doctor"){
+                    $this->model("DoctorModel");
+                    $this->doctorModel = new DoctorModel(new Database());
+                    $prescription = $this->doctorModel->getPrescriptionbyID($prescriptionid);
+                    $appointment = $this->doctorModel->getAppoinmentbyID($appointmentid);
+                    $patient = $this->doctorModel->getPatient($appointment[0]["Patient_ID"]);
+                    $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'appointment' => $appointment[0], 'patient' => $patient[0]]);
+                }
+                else {
+                    header("Location: ".URLROOT."/Users/login"); 
+                    exit(); } 
+    }
 
+            
 
         }
 

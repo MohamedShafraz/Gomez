@@ -5,7 +5,7 @@
         <li id="Dashboard" onclick="y('Dashboard')" >Dashboard</li>
         <li id="DoctorController/ViewAppointment" onclick="y('DoctorController/ViewAppointment')" >Appointment</li>
         <li id="DoctorController/ViewPrescription" onclick="y('DoctorController/ViewPrescription')" > Prescription </li>
-        <li id="DoctorController/ViewReminder" onclick="y('DoctorController/ViewReminder')" > Reminder </li>
+        <li id="DoctorController/ViewReminder" onclick="y('DoctorController/ViewReminder')" >Reminder</li>
     </ul>
 
     <style>

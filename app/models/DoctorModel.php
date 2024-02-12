@@ -40,6 +40,30 @@ class DoctorModel extends Database{
         return $result;
     }
 
+    public function getPrescriptionbyDoctor($id)
+    {
+        $where = "doctorid='$id'";
+        $this->setTable(Prescription);
+        $result = $this->fetchData($where);
+        return $result;}
+
+
+        public function getAppoinmentbyID($id)
+    {
+        $where = "Appointment_Id='$id'";
+        $this->setTable(Appointment);
+        $result = $this->fetchData($where);
+        return $result;
+    }
+
+    public function getPrescriptionbyID($id)
+    {
+        $where = "prescription_id='$id'";
+        $this->setTable(Prescription);
+        $result = $this->fetchData($where);
+        return $result;
+    }
+
 }
 
 
