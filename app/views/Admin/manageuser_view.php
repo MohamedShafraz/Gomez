@@ -53,6 +53,7 @@
         <div><img src=<?php echo URLROOT . "/resources/LabAssistantCount.png" ?>></div>
         <div><br>Manage <br>Lab Assistants<br>
     </li>
+    
 </ul>
 <div class="complainttext">Complaints</div>
 <div class="complaintheader" style="
