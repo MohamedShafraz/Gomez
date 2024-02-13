@@ -6,7 +6,7 @@ class dashboard extends Controller
     
     public function Index()
     {
-        session_start();
+        // session_start();
 
         if (isset($_SESSION["userType"])) {
             // Load the DashboardModel

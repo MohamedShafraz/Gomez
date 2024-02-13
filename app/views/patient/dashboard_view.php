@@ -175,7 +175,7 @@
 
                 
     // Set the date and time of the next appointment (replace with your actual date and time)
-    const nextAppointmentDate = new Date('February 10, 2024 15:30:00 GMT+00:00');
+    const nextAppointmentDate = new Date('February 14, 2024 15:30:00 GMT+00:00');
 
     function updateCountdown() {
         const now = new Date().getTime();

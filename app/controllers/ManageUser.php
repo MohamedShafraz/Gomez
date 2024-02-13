@@ -2,7 +2,7 @@
 class manageuser extends Controller{
     
     public function index(){
-        session_start();
+        // session_start();
 
         if (isset($_SESSION["userType"])=="admin") {
             // Load the DashboardModel
@@ -20,20 +20,20 @@ class manageuser extends Controller{
         }
     }
     public function patient(){
-        session_start();
+        // session_start();
       
         $this->view("Admin/patient_view");
     }
     public function doctor(){
-        session_start();
+        // session_start();
         $this->view("Admin/doctor_view");
     }
     public function receptionist(){
-        session_start();
+        // session_start();
         $this->view("Admin/receptionist_view");
     }
     public function labAssistant(){
-        session_start();
+        // session_start();
         $this->view("Admin/lab_assistant_view");
     }
 }
