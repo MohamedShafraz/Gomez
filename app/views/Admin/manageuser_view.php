@@ -10,30 +10,30 @@
 
 <!-- <a>Welcome to Gomez</a> -->
 <style>
-    .heading{
+    .heading {
         position: fixed;
-    padding: 0% 8.0% 0% 9%;
-    margin-top: 0.7%;
-    width: 70%;
-    margin-left: 27.6%;
-    padding: 8px 10px;
-    border-radius: 9px;
-    color: var(--Gomez-Blue);
-    font-family: inter;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(13rem, 0fr));
-    gap: 1.5rem;
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    gap: 85px;
-    font-size: large;
-    /* width: 795px; */
-    background-color: beige;
-    width: 679px;
-    padding: 0% 7.9% 0% 9.1%;
-    line-height: 7vh;
-    border-radius: 8px;
+        padding: 0% 8.0% 0% 9%;
+        margin-top: 0.7%;
+        width: 70%;
+        margin-left: 27.6%;
+        padding: 8px 10px;
+        border-radius: 9px;
+        color: var(--Gomez-Blue);
+        font-family: inter;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(13rem, 0fr));
+        gap: 1.5rem;
+        display: flex;
+        flex-direction: row;
+        align-content: center;
+        gap: 85px;
+        font-size: large;
+        /* width: 795px; */
+        background-color: beige;
+        width: 679px;
+        padding: 0% 7.9% 0% 9.1%;
+        line-height: 7vh;
+        border-radius: 8px;
     }
 </style>
 <ul class="manageuser">
@@ -55,15 +55,20 @@
     </li>
 </ul>
 <div class="complainttext">Complaints</div>
-<table class="complainttable">
-
-<tr style="position:fixed;padding: 0% 8.0% 0% 9%;margin-top: 0%;">
-            <td style="width: 120px;">Name</td>
-            <td style="width: 163px;">Type</td>
-            <td style="width: 249px;">Description</td>
-            <td style="width: 169px;">Date</td>
-            <td style="width: 60px;">Time</td>
-        </tr>
+<div class="complaintheader" style="
+    width: 26%;margin-bottom: 0.4%;
+">
+    <a>Name</a>
+    <a>Type</a>
+    <a style="
+    margin-left: 10%;
+">Description</a>
+    <a style>Date</a>
+    <a style="
+    margin-left: 10%;
+">Time</a>
+</div>
+<table class="complainttable" style="height: 19vh;">
     <tbody class="complaint">
         <tr>
             <td style='width: 120px;'>Saj</td>

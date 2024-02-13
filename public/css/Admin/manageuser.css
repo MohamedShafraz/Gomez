@@ -3,6 +3,7 @@ body{
 }
     .complaint{
         margin-left: 1%;
+        
     }
     .complaint tr{
         display: flex;
@@ -11,7 +12,7 @@ body{
   gap: 85px;
   font-size: large;
   /* width: 795px; */
-  background-color: beige;
+  background-color: #F1EAD2;
   width: 679px;
   padding: 0% 52% 0% 59.5%;
   line-height: 7vh;
@@ -31,6 +32,9 @@ body{
     }
     .complainttable{
         /* background-color: beige; */
+        overflow-y: scroll;
+        scrollbar-width: none;
+        
   width: 70%;
   margin-left: 27%;
   padding: 8px 10px;
@@ -41,3 +45,21 @@ body{
   grid-template-columns: repeat(auto-fit, minmax(13rem, 0fr));
   gap: 1.5rem;
     }
+
+.complaintheader{
+  margin-top: 0.7%;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 85px;
+    font-size: large;
+    /* width: 795px; */
+    color: var(--Gomez-Blue);
+    background-color: beige ;
+    width: 679px;
+    padding: 0% 33.3% 0 9%;
+    line-height: 7vh;
+    border-radius: 8px;
+    font-family: inter;
+    margin-left: 27.8%;
+}
