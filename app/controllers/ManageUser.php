@@ -30,6 +30,7 @@ class manageuser extends Controller
             $uid = explode('=', $id);;
             $_SESSION['uid'] = $uid[1];
             $this->view("Admin/patient_details_view", $patientDetails[$_SESSION['uid']]);
+            exit();
         } else {
             $this->view("Admin/patient_view", $patientDetails);
         }
@@ -42,6 +43,7 @@ class manageuser extends Controller
         $patientModel = new DoctorModel();
         $DoctorDetails = $patientModel->getUserDetails();
         $this->view("Admin/doctor_view", $DoctorDetails);
+        exit();
     }
     public function receptionist()
     {
@@ -50,6 +52,7 @@ class manageuser extends Controller
         $receptionistModel  = new ReceptionistModel();
         $receptionistAssistantDetails = $receptionistModel->getUserDetails();
         $this->view("Admin/receptionist_view", $receptionistAssistantDetails);
+        exit();
     }
     public function labAssistant()
     {
@@ -58,5 +61,6 @@ class manageuser extends Controller
         $labAssitantModel = new LabAssistantModel();
         $labAssistantDetails = $labAssitantModel->getUserDetails();
         $this->view("Admin/lab_assistant_view", $labAssistantDetails);
+        exit();
     }
 }

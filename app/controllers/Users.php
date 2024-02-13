@@ -42,6 +42,7 @@ class Users extends Controller
                 $_SESSION["userType"] = $user['usertype'];
                 $_SESSION["uname"] = md5($user["Username"]);
                 header('Location: ' . URLROOT . '/Dashboard');
+                exit();
             } else {
                 $this->view('login_view');
             }
