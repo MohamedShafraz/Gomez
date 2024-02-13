@@ -33,13 +33,16 @@
 <table class="complainttable">
 
 
-    <tbody class="complaint">
-        <tr>
+<tbody class="complaint" style="margin-top: 6%;">
+        <tr style="position:fixed;padding: 0% 8.5%;margin-top: 0%;">
             <td style="width: 111px;">Name</td>
             <td style="width: 146px;">NIC</td>
             <td style="width: 129px;">Specialization</td>
         </tr>
-        <tr style='color:white;margin: 3%;'></tr>
+        
+    
+        <tr style="color:white;margin: 14%;"></tr>
+        
         <?php
        
             for ($index = 0; $index < sizeof($data); $index++) {

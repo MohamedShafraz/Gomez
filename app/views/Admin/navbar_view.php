@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<?=URLROOT?>/css/new.css">
 
 <!-- background-color:#E9F3FD -->
-<body style="background-image:linear-gradient(90deg,white,#E9F3FD);overflow:hidden">
+<body style="background-image:linear-gradient(90deg,#E9F3FD,#E9F3FD);overflow:hidden">
 <img src="<?=URLROOT."/resources/gomezlogo2.png"?>" alt="" class="image">
 <br>
 <br>

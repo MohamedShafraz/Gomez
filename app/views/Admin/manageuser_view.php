@@ -9,6 +9,33 @@
 <?php require_once(APPROOT . "/views/Admin/navbar_view.php"); ?>
 
 <!-- <a>Welcome to Gomez</a> -->
+<style>
+    .heading{
+        position: fixed;
+    padding: 0% 8.0% 0% 9%;
+    margin-top: 0.7%;
+    width: 70%;
+    margin-left: 27.6%;
+    padding: 8px 10px;
+    border-radius: 9px;
+    color: var(--Gomez-Blue);
+    font-family: inter;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(13rem, 0fr));
+    gap: 1.5rem;
+    display: flex;
+    flex-direction: row;
+    align-content: center;
+    gap: 85px;
+    font-size: large;
+    /* width: 795px; */
+    background-color: beige;
+    width: 679px;
+    padding: 0% 7.9% 0% 9.1%;
+    line-height: 7vh;
+    border-radius: 8px;
+    }
+</style>
 <ul class="manageuser">
     <li id="manageuser/patient" onclick="y('manageuser/patient')" class="options" style="font-size: 3.5vh;">
         <div><img src=<?php echo URLROOT . "/resources/PatientCount2.png" ?>></div>
@@ -30,17 +57,22 @@
 <div class="complainttext">Complaints</div>
 <table class="complainttable">
 
-
-    <tbody class="complaint">
-        <tr>
+<tr style="position:fixed;padding: 0% 8.0% 0% 9%;margin-top: 0%;">
             <td style="width: 120px;">Name</td>
             <td style="width: 163px;">Type</td>
             <td style="width: 249px;">Description</td>
             <td style="width: 169px;">Date</td>
             <td style="width: 60px;">Time</td>
         </tr>
+    <tbody class="complaint">
+        <tr>
+            <td style='width: 120px;'>Saj</td>
+            <td style='width: 156px;'>Doc</td>
+            <td style='width: 144px;'>Reactivate</td>
+            <td style='width: 120px;'>4/1/2024</td>
+            <td style='width: 60px;'>11:59</td>
+        </tr>
         <tr style='color:white;margin: 3%;'></tr>
-
         <tr>
             <td style='width: 120px;'>Saj</td>
             <td style='width: 156px;'>Doc</td>
