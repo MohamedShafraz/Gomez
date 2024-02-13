@@ -22,7 +22,6 @@ class manageuser extends Controller
     }
     public function patient($id = null)
     {
-        session_start();
         $this->model("Admin/patient_model");
         $patientModel = new PatientModel();
         $patientDetails = $patientModel->getUserDetails();
