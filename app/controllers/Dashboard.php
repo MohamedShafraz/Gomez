@@ -3,11 +3,10 @@
 class dashboard extends Controller
 {
     private $usertype;
-    
+
     public function Index()
     {
-        // session_start();
-
+        session_start();
         if (isset($_SESSION["userType"])) {
             // Load the DashboardModel
             $this->model('dashboard_model');
@@ -18,9 +17,9 @@ class dashboard extends Controller
             // Pass the data to the view
             $userCounts = $dashboardModel->getUserCounts();
             $this->view($_SESSION["userType"] . '/dashboard_view', $userCounts);
+            exit();
         } else {
             header("location:" . URLROOT . "/users/login");
         }
     }
 }
-?>
