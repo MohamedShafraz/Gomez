@@ -4,8 +4,7 @@ class manageuser extends Controller
 
     public function index()
     {
-        // session_start();
-
+        session_start();
         if (isset($_SESSION["userType"]) == "admin") {
             // Load the DashboardModel
             $this->model('dashboard_model');
@@ -16,6 +15,7 @@ class manageuser extends Controller
             // Pass the data to the view
             $userCounts = $dashboardModel->getUserCounts();
             $this->view("Admin/manageuser_view");
+            exit();
         } else {
             header("location:" . URLROOT . "/users/login");
         }
