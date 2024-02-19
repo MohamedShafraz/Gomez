@@ -53,7 +53,7 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         <li class="users">Email : Shaf@live.com<br><br></li>
 
         <div id="chartContainer"></div>
-        <button onclick="window.location.href += '/id?'+<?= $_SESSION['User_Id'] ?>" style="float:right" class="button">Edit</button>
+        <button onclick="window.location.href += '/id?'+.<?= $_SESSION['User_Id'] ?>" style="float:right" class="button">Edit</button>
     </ul>
     </div>
 </article>
@@ -61,7 +61,7 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
 <script>
     if (window.location.href.split('?').length < 2) {
         document.getElementById('popup1').style.visibility = 'hidden';
-        
+
     }
 
     function m($id) {
@@ -70,7 +70,6 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
     }
     if (window.location.href.split('?').length == 2) {
         document.getElementsByClassName('dashboard')[0].style.filter = 'blur(4px)';
-        
     }
 </script>
 <?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
