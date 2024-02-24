@@ -4,7 +4,7 @@ function z($id) {
 
 function y($id) {
   document.getElementById($id).classList.add("active");
-  window.location.href = $URLROOT + "/Admin/" + $id.toString();
+  window.location.href = $URLROOT + "/" + $usertype + "/" + $id.toString();
 }
 function setActiveFromURL() {
   const url = window.location.href;

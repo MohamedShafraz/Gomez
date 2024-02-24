@@ -1,13 +1,14 @@
 <aside class="sidenav">
     <ul>
-    <script>
-    var $URLROOT = '<?=URLROOT?>';
-</script>
-        <img src="<?=URLROOT."/resources/user.png"?>" alt=""><br>
-        <?='Admin'?><br><br>
+        <script>
+            var $URLROOT = '<?= URLROOT ?>';
+            var $usertype = '<?= $_SESSION["userType"] ?>'
+        </script>
+        <img src="<?= URLROOT . "/resources/user.png" ?>" alt=""><br>
+        <?= 'Admin' ?><br><br>
         <li id="dashboard" onclick="y('dashboard')">Dashboard
         </li><br>
-        <li  id="manageuser" onclick="y('manageuser')">
+        <li id="manageuser" onclick="y('manageuser')">
             Manage User
         </li><br>
         <li id="userinfo" onclick="y('userinfo')">
