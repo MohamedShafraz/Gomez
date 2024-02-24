@@ -1,19 +1,23 @@
 <?php
 
-class DoctorModel extends Database{
+class DoctorModel extends Database
+{
 
     public function getDoctor($username)
     {
         $where = "Username='$username'";
         $this->setTable(Doctors);
         $result = $this->fetchData($where);
-        return $result;}
+
+        return $result;
+    }
 
     public function getAppoinmentsbyDoctor($id)
     {
         $where = "doctor_id='$id'";
         $this->setTable(Appointment);
         $result = $this->fetchData($where);
+
         return $result;
     }
 
@@ -24,7 +28,7 @@ class DoctorModel extends Database{
         $result = $this->fetchData($where);
         return $result;
     }
-    
+
     public function getPatient($id)
     {
         $where = "ID='$id'";
@@ -45,10 +49,11 @@ class DoctorModel extends Database{
         $where = "doctorid='$id'";
         $this->setTable(Prescription);
         $result = $this->fetchData($where);
-        return $result;}
+        return $result;
+    }
 
 
-        public function getAppoinmentbyID($id)
+    public function getAppoinmentbyID($id)
     {
         $where = "Appointment_Id='$id'";
         $this->setTable(Appointment);
@@ -63,22 +68,4 @@ class DoctorModel extends Database{
         $result = $this->fetchData($where);
         return $result;
     }
-
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>
