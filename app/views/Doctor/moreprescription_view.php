@@ -40,7 +40,7 @@
 
                     </div>
                     <div class="details" style="width:50%">
-                        <?php   echo "<p>Appointment Date  : ".$appointment["Date"]."</p>"; 
+                        <?php   echo "<p>Appointment Date  : ".$appointment["Appointment_Date"]."</p>"; 
                                 echo "<br>";
                                 echo "<br>";
                                 echo "<p>Appointment Time  : ".$appointment["Appointment_Time"]."</p>";

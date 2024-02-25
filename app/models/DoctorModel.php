@@ -64,13 +64,28 @@ class DoctorModel extends Database{
         return $result;
     }
 
-    public function updateProfile($data)
+    public function updateAppointmentStatus($id, $data)
     {
-        $where = "Doctor_id=".$data['Doctor_id'];
-        $this->setTable(Doctors);
-        $result = $this->updateData($data, $where);
+       $query = "UPDATE Appointment SET Appointment_Status='$data' WHERE Appointment_Id='$id'";
+       $result = $this->executeQuery($query);
+       return $result;
+    }
+
+    public function getPrescriptionbyAppointment($id)
+    {
+        $where = "Appointment_Id='$id'";
+        $this->setTable(Prescription);
+        $result = $this->fetchData($where);
         return $result;
     }
+
+    public function updateprescription($id, $data)
+    {
+        $query = "UPDATE Prescription SET Medications='$data[Medications]', instructions='$data[instructions]', labtesting='$data[labtesting]' WHERE prescription_id='$id'";
+        $result = $this->executeQuery($query);
+        return $result;
+    }
+
 
 }
 

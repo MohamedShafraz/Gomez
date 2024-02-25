@@ -16,7 +16,14 @@
                 <div style="display: flex; flex-direction: row; justify-content: space-between; height: 50px; width :100%">
                     <div style="margin: 0px; ">Appoinment Details</div>
                     <div style="display: flex; flex-direction: row;">
-                        <button style="width: 150px;" class="bluebutton" onclick="location.href='<?=URLROOT."/DoctorController/AddprescriptionView"?>'">Add Prescription</button>
+                    <?php
+                        if ($appointments["Appointment_Status"] == "Pending") {
+                            echo '<button style="width: 150px;" class="bluebutton" onclick="location.href=\'' . URLROOT . '/DoctorController/AddprescriptionView/' . $appointments["Appointment_Id"] . '\'">Add Prescription</button>';
+                        }
+                        else if ($appointments["Appointment_Status"] == "Prescription Added") {
+                            echo '<button style="width: 150px;" class="yellowbutton" onclick="location.href=' . "'" . URLROOT . "/DoctorController/ViewMorePrescription/" . $prescription["prescription_id"] ."/".$appointments["Appointment_Id"]. "'" . '">View Prescription</button>';
+                        }
+                        ?>
                     </div>
                 </div>
                 <div style="display: flex; flex-direction:row; justify-content:space-between; width :100%">

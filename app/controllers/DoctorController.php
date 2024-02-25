@@ -97,11 +97,14 @@ class DoctorController extends Controller {
                 $this->doctorModel = new DoctorModel(new Database());
                 $appointment = $this->doctorModel->getAppointment($id);
                 $patient = $this->doctorModel->getPatient($appointment[0]['Patient_ID']);
-                $this->view('Doctor/moreappointment_view', ['appointments' => $appointment[0], 'patient' => $patient[0]]);
-            
-            
-               
+                $prescription = $this->doctorModel->getPrescriptionbyAppointment($id);
+                if ($prescription == null){
+                    $this->view('Doctor/moreappointment_view', ['appointments' => $appointment[0], 'patient' => $patient[0] , 'prescription' => null]);
+                }
+                else {
+                    $this->view('Doctor/moreappointment_view', ['appointments' => $appointment[0], 'patient' => $patient[0] , 'prescription' => $prescription[0]]);
             }
+        }
             else {
                 header("Location: ".URLROOT."/Users/login"); 
                 exit(); 
@@ -109,59 +112,72 @@ class DoctorController extends Controller {
 
         }
         
-            public function AddprescriptionView() {
-                if(!isset($_SESSION)){
-                    session_start();}
-                $user = $_SESSION["USER"];
-                if ($user["usertype"] == "Doctor"){
-                    $this->model("DoctorModel");
-                    $this->doctorModel = new DoctorModel(new Database());
-                    $doctor = $this->doctorModel->getDoctor($user["Username"]);
-                    $appointments = $this->doctorModel->getAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
-                    $patient = $this->doctorModel->getPatient($appointments[0]['Patient_ID']);
-                    
-                    $this->view('Doctor/addprescription_view', ['appointments' => $appointments ,'doctorid' => $doctor[0]['Doctor_id'], 'patientid' => $patient[0]['ID'],'patientname' => $patient[0]['name']] );
-                    
+        public function AddprescriptionView($id) {
+            if(!isset($_SESSION)){
+                session_start();}
+            $user = $_SESSION["USER"];
+            
 
+            if ($user["usertype"] == "Doctor"){
+                $this->model("DoctorModel");
+                $this->doctorModel = new DoctorModel(new Database());
+                $doctor = $this->doctorModel->getDoctor($user["Username"]);
+                $appointments = $this->doctorModel->getAppoinmentbyID($id);
+                $patient = $this->doctorModel->getPatient($appointments[0]['Patient_ID']);
+                
+                $this->view('Doctor/addprescription_view', ['appointments' => $appointments ,'doctorid' => $doctor[0]['Doctor_id'], 'patientid' => $patient[0]['ID'],'patientname' => $patient[0]['name']] );
+                
+
+            }
+            else {
+                header("Location: ".URLROOT."/Users/login"); 
+                exit(); 
+            }
+        }
+
+
+
+        public function AddPrescription(){
+            if(!isset($_SESSION)){
+                session_start();}
+            $user = $_SESSION["USER"];
+            if ($user["usertype"] == "Doctor"){
+                $this->model("DoctorModel");
+                $this->doctorModel = new DoctorModel(new Database());
+                $doctor = $this->doctorModel->getDoctor($user["Username"]);
+                $patient = $this->doctorModel->getPatient($_POST['patient_id']);
+                $data = [
+                    'doctorid' => intval($doctor[0]['Doctor_id']),
+                    'patient_id' => intval($_POST['patient_id']),
+                    'Appointment_id	' => intval($_POST['appointment_id']),
+                    'patient_name' => $patient[0]['name'],
+                    'patient_age' => $patient[0]['age'],
+                    'Medications' => $_POST['medications'],
+                    'instructions' => $_POST['instructions'],
+                    'datesigned' => $_POST['dateSigned'],
+                    'labtesting' => $_POST['labTesting']
+                ];
+                
+                
+                $result = $this->doctorModel->addPrescription($data);
+                $this->doctorModel->updateAppointmentStatus($_POST['appointment_id'], "Prescription Added");
+
+                if ($result){
+                    header("Location: ".URLROOT."/DoctorController/ViewAppointment");
+                    exit();
                 }
                 else {
-                    header("Location: ".URLROOT."/Users/login"); 
-                    exit(); 
+                    header("Location: ".URLROOT."/DoctorController/ViewAppointment");
+                    exit();
                 }
+              
+               
             }
-
-
-
-            public function AddPrescription(){
-                if(!isset($_SESSION)){
-                    session_start();}
-                $user = $_SESSION["USER"];
-                if ($user["usertype"] == "Doctor"){
-                    $this->model("DoctorModel");
-                    $this->doctorModel = new DoctorModel(new Database());
-                    $doctor = $this->doctorModel->getDoctor($user["Username"]);
-                    $patient = $this->doctorModel->getPatient($_POST['patient_id']);
-                    $data = [
-                        'doctorid' => intval($doctor[0]['Doctor_id']),
-                        'patient_id' => intval($_POST['patient_id']),
-                        'Appointment_id	' => intval($_POST['appointment_id']),
-                        'patient_name' => $patient[0]['name'],
-                        'patient_age' => $patient[0]['age'],
-                        'Medications' => $_POST['medications'],
-                        'instructions' => $_POST['instructions'],
-                        'datesigned' => $_POST['dateSigned'],
-                        'labtesting' => $_POST['labTesting']
-                    ];
-                    
-                    $result = $this->doctorModel->addPrescription($data);
-                  
-                   
-                }
-                else {
-                    header("Location: ".URLROOT."/Users/login"); 
-                    exit(); 
-                }
-            }
+            else {
+                header("Location: ".URLROOT."/Users/login"); 
+                exit(); 
+           }
+        }
 
             public function ViewMorePrescription($prescriptionid , $appointmentid) {
         
