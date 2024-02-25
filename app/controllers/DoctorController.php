@@ -222,11 +222,53 @@ class DoctorController extends Controller {
         }
 
 
+         public function EditPrescriptionView($appointmentid,$prescriptionid ){
+            if(!isset($_SESSION)){
+                session_start();}
+            $user = $_SESSION["USER"];
+            if ($user["usertype"] == "Doctor"){
+                $this->model("DoctorModel");
+                $this->doctorModel = new DoctorModel(new Database());
+                $prescription = $this->doctorModel->getPrescriptionbyID($prescriptionid);
+                $appointment = $this->doctorModel->getAppoinmentbyID($appointmentid);
+                $patient = $this->doctorModel->getPatient($appointment[0]["Patient_ID"]);
+                $this->view('Doctor/editprescription_view', ['prescription' => $prescription, 'appointment' => $appointment[0], 'patient' => $patient[0]]);
+            }
+            else {
+                header("Location: ".URLROOT."/Users/login"); 
+                exit(); 
+            }
+        }
 
 
+        public function EditPrescription(){
+            if(!isset($_SESSION)){
+                session_start();}
+            $user = $_SESSION["USER"];
+            if ($user["usertype"] == "Doctor"){
+                $this->model("DoctorModel");
+                $this->doctorModel = new DoctorModel(new Database());
+                $data = [
+                    'Medications' => $_POST['medications'],
+                    'instructions' => $_POST['instructions'],
+                    'labtesting' => $_POST['labtesting']
+                ];
 
-
-
+                $result = $this->doctorModel->updatePrescription(intval($_POST['prescription_id']),$data);
+                if ($result){
+                    header("Location: ".URLROOT."/DoctorController/ViewMorePrescription/".$_POST['prescription_id']."/".$_POST['appointment_id']."");
+                    exit();
+                }
+                else {
+                    header("Location: ".URLROOT."/DoctorController/");
+                    exit();
+                }
+            }
+            else {
+                header("Location: ".URLROOT."/Users/login"); 
+                exit(); 
+            }
+           }
 
 
 

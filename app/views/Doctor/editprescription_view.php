@@ -51,26 +51,30 @@
                     </div>
                 </div>
                 <div class="details" style="width:95%;">
-                    <?php 
-                        echo "<p>Medications  : ".$prescription[0]["Medications"]."</p>";
-                        echo "<br>";
-                        echo "<br>";
-                        echo "<p>instructions  : ".$prescription[0]["instructions"]."</p>";
-                        echo "<br>";
-                        echo "<br>";
-                        echo "<p>labtesting  : ".$prescription[0]["labtesting"]."</p>";
-                    ?>
+                <form style="display: flex; flex-direction:column"  action="<?=URLROOT."/DoctorController/EditPrescription"?>" method="post">
+                    
+                    <label for="medications">Medications:</label><br>
+                    <textarea id="medications" name="medications"><?php echo $prescription[0]["Medications"]; ?></textarea>
+                    <br><br>
+
+                    <label for="instructions">Instructions:</label><br>
+                    <textarea id="instructions" name="instructions"><?php echo $prescription[0]["instructions"]; ?></textarea>
+                    <br><br>
+
+                    <label for="labtesting">Lab Testing:</label><br>
+                    <textarea id="labtesting" name="labtesting"><?php echo $prescription[0]["labtesting"]; ?></textarea>
+                    <br><br>
+
+                    <input type="hidden" name="prescription_id" value="<?php echo $prescription[0]["prescription_id"]; ?>">
+                    <input type="hidden" name="appointment_id" value="<?php echo $appointment["Appointment_Id"]; ?>">
+
+                    <input class="bluebutton" type="submit" value="Save Changes">
+              </form>
 
                 </div>
             </div>
     </div>
-    <button class="bluebutton" onclick="editprescription()" style="margin-left:24%;margin-top:2%">Edit Prescription</button>
-    <script>
-    function editprescription() {
-        window.location.href = '<?= URLROOT ?>/DoctorController/EditPrescriptionView/<?= $appointment["Appointment_Id"] ?>/<?= $prescription[0]["prescription_id"] ?>';
-    }
-
-</script>
+  
     
 </body>
 <?php require_once(APPROOT."/views/Admin/footer_view.php");?>
