@@ -4,7 +4,6 @@
         <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
         <li><a href="<?=URLROOT."/DoctorController"?>">Dashboard</a></li>
         <li><a href="<?=URLROOT."/DoctorController/ViewAppointment/"?>">Appointment</a></li>
-        <li><a href="<?=URLROOT."/DoctorController/ViewPrescription"?>">Prescription</a></li>
         <li><a href="<?=URLROOT."/DoctorController/ViewReminder"?>">Reminder</a></li>
     </ul>
 

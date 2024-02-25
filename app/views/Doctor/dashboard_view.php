@@ -4,7 +4,6 @@
         <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
         <li id="Dashboard" onclick="y('Dashboard')" >Dashboard</li>
         <li id="DoctorController/ViewAppointment" onclick="y('DoctorController/ViewAppointment')" >Appointment</li>
-        <li id="DoctorController/ViewPrescription" onclick="y('DoctorController/ViewPrescription')" > Prescription </li>
         <li id="DoctorController/ViewReminder" onclick="y('DoctorController/ViewReminder')" >Reminder</li>
     </ul>
 
@@ -27,9 +26,7 @@
 <article class="dashboard">
     <div style="margin-left:24%;">
     <h1 style="text-align: center;">THIS IS DOCTOR DASHBOARD</h1>
-        <?php
-      var_dump($_SESSION["USER"]);
-    ?>
+    
     
     </div>
 </div>

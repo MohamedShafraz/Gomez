@@ -4,7 +4,6 @@
         <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
         <li id="Dashboard" onclick="y('Dashboard')" >Dashboard</li>
         <li id="DoctorController/ViewAppointment" onclick="y('DoctorController/ViewAppointment')" >Appointment</li>
-        <li id="DoctorController/ViewPrescription" onclick="y('DoctorController/ViewPrescription')" > Prescription </li>
         <li id="DoctorController/ViewReminder" onclick="y('DoctorController/ViewReminder')" > Reminder </li>
     </ul>
 </aside>
@@ -39,7 +38,7 @@
                     </div>
                     <div class="details">
                         <?php   
-                            echo "Date  : ".$appointments["Date"];
+                            echo "Date  : ".$appointments["Appointment_Date"];
                             echo "<br>";
                             echo "<br>";
                             echo "Time  : ".$appointments["Appointment_Time"];

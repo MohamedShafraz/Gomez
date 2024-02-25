@@ -4,7 +4,6 @@
         <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
         <li id="Dashboard" onclick="y('Dashboard')" >Dashboard</li>
         <li id="DoctorController/ViewAppointment" onclick="y('DoctorController/ViewAppointment')" >Appointment</li>
-        <li id="DoctorController/ViewPrescription" onclick="y('DoctorController/ViewPrescription')" > Prescription </li>
         <li id="DoctorController/ViewReminder" onclick="y('DoctorController/ViewReminder')" >Reminder</li>
     </ul>
 
@@ -47,7 +46,7 @@
             foreach ($appointments as $row) {
                 echo '<tr>';
                  echo '<td>'.$row['refence_No'].'</td>';
-                    echo '<td>'.$row['Date'].'</td>';
+                    echo '<td>'.$row['Appointment_Date'].'</td>';
                     echo '<td>'.$row['Appointment_Time'].'</td>';
                     echo '<td>'.$row['Name'].'</td>';
                     echo '<td>'.$row['Age'].'</td>';
