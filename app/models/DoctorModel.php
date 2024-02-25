@@ -64,6 +64,14 @@ class DoctorModel extends Database{
         return $result;
     }
 
+    public function updateProfile($data)
+    {
+        $where = "Doctor_id=".$data['Doctor_id'];
+        $this->setTable(Doctors);
+        $result = $this->updateData($data, $where);
+        return $result;
+    }
+
 }
 
 

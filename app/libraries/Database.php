@@ -67,6 +67,23 @@ class Database {
 
         return $data;
     }
+
+    public function updateData($data, $where) {
+        $query = "UPDATE " . $this->table . " SET ";
+        $valuesToUpdate = [];
+    
+        foreach ($data as $key => $value) {
+            if ($value !== null) {
+                $valuesToUpdate[] = $key . "='" . $value . "'";
+            }
+        }
+    
+        $query .= implode(", ", $valuesToUpdate);
+    
+        $query .= " WHERE " . $where;
+    
+        return $this->executeQuery($query);
+    }
     
     // public function __destruct() {
     //     $this->connection->close();

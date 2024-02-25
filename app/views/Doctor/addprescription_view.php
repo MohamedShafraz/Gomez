@@ -64,7 +64,7 @@
     <div style="margin-left:24%; display:flex; justify-content:center;">
     
   
-    <form action="<?=URLROOT."/DoctorController/AddPrescription"?>" method="post" style="margin-top:5%;>
+    <form action="<?=URLROOT."/DoctorController/AddPrescription"?>" method="post" style="margin-top:5%;">
     <input type="hidden" name="appointment_id" value="<?php echo $appointments[0]['Appointment_Id']?>">
     <input type="hidden" name="patient_id" value="<?php echo $patientid?>">
     <input type="hidden" name="Doctor_id" value="<?php echo $doctorid?>">

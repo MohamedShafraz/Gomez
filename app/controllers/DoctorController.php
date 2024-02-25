@@ -71,7 +71,21 @@ class DoctorController extends Controller {
 }
 }
         public function EditProfileView(){
-        $this->view('Doctor/editprofile_view');
+            if(!isset($_SESSION)){
+                session_start();}
+            $user = $_SESSION["USER"];
+            if ($user["usertype"] == "Doctor"){
+                $this->model("DoctorModel");
+                $this->doctorModel = new DoctorModel(new Database());
+                $doctor = $this->doctorModel->getDoctor($user["Username"]);
+                $this->view('Doctor/editprofile_view', ['doctor' => $doctor[0] , 'user' => $user]);
+                
+            }
+            else {
+                header("Location: ".URLROOT."/Users/login"); 
+                exit(); 
+            }
+        
         }
    
         public function ViewMoreAppoinment($id){
@@ -167,7 +181,27 @@ class DoctorController extends Controller {
                     exit(); } 
     }
 
-            
+            public function UpdateProfile(){
+                if(!isset($_SESSION)){
+                    session_start();}
+
+                $user = $_SESSION["USER"];
+                $this->model("DoctorModel");
+                $this->doctorModel = new DoctorModel(new Database());
+                $doctor = $this->doctorModel->getDoctor($user["Username"]);
+
+                $data = [
+                    'Doctor_id' => $doctor[0]['Doctor_id'],
+                    'fullname' => $_POST['fullname'],
+                    'username' => $_POST['username'],
+                    'email' => $_POST['email'],
+                    'phonenumber' => $_POST['phonenumber']
+                ];
+                
+                // upate user table & then doctor table
+                
+                
+                var_dump($data);
 
         }
 
@@ -278,6 +312,6 @@ class DoctorController extends Controller {
 
 
 
-
+    }
 
 ?>
