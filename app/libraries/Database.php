@@ -85,9 +85,5 @@ class Database {
         return $this->executeQuery($query);
     }
     
-    // public function __destruct() {
-    //     $this->connection->close();
-    // }
-
 }
 ?>

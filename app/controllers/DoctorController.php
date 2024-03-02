@@ -179,7 +179,7 @@ class DoctorController extends Controller {
            }
         }
 
-            public function ViewMorePrescription($prescriptionid , $appointmentid) {
+    public function ViewMorePrescription($prescriptionid , $appointmentid) {
         
                 if(!isset($_SESSION)){
                     session_start();}
@@ -197,29 +197,42 @@ class DoctorController extends Controller {
                     exit(); } 
     }
 
-            public function UpdateProfile(){
-                if(!isset($_SESSION)){
-                    session_start();}
+    public function UpdateProfile(){
+        if(!isset($_SESSION)){
+            session_start();}
 
-                $user = $_SESSION["USER"];
-                $this->model("DoctorModel");
-                $this->doctorModel = new DoctorModel(new Database());
-                $doctor = $this->doctorModel->getDoctor($user["Username"]);
+        $user = $_SESSION["USER"];
+        $this->model("DoctorModel");
+        $this->doctorModel = new DoctorModel(new Database());
+        $doctor = $this->doctorModel->getDoctor($user["Username"]);
 
-                $data = [
-                    'Doctor_id' => $doctor[0]['Doctor_id'],
-                    'fullname' => $_POST['fullname'],
-                    'username' => $_POST['username'],
-                    'email' => $_POST['email'],
-                    'phonenumber' => $_POST['phonenumber']
-                ];
-                
-                // upate user table & then doctor table
-                
-                
-                var_dump($data);
+        $data1 = [
+            'fullname' => $_POST['fullname'],
+            'Username' => $_POST['username'],
+            'email' => $_POST['email'],
+            'phonenumber' => $_POST['phonenumber']
+        ];
 
+        $data2 = [
+            'email' => $_POST['email'],
+            'Username' => $_POST['username']
+        ];
+        
+        $result1 = $this->doctorModel->updatedoctor($doctor[0]['Doctor_id'],$data1);
+        $result2 = $this->doctorModel->updatedoctorinuser($doctor[0]['Doctor_id'],$data2);
+
+        if ($result1 && $result2){
+            $r = $this->doctorModel->getUserData($_SESSION["USER"]["User_Id"]);
+            $_SESSION["USER"] = $r[0];
+            header("Location: ".URLROOT."/DoctorController/ViewProfile");
+            exit();
         }
+        else {
+            header("Location: ".URLROOT."/DoctorController/ViewProfile");
+            exit();
+        }
+
+}
 
 
          public function EditPrescriptionView($appointmentid,$prescriptionid ){
@@ -269,6 +282,8 @@ class DoctorController extends Controller {
                 exit(); 
             }
            }
+
+
 
 
 

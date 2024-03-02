@@ -12,16 +12,18 @@
 <article class="dashboard">
     <div style="margin-left:23%;">
 
-        <div class="profile-container" style="display: flex; flex-direction:column; width :96% ; margin-top: 2%; padding: 1% ; background-color: #f2f2f2;">
+        <div class="profile-container" style="display: flex; flex-direction:column; width :90% ; margin-top: 2%; padding: 4% ; border-radius: 33px;
+         background: #ffffff; box-shadow:  6px 6px 19px #a1a1a1,-6px -6px 19px #ffffff;">
                 <div style="display: flex; flex-direction: row; justify-content: space-between; height: 50px; width :100%">
-                    <div style="margin: 0px; ">Doctor Details</div>
+                    <div style="margin: 0px; font-size:2em; font-weight:bolder;">Doctor Details</div>
                     <div style="display: flex; flex-direction: row;">
                         <button class="bluebutton" onclick="location.href='<?=URLROOT."/DoctorController/EditProfileView"?>'">Edit</button>
                         <button class="redbutton" onclick="location.href='<?=URLROOT."/DoctorController/DeactivateView"?>'">Deactivate</button>
                     </div>
                 </div>
-                <div style="display: flex; flex-direction:row; justify-content:space-between; width :100%">
+                <div style="display: flex; flex-direction:row; justify-content:space-between; width :100%; font-size:1.2em; margin-top:3%">
                     <div class="details">
+                        
                         <?php 
                                 echo "Full Name  : ".$data["doctor"]["fullname"];
                                 echo "<br>";

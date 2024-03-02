@@ -86,8 +86,33 @@ class DoctorModel extends Database{
         return $result;
     }
 
+    public function updatedoctor($id, $data)
+    {
+        $query = "UPDATE Doctors SET fullname='$data[fullname]', email='$data[email]', phonenumber='$data[phonenumber]',Username='$data[Username]' WHERE doctor_id='$id'";
+        $result = $this->executeQuery($query);
+        return $result;
+    }
+
+    public function updatedoctorinuser($id, $data)
+    {
+        $query = "UPDATE user_db SET Username='$data[Username]',Email='$data[email]' WHERE User_Id='$id'";
+        $result = $this->executeQuery($query);
+        return $result;
+    }
+
+    public function getUserData($id)
+    {
+        $where = "User_Id='$id'";
+        $this->setTable(User);
+        $result = $this->fetchData($where);
+        return $result;
+}
+
 
 }
+
+
+
 
 
 
