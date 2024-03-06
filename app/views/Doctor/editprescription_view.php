@@ -2,9 +2,9 @@
 <aside class="sidenav">
     <ul>
         <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
-        <li><a href="<?=URLROOT."/DoctorController"?>">Dashboard</a></li>
-        <li><a href="<?=URLROOT."/DoctorController/ViewAppointment/"?>">Appointment</a></li>
-        <li><a href="<?=URLROOT."/DoctorController/ViewReminder"?>">Reminder</a></li>
+        <li><a href="<?=URLROOT."/Doctor"?>">Dashboard</a></li>
+        <li><a href="<?=URLROOT."/Doctor/ViewAppointment/"?>">Appointment</a></li>
+        <li><a href="<?=URLROOT."/Doctor/ViewReminder"?>">Reminder</a></li>
     </ul>
 
 
@@ -51,7 +51,7 @@
                     </div>
                 </div>
                 <div class="details" style="width:95%;">
-                <form style="display: flex; flex-direction:column"  action="<?=URLROOT."/DoctorController/EditPrescription"?>" method="post">
+                <form style="display: flex; flex-direction:column"  action="<?=URLROOT."/Doctor/EditPrescription"?>" method="post">
                     
                     <label for="medications">Medications:</label><br>
                     <textarea id="medications" name="medications"><?php echo $prescription[0]["Medications"]; ?></textarea>

@@ -2,9 +2,9 @@
 <aside class="sidenav">
     <ul>
         <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
-        <li id="Dashboard" onclick="y('Dashboard')" >Dashboard</li>
-        <li id="DoctorController/ViewAppointment" onclick="y('DoctorController/ViewAppointment')" >Appointment</li>
-        <li id="DoctorController/ViewReminder" onclick="y('DoctorController/ViewReminder')" >Reminder</li>
+        <li id="Dashboard" onclick="y('Dashboard')">Dashboard</li>
+        <li id="ViewAppointment" onclick="y('ViewAppointment')">Appointment</li>
+        <li id="ViewReminder" onclick="y('ViewReminder')">Reminder</li>
     </ul>
 
     <style>
@@ -65,7 +65,7 @@
     <div style="margin-left:24%; display:flex; justify-content:center;">
     
   
-    <form action="<?=URLROOT."/DoctorController/AddPrescription"?>" method="post" style="margin-top:5%;">
+    <form action="<?=URLROOT."/Doctor/AddPrescription"?>" method="post" style="margin-top:5%;">
     <input type="hidden" name="appointment_id" value="<?php echo $appointments[0]['Appointment_Id']?>">
     <input type="hidden" name="patient_id" value="<?php echo $patientid?>">
     <input type="hidden" name="Doctor_id" value="<?php echo $doctorid?>">
@@ -80,8 +80,8 @@
             <label for="labTesting">Lab Testing</label><br>
             <input type="text" id="labTesting" name="labTesting" value=""><br><br>
 
-  <label for="dateSigned">Date Signed</label><br>
-  <input type="date" id="dateSigned" name="dateSigned" value="<?= date('Y-m-d'); ?>"><br><br>
+            <label for="dateSigned">Date Signed</label><br>
+            <input type="date" id="dateSigned" name="dateSigned" value="<?= date('Y-m-d'); ?>"><br><br>
 
             <input type="submit" value="Submit">
         </form>

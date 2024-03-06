@@ -2,9 +2,9 @@
 <aside class="sidenav">
     <ul>
         <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
-        <li id="Dashboard" onclick="y('Dashboard')" >Dashboard</li>
-        <li id="DoctorController/ViewAppointment" onclick="y('DoctorController/ViewAppointment')" >Appointment</li>
-        <li id="DoctorController/ViewReminder" onclick="y('DoctorController/ViewReminder')" >Reminder</li>
+        <li id="Dashboard" onclick="y('Dashboard')">Dashboard</li>
+        <li id="ViewAppointment" onclick="y('ViewAppointment')">Appointment</li>
+        <li id="ViewReminder" onclick="y('ViewReminder')">Reminder</li>
     </ul>
 
     <style>
