@@ -1,42 +1,24 @@
+function z($id) {
+  window.location.href += "/id=" + $id.toString();
+}
+
 function y($id) {
   document.getElementById($id).classList.add("active");
-  window.location.href = "http://localhost/gomez/"+$id.toString(); 
+  window.location.href = $URLROOT + "/" + $usertype + "/" + $id.toString();
 }
 function setActiveFromURL() {
+  const url = window.location.href;
 
-const url = window.location.href;
+  const parts = url.split("/");
 
+  const id = parts[5].toLowerCase();
 
-const parts = url.split('/');
-
-
-const id = parts[parts.length - 1];
-
-const element = document.getElementById(id);
-if (element) {
-element.classList.add("active");
+  const element = document.getElementById(id);
+  if (element) {
+    element.classList.add("active");
+  }
 }
-}
-window.onload = function() {
-setActiveFromURL();
-};
 
-function setActiveFromURL() {
-
-console.log("setActiveFromURL");
-const url = window.location.href;
-
-
-const parts = url.split('/');
-
-
-const id = parts[5].toLowerCase();
-
-const element = document.getElementById(id);
-if (element) {
-element.classList.add("active");
-}
-}
-window.onload = function() {
-setActiveFromURL();
+window.onload = function () {
+  setActiveFromURL();
 };
