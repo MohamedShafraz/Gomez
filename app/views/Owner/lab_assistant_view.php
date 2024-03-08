@@ -29,24 +29,21 @@
 <?php require_once(APPROOT . "/views/Admin/navbar_view.php"); ?>
 
 
-<div class="complainttext">Patient</div>
+<div class="complainttext">Lab Assistant</div>
 <table class="complainttable">
 
 
     <tbody class="complaint">
         <tr>
-            <td style="width: 99px;">Name</td>
-            <td style="width: 65px;">Type</td>
-            <td style="width: max-content;">Mobile Number</td>
-            <td></td>
+            <td style="width: 111px;">Name</td>
+            <td style="width: 146px;">NIC</td>
+            <td style="width: 170px;">Mobile Number</td>
         </tr>
         <tr style='color:white;margin: 3%;'></tr>
         <?php
-        for ($index = 0; $index < sizeof($data); $index++) {
-            $id = $data[$index]['id'];
-            $_SESSION['id'] = $data[$index]['id'];
-            echo "<tr><td style='width:100px'>" . $data[$index]['userName'] . "</td><td style='width: max-content;'>" . $data[$index]['type'] . "</td><td style='width: 144px;'>" . $data[$index]['phonenumber'] . "</td><td><button onclick = 'z($index)' class=test >view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
-        }
+            for ($index = 0; $index < sizeof($data); $index++) {
+               echo "<tr><td style='width: 120px;'>".$data[$index]['userName']."</td><td style='width: 156px;'>".$data[$index]['NIC']."</td><td style='width: 144px;'>".$data[$index]['phonenumber']."</td><td><button class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
+            }
         ?>
 
     </tbody>
