@@ -1,7 +1,8 @@
 <aside class="sidenav">
     <ul>
     <script>
-    var $URLROOT = '<?=URLROOT?>';
+        var $URLROOT = '<?=URLROOT?>'
+         var $usertype= '<?=$_SESSION['userType']?>';
 </script>
         <img src="<?=URLROOT."/resources/user.png"?>" alt=""><br>
         <?='Admin'?><br><br>

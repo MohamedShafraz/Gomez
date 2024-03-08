@@ -15,6 +15,7 @@
         public function view($view,$data = []) {
             if(file_exists('../app/views/'.$view.'.php')){
                 require_once "../app/views/".$view.'.php';
+                exit();
             }
             else{
                 require_once "../app/views/error_view.php";

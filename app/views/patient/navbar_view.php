@@ -16,7 +16,7 @@
         <nav class="navbar">
             <img src="<?=URLROOT."/resources/user.png"?>" class="profilepic" >
             <a href="./logout"><div class="selected">
-                <font class="GMfont" style="font-family: 'inter';" onclick="windows.location.href = 'location:logout'"> Hello, Shaf</font></div>
+                <font class="GMfont" style="font-family: 'inter';" onclick="windows.location.href = 'location:logout'"> Hello, Samar</font></div>
             </a>
         </nav>
         <?php include APPROOT.'/views/patient/sidebar.php'?>

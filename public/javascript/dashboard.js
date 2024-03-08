@@ -1,10 +1,10 @@
 function z($id) {
   window.location.href += "/id="+$id.toString();
 }
-$URLROOT = "localhost/Gomez";
 function y($id) {
+  console.log("$URLROOT");
         document.getElementById($id).classList.add("active");
-        window.location.href = $URLROOT+"/"+$id.toString();
+        window.location.href = $URLROOT+"/"+$usertype+"/"+$id.toString();
     }
     function setActiveFromURL() {
   

@@ -5,6 +5,7 @@ class patient extends Controller
     private $contactusmodel;
     public function __construct()
     {
+        session_start();
     }
     public function index()
     {
@@ -32,7 +33,9 @@ class patient extends Controller
     }
     public function dashboard()
     {
+        
         $this->view('Patient/dashboard_view');
+        
     }
     public function contactus()
     {

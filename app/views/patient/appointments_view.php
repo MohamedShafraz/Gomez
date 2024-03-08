@@ -107,21 +107,7 @@
         <a href="make_appointment.php"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">Make appointment</button></a>           
 </div>
     <!-- Your JavaScript Code -->
-    <script>
-        // Sample Data: Replace this with your actual appointment data
-        const appointmentsData = [5, 8, 12, 6, 10, 15, 7];
-
-        // Get the chart container element
-        const chartContainer = document.getElementById('chartContainer');
-
-        // Create bars based on the data
-        appointmentsData.forEach((count, index) => {
-            const bar = document.createElement('div');
-            bar.className = 'bar';
-            bar.style.height = `${count * 10}px`; // Adjust the scaling factor as needed
-            chartContainer.appendChild(bar);
-        });
-    </script>
+    
     </ul>
 </div>
 </article>
