@@ -55,17 +55,11 @@ include_once(APPROOT . '/views/header_view.php');
             <option value="393" data-area="393">Allergy And Asthma Specialist</option>
             <option value="48" data-area="48">Allergy And Immunology</option>
             <option value="49" data-area="49">Allergy Specialist </option>
-            <option value="468" data-area="468">Ambulance Facility</option>
-            <option value="469" data-area="469">Ambulance Facility - Normal Patients</option>
-            <option value="411" data-area="411">Ambulatory Monitoring</option>
             <option value="396" data-area="396">Anaesthetist</option>
             <option value="395" data-area="395">Anaesthetist (Pain Management)</option>
             <option value="241" data-area="241">Anaesthetist and Intensivist</option>
             <option value="190" data-area="190">Andrology And Male Fertility</option>
             <option value="284" data-area="284">Anesthetist Assistant</option>
-            <option value="371" data-area="371">Anomaly Scan</option>
-            <option value="465" data-area="465">Anomaly Scan 2</option>
-            <option value="466" data-area="466">Anomaly Scan 3</option>
             <option value="389" data-area="389">Anorectal Surgeon</option>
             <option value="394" data-area="394">Anorectal Surgeon (Ayurvedic)</option>
             <option value="187" data-area="187">Applied Psychologist</option>
@@ -74,7 +68,6 @@ include_once(APPROOT . '/views/header_view.php');
             <option value="445" data-area="445">Arterial Doppler - Two Legs</option>
             <option value="274" data-area="274">Arthritis</option>
             <option value="546" data-area="546">Arthritis and Spinal Disorders</option>
-            <option value="488" data-area="488">Assessment Sessions</option>
             <option value="510" data-area="510">Associate Specialist in Oral and Maxillofacial Surgery</option>
             <option value="509" data-area="509">Associate Specialist in Orthodontics</option>
             <option value="392" data-area="392">Asthma Specialist</option>
@@ -117,7 +110,6 @@ include_once(APPROOT . '/views/header_view.php');
             <option value="115" data-area="115">Breast Feeding</option>
             <option value="459" data-area="459">Breast Feeding Advisor</option>
             <option value="320" data-area="320">Breastfeeding and Counselling</option>
-            <option value="339" data-area="339">Canada Visa Medical</option>
             <option value="286" data-area="286">Cancer Surgeon</option>
             <option value="7" data-area="7">Cardiac Electrophysiologist</option>
             <option value="385" data-area="385">Cardiac Surgeon</option>
@@ -138,9 +130,7 @@ include_once(APPROOT . '/views/header_view.php');
             <option value="143" data-area="143">Child Psychologist</option>
             <option value="250" data-area="250">Children Dentist</option>
             <option value="553" data-area="553">Children Respiratory Chest Diseases, Wheezing and Asthma</option>
-            <option value="265" data-area="265">Children's Respiratory Centre</option>
             <option value="238" data-area="238">Chiropractor</option>
-            <option value="490" data-area="490">Clinic Arrangements</option>
             <option value="128" data-area="128">Clinical Geneticist</option>
             <option value="290" data-area="290">Clinical Interventional Cardiologist</option>
             <option value="226" data-area="226">Clinical Audiologist</option>
@@ -667,7 +657,7 @@ include_once(APPROOT . '/views/header_view.php');
         <label for="Date">Date</label>
         <input type="date" name="userName" id="Date" date-placeholder="11/6/2023" class="holder">
         <div class='logbutton' id="maked">
-            <font class="font1">Make appointment</font>
+           <a href="Patient/appointdoctor" style="text-decoration: none;"> <font class="font1">Make appointment</font></a>
         </div>
         <br>
     </section>
