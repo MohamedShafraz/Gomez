@@ -1,16 +1,10 @@
 <?php
-class Home extends Controller
-{
-
-    public function __construct()
-    {
+class Home extends Controller {
+    private $appointmodel;
+    public function __construct() {
+          session_start(); 
     }
-    public function index()
-    {
-        $this->view('home_view');
-    }
-    public function about()
-    {
+    public function index(){
         $this->view('home_view');
     }
 }

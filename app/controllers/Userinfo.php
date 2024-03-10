@@ -6,7 +6,10 @@ class userinfo extends Controller
         session_start();
         if (isset($_SESSION["userType"])) {
             $this->model($_SESSION["userType"] . '/userinfo_model');
-            $this->view($_SESSION["userType"] . "/Userinformation_view",);
+            $userModel = new UserModel();
+            $userDetails  = $userModel->getUserDetails();
+            // print_r($userDetails);
+            $this->view($_SESSION["userType"] . "/Userinformation_view", $userDetails);
             exit();
         } else {
             header("location:" . URLROOT . "/users/login");

@@ -21,7 +21,7 @@
     display: grid;
     font-size: 30px;
     grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
-  gap: 4rem 5rem;
+  gap: 4rem 13rem;
     
 }
 .dashboard ul li{

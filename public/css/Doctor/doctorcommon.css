@@ -9,9 +9,13 @@ ul li a {
     color: inherit;
 }
 
+body {
+    font-family: 'Segoe UI';
+    background-color: #f2f2f2;
+}
+
 .details {
-    background-color: #e2f3fc;
-    padding: 2%;
+    background-color: white;
     margin: 1%;
 }
 

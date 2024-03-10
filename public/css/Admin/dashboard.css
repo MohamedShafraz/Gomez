@@ -48,7 +48,7 @@ position: fixed;
 z-index: 100;
 top: 0%;
 left: 0;
-background: var(--Gomez-Blue);
+background: linear-gradient(42deg,var(--Gomez-highlight),var(--Gomez-Blue),#002d60);
 
 color: var(--Gomez-Purple);
 overflow-x: hidden;

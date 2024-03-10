@@ -1,38 +1,60 @@
 <?php
+
+use LDAP\Result;
+
 class patient extends Controller
 {
     private $registrationmodel;
     private $contactusmodel;
+    private $appointmodel;
     public function __construct()
     {
+        session_start();
     }
     public function index()
     {
         header('Location: ' . URLROOT . '/Dashboard');
+        exit();
     }
     public function labreport()
     {
         $this->view('Patint/labreport_view');
+        exit();
     }
     public function labreport_registered()
     {
         $this->view('Patient/labreportregistered_view');
+        exit();
     }
     public function userdetails()
     {
         $this->view('Patient/userdetails_view');
+        exit();
     }
     public function appointments()
     {
         $this->view('Patient/appointments_view');
+        exit();
     }
     public function treatments()
     {
         $this->view('Patient/treatment_view');
+        exit();
     }
     public function dashboard()
     {
-        $this->view('Patient/dashboard_view');
+        
+        
+        $this->model('appointment_model');
+        $this->appointmodel = new appointment();
+        $result = $this->appointmodel->getAppoinmentbyPatient(new Database()); 
+       
+        // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());
+       // print_r($resultUser);
+        $this->view('Patient/dashboard_view',$result);
+        // $this->view('Patient/dashboard_view',$resultUser);
+        exit();
+        
     }
     public function contactus()
     {
@@ -48,6 +70,7 @@ class patient extends Controller
 
             $this->contactusmodel->send($name, $mobile, $email, $message);
         }
+        exit();
     }
     public function registration()
     {
@@ -69,5 +92,11 @@ class patient extends Controller
             $date_of_birth = isset($_POST['date_of_birth']) ? $_POST['date_of_birth'] : "";
             $this->registrationmodel->loginUser($patient_name, md5($password), $registration_date, $date_of_birth, $email, $gender, $address, $phone, $nic);
         }
+        exit();
     }
+    public function appointdoctor()  {
+        $this->view('Patient/appointdoctordetail_view');
+        exit();
+    }
+    
 }
