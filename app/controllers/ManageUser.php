@@ -1,7 +1,19 @@
 <?php
 class manageuser extends Controller
 {
+    public function getUserPage($id, $detail, $user)
+    {
 
+        if ($id != null) {
+            $uid = explode('=', $id);
+            $_SESSION['uid'] = $uid[1];
+            $this->view($_SESSION['userType'] . "/" . $user . "_details_view", $detail[$_SESSION['uid']]);
+            exit();
+        } else {
+            $this->view($_SESSION['userType'] . "/" . $user . "_view", $detail);
+            exit();
+        }
+    }
     public function index()
     {
         session_start();
@@ -14,7 +26,7 @@ class manageuser extends Controller
 
             // Pass the data to the view
             $userCounts = $dashboardModel->getUserCounts();
-            $this->view("Admin/manageuser_view");
+            $this->view($_SESSION['userType'] . "/manageuser_view");
             exit();
         } else {
             header("location:" . URLROOT . "/users/login");
@@ -22,44 +34,52 @@ class manageuser extends Controller
     }
     public function patient($id = null)
     {
-        $this->model("Admin/patient_model");
+        session_start();
+        $this->model($_SESSION['userType'] . "/patient_model");
+
         $patientModel = new PatientModel();
         $patientDetails = $patientModel->getUserDetails();
-        if ($id != null) {
-            $uid = explode('=', $id);;
-            $_SESSION['uid'] = $uid[1];
-            $this->view("Admin/patient_details_view", $patientDetails[$_SESSION['uid']]);
-            exit();
-        } else {
-            $this->view("Admin/patient_view", $patientDetails);
-        }
+        // if ($id != null) {
+        //     $uid = explode('=', $id);;
+        //     $_SESSION['uid'] = $uid[1];
+        //     $this->view($_SESSION['userType'] . "/patient_details_view", $patientDetails[$_SESSION['uid']]);
+        //     exit();
+        // } else {
+        //     $this->view($_SESSION['userType'] . "/patient_view", $patientDetails);
+        //     exit();
+        // }
+        $this->getUserPage($id, $patientDetails, "patient");
     }
 
-    public function doctor()
+
+    public function doctor($id = null)
     {
         session_start();
-        $this->model("Admin/doctor_model");
+        $this->model($_SESSION['userType'] . "/doctor_model");
         $patientModel = new DoctorModel();
         $DoctorDetails = $patientModel->getUserDetails();
-        $this->view("Admin/doctor_view", $DoctorDetails);
+        if ($id != null) {
+            $uid =
+                $this->view($_SESSION['userType'] . "/doctor_view", $DoctorDetails);
+        }
         exit();
     }
     public function receptionist()
     {
         session_start();
-        $this->model("Admin/receptionist_model");
+        $this->model($_SESSION['userType'] . "/receptionist_model");
         $receptionistModel  = new ReceptionistModel();
         $receptionistAssistantDetails = $receptionistModel->getUserDetails();
-        $this->view("Admin/receptionist_view", $receptionistAssistantDetails);
+        $this->view($_SESSION['userType'] . "/receptionist_view", $receptionistAssistantDetails);
         exit();
     }
     public function labAssistant()
     {
         session_start();
-        $this->model("Admin/lab_assistant_model");
+        $this->model($_SESSION['userType'] . "/lab_assistant_model");
         $labAssitantModel = new LabAssistantModel();
         $labAssistantDetails = $labAssitantModel->getUserDetails();
-        $this->view("Admin/lab_assistant_view", $labAssistantDetails);
+        $this->view($_SESSION['userType'] . "/lab_assistant_view", $labAssistantDetails);
         exit();
     }
 }

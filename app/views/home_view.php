@@ -657,7 +657,7 @@ include_once(APPROOT . '/views/header_view.php');
         <label for="Date">Date</label>
         <input type="date" name="userName" id="Date" date-placeholder="11/6/2023" class="holder">
         <div class='logbutton' id="maked">
-            <font class="font1">Make appointment</font>
+           <a href="Patient/appointdoctor" style="text-decoration: none;"> <font class="font1">Make appointment</font></a>
         </div>
         <br>
     </section>

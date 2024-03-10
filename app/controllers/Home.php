@@ -1,14 +1,17 @@
 <?php
 class Home extends Controller {
-
+    private $appointmodel;
     public function __construct() {
-           
+          session_start(); 
     }
     public function index(){
         $this->view('home_view');
     }
     public function about(){
-        $this->view('home_view');
+        $this->model('appointment_model');
+        $this->appointmodel = new appointment();
+        $this->appointmodel->getAppoinmentbyPatient(new Database()); 
+        exit();
     }
 }
 /*
