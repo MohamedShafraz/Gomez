@@ -1,16 +1,20 @@
 <?php
 class manageuser extends Controller
 {
-    public function getUserPage($id, $detail, $user)
+    public function getUserPage($id, $Model, $user)
     {
 
         if ($id != null) {
             $uid = explode('=', $id);
-            $_SESSION['uid'] = $uid[1];
-            $this->view($_SESSION['userType'] . "/" . $user . "_details_view", $detail[$_SESSION['uid']]);
+            print($uid[1]);
+            $detail = $Model->getUserDetails($uid[1]);
+            // print_r($_SESSION['uid']);
+            // print_r($detail);
+            $this->view($_SESSION['userType'] . "/" . $user . "_details_view", $detail);
             exit();
         } else {
-            $this->view($_SESSION['userType'] . "/" . $user . "_view", $detail);
+            $details = $Model->getUsersDetails();
+            $this->view($_SESSION['userType'] . "/" . $user . "_view", $details);
             exit();
         }
     }
@@ -36,19 +40,10 @@ class manageuser extends Controller
     {
         session_start();
         $this->model($_SESSION['userType'] . "/patient_model");
-
         $patientModel = new PatientModel();
-        $patientDetails = $patientModel->getUserDetails();
-        // if ($id != null) {
-        //     $uid = explode('=', $id);;
-        //     $_SESSION['uid'] = $uid[1];
-        //     $this->view($_SESSION['userType'] . "/patient_details_view", $patientDetails[$_SESSION['uid']]);
-        //     exit();
-        // } else {
-        //     $this->view($_SESSION['userType'] . "/patient_view", $patientDetails);
-        //     exit();
-        // }
-        $this->getUserPage($id, $patientDetails, "patient");
+        // $patientsDetails = $patientModel->getUsersDetails();
+        // $patientDetails  = $patientModel->getUserDetails();
+        $this->getUserPage($id, $patientModel, "patient");
     }
 
 
@@ -56,13 +51,10 @@ class manageuser extends Controller
     {
         session_start();
         $this->model($_SESSION['userType'] . "/doctor_model");
-        $patientModel = new DoctorModel();
-        $DoctorDetails = $patientModel->getUserDetails();
-        if ($id != null) {
-            $uid =
-                $this->view($_SESSION['userType'] . "/doctor_view", $DoctorDetails);
-        }
-        exit();
+        $doctorModel = new DoctorModel();
+        // $DoctorsDetails = $doctorModel->getUsersDetails();
+        // $DoctorDetails = $doctorModel->getUserDetails();
+        $this->getUserPage($id, $doctorModel, "doctor");
     }
     public function receptionist()
     {

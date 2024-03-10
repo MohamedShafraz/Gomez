@@ -9,10 +9,6 @@ class Home extends Controller
     {
         $this->view('home_view');
     }
-    public function about()
-    {
-        $this->view('home_view');
-    }
 }
 /*
  *param = hello c
