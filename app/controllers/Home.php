@@ -7,12 +7,6 @@ class Home extends Controller {
     public function index(){
         $this->view('home_view');
     }
-    public function about(){
-        $this->model('appointment_model');
-        $this->appointmodel = new appointment();
-        $this->appointmodel->getAppoinmentbyPatient(new Database()); 
-        exit();
-    }
 }
 /*
  *param = hello c
