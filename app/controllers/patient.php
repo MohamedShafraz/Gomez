@@ -98,5 +98,10 @@ class patient extends Controller
         $this->view('Patient/appointdoctordetail_view');
         exit();
     }
+    public function docdetail() {
+        $this->view('Patient/bookdoc_view');
+        exit();
+        
+    }
     
 }

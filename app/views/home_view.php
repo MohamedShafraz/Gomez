@@ -665,7 +665,7 @@ include_once(APPROOT . '/views/header_view.php');
         <br><br><br>
         <p style="font-size: 28px;color: rgb(36, 44, 82);margin-left: 29px;"><b>If you want to save you details and appointment history</b></p>
         <br>
-        <a href="signup.php" style="text-decoration: none;">
+        <a href="patient/registration" style="text-decoration: none;">
             <div class="logbutton" id="reg">
                 <font class="font1" style="color:white">Register</font>
             </div>
