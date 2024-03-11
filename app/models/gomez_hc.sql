@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 08, 2024 at 09:32 AM
+-- Generation Time: Mar 11, 2024 at 06:01 AM
 -- Server version: 8.0.31
--- PHP Version: 8.2.0
+-- PHP Version: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -76,7 +76,7 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   KEY `reference_No` (`refence_No`) USING BTREE,
   KEY `doctor_ibfk_2` (`doctor_id`),
   KEY `patient_ibfk_3` (`Patient_ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `appointment`
@@ -85,7 +85,40 @@ CREATE TABLE IF NOT EXISTS `appointment` (
 INSERT INTO `appointment` (`refence_No`, `Appointment_Id`, `Doctor_name`, `Date`, `Appointment_Time`, `Name`, `Age`, `Nic_No`, `Days_left`, `Total_Amount`, `Patient_ID`, `Payment`, `doctor_id`) VALUES
 (0, 7, 'Sajini', '08/11/2023', '11.00 AM', '', 0, 0, 0, 0, 7, 'Pending', 3),
 (0, 8, 'Sajini', '08/11/2023', '09.10 AM', '', 0, 0, 0, 0, 8, 'Pending', 3),
-(0, 9, 'Sajini', '08/11/2023', '11.00 AM', '', 0, 0, 0, 0, 10, 'Pending', 3);
+(0, 9, 'Sajini', '08/11/2023', '11.00 AM', '', 0, 0, 0, 0, 10, 'Pending', 3),
+(0, 10, 'Shamath', '03/15/2024', '12.00 AM', 'sam', 23, 2147483647, 0, 0, 7, 'Pending', 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `contact_form`
+--
+
+DROP TABLE IF EXISTS `contact_form`;
+CREATE TABLE IF NOT EXISTS `contact_form` (
+  `name` text NOT NULL,
+  `mobile` int NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `message` varchar(500) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `contact_form`
+--
+
+INSERT INTO `contact_form` (`name`, `mobile`, `email`, `message`) VALUES
+('1', 0, '', ''),
+('1', 454545, 'samaralagannthayaparan@gmail.com', 'jhvhvhvu'),
+('1', 454545, 'samaralagannthayaparan@gmail.com', 'jhvhvhvu'),
+('1', 454545, 'samaralagannthayaparan@gmail.com', 'jhvhvhvu'),
+('1', 454545, 'samaralagannthayaparan@gmail.com', 'jhvhvhvu'),
+('1', 454545, 'samaralagannthayaparan@gmail.com', 'jhvhvhvu'),
+('1', 454545, 'samaralagannthayaparan@gmail.com', 'jhvhvhvu'),
+('1', 0, '', ''),
+('1', 0, '', ''),
+('1', 0, '', ''),
+('1', 0, '', ''),
+('1', 0, '', '');
 
 -- --------------------------------------------------------
 
@@ -112,7 +145,8 @@ CREATE TABLE IF NOT EXISTS `doctors` (
 --
 
 INSERT INTO `doctors` (`Doctor_id`, `fullname`, `age`, `gender`, `email`, `Specialization`, `phonenumber`, `NIC`, `Username`) VALUES
-(3, 'Sajini', 30, 'Female', 'Saj@live.com', 'Family Medicine', 777123456, 200072500741, 'Saj');
+(3, 'Sajini', 30, 'Female', 'Saj@live.com', 'Family Medicine', 777123456, 200072500741, 'Saj'),
+(4, 'Shamath', 40, 'Male', 'shamath@gmail.com', 'Heart specialist', 766414957, 200124900065, 'shamath');
 
 -- --------------------------------------------------------
 

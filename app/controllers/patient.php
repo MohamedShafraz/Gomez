@@ -10,6 +10,9 @@ class patient extends Controller
     public function __construct()
     {
         session_start();
+        if (!isset($_SESSION["userType"])) {
+            header("location:" . URLROOT . "/users/login"); 
+        }
     }
     public function index()
     {
@@ -44,8 +47,9 @@ class patient extends Controller
     public function dashboard()
     {
         
-        
-        $this->model('appointment_model');
+        if (isset($_SESSION["userType"])) {
+            // Load the DashboardModel
+            $this->model('appointment_model');
         $this->appointmodel = new appointment();
         $result = $this->appointmodel->getAppoinmentbyPatient(new Database()); 
        
@@ -54,6 +58,12 @@ class patient extends Controller
         $this->view('Patient/dashboard_view',$result);
         // $this->view('Patient/dashboard_view',$resultUser);
         exit();
+        } else {
+            header("location:" . URLROOT . "/users/login");
+        }
+        
+        
+       
         
     }
     
