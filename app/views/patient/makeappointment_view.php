@@ -60,56 +60,7 @@
     
     <!-- <a>Welcome to Gomez</a> -->
     
-    <ul style="background-color: white;padding:5%;width: 64%;">
-    <div class="d" style="margin-left: 10%;">
-        <a class="search">
-           <b> Doctor: </b>
-            <input type="text" placeholder="Search.." name="search" class="searchbox">
-        </a><br>
-        <a class="search">
-           <b> Date: </b>
-            <input type="text" placeholder="Search.." name="search" class="searchbox">
-        </a>
-        <br>
-        <table class="complainttable" style="margin-left: -11%; width: 111%;">
-
-
-    <tbody class="complaint" style="margin-left: -33%;">
-        <tr>
-            <td style="width: 20%;">Reference Number</td>
-            <td style="width: 20%;">Appointment ID</td>
-            <td style="width: 20%;">Date</td>
-            <td style="width: 20%;">Time</td>
-            <td style="width: 20%;">Doctor </td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-
-        <tr>
-            <td style='width: 20%;'>001245</td>
-            <td style='width: 20%;'>01</td>
-            <td style='width: 20%;'>18/03/2024</td>
-            <td style='width: 20%;'>08.00 AM</td>
-            <td style='width: 20%;'>Sham</td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-        <tr>
-            <td style='width: 20%;'>001356</td>
-            <td style='width: 20%;'>02</td>
-            <td style='width: 20%;'>04/04/2024</td>
-            <td style='width: 20%;'>07.00 PM</td>
-            <td style='width: 20%;'>sheran</td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-    </tbody>
-
-</table>
-    </div><br>
-        <a href="<?=URLROOT."/patient/appointments/make"?>"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">Make appointment</button></a>           
-</div>
-    <!-- Your JavaScript Code -->
-    
-    </ul>
-</div>
+    hello
 </article>
 </body>
 <script src="<?=URLROOT?>./javascript/dashboard.js"></script>
