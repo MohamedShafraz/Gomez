@@ -1,6 +1,7 @@
 <?php
 class Home extends Controller {
     private $appointmodel;
+    private $contactusmodel;
     public function __construct() {
           session_start(); 
     }

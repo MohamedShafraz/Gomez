@@ -56,22 +56,7 @@ class patient extends Controller
         exit();
         
     }
-    public function contactus()
-    {
-        $this->view('Patient/contactus_view');
-        $this->model('contactus_model');
-        $this->contactusmodel = new contactusmodel(new Database());
-        if (isset($_POST['submit'])) {
-            $name = isset($_POST['name']);
-            $mobile = isset($_POST['mobile']) ? $_POST['mobile'] : '';
-            $email = isset($_POST['email']) ? $_POST['email'] : '';
-
-            $message = isset($_POST['message']) ? $_POST['message'] : 'test';
-
-            $this->contactusmodel->send($name, $mobile, $email, $message);
-        }
-        exit();
-    }
+    
     public function registration()
     {
         $this->view('Patient/registration_view');

@@ -8,7 +8,7 @@ include_once(APPROOT.'/views/header_view.php');
 <br><br><br>
 <body >
 
-        <div class="bgimage" style="background-image: url(../resources/contact.jpg);background-size: contain;background-repeat:inherit;">
+        <div class="bgimage" style="background-image: url(<?=URLROOT.'/resources/contact.jpg'?>);background-size: contain;background-repeat:inherit;">
             
             <div class="columns" style="height: 45rem;width: 22rem;">
                 
@@ -32,10 +32,10 @@ include_once(APPROOT.'/views/header_view.php');
                 <article class="dashboard" style="height: 39rem;gap: 4rem 13rem;"> 
                     <ul>
                     
-                        <li class="option"  style="background-color:#21519f"><img src="../resources/phone.png" width="40px" height="40px"><a style="font-size:6vh">Call us</a><br>0766414857 <br>0766654712<br><br></li>
-                        <li class="option" style="background-color:#21519f"><img src="../resources/location.png" width="40px" height="40px"><a style="font-size:6vh">Location</a><br>No,63, Avissawella, Sri Lanka<br><br></li>
-                        <li class="option" style="background-color: #21519f;"><img src="../resources/mail.png" width="40px" height="40px"><a style="font-size:6vh">Email</a><br>gomezhospital@gmail.com<br><br></li>
-                        <li class="option" style="background-color: #21519f;"><img src="../resources/time.png" width="40px" height="40px"><a style="font-size:6vh">Hours</a><br>Always open<br><br></li>
+                        <li class="option"  style="background-color:#21519f"><img src="<?=URLROOT."/resources/phone.png"?>" width="40px" height="40px"><a style="font-size:6vh">Call us</a><br>0766414857 <br>0766654712<br><br></li>
+                        <li class="option" style="background-color:#21519f"><img src="<?=URLROOT."/resources/location.png"?>" width="40px" height="40px"><a style="font-size:6vh">Location</a><br>No,63, Avissawella, Sri Lanka<br><br></li>
+                        <li class="option" style="background-color: #21519f;"><img src="<?=URLROOT."/resources/mail.png"?>" width="40px" height="40px"><a style="font-size:6vh">Email</a><br>gomezhospital@gmail.com<br><br></li>
+                        <li class="option" style="background-color: #21519f;"><img src="<?=URLROOT."/resources/time.png"?>" width="40px" height="40px"><a style="font-size:6vh">Hours</a><br>Always open<br><br></li>
                         <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.4685081687035!2d80.20674997456995!3d6.953930118012695!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ae3a998aefebc93%3A0xca78961aaa430a47!2sGomez%20Hospital%20Pvt%20Ltd!5e0!3m2!1sen!2slk!4v1698814609733!5m2!1sen!2slk" width="700" height="120" style="height: 13rem;width: 65rem;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>                    </ul>
                 </article>  
             </div>
