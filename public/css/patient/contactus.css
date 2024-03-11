@@ -1,0 +1,37 @@
+
+.lay{
+    width: max-content;
+}
+.columns{
+    left: 10%;
+    display: block;
+    flex-wrap: wrap;
+    float: left;
+    width: 50%;
+    justify-content: center;
+  }
+  .option{
+    background-color: var(--Gomez-Purple);
+    font-family: 'inter-bold';
+    border-radius: 14px;
+    color: var(--Gomez-White);
+    font-size: 30px;
+}
+.dashboard ul{
+    display: grid;
+    font-size: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  gap: 4rem 13rem;
+    
+}
+.dashboard ul li{
+    font-size: 20px;
+    padding: 3%;
+    text-decoration: none;
+    list-style-type: none;
+}
+.dashboard{
+    margin-top:3%;
+    display: block;
+    margin-right: 3%
+}

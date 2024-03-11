@@ -1,0 +1,61 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+ul li a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.details {
+    background-color: #e2f3fc;
+    padding: 2%;
+    margin: 1%;
+}
+
+.redbutton {
+    background-color: #ff0000;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    margin: 0px 10px;
+    height: 40px;
+    width: 100px;
+}
+
+.bluebutton {
+    background-color: #2a2aff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    height: 40px;
+    width: 100px;
+}
+
+.yellowbutton {
+    background-color: #ffcc00;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    height: 40px;
+    width: 100px;
+}
+
+.orangebutton {
+    background-color: #ff6600;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 5px 10px;
+    height: 40px;
+    width: 100px;
+}
