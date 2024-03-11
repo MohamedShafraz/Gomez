@@ -14,7 +14,7 @@ class Home extends Controller
         $this->view('home_view');
     }
 }
-/*
+/*a
  *param = hello c
  controller-> method (parameter = param) 
  */
