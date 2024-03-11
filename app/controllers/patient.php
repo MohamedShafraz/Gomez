@@ -34,9 +34,14 @@ class patient extends Controller
         $this->view('Patient/userdetails_view');
         exit();
     }
-    public function appointments()
+    public function appointments($make=null)
     {
+        if($make!= null){
+            $this->view('patient/makeappointment_view');
+        }
+        else{
         $this->view('Patient/appointments_view');
+        }
         exit();
     }
     public function treatments()

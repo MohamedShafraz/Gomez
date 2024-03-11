@@ -54,7 +54,7 @@
             <article id="events-container" style=""></article></div>
         </div>
         <div style="display: flex;">
-            <div class="" style="margin: 6% 0% 0% -20%;background: white;box-shadow: 1px 1px 7px;flex-basis: 69%;height:16rem;flex-direction: row;display:flex;line-height: 1px;"> 
+            <div class="" style="width:71rem;margin: 3% 0% 0% -20%;background: white;box-shadow: 1px 1px 7px;flex-basis: 69%;height:16rem;flex-direction: row;display:flex;line-height: 1px;"> 
             <div class='flex-scroll-container' style='display: flex;flex-direction: column;height: 16rem;width:50%'>
             <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Appointments</div>
             <div>
