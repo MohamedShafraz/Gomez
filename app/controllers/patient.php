@@ -10,6 +10,9 @@ class patient extends Controller
     public function __construct()
     {
         session_start();
+        if (!isset($_SESSION["userType"])) {
+            header("location:" . URLROOT . "/users/login"); 
+        }
     }
     public function index()
     {
@@ -44,8 +47,9 @@ class patient extends Controller
     public function dashboard()
     {
         
-        
-        $this->model('appointment_model');
+        if (isset($_SESSION["userType"])) {
+            // Load the DashboardModel
+            $this->model('appointment_model');
         $this->appointmodel = new appointment();
         $result = $this->appointmodel->getAppoinmentbyPatient(new Database()); 
        
@@ -54,24 +58,15 @@ class patient extends Controller
         $this->view('Patient/dashboard_view',$result);
         // $this->view('Patient/dashboard_view',$resultUser);
         exit();
+        } else {
+            header("location:" . URLROOT . "/users/login");
+        }
+        
+        
+       
         
     }
-    public function contactus()
-    {
-        $this->view('Patient/contactus_view');
-        $this->model('contactus_model');
-        $this->contactusmodel = new contactusmodel(new Database());
-        if (isset($_POST['submit'])) {
-            $name = isset($_POST['name']);
-            $mobile = isset($_POST['mobile']) ? $_POST['mobile'] : '';
-            $email = isset($_POST['email']) ? $_POST['email'] : '';
-
-            $message = isset($_POST['message']) ? $_POST['message'] : 'test';
-
-            $this->contactusmodel->send($name, $mobile, $email, $message);
-        }
-        exit();
-    }
+    
     public function registration()
     {
         $this->view('Patient/registration_view');
@@ -97,6 +92,11 @@ class patient extends Controller
     public function appointdoctor()  {
         $this->view('Patient/appointdoctordetail_view');
         exit();
+    }
+    public function docdetail() {
+        $this->view('Patient/bookdoc_view');
+        exit();
+        
     }
     
 }
