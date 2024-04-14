@@ -1,11 +1,10 @@
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
 <aside class="sidenav">
     <ul>
-        <img src="<?= URLROOT . "/resources/user.png" ?>"><br><br>
+        <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
         <li id="Dashboard" onclick="y('Dashboard')">Dashboard</li>
         <li id="ViewAppointment" onclick="y('ViewAppointment')">Appointment</li>
-        <li id="ViewPrescription" onclick="y('ViewPrescription')"> Prescription </li>
-        <li id="ViewReminder" onclick="y('ViewReminder')"> Reminder </li>
+        <li id="ViewReminder" onclick="y('ViewReminder')">Reminder</li>
     </ul>
 
 
