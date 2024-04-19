@@ -12,15 +12,15 @@
 <article class="dashboard">
     <div style="margin-left:23%;">
 
-        <div class="profile-container" style="display: flex; flex-direction:column; width :96% ; margin-top: 2%; padding: 1% ; background-color: #f2f2f2;">
+        <div class="card">
             <div style="display: flex; flex-direction: row; justify-content: space-between; height: 50px; width :100%">
-                <div style="margin: 0px; ">Doctor Details</div>
+                <h1 style="margin: 0px; ">Doctor Details</h1>
                 <div style="display: flex; flex-direction: row;">
                     <button class="bluebutton" onclick="location.href='<?= URLROOT . "/Doctor/EditProfileView" ?>'">Edit</button>
                     <button class="redbutton" onclick="location.href='<?= URLROOT . "/Doctor/DeactivateView" ?>'">Deactivate</button>
                 </div>
             </div>
-            <div style="display: flex; flex-direction:row; justify-content:space-between; width :100%">
+            <div style="display: flex; flex-direction:row; justify-content:space-between; width :100%; font-size:larger">
                 <div class="details">
                     <?php
                     echo "Full Name  : " . $data["doctor"]["fullname"];
@@ -60,4 +60,4 @@
     </div>
 </article>
 
-<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
+<?php require_once(APPROOT . "/views/Admin/footer_view.php");?>

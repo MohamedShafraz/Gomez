@@ -12,9 +12,9 @@
     <article class="dashboard">
         <div style="margin-left:23%;">
 
-            <div class="profile-container" style="display: flex; flex-direction:column; width :96% ; margin-top: 2%; padding: 1% ; background-color: #f2f2f2;">
-                <div style="display: flex; flex-direction: row; justify-content: space-between; height: 50px; width :100%">
-                    <div style="margin: 0px; ">Appoinment Details</div>
+            <div class="card" style="width :96% ; margin-top: 2%; padding: 1%">
+                <div style="display: flex; flex-direction: row; justify-content: space-between; height: 50px; width :100%;padding-top:1%">
+                    <h1 style="margin: 0px; ">Appoinment Details</h1>
                     <div style="display: flex; flex-direction: row;">
 
                     
@@ -60,9 +60,9 @@
                 </div>
             </div>
 
-            <div class="profile-container" style="display: flex; flex-direction:column; width :96% ; margin-top: 2%; padding: 1% ; background-color: #f2f2f2;">
+            <div class="card" style="display: flex; flex-direction:column; width :96% ; margin-top: 2%; padding: 1%">
                 <div style="display: flex; flex-direction: row; justify-content: space-between; height: 50px; width :100%">
-                    <div style="margin: 0px; ">Patient Details</div>
+                    <h1 style="margin: 0px; ">Patient Details</h1>
                 </div>
                 <div style="display: flex; flex-direction:row; justify-content:space-between; width :100%">
                     <div class="details">
@@ -114,4 +114,4 @@
         </div>
     </article>
 </body>
-<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
+<?php require_once(APPROOT . "/views/Admin/footer_view.php");?>

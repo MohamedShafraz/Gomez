@@ -11,22 +11,39 @@
 </aside>
 <style>
    
-.details {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-}
+    .details {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+    }
 
 
-.details p {
-    margin: 0; 
-    line-height: 1.5; 
-}
+    .details p {
+        margin: 0; 
+        line-height: 1.5; 
+    }
+
+    .card{
+                border-radius: 27px;
+                background: #ffffff;
+                box-shadow:  5px 5px 10px #b0b0b0,
+                            -5px -5px 10px #ffffff;
+                padding: 20px;
+            }
+            textarea {
+            width: 100%;
+            padding: 12px 20px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
 </style>
 <body>
     <div style="margin-left:23%;">
             <div class="details-container" style="display: flex; flex-direction:column; justify-content:flex-start; width :100%;margin-top:2%">
-                <div style="display: flex; flex-direction:row">
+                <div class="card" style="display: flex; flex-direction:row">
                     <div class="details" style="width:50%">
                         <?php 
                             echo "<p>Patient Name  : ".$patient["name"]."</p>";
@@ -50,26 +67,26 @@
                         ?>
                     </div>
                 </div>
-                <div class="details" style="width:95%;">
-                <form style="display: flex; flex-direction:column"  action="<?=URLROOT."/Doctor/EditPrescription"?>" method="post">
-                    
-                    <label for="medications">Medications:</label><br>
-                    <textarea id="medications" name="medications"><?php echo $prescription[0]["Medications"]; ?></textarea>
-                    <br><br>
+                <div class="card" style="width:96%;">
+                    <form  action="<?=URLROOT."/Doctor/EditPrescription"?>" method="post">
+                        
+                        <label for="medications">Medications:</label><br>
+                        <textarea id="medications" name="medications"><?php echo $prescription[0]["Medications"]; ?></textarea>
+                        <br><br>
 
-                    <label for="instructions">Instructions:</label><br>
-                    <textarea id="instructions" name="instructions"><?php echo $prescription[0]["instructions"]; ?></textarea>
-                    <br><br>
+                        <label for="instructions">Instructions:</label><br>
+                        <textarea id="instructions" name="instructions"><?php echo $prescription[0]["instructions"]; ?></textarea>
+                        <br><br>
 
-                    <label for="labtesting">Lab Testing:</label><br>
-                    <textarea id="labtesting" name="labtesting"><?php echo $prescription[0]["labtesting"]; ?></textarea>
-                    <br><br>
+                        <label for="labtesting">Lab Testing:</label><br>
+                        <textarea id="labtesting" name="labtesting"><?php echo $prescription[0]["labtesting"]; ?></textarea>
+                        <br><br>
 
-                    <input type="hidden" name="prescription_id" value="<?php echo $prescription[0]["prescription_id"]; ?>">
-                    <input type="hidden" name="appointment_id" value="<?php echo $appointment["Appointment_Id"]; ?>">
+                        <input type="hidden" name="prescription_id" value="<?php echo $prescription[0]["prescription_id"]; ?>">
+                        <input type="hidden" name="appointment_id" value="<?php echo $appointment["Appointment_Id"]; ?>">
 
-                    <input class="bluebutton" type="submit" value="Save Changes">
-              </form>
+                        <input style="width: 200px;"  class="bluebutton" type="submit" value="Save Changes">
+                </form>
 
                 </div>
             </div>

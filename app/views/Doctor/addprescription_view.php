@@ -57,6 +57,15 @@
         .dashboard {
             text-align: center;
         }
+
+        .card{
+            border-radius: 27px;
+            background: #ffffff;
+            box-shadow:  5px 5px 10px #b0b0b0,
+                        -5px -5px 10px #ffffff;
+            padding: 20px;
+        }
+
     </style>
 
 
@@ -65,10 +74,10 @@
     <div style="margin-left:24%; display:flex; justify-content:center;">
     
   
-    <form action="<?=URLROOT."/Doctor/AddPrescription"?>" method="post" style="margin-top:5%;">
-    <input type="hidden" name="appointment_id" value="<?php echo $appointments[0]['Appointment_Id']?>">
-    <input type="hidden" name="patient_id" value="<?php echo $patientid?>">
-    <input type="hidden" name="Doctor_id" value="<?php echo $doctorid?>">
+    <form class="card" action="<?=URLROOT."/Doctor/AddPrescription"?>" method="post" style="margin-top:5%;">
+            <input type="hidden" name="appointment_id" value="<?php echo $appointments[0]['Appointment_Id']?>">
+            <input type="hidden" name="patient_id" value="<?php echo $patientid?>">
+            <input type="hidden" name="Doctor_id" value="<?php echo $doctorid?>">
 
 
             <label for="medications">Medications</label><br>
@@ -92,4 +101,4 @@
     </div>
 </article>
 
-<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
+<?php require_once(APPROOT . "/views/Admin/footer_view.php");?>

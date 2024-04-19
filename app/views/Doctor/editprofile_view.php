@@ -36,6 +36,10 @@
 
     input[type="text"],
     input[type="date"],
+
+    input[type="tel"],
+
+    input[type="email"],
     textarea {
         width: 100%;
         padding: 12px 20px;
@@ -63,22 +67,22 @@
     <div style="margin-left:24%; display:flex; justify-content:center;">
     
   
-    
-    <form action="<?=URLROOT."/DoctorController/UpdateProfile"?>" method="post">
-    <label for="fullname">Full Name:</label>
-    <input type="text" id="fullname" name="fullname" value="<?php echo $doctor["fullname"] ;?>" ><br>
+        
+        <form  class="card" action="<?=URLROOT."/DoctorController/UpdateProfile"?>" method="post" style="width:55%">
+            <label for="fullname">Full Name:</label>
+            <input type="text" id="fullname" name="fullname" value="<?php echo $doctor["fullname"] ;?>" ><br>
 
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" value="<?php echo $doctor ["Username"] ;?>"><br>
+            <label for="username">Username:</label>
+            <input type="text" id="username" name="username" value="<?php echo $doctor["Username"] ;?>"><br>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" value="<?php echo $doctor ["email"] ;?>"><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" value="<?php echo $doctor ["email"] ;?>"><br>
 
-    <label for="phonenumber">Phone Number:</label>
-    <input type="tel" id="phonenumber" name="phonenumber" value="<?php echo $doctor ["phonenumber"] ;?>"><br>
-
-    <input type="submit" value="Update Profile">
-</form>
+            <label for="phonenumber">Phone Number:</label>
+            <input type="tel" id="phonenumber" name="phonenumber" value="<?php echo $doctor ["phonenumber"] ;?>"><br>
+            <br>
+            <input type="submit" value="Update Profile">
+        </form>
     
     </div>
 </div>

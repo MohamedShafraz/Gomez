@@ -22,7 +22,7 @@
 
 <body>
     <div style="margin-left:23%;">
-        <div class="details-container" style="display: flex; flex-direction:column; justify-content:flex-start; width :100%;margin-top:2%">
+        <div class="card">
             <div style="display: flex; flex-direction:row">
                 <div class="details" style="width:50%">
                     <?php 
@@ -47,6 +47,7 @@
                     ?>
                 </div>
             </div>
+            <br>
             <div class="details" style="width:98%;">
                 <?php 
                     echo "<p>Medications  : ".$prescription[0]["Medications"]."</p>";
@@ -60,11 +61,12 @@
             </div>
         </div>
     </div>
-    <button class="bluebutton" onclick="editprescription()" style="margin-left:24%;margin-top:2%">Edit Prescription</button>
+    <button class="bluebutton" onclick="editprescription()" style="margin-left:24%;margin-top:2%;width:200px">Edit Prescription</button>
     <script>
         function editprescription() {
             window.location.href = '<?= URLROOT ?>/Doctor/EditPrescriptionView/<?= $appointment["Appointment_Id"] ?>/<?= $prescription[0]["prescription_id"] ?>';
         }
     </script>
 </body>
-<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
+</body>
+<?php require_once(APPROOT . "/views/Admin/footer_view.php");?>

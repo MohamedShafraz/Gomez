@@ -84,6 +84,14 @@ class DoctorModel extends Database
         return $result;
     }
 
+    public function getUpcomingAppoinmentsbyDoctor($id)
+    {
+        $where = "doctor_id='$id' AND Appointment_Date = CURDATE() AND Appointment_Time > TIME(DATE_ADD(NOW(), INTERVAL 5 MINUTE)) AND Appointment_Status='Pending'";
+        $this->setTable(Appointment);
+        $result = $this->fetchData($where);
+        return $result;
+    }
+
     public function updateprescription($id, $data)
     {
         $query = "UPDATE Prescription SET Medications='$data[Medications]', instructions='$data[instructions]', labtesting='$data[labtesting]' WHERE prescription_id='$id'";
@@ -111,7 +119,32 @@ class DoctorModel extends Database
         $this->setTable(User);
         $result = $this->fetchData($where);
         return $result;
-}
+    }
+
+    public function getMonthPatientsbyDoctor($id)
+    {
+        $where = "doctor_id='$id' AND MONTH(Appointment_Date) = MONTH(CURDATE())";
+        $this->setTable(Appointment);
+        $result = $this->fetchData($where);
+        return $result;
+    }
+
+    public function getMonthAppoinmentsbyDoctor($id)
+    {
+        $where = "doctor_id='$id' AND MONTH(Appointment_Date) = MONTH(CURDATE())";
+        $this->setTable(Appointment);
+        $result = $this->fetchData($where);
+        return $result;
+    }
+
+    public function getTotalAppoinmentsbyDoctor($id)
+    {
+        $where = "doctor_id='$id'";
+        $this->setTable(Appointment);
+        $result = $this->fetchData($where);
+        return $result;
+    }
+
 
 
 }

@@ -9,7 +9,24 @@ class Doctor extends Controller
             session_start();
         }
 
-        $this->view('Doctor/dashboard_view');
+        $user = $_SESSION["USER"];
+
+        if ($user["usertype"] == "Doctor") {
+            $this->model("DoctorModel");
+            $this->doctorModel = new DoctorModel(new Database());
+            $doctor = $this->doctorModel->getDoctor($user["Username"]);
+
+            $appointments = $this->doctorModel->getUpcomingAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
+            $patients = $this->doctorModel->getMonthPatientsbyDoctor($doctor[0]['Doctor_id']);
+
+            $totalmonthappointment = $this->doctorModel->getMonthAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
+            $totalappointment = $this->doctorModel->getTotalAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
+
+            $this->view('Doctor/dashboard_view', ['appointments' => $appointments, 'patients' => $patients , 'totalappointment' => $totalappointment , 'totalmonthappointment' => $totalmonthappointment]);
+        } else {
+            header("Location: " . URLROOT . "/Users/login");
+            exit();
+        }
     }
 
     public function ViewAppointment()
@@ -22,9 +39,7 @@ class Doctor extends Controller
             $this->model("DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
             $doctor = $this->doctorModel->getDoctor($user["Username"]);
-            // print_r($doctor);
             $appointments = $this->doctorModel->getAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
-            // print_r($appointments);
             $this->view('Doctor/appointment_view', ['appointments' => $appointments]);
         } else {
             header("Location: " . URLROOT . "/Users/login");
@@ -78,7 +93,24 @@ class Doctor extends Controller
     }
     public function EditProfileView()
     {
-        $this->view('Doctor/editprofile_view');
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $user = $_SESSION["USER"];
+        if ($user["usertype"] == "Doctor") {
+
+            $this->model("DoctorModel");
+            $this->doctorModel = new DoctorModel(new Database());
+            $doctor = $this->doctorModel->getDoctor($user["Username"]);
+            $this->view('Doctor/editprofile_view', ['doctor' => $doctor[0]]);
+        } else {
+            header("Location: " . URLROOT . "/Users/login");
+            exit();
+        }
+    }
+
+    public function EditProfile(){
+        
     }
 
     public function ViewMoreAppoinment($id)
@@ -90,12 +122,15 @@ class Doctor extends Controller
         if ($user["usertype"] == "Doctor") {
             $this->model("DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
-            $appointment = $this->doctorModel->getAppointment($id);
-            $patient = $this->doctorModel->getPatient($appointment[0]['Patient_ID']);
+            $appointments = $this->doctorModel->getAppointment($id);
+            $patient = $this->doctorModel->getPatient($appointments[0]['Patient_ID']);
             $prescription = $this->doctorModel->getPrescriptionbyAppointment($id);
 
-
-            $this->view('Doctor/moreappointment_view', ['appointments' => $appointment[0], 'patient' => $patient[0], 'prescription' => $prescription[0]]);
+            if($appointments[0]['Appointment_Status'] == "Prescription Added"){
+                $this->view('Doctor/moreappointment_view', ['appointments' => $appointments[0], 'patient' => $patient[0], 'prescription' => $prescription[0]]);
+            }else{
+                $this->view('Doctor/moreappointment_view', ['appointments' => $appointments[0], 'patient' => $patient[0], 'prescription' => $prescription]);
+            }
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
@@ -151,7 +186,7 @@ class Doctor extends Controller
             $result2 = $this->doctorModel->updateAppointmentStatus($_POST['appointment_id'], "Prescription Added");
 
             if($result1 && $result2){
-                header("Location: " . URLROOT . "/Doctor/ViewPrescription");
+                header("Location: " . URLROOT . "/Doctor/ViewMoreAppoinment/".$_POST['appointment_id']);
                 exit();
             }else{
                 header("Location: " . URLROOT . "/Doctor/ViewAppointment");
@@ -228,5 +263,5 @@ class Doctor extends Controller
             header("Location: ".URLROOT."/Users/login"); 
             exit(); 
         }
-       }
+}
 }

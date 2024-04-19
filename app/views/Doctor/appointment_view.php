@@ -21,27 +21,42 @@
             padding: 8px;
         }
 
-        th {
-            background-color: #f2f2f2;
+        tr:nth-child(even) {
+            background-color: white;
+            font-weight: bolder;
+        }
+
+        /* Apply styles to odd rows */
+        tr:nth-child(odd) {
+            background-color: lightskyblue;
+            font-weight: bolder;
+        }
+
+        .card{
+            border-radius: 27px;
+            background: #ffffff;
+            box-shadow:  5px 5px 10px #b0b0b0,
+                        -5px -5px 10px #ffffff;
+            padding: 20px;
+        }
+
+        td {
+            color: darkblue;
         }
     </style>
 
 </aside>
 <article class="dashboard">
-    <div style="margin-left:24%;">
+    <div class="card" style="margin-left:24%; margin-top:20px">
 
 
         <?php
             echo '<table>';
-            echo '<tr>';
-            echo '<th> refence_No </th>';
+            echo '<tr style="background-color: darkblue; color:white">';
+            echo '<th> Reference No </th>';
             echo '<th> Date </th>';
-            echo '<th> Appointment_Time </th>';
+            echo '<th> Appointment Time </th>';
             echo '<th> Name </th>';
-            echo '<th> Age </th>';
-            echo '<th> Days_left </th>';
-            echo '<th> Total_Amount </th>';
-            echo '<th> Patient_ID </th>';
             echo '<th> More </th>';
             echo '</tr>';
             
@@ -49,12 +64,8 @@
                 echo '<tr>';
                 echo '<td>'.$row['refence_No'].'</td>';
                     echo '<td>'.$row['Appointment_Date'].'</td>';
-                    echo '<td>'.$row['Appointment_Time'].'</td>';
+                    echo '<td>'.date('H:i:s', strtotime($row['Appointment_Time'])).'</td>';
                     echo '<td>'.$row['Name'].'</td>';
-                    echo '<td>'.$row['Age'].'</td>';
-                    echo '<td>'.$row['Days_left'].'</td>';
-                    echo '<td>'.$row['Total_Amount'].'</td>';
-                    echo '<td>'.$row['Patient_ID'].'</td>';
                     echo '<td><button class="bluebutton" onclick="window.location.href=\''.URLROOT.'/Doctor/ViewMoreAppoinment/'.$row['Appointment_Id'].'\'">More</button></td>';
                     
                 echo '</tr>';
@@ -67,4 +78,4 @@
     </div>
 </article>
 
-<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
+<?php require_once(APPROOT . "/views/Admin/footer_view.php");?>
