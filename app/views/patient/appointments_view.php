@@ -60,7 +60,7 @@
     
     <!-- <a>Welcome to Gomez</a> -->
     
-    <ul style="background-color: white;padding:4% 5% 1% 5%;width: 64%;">
+    <ul style="background-color: white;padding:1% 5% 1% 5%;width: 64%;">
     <div class="d" style="margin-left: 10%;">
         <a class="search">
            <b> Doctor: </b>
@@ -73,16 +73,19 @@
         <br>
         <table class="complainttable" style="margin-left: -11%; width: 111%;">
 
-
-    <tbody class="complaint" style="margin-left: -33%;">
-        <tr>
+    <thead class="complaint" style="margin-left: -37%;    width: 30rem;">
+    
             <td style="width: 20%;">Reference Number</td>
             <td style="width: 20%;">Appointment ID</td>
             <td style="width: 20%;">Date</td>
             <td style="width: 20%;">Time</td>
             <td style="width: 20%;">Doctor </td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
+        
+        <tr style='color:white;margin: 1%;'></tr>
+    </thead>
+    <tbody class="complaint" style="margin-left: -150%;
+    margin-top: 5rem;height: 17rem;    overflow-y: scroll;width: 67rem;overflow-x: clip;scrollbar-width: none;">
+        
 
         <?php 
             for ($i=0; $i < sizeof($data); $i++) { 
@@ -94,7 +97,7 @@
                 <td style='width: 20%;'>".$data[$i]['Doctor_name']."</td>
                 
             </tr>";
-            echo" <tr style='color:white;margin: 3%;'></tr>";
+            echo" <tr style='color:white;margin: 1%;'></tr>";
             }
             ?>
         

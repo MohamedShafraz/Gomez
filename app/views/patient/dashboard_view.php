@@ -13,7 +13,7 @@
     <!-- <a>Welcome to Gomez</a> -->
     <div style="    line-height: 300px;flex-direction: column;margin-left: 36%;display: flex;">
         <div style="display:flex; line-height: 15rem;" >
-            <div  style="background: var(--Gomez-Option-Box);
+            <div  style="background:var(--Gomez-Option-Box);
     margin: 5% 0% 0% -20%;
     /* background: floralwhite; */
     box-shadow: 1px 1px 7px;
@@ -49,7 +49,7 @@
                 </table>
                 <!-- <button onclick="addEvent()" style="margin-left: 44%;">Add Event</button> -->
             </div>
-            <article id="events-container" style=""></article></div>
+            <article id="events-container" ></article></div>
         </div>
         <div style="display: flex;">
             <div class="" style="width:71rem;margin: 3% 0% 0% -20%;background: white;box-shadow: 1px 1px 7px;flex-basis: 69%;height:16rem;flex-direction: row;display:flex;line-height: 1px;"> 
