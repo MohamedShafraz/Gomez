@@ -1,6 +1,19 @@
 <?php
+
+
 require_once(APPROOT . "/views/Admin/navbar_view.php");
 ?>
+
+<script>
+    $data = [];
+    $data.push("<?= "Fullname :" . $data['userName'] ?>");
+    $data.push("<?= "gender :" . $data['gender'] ?>");
+    $data.push("<?= "age : " . $data['age'] ?>");
+    $data.push("<?= "phonenumber : " . $data['phonenumber'] ?>");
+    $data.push("<?= "email : " . $data['email'] ?>");
+
+    // console.log($data);
+</script>
 <style>
     .button {
         display: flex;
@@ -25,41 +38,83 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         font-family: inter;
 
     }
+
+    /* input[type="file"] {
+        display: none;
+    }
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+    } */
 </style>
+
 <div class="lay" style="
     position: fixed;
-    margin: 1% 0% 0% 31%;z-index:100
+    margin: 1% 10% 0% 28%;z-index:100;
+    padding: 4% 11% 5% 11%;
 " id='popup1'>
+    <a href="./" style="position: fixed;
+    margin: -5% 0% 0% 16%;
+    z-index: 107;
+    padding: 4% 11% 5% 11%;"><img style="width:5%;postion:fixed" src="<?= URLROOT . "/resources/back-button-svgrepo-com.svg" ?>"></img></a><br>
+
     <h1>Update Profile</h1>
-    <ul>
-        <label for="fullName" class="users">Full Name : </label>
-        <input id="fullName" class="users" value="<?= $data['userName'] ?>"><br><br>
 
-        <label for="gender" class="users">Gender : </label>
-        <input id="gender" class="users" value="<?= $data['gender'] ?>"><br><br>
+    <form action="./update" method="post" enctype="multipart/form-data">
+        <div style="display:flex">
+            <div class="users" style="float: left;gap: 5%;width:50% ;">
+                <label for="file">Image</label><br>
+                <!-- <label for="image" class="custom-file-upload">
+                    Upload Image
+                </label> -->
+                <br>
+                <input type="file" name="file">
 
-        <label for="age" class="users">Age : </label>
-        <input id="age" class="users" value="<?= $data['age'] ?>"><br><br>
+                <br>
 
-        <label for="phoneNumber" class="users">Phone number : </label>
-        <input id="phoneNumber" class="users" value="<?= $data['phonenumber'] ?>"><br><br>
+            </div>
+            <!-- <script>
+                function v() {
+                    console.log("<?= $_FILES ?? "test" ?>");
+                }
+            </script> -->
+            <div id="img">
 
-        <label for="email" class="users">Email : </label>
-        <input id="email" class="users" value="<?= $data['email'] ?>"><br><br>
-    </ul>
-    <button onclick="m('popup1')" style="float:right" class="button">Update</button>
+            </div>
+            <div class="users" style="float: right;gap: 5%;width:50% ;">
+                <script>
+                    $data.forEach(element => {
+
+                        document.writeln(
+                            " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
+                            "<input type='text' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' value=" + element.split(" :")[1] + " required><br><br>")
+                    });
+                </script>
+                <input name="submit" type="submit" class="button" value="update" style="padding:6% 7%;">
+
+            </div>
+        </div>
+    </form>
+
 </div>
 <article class="dashboard">
 
     <!-- <a>Welcome to Gomez</a> -->
 
     <ul style="background-color: white;padding:5%; width:50%">
-        <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div>
-        <li class="users">Full Name : <?= $data['userName'] ?><br><br></li>
-        <li class="users">Gender : <?= $data['gender'] ?><br><br></li>
-        <li class="users">Age : <?= $data['age'] ?><br><br></li>
-        <li class="users">Phone number : <?= $data['phonenumber'] ?><br><br></li>
-        <li class="users">Email : <?= $data['email'] ?><br><br></li>
+        <!-- <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div> -->
+        <div class="users" style="float: left;gap: 5%;width:50% ;"><?= "<img src='data:image/png;base64," . base64_encode($data['image']) . "' alt='Profile Picture' style='    width: 12.3rem;
+    height: 12.3rem;;'>" ?></div>
+
+        <script>
+            $data.forEach(element => {
+                document.writeln("<li class='users'>" + element + "<br><br></li>")
+            });
+        </script>
+
 
         <div id="chartContainer"></div>
         <button onclick="window.location.href += '/id?'+.<?= $_SESSION['User_Id'] ?>" style="float:right" class="button">Edit</button>
@@ -74,7 +129,9 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
     }
 
     function m($id) {
-        window.location.href = '.';
+
+        console.log($data);
+        // window.location.href = '.';
         document.getElementById($id.toString()).style.visibility = 'hidden';
     }
     if (window.location.href.split('?').length == 2) {

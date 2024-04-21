@@ -15,4 +15,25 @@ class userinfo extends Controller
             header("location:" . URLROOT . "/users/login");
         }
     }
+    public function update()
+    {
+        session_start();
+        if (isset($_SESSION["userType"])) {
+            $this->model($_SESSION["userType"] . '/userinfo_model');
+            $userModel = new UserModel();
+            // print_r($_FILES["file"]["tmp_name"]);
+
+            // Path to the PDF file
+            $fileContents = file_get_contents($_FILES["file"]['tmp_name']);
+            $hexString = '0x' . bin2hex($fileContents);
+
+            $userDetails  = $userModel->updateUserDetails($hexString);
+            header("location: ./");
+            exit();
+        }
+        print_r(isset($_SESSION["userType"]));
+        // } else {
+        //     header("location:" . URLROOT . "/users/login");
+        // }
+    }
 }

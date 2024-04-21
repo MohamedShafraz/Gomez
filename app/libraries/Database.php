@@ -65,14 +65,19 @@ class Database
 
     public function updateData($data, $condition)
     {
+
         $setClause = '';
         foreach ($data as $key => $value) {
-            $setClause .= "$key = '$value', ";
+            if ($key == 'profilepicture') {
+                $setClause .= "$key = $value" . " ";
+            } else {
+                $setClause .= "$key = '$value', ";
+            }
         }
         $setClause = rtrim($setClause, ', ');
 
-        $query = "UPDATE " . $this->table . " SET $setClause WHERE $condition";
-
+        $query = "UPDATE " . $this->table . " SET " . $setClause . " WHERE " . $condition;
+        // print_r($query);
         return $this->executeQuery($query);
     }
 

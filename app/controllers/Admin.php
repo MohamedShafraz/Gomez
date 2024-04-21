@@ -24,10 +24,16 @@ class Admin extends Controller
             $ManageUser->$user($rest);
         }
     }
-    public function UserInfo()
+    public function UserInfo($rest = Null)
     {
         $UserInfo = new UserInfo();
-        $UserInfo->Index();
+
+        if ($rest == Null or $rest == "id") {
+            $UserInfo->Index();
+        } else {
+            $UserInfo->$rest();
+            exit();
+        }
     }
     public function Logout()
     {
