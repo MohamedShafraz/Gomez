@@ -80,7 +80,7 @@
             <td style="width: 20%;">Appointment ID</td>
             <td style="width: 20%;">Date</td>
             <td style="width: 20%;">Time</td>
-            <td style="width: 20%;">Doctor </td>
+            <td style="width: 20%;">hello </td>
         </tr>
         <tr style='color:white;margin: 3%;'></tr>
 

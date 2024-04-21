@@ -63,3 +63,19 @@ body{
     font-family: inter;
     margin-left: 27.8%;
 }
+.d{
+  display: flex;
+  flex-wrap: wrap;
+  width: 80%;
+}
+.search{
+  
+  padding: 6%;
+  text-align: left;
+  font-size: 20px;
+}
+.searchbox{
+  border-radius: 15px; 
+  height:145%;
+  
+}

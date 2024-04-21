@@ -56,18 +56,13 @@
     
 </ul>
 <div class="complainttext">Complaints</div>
-<div class="complaintheader" style="
-    width: 26%;margin-bottom: 0.4%;
-">
+<div class="complaintheader" style="width: 26%;margin-bottom: 0.4%;">
     <a>Name</a>
     <a>Type</a>
-    <a style="
-    margin-left: 10%;
-">Description</a>
+    <a style="margin-left: 10%;">Description</a>
     <a style>Date</a>
     <a style="
-    margin-left: 10%;
-">Time</a>
+    margin-left: 10%;">Time</a>
 </div>
 <table class="complainttable" style="height: 19vh;">
     <tbody class="complaint">
