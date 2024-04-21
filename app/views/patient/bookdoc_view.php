@@ -35,7 +35,7 @@ include_once(APPROOT.'/views/header_view.php');
 
 <center>
     
-    <div style="display: flex;width: 90rem;background-color: darkgray;margin-top: 6rem;height: 42rem;flex-direction: column;">
+    <div style="display: flex;width: 90rem;background-color: darkgray;margin-top: 6rem;height: 37rem;flex-direction: column;">
     <div><br></div>
         <div style="align-self: center;height: 7rem;background-color: #ffffff;width: 88rem;">
         <div style="display: flex;flex-direction: row;"><div style="height: 6rem;padding: 0.25rem;"><img src="<?=URLROOT."/public/resources/doctor1.png"?>" style="padding: 1rem 1rem 1rem 1rem;height: 4rem;width: 4rem;border: 1px solid;" ></div><div style="margin: -3rem 0rem 0rem 1rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;"><ul style="list-style-type: none;padding:0;"><li>Dr.Shamath</li><li style="font-size: medium;">Heart specialist</li></ul></div></div>

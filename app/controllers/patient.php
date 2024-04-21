@@ -34,18 +34,47 @@ class patient extends Controller
         $this->view('Patient/userdetails_view');
         exit();
     }
-    public function appointments($make=null,$ShowDoc=null)
+    public function appointments($make=null,$ShowDoc=null,$bookappo=null)
     {
-        if($make!= null){
+
+        if (isset($_SESSION["userType"])) {
+            // Load the DashboardModel
+            $this->model('appointment_model');
+        $this->appointmodel = new appointment();
+        $result = $this->appointmodel->getAppoinmentbyPatient(new Database()); 
+       
+        // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());
+       // print_r($resultUser);
+        // $this->view('Patient/appointments_view',$result);
+        // $this->view('Patient/dashboard_view',$resultUser);
+        if($make!= null&&$ShowDoc== null){
+            
             $this->view('patient/makeappointment_view');
+            exit();
         }
-        else if($ShowDoc!= null){
+        if($ShowDoc!= null&& $bookappo==null){
             $this->view('patient/Registerd_appointdoctor_view');
+            exit();
+        }
+        if($bookappo != null){
+            $this->view('patient/bookdoc_view_registered');
+            exit();
+
         }
         else{
-        $this->view('Patient/appointments_view');
+            $result = $this->appointmodel->getAppoinmentbyPatient(new Database()); 
+        $this->view('Patient/appointments_view',$result);
+        // print_r("hello");
         }
         exit();
+        } else {
+            header("location:" . URLROOT . "/users/login");
+        }
+
+        
+
+        
+     
     }
     public function treatments()
     {

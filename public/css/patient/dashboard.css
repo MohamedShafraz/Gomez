@@ -29,16 +29,17 @@
     max-width: 300px;
   } */
   .caltable {
-    border-collapse: collapse;
+    text-align: center;
+    /* border-collapse: collapse; */
     width: 10%;
     margin: 20px auto;
-    background-color: #e9e9f0;
-    color: rgb(133, 125, 201);
+    background-color: var(--Gomez-Blue);
+    color: rgb(255 255 255);
   }
   .highlighted-date {
-    border: 2px solid #FFA500; /* Red border */
-    border-radius: 0%;
-    background-color: #FFA500; /* Makes it circular */
+    border: 2px solid #b3b5c0; /* Red border */
+    border-radius: 25px;
+    background-color: #f6eca9; /* Makes it circular */
     }
     .content {
         max-width: 600px;

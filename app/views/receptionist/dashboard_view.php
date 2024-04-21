@@ -1,4 +1,4 @@
-<?php require_once(APPROOT."/views/patient/navbar_view.php");?>
+<?php require_once(APPROOT."/views/receptionist/navbar_view.php");?>
 <link rel="stylesheet" href="<?=URLROOT?>/css/patient/dashboard.css">
 <style>
     #grad1 {
@@ -13,28 +13,29 @@
     <!-- <a>Welcome to Gomez</a> -->
     <div style="    line-height: 300px;flex-direction: column;margin-left: 36%;display: flex;">
         <div style="display:flex; line-height: 15rem;" >
-            <div  style="background: var(--Gomez-Option-Box);
-    margin: 5% 0% 0% -20%;
-    /* background: floralwhite; */
-    box-shadow: 1px 1px 7px;
-    border-radius: 44px;
-    flex-basis: 69%;
-    height: 17.5rem;">
-                <div style="text-align: center;font-size: x-large;font-weight: bolder;margin: -14% 0% 0% 0%;">Welcome Back!</div>
-                <article style="color: var(--Gomez-Pears);font-weight: bolder;font-family: 'Inter';font-size: 43px;line-height: 131%;margin: -12% 0% 0% 6%;">Check Your Health <br>Regularly</article>
-                <a href="Patient/appointdoctor_registered"><button style="font-weight: bold;color: #11235A;background-color: #F6ECA9;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: larger;width: max-content;margin: 1% 0% 0% 6%;"> Make Appointment</button></a>
-                <img src="<?=URLROOT."/public/resources/heart1.png"?>" style="margin: -25% 67%;width: 26%;" class="beating-container">
+            <div style="margin-left: -2.5rem;margin: 3rem 0rem 0rem orem;flex-basis: 42%;margin-top: 3rem;">
+            <div  style="background: var(--Gomez-Option-Box);margin: 3% 0% 0% -33%;box-shadow: 1px 1px 7px;border-radius: 44px;flex-basis: 69%;height: 9rem;">
+                <div style="    margin: 1rem 0rem 0rem 4rem;position: fixed;height: 6rem;width: 6rem;"><img src="<?=URLROOT."/public/resources/appointment-book.png"?>" style="    margin: 0rem 0rem 0rem 0rem;width: 100%;" alt=""></div>
+                <button style="font-weight: bold;color: #11235A;background-color: #F6ECA9;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: xx-large;width: max-content;margin: 8% 0% 0% 36%;"> Make Appointment</button>
 
             </div>
-            <div style="flex-basis: 50%;"><div>
+            <div  style="background: var(--Gomez-Option-Box);margin: 3% 0% 0% -33%;box-shadow: 1px 1px 7px;border-radius: 44px;flex-basis: 69%;height: 9rem;">
+                <div style="    margin: 1rem 0rem 0rem 4rem;position: fixed;height: 6rem;width: 6rem;"><img src="<?=URLROOT."/public/resources/medical-report.png"?>" style="    margin: 0rem 0rem 0rem 0rem;width: 100%;" alt=""></div>
+                <button style="font-weight: bold;color: #11235A;background-color: #F6ECA9;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: xx-large;width: max-content;margin: 8% 0% 0% 36%;"> Get Labreport</button>
+
+            </div>
+            </div>
+            <div style="padding: 0rem 0rem 0rem 2rem;flex-basis: 53%;"><div>
                 <div style="line-height: 46px;text-align: center;">
                 <button onclick="prevMonth()">&#9665;</button>
                 <span id="month-year"></span>
                 <button onclick="nextMonth()">&#9655;</button>
                 </div>
-                <table class="caltable" style="height: 17.5rem;width: 89%;margin-top: 1%;border-radius: 20px;">
+                <table class="caltable" style="height: 19rem;width: 94%;margin-top: 3%;">
                     <thead>
-                        
+                        <tr>
+                            
+                        </tr>
                         <tr>
                             <th style="color: rgb(37, 42, 176);">Sun</th>
                             <th style="color: rgb(37, 42, 176);">Mon</th>
@@ -47,55 +48,29 @@
                     </thead>
                     <tbody id="calendar-body"></tbody>
                 </table>
-                <!-- <button onclick="addEvent()" style="margin-left: 44%;">Add Event</button> -->
+                
             </div>
             <article id="events-container" style=""></article></div>
         </div>
-        <div style="display: flex;">
-            <div class="" style="width:71rem;margin: 3% 0% 0% -20%;background: white;box-shadow: 1px 1px 7px;flex-basis: 69%;height:16rem;flex-direction: row;display:flex;line-height: 1px;"> 
-            <div class='flex-scroll-container' style='display: flex;flex-direction: column;height: 16rem;width:50%'>
-            <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Appointments</div>
-            <div>
-            <?php 
-            for ($i=0; $i < 2; $i++) { 
-                
-            echo "
-                <div class='flex-scroll-item' style= 'line-height: 2;'>
-                <div  style='border-radius: 7px;flex-basis: 69%;height: 4rem;width: 23.5rem;'>
-                <img src='".URLROOT."/public/resources/doctor1.png' ". "style=' padding: 0.5rem 0rem 0rem 0.5rem; width: 14%;' >
-                <div style='text-align: center;font-size: x-large;font-weight: bolder;margin: -14% 0% 0% -35%;'>".$data[$i]['Doctor_name']."</div>
-                
-                
-
-            </div></div>
-            ";
-            }
-              ?>
-              </div>
-              </div >
-              <div style="    width: 33rem;">
-              <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Time Remaining</div>
-                 <div id="countdown" style="margin: 23% 0% 0% 14%;"></div>
-              </div>
-              <div class='flex-scroll-container' style='display: flex;flex-direction: column;height: 16rem;width:50%'>
-            <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Lab Reports</div>
-            <div><?php 
-            for ($i=0; $i < 2; $i++) { 
-                
-            echo "
-                <div class='flex-scroll-item' style= 'line-height: 2;'>
-                <div  style='border-radius: 7px;flex-basis: 69%;height: 4rem;width: 23.5rem;'>
-                <img src='".URLROOT."/public/resources/doctor1.png' ". "style=' padding: 0.5rem 0rem 0rem 0.5rem; width: 14%;' >
-                <div style='text-align: center;font-size: x-large;font-weight: bolder;margin: -14% 0% 0% -35%;'>".$data[$i]['Doctor_name']."</div>
-                
-                
-
-            </div></div>
-            ";
-            }
-              ?></div>
-              </div >
-            </div >
+        <div style="display: flex;   margin-left: -11rem;">
+        <div class="scrollable-container">
+        <ul class="horizontal-scroll" style="    width: 84rem;height: 12rem;margin: 3rem 0rem 0rem 0rem;line-height: normal;">
+            <li class="option">
+                <div><img src=<?php echo URLROOT . "/resources/ReceptionistCount.png" ?>></div>
+                <div><br> Total Appointments<br><a style="font-size:8vh">20</a><br>
+            </li>
+            <li class="option">
+                <div><img src=<?php echo URLROOT . "/resources/PatientCount2.png" ?>></div>
+                <div><br>Total Patients<br><a style="font-size:8vh">50</a></div><br><br>
+            </li>
+            <li class="option">
+                <div><img src=<?php echo URLROOT . "/resources/DoctorCount.png" ?>></div>
+                <div><br>Active Doctors<br><a style="font-size:8vh">10</a></div><br><br>
+            </li>
+             
+        </ul>
+        
+    </div>
             
         </div>
     </div>
@@ -188,29 +163,6 @@
 
                 
     // Set the date and time of the next appointment (replace with your actual date and time)
-    const nextAppointmentDate = new Date('May 14, 2024 15:30:00 GMT+00:00');
-
-    function updateCountdown() {
-        const now = new Date().getTime();
-        const timeDifference = nextAppointmentDate - now;
-
-        if (timeDifference > 0) {
-            const days = Math.floor(timeDifference / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((timeDifference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeDifference % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeDifference % (1000 * 60)) / 1000);
-
-            document.getElementById('countdown').innerHTML = `${days}d ${hours}h ${minutes}m ${seconds}s`;
-        } else {
-            document.getElementById('countdown').innerHTML = 'Appointment has started!';
-        }
-    }
-
-    // Update the countdown every second
-    setInterval(updateCountdown, 1000);
-
-    // Initial update
-    updateCountdown();
-
+    
             </script>
 <?php require_once(APPROOT."/views/Admin/footer_view.php");?>

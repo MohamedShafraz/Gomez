@@ -45,7 +45,7 @@
 
 <!-- background-color:#E9F3FD -->
 <body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
-<?php include APPROOT.'/views/patient/navbar_view.php'?>
+        <?php include APPROOT.'/views/patient/navbar_view.php'?>
 
 <div class="popup" style="margin-top:9%;margin-right:29%;margin-left:29%;display:none">
     Are you sure you want to deactivate your account<br>
@@ -60,7 +60,7 @@
     
     <!-- <a>Welcome to Gomez</a> -->
     
-    <ul style="background-color: white;padding:5%;width: 64%;height:61%; ">
+    <ul style="background-color: white;padding:5%;width: 64%;">
     <div class="d" style="margin-left: 10%;">
         <a class="search">
            <b> Doctor: </b>
@@ -77,51 +77,35 @@
     <tbody class="complaint" style="margin-left: -33%;">
         <tr>
             <td style="width: 20%;">Reference Number</td>
-            <td style="width: 20%;">Category</td>
+            <td style="width: 20%;">Appointment ID</td>
             <td style="width: 20%;">Date</td>
             <td style="width: 20%;">Time</td>
-            <td style="width: 20%;"> </td>
+            <td style="width: 20%;">Doctor </td>
         </tr>
-        
         <tr style='color:white;margin: 3%;'></tr>
 
-        <tr>
-            <td style='width: 20%;'>001245</td>
-            <td style='width: 20%;'>X-Ray</td>
-            <td style='width: 20%;'>18/03/2024</td>
-            <td style='width: 20%;'>08.00 AM</td>
-            <td style='width: 20%;'><a href="make_appointment.php" style="margin-left: -54%;"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">View More</button></a></td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-        <tr>
-            <td style='width: 20%;'>001356</td>
-            <td style='width: 20%;'>Blood Count</td>
-            <td style='width: 20%;'>04/04/2024</td>
-            <td style='width: 20%;'>07.00 PM</td>
-            <td style='width: 20%;'><a href="make_appointment.php" style="margin-left: -54%;"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">View More</button></a></td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
+        <?php 
+            for ($i=0; $i < 2; $i++) { 
+                echo "<tr>
+                <td style='width: 20%;'>".$data[$i]['refence_No']."</td>
+                <td style='width: 20%;'>".$data[$i]['Appointment_Id']."</td>
+                <td style='width: 20%;'>".$data[$i]['Date']."</td>
+                <td style='width: 20%;'>".$data[$i]['Appointment_Time']."</td>
+                <td style='width: 20%;'>".$data[$i]['Doctor_name']."</td>
+                
+            </tr>";
+            echo" <tr style='color:white;margin: 3%;'></tr>";
+            }
+            ?>
+        
     </tbody>
 
 </table>
-    </div></div>
-    <!--
-         Your JavaScript Code -->
-    <script>
-        // Sample Data: Replace this with your actual appointment data
-        const appointmentsData = [5, 8, 12, 6, 10, 15, 7];
-
-        // Get the chart container element
-        const chartContainer = document.getElementById('chartContainer');
-
-        // Create bars based on the data
-        appointmentsData.forEach((count, index) => {
-            const bar = document.createElement('div');
-            bar.className = 'bar';
-            bar.style.height = `${count * 10}px`; // Adjust the scaling factor as needed
-            chartContainer.appendChild(bar);
-        });
-    </script>
+    </div><br>
+        <a href="<?=URLROOT."/patient/appointments/make"?>"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;background-color: var(--Gomez-highlight);">Make appointment</button></a>           
+</div>
+    <!-- Your JavaScript Code -->
+    
     </ul>
 </div>
 </article>

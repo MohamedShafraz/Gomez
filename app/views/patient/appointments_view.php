@@ -60,7 +60,7 @@
     
     <!-- <a>Welcome to Gomez</a> -->
     
-    <ul style="background-color: white;padding:5%;width: 64%;">
+    <ul style="background-color: white;padding:4% 5% 1% 5%;width: 64%;">
     <div class="d" style="margin-left: 10%;">
         <a class="search">
            <b> Doctor: </b>
@@ -84,27 +84,25 @@
         </tr>
         <tr style='color:white;margin: 3%;'></tr>
 
-        <tr>
-            <td style='width: 20%;'>001245</td>
-            <td style='width: 20%;'>01</td>
-            <td style='width: 20%;'>18/03/2024</td>
-            <td style='width: 20%;'>08.00 AM</td>
-            <td style='width: 20%;'>Sham</td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-        <tr>
-            <td style='width: 20%;'>001356</td>
-            <td style='width: 20%;'>02</td>
-            <td style='width: 20%;'>04/04/2024</td>
-            <td style='width: 20%;'>07.00 PM</td>
-            <td style='width: 20%;'>sheran</td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
+        <?php 
+            for ($i=0; $i < sizeof($data); $i++) { 
+                echo "<tr>
+                <td style='width: 20%;'>".$data[$i]['refence_No']."</td>
+                <td style='width: 20%;'>".$data[$i]['Appointment_Id']."</td>
+                <td style='width: 20%;'>".$data[$i]['Date']."</td>
+                <td style='width: 20%;'>".$data[$i]['Appointment_Time']."</td>
+                <td style='width: 20%;'>".$data[$i]['Doctor_name']."</td>
+                
+            </tr>";
+            echo" <tr style='color:white;margin: 3%;'></tr>";
+            }
+            ?>
+        
     </tbody>
 
 </table>
     </div><br>
-        <a href="<?=URLROOT."/patient/appointments/make"?>"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">Make appointment</button></a>           
+        <a href="<?=URLROOT."/patient/appointments/make"?>"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;background-color: var(--Gomez-highlight);">Make appointment</button></a>           
 </div>
     <!-- Your JavaScript Code -->
     

@@ -681,7 +681,7 @@
         <label for="Date" style="font-weight: bold;font-size: 22px;">Date</label>
         <input type="date" name="userName" id="Date" date-placeholder="11/6/2023" class="holder">
         <div class='logbutton' id="maked">
-           <a href="<?=URLROOT."/patient/appointments/ShowDoc"?>" style="text-decoration: none;"> <font class="font1">Make appointment</font></a>
+           <a href="<?=URLROOT."/".$_SESSION['userType']."/appointments/make/ShowDoc"?>" style="text-decoration: none;"> <font class="font1">Make appointment</font></a>
         </div>
         <br>
     </section>

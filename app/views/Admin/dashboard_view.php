@@ -66,19 +66,19 @@
         <ul class="horizontal-scroll">
             <li class="option">
                 <div><img src=<?php echo URLROOT . "/resources/PatientCount2.png" ?>></div>
-                <div><br>Total Patients<br><a style="font-size:8vh"><?php echo $data['Patient'] ?></a></div><br><br>
+                <div><br>Total Patients<br><a style="font-size:8vh"><?php echo $data['Patient']??9 ?></a></div><br><br>
             </li>
             <li class="option">
                 <div><img src=<?php echo URLROOT . "/resources/DoctorCount.png" ?>></div>
-                <div><br>Active Doctors<br><a style="font-size:8vh"><?php echo $data['Doctor'] ?></a></div><br><br>
+                <div><br>Active Doctors<br><a style="font-size:8vh"><?php echo $data['Doctor']??7 ?></a></div><br><br>
             </li>
             <li class="option">
                 <div><img src=<?php echo URLROOT . "/resources/ReceptionistCount.png" ?>></div>
-                <div><br>Active Receptionists<br><a style="font-size:8vh"><?php echo $data['Receiptionist'] ?></a><br>
+                <div><br>Active Receptionists<br><a style="font-size:8vh"><?php echo $data['Receptionist']??7 ?></a><br>
             </li>
             <li class="option">
                 <div><img src=<?php echo URLROOT . "/resources/LabAssistantCount.png" ?>></div>
-                <div><br>Active <br>Lab Assistants<br><a style="font-size:8vh"><?php echo $data['Lab_Assistant'] ?></a>
+                <div><br>Active <br>Lab Assistants<br><a style="font-size:8vh"><?php echo $data['Lab_Assistant']??1 ?></a>
             </li>
         </ul>
         <ul style="display: flex;flex-direction:row">
