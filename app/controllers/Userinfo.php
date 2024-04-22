@@ -8,7 +8,7 @@ class userinfo extends Controller
             $this->model($_SESSION["userType"] . '/userinfo_model');
             $userModel = new UserModel();
             $userDetails  = $userModel->getUserDetails();
-            // print_r($userDetails);
+
             $this->view($_SESSION["userType"] . "/Userinformation_view", $userDetails);
             exit();
         } else {

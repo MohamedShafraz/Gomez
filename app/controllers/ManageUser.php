@@ -1,6 +1,13 @@
 <?php
 class manageuser extends Controller
 {
+    public function __construct()
+    {
+        session_start();
+        if (isset($_SESSION['userType']) == null) {
+            header("location:" . URLROOT . "/users/login");
+        }
+    }
     public function getUserPage($id, $Model, $user)
     {
 
@@ -20,7 +27,7 @@ class manageuser extends Controller
     }
     public function index()
     {
-        session_start();
+        // session_start();
         if (isset($_SESSION["userType"]) == "admin") {
             // Load the DashboardModel
             $this->model('dashboard_model');
@@ -38,7 +45,7 @@ class manageuser extends Controller
     }
     public function patient($id = null)
     {
-        session_start();
+        // session_start();
         $this->model($_SESSION['userType'] . "/patient_model");
         $patientModel = new PatientModel();
         // $patientsDetails = $patientModel->getUsersDetails();
@@ -49,7 +56,7 @@ class manageuser extends Controller
 
     public function doctor($id = null)
     {
-        session_start();
+        // session_start();
         $this->model($_SESSION['userType'] . "/doctor_model");
         $doctorModel = new DoctorModel();
         // $DoctorsDetails = $doctorModel->getUsersDetails();
@@ -58,7 +65,7 @@ class manageuser extends Controller
     }
     public function receptionist()
     {
-        session_start();
+        // session_start();
         $this->model($_SESSION['userType'] . "/receptionist_model");
         $receptionistModel  = new ReceptionistModel();
         $receptionistAssistantDetails = $receptionistModel->getUserDetails();
@@ -67,7 +74,7 @@ class manageuser extends Controller
     }
     public function labAssistant()
     {
-        session_start();
+        // session_start();
         $this->model($_SESSION['userType'] . "/lab_assistant_model");
         $labAssitantModel = new LabAssistantModel();
         $labAssistantDetails = $labAssitantModel->getUserDetails();

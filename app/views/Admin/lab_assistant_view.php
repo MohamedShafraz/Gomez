@@ -28,7 +28,7 @@
 <!-- background-color:#E9F3FD -->
 <?php require_once(APPROOT . "/views/Admin/navbar_view.php"); ?>
 
-
+<br><br>
 <div class="complainttext">Lab Assistant</div>
 <table class="complainttable">
 
@@ -41,9 +41,9 @@
         </tr>
         <tr style='color:white;margin: 3%;'></tr>
         <?php
-            for ($index = 0; $index < sizeof($data); $index++) {
-               echo "<tr><td style='width: 120px;'>".$data[$index]['userName']."</td><td style='width: 156px;'>".$data[$index]['NIC']."</td><td style='width: 144px;'>".$data[$index]['phonenumber']."</td><td><button class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
-            }
+        for ($index = 0; $index < sizeof($data); $index++) {
+            echo "<tr><td style='width: 120px;'>" . $data[$index]['userName'] . "</td><td style='width: 156px;'>" . $data[$index]['NIC'] . "</td><td style='width: 144px;'>" . $data[$index]['phonenumber'] . "</td><td><button class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
+        }
         ?>
 
     </tbody>

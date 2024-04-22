@@ -53,20 +53,20 @@
         <div><img src=<?php echo URLROOT . "/resources/LabAssistantCount.png" ?>></div>
         <div><br>Manage <br>Lab Assistants<br>
     </li>
-    
+
 </ul>
 <div class="complainttext">Complaints</div>
 <div class="complaintheader" style="
-    width: 26%;margin-bottom: 0.4%;
+    width: 17.6%;margin-bottom: 0.4%;
 ">
     <a>Name</a>
     <a>Type</a>
     <a style="
-    margin-left: 10%;
+    margin-left: 11%;
 ">Description</a>
     <a style>Date</a>
     <a style="
-    margin-left: 10%;
+    margin-left: 13%;
 ">Time</a>
 </div>
 <table class="complainttable" style="height: 19vh;">

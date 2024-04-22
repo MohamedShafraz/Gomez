@@ -24,7 +24,7 @@ body{
   font-size: x-large;
   background-color: var(--Gomez-Blue);
   color: white;
-  width: 66%;
+  width: 57.8%;
   border-radius: 9px;
   padding: 1%;
   text-align: center;
@@ -57,7 +57,7 @@ body{
     color: var(--Gomez-Blue);
     background-color: beige ;
     width: 679px;
-    padding: 0% 33.3% 0 9%;
+    padding: 0% 34.3% 0 8%;;
     line-height: 7vh;
     border-radius: 8px;
     font-family: inter;

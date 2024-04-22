@@ -6,7 +6,7 @@
         </script>
         <img src="<?= URLROOT . "/resources/user.png" ?>" alt=""><br>
         <?= 'Lab-Assistant' ?><br><br>
-        <li id="sidebar" onclick="window.location.href = 'localhost/gomez/Lab-Assistant/sidebar'">Dashboard
+        <li id="dashboard" onclick="y('dashboard')">Dashboard
         </li><br>
         <li id="uploadreport" onclick="y('uploadreport')">
             Upload Report

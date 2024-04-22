@@ -41,7 +41,8 @@ class Users extends Controller
                 session_start();
                 $_SESSION['User_Id'] = $user['User_Id'];
                 $_SESSION["userType"] = $user['usertype'];
-                $_SESSION["uname"] =$user["Username"];
+                $_SESSION["uname"] = $user["Username"];
+                // $_SESSION["image"] = $user["Profilepicture"] ?? "test";
                 $_SESSION["USER"] = $user;
                 header('Location: ' . URLROOT . '/' . $_SESSION["userType"] . '/Dashboard');
                 exit();

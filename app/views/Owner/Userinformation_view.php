@@ -1,5 +1,5 @@
 <?php
-require_once(APPROOT . "/views/Admin/navbar_view.php");
+require_once(APPROOT . "/views/Owner/navbar_view.php");
 ?>
 <style>
     .button {
@@ -32,11 +32,11 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
 " id='popup1'>
     <h1>Update Profile</h1>
     <ul>
-        <li class="users">Full Name: Shaf<br><br></li>
-        <li class="users">Gender : Male<br><br></li>
-        <li class="users">Age : 20<br><br></li>
+        <li class="users">Full Name: Lak<br><br></li>
+        <li class="users">Gender : Female<br><br></li>
+        <li class="users">Age : 30<br><br></li>
         <li class="users">Phone number : 0777123456<br><br></li>
-        <li class="users">Email : Shaf@live.com<br><br></li>
+        <li class="users">Email : Lak@live.com<br><br></li>
     </ul>
     <button onclick="m('popup1')" style="float:right" class="button">Update</button>
 </div>
@@ -46,11 +46,11 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
 
     <ul style="background-color: white;padding:5%; width:50%">
         <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div>
-        <li class="users">Full Name : Shaf<br><br></li>
-        <li class="users">Gender : Male<br><br></li>
-        <li class="users">Age : 20<br><br></li>
+        <li class="users">Full Name : Lak<br><br></li>
+        <li class="users">Gender : Female<br><br></li>
+        <li class="users">Age : 30<br><br></li>
         <li class="users">Phone number : 0777123456<br><br></li>
-        <li class="users">Email : Shaf@live.com<br><br></li>
+        <li class="users">Email : Lak@live.com<br><br></li>
 
         <div id="chartContainer"></div>
         <button onclick="window.location.href += '/id?'+.<?= $_SESSION['User_Id'] ?>" style="float:right" class="button">Edit</button>
