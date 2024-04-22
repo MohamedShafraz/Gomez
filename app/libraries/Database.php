@@ -21,11 +21,16 @@ class Database
     public function setTable($table)
     {
         $this->table = $table;
+    
     }
     public function executeQuery($query)
     {
+        
         $result = $this->connection->query($query);
+        // print_r($query);
+        // print_r($this->connection->error);
         return $result;
+        
     }
     public function check()
     {
@@ -38,10 +43,11 @@ class Database
 
     public function fetchData($where)
     {
+        
         $query = "Select * FROM " . $this->table . " WHERE " . $where;
-
+   
         $result = $this->executeQuery($query);
-
+        
         $data = [];
         $i = 0;
         if ($result && $result->num_rows > 0) {
@@ -50,6 +56,24 @@ class Database
                 $i++;
             }
         }
+        
+        return $data;
+    }
+
+    public function filterByDoctor($where, $doctor){
+        $query = "Select * FROM " . $this->table . " WHERE " . $where . " AND ". $doctor;
+   
+        $result = $this->executeQuery($query);
+        
+        $data = [];
+        $i = 0;
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[$i] = $row;
+                $i++;
+            }
+        }
+        
         return $data;
     }
 

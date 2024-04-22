@@ -10,11 +10,11 @@ include_once(APPROOT.'/views/header_view.php');
 
         <div class="bgimage" style="background-image: url(<?=URLROOT.'/resources/contact.jpg'?>);background-size: contain;background-repeat:inherit;">
             
-            <div class="columns" style="height: 45rem;width: 22rem;">
+            <div class="columns" style="height: 41rem;width: 22rem;">
                 
             
             
-                <form action="" method="post" class="lay" style="height: 36rem;width: 20rem;background: linear-gradient(64deg, #b2d3f4, #c0ddff);margin-left: -3%;padding: 4% 2% 17% 11%;">
+                <form action="" method="post" class="lay" style="height: 36.8rem;width: 20rem;background: linear-gradient(64deg, #b2d3f4, #c0ddff);margin-left: -3%;padding: 4% 2% 17% 11%;">
                 <h2 style="text-align: left;">Contact US</h2>
                     <label for="name">Name</label><br>
                     <input type="text" class="login" id="name" name='name'><br>

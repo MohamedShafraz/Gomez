@@ -22,7 +22,7 @@
     height: 17.5rem;">
                 <div style="text-align: center;font-size: x-large;font-weight: bolder;margin: -14% 0% 0% 0%;">Welcome Back!</div>
                 <article style="color: var(--Gomez-Pears);font-weight: bolder;font-family: 'Inter';font-size: 43px;line-height: 131%;margin: -12% 0% 0% 6%;">Check Your Health <br>Regularly</article>
-                <a href="Patient/appointdoctor_registered"><button style="font-weight: bold;color: #11235A;background-color: #F6ECA9;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: larger;width: max-content;margin: 1% 0% 0% 6%;"> Make Appointment</button></a>
+                <a href="<?=URLROOT."/patient/appointments/make"?>"><button style="font-weight: bold;color: #11235A;background-color: #f6f5ed;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: larger;width: max-content;margin: 1% 0% 0% 6%;"> Make Appointment</button></a>
                 <img src="<?=URLROOT."/public/resources/heart1.png"?>" style="margin: -25% 67%;width: 26%;" class="beating-container">
 
             </div>
@@ -36,13 +36,13 @@
                     <thead>
                         
                         <tr>
-                            <th style="color: rgb(37, 42, 176);">Sun</th>
-                            <th style="color: rgb(37, 42, 176);">Mon</th>
-                            <th style="color: rgb(37, 42, 176);">Tue</th>
-                            <th style="color: rgb(37, 42, 176);">Wed</th>
-                            <th style="color: rgb(37, 42, 176);">Thu</th>
-                            <th style="color: rgb(37, 42, 176);">Fri</th>
-                            <th style="color: rgb(37, 42, 176);">Sat</th>
+                            <th style="color: #f6eca9;">Sun</th>
+                            <th style="color: #f6eca9;">Mon</th>
+                            <th style="color: #f6eca9;">Tue</th>
+                            <th style="color: #f6eca9;">Wed</th>
+                            <th style="color: #f6eca9;">Thu</th>
+                            <th style="color: #f6eca9;">Fri</th>
+                            <th style="color: #f6eca9;">Sat</th>
                         </tr>
                     </thead>
                     <tbody id="calendar-body"></tbody>
@@ -57,7 +57,11 @@
             <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Appointments</div>
             <div>
             <?php 
-            for ($i=0; $i < 2; $i++) { 
+             $length = 2;
+             if(sizeof($data)<2){
+                 $length = sizeof($data);
+             }
+            for ($i=0; $i < $length; $i++) { 
                 
             echo "
                 <div class='flex-scroll-item' style= 'line-height: 2;'>
@@ -80,7 +84,11 @@
               <div class='flex-scroll-container' style='display: flex;flex-direction: column;height: 16rem;width:50%'>
             <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Lab Reports</div>
             <div><?php 
-            for ($i=0; $i < 2; $i++) { 
+            $length = 2;
+            if(sizeof($data)<2){
+                $length = sizeof($data);
+            }
+            for ($i=0; $i < $length; $i++) { 
                 
             echo "
                 <div class='flex-scroll-item' style= 'line-height: 2;'>
@@ -93,6 +101,7 @@
             </div></div>
             ";
             }
+        
               ?></div>
               </div >
             </div >

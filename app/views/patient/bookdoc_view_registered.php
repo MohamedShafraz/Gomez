@@ -86,12 +86,12 @@
                 <ul style="list-style-type: none;text-align: left;margin: 1rem 0rem 0rem 0rem;"><li>03/15/2024</li><li style="font-weight: bold;font-size: x-large;">Friday 5.00PM</li></ul>
             </div>
             <div style="width: 13rem;">
-                <ul style="list-style-type: none;text-align: left;"><li>Active Appointments</li><li style="font-weight: bold;font-size: x-large;">00</li></ul>
+                <ul style="list-style-type: none;text-align: left;margin: 1rem 0rem 0rem 0rem;width: 10rem;"><li>Active Appointments</li><li style="font-weight: bold;font-size: x-large;">00</li></ul>
             </div>
             <div style="width: 30rem;">
                 <ul style="list-style-type: none;text-align: left;"><div style="flex-direction: row;display: flex;margin-left:14rem"><div style="margin-top: -1.75rem;"><li><div style="width: 27%;"><div class='logbutton' style="height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;background:#8393ca;">
            <a href="patient/dashboard" style="text-decoration: none;"> <font class="font1">Make appointment</font></a>
-        </div></div></li></div><div style="margin-left: 1rem;margin-top: 0.75rem"><li style="font-weight: bold;font-size: x-large;">Friday 5.00PM</li></div></div></ul>
+        </div></div></li></div><div style="margin-left: 1rem;margin-top: 0.75rem;width: 10rem;"><li style="font-weight: bold;font-size: x-large;width: 10rem;">Friday 5.00PM</li></div></div></ul>
             </div>
         </div>
     </div>

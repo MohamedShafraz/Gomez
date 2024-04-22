@@ -34,14 +34,19 @@ class patient extends Controller
         $this->view('Patient/userdetails_view');
         exit();
     }
-    public function appointments($make=null,$ShowDoc=null,$bookappo=null)
+    public function appointments($make=null,$ShowDoc=null,$bookappo=null,$fixed=null)
     {
 
         if (isset($_SESSION["userType"])) {
             // Load the DashboardModel
             $this->model('appointment_model');
         $this->appointmodel = new appointment();
-        $result = $this->appointmodel->getAppoinmentbyPatient(new Database()); 
+        $result = $this->appointmodel->getAppoinmentbyPatient(); 
+
+        if (!empty($_POST)){
+            $result = $this->appointmodel->getAppoinmentbyPatient($_POST['doctor']);
+            $this->view('Patient/appointments_view',$result);
+        }
        
         // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());
        // print_r($resultUser);
@@ -56,13 +61,16 @@ class patient extends Controller
             $this->view('patient/Registerd_appointdoctor_view');
             exit();
         }
-        if($bookappo != null){
+        if($bookappo != null && $fixed==null){
             $this->view('patient/bookdoc_view_registered');
             exit();
+        if($fixed != null){
+            $this->view('patient/appointments_view');
+        }
 
         }
         else{
-            $result = $this->appointmodel->getAppoinmentbyPatient(new Database()); 
+            $result = $this->appointmodel->getAppoinmentbyPatient(); 
         $this->view('Patient/appointments_view',$result);
         // print_r("hello");
         }
@@ -81,21 +89,22 @@ class patient extends Controller
         $this->view('Patient/treatment_view');
         exit();
     }
-    public function dashboard()
+    public function dashboard($make=null)
     {
         
         if (isset($_SESSION["userType"])) {
             // Load the DashboardModel
             $this->model('appointment_model');
         $this->appointmodel = new appointment();
-        $result = $this->appointmodel->getAppoinmentbyPatient(new Database()); 
+        $result = $this->appointmodel->getAppoinmentbyPatient(); 
        
         // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());
        // print_r($resultUser);
         $this->view('Patient/dashboard_view',$result);
         // $this->view('Patient/dashboard_view',$resultUser);
         exit();
-        } else {
+        } 
+        else {
             header("location:" . URLROOT . "/users/login");
         }
         
@@ -104,28 +113,29 @@ class patient extends Controller
         
     }
     
-    public function registration()
-    {
-        $this->view('Patient/registration_view');
-        $this->model('registration_model');
-        $this->registrationmodel = new registrationmodel(new Database());
-        if (isset($_POST['submit'])) {
+    // public function registration()
+    // {
+    //     $this->view('Patient/registration_view');
+    //     $this->model('registration_model');
+    //     $this->registrationmodel = new registrationmodel(new Database());
+    //     if (isset($_POST['submit'])) {
 
-            $patient_name = $_POST['fullname'];
-            $password = isset($_POST['password']) ? $_POST['password'] : '';
-            $registration_date = isset($_POST['registration_date']) ? $_POST['registration_date'] : '';
-            $email = isset($_POST['email']) ? $_POST['email'] : '';
-            $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
-            $address = isset($_POST['address']) ? $_POST['address'] : '';
-            $phone = isset($_POST['phonenumber']) ? $_POST['phonenumber'] : '';
-            $nic = isset($_POST['nic']) ? $_POST['nic'] : '';
-            date_default_timezone_set("Asia/Colombo");
-            $registration_date = date("y:m:d:h:i:s");
-            $date_of_birth = isset($_POST['date_of_birth']) ? $_POST['date_of_birth'] : "";
-            $this->registrationmodel->loginUser($patient_name, md5($password), $registration_date, $date_of_birth, $email, $gender, $address, $phone, $nic);
-        }
-        exit();
-    }
+    //         $fullname = $_POST['fullname'];
+    //         $password = isset($_POST['password']) ? $_POST['password'] : '';
+    //         $registration_date = isset($_POST['registration_date']) ? $_POST['registration_date'] : '';
+    //         $email = isset($_POST['email']) ? $_POST['email'] : '';
+    //         $gender = isset($_POST['gender']) ? $_POST['gender'] : '';
+    //         $address = isset($_POST['address']) ? $_POST['address'] : '';
+    //         $phonenumber = isset($_POST['phonenumber']) ? $_POST['phonenumber'] : '';
+    //         $nic = isset($_POST['nic']) ? $_POST['nic'] : '';
+    //         $Username = isset($_POST['Username']) ? $_POST['Username'] : '';
+    //         date_default_timezone_set("Asia/Colombo");
+    //         $registration_date = date("y:m:d:h:i:s");
+    //         $date_of_birth = isset($_POST['date_of_birth']) ? $_POST['date_of_birth'] : "";
+    //         $this->registrationmodel->loginUser($fullname,md5($password),$registration_date,$date_of_birth,$email,$gender,$address,$phonenumber,$nic,$Username);
+    //     }
+    //     exit();
+    // }
     public function appointdoctor()  {
         $this->view('Patient/appointdoctordetail_view');
         exit();

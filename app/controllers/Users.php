@@ -18,7 +18,7 @@ class Users extends Controller
     public function __construct()
     {
         $this->model("login_model");
-        $this->loginModel = new LoginModel(new Database());
+        $this->loginModel = new LoginModel();
     }
 
     public function login()
