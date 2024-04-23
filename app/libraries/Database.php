@@ -21,11 +21,16 @@ class Database
     public function setTable($table)
     {
         $this->table = $table;
+    
     }
     public function executeQuery($query)
     {
+        
         $result = $this->connection->query($query);
+        // print_r($query);
+        // print_r($this->connection->error);
         return $result;
+        
     }
     public function check()
     {
@@ -38,10 +43,11 @@ class Database
 
     public function fetchData($where)
     {
+        
         $query = "Select * FROM " . $this->table . " WHERE " . $where;
-
+   
         $result = $this->executeQuery($query);
-
+        
         $data = [];
         $i = 0;
         if ($result && $result->num_rows > 0) {
@@ -50,6 +56,24 @@ class Database
                 $i++;
             }
         }
+        
+        return $data;
+    }
+
+    public function filterByDoctor($where, $doctor){
+        $query = "Select * FROM " . $this->table . " WHERE " . $where . " AND ". $doctor;
+   
+        $result = $this->executeQuery($query);
+        
+        $data = [];
+        $i = 0;
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[$i] = $row;
+                $i++;
+            }
+        }
+        
         return $data;
     }
 
@@ -103,8 +127,43 @@ class Database
         return $data;
     }
 
-    // public function __destruct() {
-    //     $this->connection->close();
+    // public function insertData($data) {
+    //     $fields = implode(', ', array_keys($data));
+    //     $values = "'" . implode("', '", array_values($data)) . "'";
+    //     $query = "INSERT INTO " . $this->table . " ($fields) VALUES ($values)";
+        
+    
+    //     return $this->executeQuery($query);
     // }
 
+    // public function getcount($where){
+    //     $query = "SELECT usertype, COUNT(*) as count FROM ".$this->table." WHERE ".$where;
+       
+    //     $data = [];
+    //     $result = $this->executeQuery($query);if ($result && $result->num_rows > 0) {
+    //         while ($row = $result->fetch_assoc()) {
+    //             $data[] = $row;
+    //         }
+    //     }
+
+    //     return $data;
+    // }
+
+    // public function updateData($data, $where) {
+    //     $query = "UPDATE " . $this->table . " SET ";
+    //     $valuesToUpdate = [];
+    
+    //     foreach ($data as $key => $value) {
+    //         if ($value !== null) {
+    //             $valuesToUpdate[] = $key . "='" . $value . "'";
+    //         }
+    //     }
+    
+    //     $query .= implode(", ", $valuesToUpdate);
+    
+    //     $query .= " WHERE " . $where;
+    
+    //     return $this->executeQuery($query);
+    // }
+    
 }

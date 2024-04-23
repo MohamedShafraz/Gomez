@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Mar 11, 2024 at 06:01 AM
+-- Generation Time: Apr 21, 2024 at 08:36 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.0.26
 
@@ -83,10 +83,11 @@ CREATE TABLE IF NOT EXISTS `appointment` (
 --
 
 INSERT INTO `appointment` (`refence_No`, `Appointment_Id`, `Doctor_name`, `Date`, `Appointment_Time`, `Name`, `Age`, `Nic_No`, `Days_left`, `Total_Amount`, `Patient_ID`, `Payment`, `doctor_id`) VALUES
-(0, 7, 'Sajini', '08/11/2023', '11.00 AM', '', 0, 0, 0, 0, 7, 'Pending', 3),
-(0, 8, 'Sajini', '08/11/2023','09.10 AM', '', 0, 0, 0, 0, 8, 'Pending', 3),
-(0, 9, 'Sajini', '08/11/2023', '11.00 AM', '', 0, 0, 0, 0, 10, 'Pending', 3),
-(0, 10, 'Shamath', '03/15/2024', '12.00 AM', 'sam', 23, 2147483647, 0, 0, 7, 'Pending', 4);
+(125, 7, 'Sajini', '05/15/2024', '11.00 AM', '', 0, 0, 0, 0, 7, 'Pending', 3),
+(123, 8, 'Sajini', '08/11/2023', '09.10 AM', '', 0, 0, 0, 0, 8, 'Pending', 3),
+(124, 9, 'Sajini', '08/11/2023', '11.00 AM', '', 0, 0, 0, 0, 10, 'Pending', 3),
+(127, 10, 'Shamath', '03/15/2024', '12.00 AM', 'sam', 23, 2147483647, 0, 0, 7, 'Pending', 4),
+(126, 11, 'Shaf', '05/04/2024', '04.00 PM', 'Sam', 23, 2147483647, 0, 0, 7, '[value-12]', 5);
 
 -- --------------------------------------------------------
 
@@ -146,7 +147,8 @@ CREATE TABLE IF NOT EXISTS `doctors` (
 
 INSERT INTO `doctors` (`Doctor_id`, `fullname`, `age`, `gender`, `email`, `Specialization`, `phonenumber`, `NIC`, `Username`) VALUES
 (3, 'Sajini', 30, 'Female', 'Saj@live.com', 'Family Medicine', 777123456, 200072500741, 'Saj'),
-(4, 'Shamath', 40, 'Male', 'shamath@gmail.com', 'Heart specialist', 766414957, 200124900065, 'shamath');
+(4, 'Shamath', 40, 'Male', 'shamath@gmail.com', 'Heart specialist', 766414957, 200124900065, 'shamath'),
+(5, 'Shafraz', 27, 'Male', 'Shaf@gmail.com', 'Dentel', 716474589, 200125600085, 'shaf');
 
 -- --------------------------------------------------------
 
@@ -338,7 +340,7 @@ CREATE TABLE IF NOT EXISTS `user_db` (
   `Profilepicture` blob,
   PRIMARY KEY (`User_Id`),
   UNIQUE KEY `User_Id` (`User_Id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user_db`
@@ -348,14 +350,15 @@ INSERT INTO `user_db` (`User_Id`, `Password`, `Email`, `usertype`, `Username`, `
 (1, '46421e9957e7052289ea5dc9799b594e', 'Shaf@live.com', 'Admin', 'Shaf', ''),
 (3, 'e50d792a9b56474621d92010fecfc676', 'Saj@live.com', 'Doctor', 'Saj', ''),
 (4, '209c4922b75252f5e1ad60ad860af30b', 'Malsh@live.com', 'Nurse', 'Malsh', ''),
-(5, '15469bf2bd9e4406957bceb90a9b4b9d', 'Tharo@live.com', 'Receiptionist', 'Tharo', ''),
-(6, '09a8198091045ee1cde7ba7237cd175e', 'Bhag@live.com', 'Lab-Assistant', 'Bhag', ''),
+(5, '15469bf2bd9e4406957bceb90a9b4b9d', 'Tharo@live.com', 'Receptionist', 'Tharo', ''),
+(6, '09a8198091045ee1cde7ba7237cd175e', 'Bhag@live.com', 'Lab_Assistant', 'Bhag', ''),
 (7, '075781df9cd7c79b4802a5807e40d0dd', 'sam@live.com', 'Patient', 'Sam', ''),
 (8, '1ab0bd3dca4d3c69d1e3662b0cf5fd4b', 'sam@live.com', 'Patient', 'Sham', ''),
 (10, 'f3b6e1995314986a85e69c2ec2df0356', 'hello@live.com', 'Patient', 'hello', ''),
 (14, '81dc9bdb52d04dc20036dbd8313ed055', 'samar@gmail.com', 'Patient', 'sami1', ''),
 (15, '81dc9bdb52d04dc20036dbd8313ed055', 'sam@gmail.com', 'Patient', 'sam34', ''),
-(16, '46421e9957e7052289ea5dc9799b594e', 'Shaf@live.com', 'Owner', 'Lak', NULL);
+(16, '46421e9957e7052289ea5dc9799b594e', 'Shaf@live.com', 'Owner', 'Lak', NULL),
+(17, 'Samar123', 'samar@gmail.com', 'Patient', 'Samar', '');
 
 --
 -- Constraints for dumped tables

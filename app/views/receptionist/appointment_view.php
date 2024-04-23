@@ -6,7 +6,42 @@
 <link rel="stylesheet" href="<?=URLROOT?>/css/patient/appointments.css">
 
 <link rel="stylesheet" href="<?=URLROOT?>/css/new.css">
-
+<style>
+    .buttonspace{
+    display: flex;
+    justify-content: end;
+    font-size: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(1rem, 0.3fr));
+    gap: 1rem;
+}
+.popup{
+    height: 10vh;
+    background-color: white;
+    color:black;
+    width: 50%;
+    align-items: center;
+    gap: 1rem;
+    position: fixed;
+    padding: 5%;
+    z-index: 5;
+}
+.button{
+    height: 31px;
+  flex-direction: column;
+  justify-content: center;
+  flex-shrink: 0;
+  color: #FFF;
+  font-family: 'inter-bold';
+  font-size: 10px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+  padding: 10px;
+  background-color: var(--Gomez-Purple);
+  border-style: hidden;
+  border-radius: 6px;
+}
+</style>
 
 <!-- background-color:#E9F3FD -->
 <body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
@@ -25,48 +60,41 @@
     
     <!-- <a>Welcome to Gomez</a> -->
     
-    <ul style="background-color: white;padding:1% 5% 1% 5%;width: 64%;">
-        <form method="post" action="appointments" action="<?=URLROOT.'/patient/appointments'?>">
-            <div class="d" style="margin-left: 10%;">
+    <ul style="background-color: white;padding:5%;width: 64%;">
+    <div class="d" style="margin-left: 10%;">
         <a class="search">
            <b> Doctor: </b>
-            <input type="text" placeholder="Search.." name="doctor" class="searchbox">
+            <input type="text" placeholder="Search.." name="search" class="searchbox">
         </a><br>
         <a class="search">
            <b> Date: </b>
-            <input type="text" placeholder="Search.." name="date" class="searchbox">
+            <input type="text" placeholder="Search.." name="search" class="searchbox">
         </a>
-        <input type="submit">
-        </form>
         <br>
         <table class="complainttable" style="margin-left: -11%; width: 111%;">
 
-    <thead class="complaint" style="margin-left: -37%;    width: 30rem;">
-    
+
+    <tbody class="complaint" style="margin-left: -33%;">
+        <tr>
             <td style="width: 20%;">Reference Number</td>
             <td style="width: 20%;">Appointment ID</td>
             <td style="width: 20%;">Date</td>
             <td style="width: 20%;">Time</td>
-            <td style="width: 20%;">Doctor </td>
-        
-        <tr style='color:white;margin: 1%;'></tr>
-    </thead>
-    <tbody class="complaint" style="margin-left: -150%;
-    margin-top: 5rem;height: 17rem;    overflow-y: scroll;width: 67rem;overflow-x: clip;scrollbar-width: none;">
-        
+            <td style="width: 20%;">hello </td>
+        </tr>
+        <tr style='color:white;margin: 3%;'></tr>
 
         <?php 
-            for ($i=0; $i < sizeof($data); $i++) { 
-                list($date, $time) = explode(" ", $data[$i]['Date']);
+            for ($i=0; $i < 2; $i++) { 
                 echo "<tr>
                 <td style='width: 20%;'>".$data[$i]['refence_No']."</td>
                 <td style='width: 20%;'>".$data[$i]['Appointment_Id']."</td>
-                <td style='width: 20%;'>".$date."</td>
-                <td style='width: 20%;'>".$time."</td>
+                <td style='width: 20%;'>".$data[$i]['Date']."</td>
+                <td style='width: 20%;'>".$data[$i]['Appointment_Time']."</td>
                 <td style='width: 20%;'>".$data[$i]['Doctor_name']."</td>
                 
             </tr>";
-            echo" <tr style='color:white;margin: 1%;'></tr>";
+            echo" <tr style='color:white;margin: 3%;'></tr>";
             }
             ?>
         
