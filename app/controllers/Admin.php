@@ -25,14 +25,18 @@ class Admin extends Controller
             $ManageUser->$user($rest);
         }
     }
-    public function ManageAppointment($user = Null, $rest = Null)
+    public function ManageAppointment($user = Null, $para1 = Null, $para2 = Null)
     {
         $ManageAppointment = new ManageAppointment();
-        if ($user == Null) {
+        if ($user == Null && $para1 == Null) {
             $ManageAppointment->Index();
         } else {
-            $ManageAppointment->$user($rest);
+            if ($para2 != Null) {
+                $ManageAppointment->Index($para1, $para2);
+            }
+            $ManageAppointment->$user($para1);
         }
+        exit();
     }
     public function UserInfo($rest = Null)
     {
