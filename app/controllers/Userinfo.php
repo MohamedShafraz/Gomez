@@ -24,14 +24,15 @@ class userinfo extends Controller
             // print_r($_FILES["file"]["tmp_name"]);
 
             // Path to the PDF file
+
             $fileContents = file_get_contents($_FILES["file"]['tmp_name']);
             $hexString = '0x' . bin2hex($fileContents);
 
-            $userDetails  = $userModel->updateUserDetails($hexString);
+            $userDetails  = $userModel->updateUserDetails($hexString, $fileContents);
             header("location: ./");
             exit();
         }
-        print_r(isset($_SESSION["userType"]));
+
         // } else {
         //     header("location:" . URLROOT . "/users/login");
         // }
