@@ -45,7 +45,7 @@
                 <span id="month-year"></span>
                 <button onclick="nextMonth()">&#9655;</button>
                 </div>
-                <table class="caltable" style="height: 17.5rem;width: 89%;margin-top: 1%;border-radius: 20px;">
+                <table class="caltable" style="height: 17.5rem;width: 89%;margin-top: 1%;border-radius: 20px;padding: 3%;">
                     <thead>
                         
                         <tr>

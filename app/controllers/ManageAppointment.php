@@ -14,6 +14,7 @@ class manageappointment extends Controller
         if (isset($_SESSION['userType']) == null) {
             header("location:" . URLROOT . "/users/login");
         }
+        
         $this->view($_SESSION['userType'] . "/manageappointment_view");
         exit();
     }

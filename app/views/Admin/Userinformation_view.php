@@ -110,6 +110,7 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
     height: 12.3rem;;'>" ?></div>
 
         <script>
+            console.log($data);
             $data.forEach(element => {
                 document.writeln("<li class='users'>" + element + "<br><br></li>")
             });
