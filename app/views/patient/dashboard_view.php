@@ -5,6 +5,19 @@
   height: 200px;
   background-color: red; /* For browsers that do not support gradients */
   background-image: linear-gradient(to right, red , yellow);
+  .h {
+  background-color: black;
+  border: none;
+  color: white;
+  padding: 16px 32px;
+  text-align: center;
+  font-size: 16px;
+  margin: 4px 2px;
+  opacity: 0.6;
+  transition: 0.3s;
+}
+
+.h:hover {opacity: 1}
 }
 </style>
 
@@ -22,7 +35,7 @@
     height: 17.5rem;">
                 <div style="text-align: center;font-size: x-large;font-weight: bolder;margin: -14% 0% 0% 0%;">Welcome Back!</div>
                 <article style="color: var(--Gomez-Pears);font-weight: bolder;font-family: 'Inter';font-size: 43px;line-height: 131%;margin: -12% 0% 0% 6%;">Check Your Health <br>Regularly</article>
-                <a href="<?=URLROOT."/patient/appointments/make"?>"><button style="font-weight: bold;color: #11235A;background-color: #f6f5ed;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: larger;width: max-content;margin: 1% 0% 0% 6%;"> Make Appointment</button></a>
+                <a href="<?=URLROOT."/patient/appointments/make"?>"><button class="h" style="font-weight: bold;color: #11235A;background-color: #f6f5ed;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: larger;width: max-content;margin: 1% 0% 0% 6%;"> Make Appointment</button></a>
                 <img src="<?=URLROOT."/public/resources/heart1.png"?>" style="margin: -25% 67%;width: 26%;" class="beating-container">
 
             </div>

@@ -16,12 +16,12 @@
             <div style="margin-left: -2.5rem;margin: 3rem 0rem 0rem orem;flex-basis: 42%;margin-top: 3rem;">
             <div  style="background: var(--Gomez-Option-Box);margin: 3% 0% 0% -33%;box-shadow: 1px 1px 7px;border-radius: 44px;flex-basis: 69%;height: 9rem;">
                 <div style="    margin: 1rem 0rem 0rem 4rem;position: fixed;height: 6rem;width: 6rem;"><img src="<?=URLROOT."/public/resources/appointment-book.png"?>" style="    margin: 0rem 0rem 0rem 0rem;width: 100%;" alt=""></div>
-                <button style="font-weight: bold;color: #11235A;background-color: #F6ECA9;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: xx-large;width: max-content;margin: 8% 0% 0% 36%;"> Make Appointment</button>
+                <button style="font-weight: bold;color: #11235A;background-color: #f7f9f9;;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: xx-large;width: max-content;margin: 8% 0% 0% 36%;"> Make Appointment</button>
 
             </div>
             <div  style="background: var(--Gomez-Option-Box);margin: 3% 0% 0% -33%;box-shadow: 1px 1px 7px;border-radius: 44px;flex-basis: 69%;height: 9rem;">
                 <div style="    margin: 1rem 0rem 0rem 4rem;position: fixed;height: 6rem;width: 6rem;"><img src="<?=URLROOT."/public/resources/medical-report.png"?>" style="    margin: 0rem 0rem 0rem 0rem;width: 100%;" alt=""></div>
-                <button style="font-weight: bold;color: #11235A;background-color: #F6ECA9;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: xx-large;width: max-content;margin: 8% 0% 0% 36%;"> Get Labreport</button>
+                <button style="font-weight: bold;color: #11235A;background-color: #f7f9f9;;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: xx-large;width: max-content;margin: 8% 0% 0% 36%;"> Get Labreport</button>
 
             </div>
             </div>
@@ -37,13 +37,13 @@
                             
                         </tr>
                         <tr>
-                            <th style="color: rgb(37, 42, 176);">Sun</th>
-                            <th style="color: rgb(37, 42, 176);">Mon</th>
-                            <th style="color: rgb(37, 42, 176);">Tue</th>
-                            <th style="color: rgb(37, 42, 176);">Wed</th>
-                            <th style="color: rgb(37, 42, 176);">Thu</th>
-                            <th style="color: rgb(37, 42, 176);">Fri</th>
-                            <th style="color: rgb(37, 42, 176);">Sat</th>
+                            <th style="color: #f6eca9;">Sun</th>
+                            <th style="color: #f6eca9;">Mon</th>
+                            <th style="color: #f6eca9;">Tue</th>
+                            <th style="color: #f6eca9;">Wed</th>
+                            <th style="color: #f6eca9;">Thu</th>
+                            <th style="color: #f6eca9;">Fri</th>
+                            <th style="color: #f6eca9;">Sat</th>
                         </tr>
                     </thead>
                     <tbody id="calendar-body"></tbody>
@@ -61,11 +61,11 @@
             </li>
             <li class="option">
                 <div><img src=<?php echo URLROOT . "/resources/PatientCount2.png" ?>></div>
-                <div><br>Total Patients<br><a style="font-size:8vh">50</a></div><br><br>
+                <div><br>Total Patients<br><a style="font-size:8vh">5</a></div><br><br>
             </li>
             <li class="option">
                 <div><img src=<?php echo URLROOT . "/resources/DoctorCount.png" ?>></div>
-                <div><br>Active Doctors<br><a style="font-size:8vh">10</a></div><br><br>
+                <div><br>Active Doctors<br><a style="font-size:8vh">2</a></div><br><br>
             </li>
              
         </ul>

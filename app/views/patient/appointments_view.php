@@ -36,7 +36,7 @@
            <b> Date: </b>
             <input type="text" placeholder="Search.." name="date" class="searchbox">
         </a>
-        <input type="submit">
+        <input type="submit" style="margin: 3rem 0rem 0rem 1rem;font-weight: bold;font-size: medium;color: white;background-color: #0972ea;border-radius: 16px;height: 2rem;width: 7rem;">
         </form>
         <br>
         <table class="complainttable" style="margin-left: -11%; width: 111%;">
@@ -58,7 +58,7 @@
         <?php 
             for ($i=0; $i < sizeof($data); $i++) { 
                 list($date, $time) = explode(" ", $data[$i]['Date']);
-                echo "<tr>
+                echo "<tr style='background-color: #F1EAD2;'>
                 <td style='width: 20%;'>".$data[$i]['refence_No']."</td>
                 <td style='width: 20%;'>".$data[$i]['Appointment_Id']."</td>
                 <td style='width: 20%;'>".$date."</td>
