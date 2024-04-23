@@ -101,7 +101,7 @@ class Database
         $setClause = rtrim($setClause, ', ');
 
         $query = "UPDATE " . $this->table . " SET " . $setClause . " WHERE " . $condition;
-        // print_r($query);
+        
         return $this->executeQuery($query);
     }
 

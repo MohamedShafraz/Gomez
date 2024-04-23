@@ -26,7 +26,7 @@
     }
 </style>
 <!-- background-color:#E9F3FD -->
-<?php require_once(APPROOT . "/views/Admin/navbar_view.php"); ?>
+<?php require_once(APPROOT . "/views/Owner/navbar_view.php"); ?>
 
 
 <div class="complainttext">Doctors</div>

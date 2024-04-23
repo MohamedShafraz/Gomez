@@ -36,69 +36,40 @@
         border-radius: 8px;
     }
 </style>
-<ul class="manageuser">
-    <li id="manageuser/patient" onclick="y('manageuser/patient')" class="options" style="font-size: 3.5vh;">
-        <div><img src=<?php echo URLROOT . "/resources/PatientCount2.png" ?>></div>
-        <div><br>Manage Patients<br></div><br><br>
-    </li>
-    <li class="options" style="font-size: 3.5vh;" onclick="y('manageuser/doctor')" id="manageuser/doctor">
-        <div><img src=<?php echo URLROOT . "/resources/DoctorCount.png" ?>></div>
-        <div><br>Manage Doctors<br></div><br><br>
-    </li>
-    <li class="options" style="font-size: 3.5vh;" onclick="y('manageuser/receptionist')" id="manageuser/receptionist">
-        <div><img src=<?php echo URLROOT . "/resources/ReceptionistCount.png" ?>></div>
-        <div><br>Manage Receptionists<br><br>
-    </li>
-    <li class="options" style="font-size: 3.5vh;" onclick="y('manageuser/labAssistant')" id="manageuser/labAssistant">
-        <div><img src=<?php echo URLROOT . "/resources/LabAssistantCount.png" ?>></div>
-        <div><br>Manage <br>Lab Assistants<br>
-    </li>
+<br><br>
+<div class="complainttext">Appointments</div>
+<div class="complaintheader">
+    <table>
 
-</ul>
-<div class="complainttext">Complaints</div>
-<div class="complaintheader" style="
-    width: 17.6%;margin-bottom: 0.4%;
-">
-    <a>Name</a>
-    <a>Type</a>
-    <a style="
-    margin-left: 11%;
-">Description</a>
-    <a style>Date</a>
-    <a style="
-    margin-left: 13%;
-">Time</a>
+
+        <!-- <tr>
+            <td style='width: 120px;'>Saj</td>
+            <td style='width: 156px;'>Doc</td>
+            <td style='width: 144px;'>Reactivate</td>
+            <td style='width: 120px;'>4/1/2024</td>
+            <td style='width: 60px;'>11:59</td>
+        </tr>
+        <tr style='color:white;margin: 3%;'></tr>
+        <tr>
+            <td style='width: 120px;'>Saj</td>
+            <td style='width: 156px;'>Doc</td>
+            <td style='width: 144px;'>Reactivate</td>
+            <td style='width: 120px;'>4/1/2024</td>
+            <td style='width: 60px;'>11:59</td>
+        </tr>
+        <tr style='color:white;margin: 3%;'></tr>
+        <tr>
+            <td style='width: 120px;'>Saj</td>
+            <td style='width: 156px;'>Doc</td>
+            <td style='width: 144px;'>Reactivate</td>
+            <td style='width: 120px;'>4/1/2024</td>
+            <td style='width: 60px;'>11:59</td>
+        </tr>
+        <tr style='color:white;margin: 3%;'></tr> -->
+        </tbody>
+
+    </table>
 </div>
-<table class="complainttable" style="height: 19vh;">
-    <tbody class="complaint">
-        <tr>
-            <td style='width: 120px;'>Saj</td>
-            <td style='width: 156px;'>Doc</td>
-            <td style='width: 144px;'>Reactivate</td>
-            <td style='width: 120px;'>4/1/2024</td>
-            <td style='width: 60px;'>11:59</td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-        <tr>
-            <td style='width: 120px;'>Saj</td>
-            <td style='width: 156px;'>Doc</td>
-            <td style='width: 144px;'>Reactivate</td>
-            <td style='width: 120px;'>4/1/2024</td>
-            <td style='width: 60px;'>11:59</td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-        <tr>
-            <td style='width: 120px;'>Saj</td>
-            <td style='width: 156px;'>Doc</td>
-            <td style='width: 144px;'>Reactivate</td>
-            <td style='width: 120px;'>4/1/2024</td>
-            <td style='width: 60px;'>11:59</td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-    </tbody>
-
-</table>
-
 
 </article>
 </body>

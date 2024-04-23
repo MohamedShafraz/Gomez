@@ -27,8 +27,7 @@
 </style>
 <!-- background-color:#E9F3FD -->
 <?php require_once(APPROOT . "/views/Admin/navbar_view.php"); ?>
-
-
+<br><br>
 <div class="complainttext">Patient</div>
 <table class="complainttable">
 
@@ -40,7 +39,7 @@
             <td style="width: max-content;">Mobile Number</td>
             <td></td>
         </tr>
-        <tr style='color:white;margin: 3%;'></tr>
+        <tr style='color:white;margin: 3%;'></tr><br>
         <?php
         for ($index = 0; $index < sizeof($data); $index++) {
             $id[$index] = $data[$index]['id'];

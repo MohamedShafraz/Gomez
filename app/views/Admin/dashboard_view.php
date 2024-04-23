@@ -83,6 +83,7 @@
         </ul>
         <ul style="display: flex;flex-direction:row">
             <li style="
+            background: #f5f5f5;
         /* background: #f4f9ff; */
     width: max-content;
     padding: 7% 7%;

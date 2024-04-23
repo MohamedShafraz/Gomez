@@ -4,6 +4,7 @@ class PatientModel extends Database
 {
     public function getUsersDetails()
     {
+        // session_start();
         $where = "1";
         $this->setTable('patients');
         $data = $this->fetchData($where);
@@ -17,7 +18,7 @@ class PatientModel extends Database
             $users[$i]['userName'] = $row["username"];
             $users[$i]['type'] = $row['type'] ?? 'unregister';
             $users[$i]['phonenumber'] = $row['phonenumber'];
-            $users[$i]['profilepicture'] = $row['profilepicture'];
+
             $users[$i]['email'] = $row['email'];
             $i++;
         }
@@ -39,7 +40,7 @@ class PatientModel extends Database
             $users['userName'] = $row["username"];
             $users['type'] = $row['type'] ?? 'unregister';
             $users['phonenumber'] = $row['phonenumber'];
-            $users['profilepicture'] = $row['profilepicture'];
+
             $users['email'] = $row['email'];
             $i++;
         }

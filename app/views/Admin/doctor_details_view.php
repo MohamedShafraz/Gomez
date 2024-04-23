@@ -91,7 +91,7 @@
         <li class="users">Email : <?= $data['email'] ?><br><br></li>
 
         <div id="chartContainer"></div>
-        <button onclick="f()" style="float:right" class="logbutton1">Edit</button>
+        <div style="display:flex;gap:10px"><button onclick="window.location.href = '<?= URLROOT . '/Admin/Manageuser/doctor' ?>'" style="float:right" class="logbutton1">back</button><button onclick="f()" style="float:right" class="logbutton1">Edit</button>
     </ul>
     </div>
 </article>
