@@ -14,6 +14,9 @@
         <li id="manageuser" onclick="y('manageuser')">
             Manage User
         </li><br>
+        <li id="manageappointment" onclick="y('manageappointment')">
+            Manage Appointments
+        </li><br>
         <li id="userinfo" onclick="y('userinfo')">
             User information
         </li>

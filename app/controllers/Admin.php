@@ -3,6 +3,7 @@ include_once APPROOT . '/controllers/Dashboard.php';
 include_once APPROOT . '/controllers/ManageUser.php';
 include_once APPROOT . '/controllers/UserInfo.php';
 include_once APPROOT . '/controllers/logout.php';
+include_once APPROOT . '/controllers/ManageAppointment.php';
 class Admin extends Controller
 {
     public function Index()
@@ -22,6 +23,15 @@ class Admin extends Controller
             $ManageUser->Index();
         } else {
             $ManageUser->$user($rest);
+        }
+    }
+    public function ManageAppointment($user = Null, $rest = Null)
+    {
+        $ManageAppointment = new ManageAppointment();
+        if ($user == Null) {
+            $ManageAppointment->Index();
+        } else {
+            $ManageAppointment->$user($rest);
         }
     }
     public function UserInfo($rest = Null)
