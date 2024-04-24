@@ -4,7 +4,7 @@
         var $URLROOT = '<?=URLROOT?>'
          var $usertype= '<?=$_SESSION['userType']?>';
 </script>
-        <img src="<?=URLROOT."/resources/user.png"?>" alt=""><br>
+        <img src="<?= 'data:image/png;base64,' . base64_encode($_SESSION["USER"]["profilepicture"]) ?>" alt="test"><br>
         <?=$_SESSION['userType']?><br><br>
         <li id="dashboard" onclick="y('dashboard')">Dashboard
         </li><br>

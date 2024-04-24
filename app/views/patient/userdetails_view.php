@@ -1,7 +1,7 @@
 <?php
 
 
-require_once(APPROOT . "/views/Admin/navbar_view.php");
+require_once(APPROOT . "/views/patient/navbar_view.php");
 ?>
 
 <script>
@@ -10,9 +10,9 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
     $data.push("<?= "gender :" . $data['gender'] ?>");
     $data.push("<?= "age : " . $data['age'] ?>");
     $data.push("<?= "phonenumber : " . $data['phonenumber'] ?>");
-    $data.push("<?= "email : " . $data['email'] ?>");
+    $data.push("<?= "email : " . $data['email']??'sam@live.com' ?>");
 
-    // console.log($data);
+    console.log($data);
 </script>
 <style>
     .button {
@@ -105,11 +105,13 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
     <!-- <a>Welcome to Gomez</a> -->
 
     <ul style="background-color: white;padding:5%; width:50%">
+ 
         <!-- <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div> -->
         <div class="users" style="float: left;gap: 5%;width:50% ;"><?= "<img src='data:image/png;base64," . base64_encode($data['image']) . "' alt='Profile Picture' style='    width: 12.3rem;
     height: 12.3rem;;'>" ?></div>
 
         <script>
+            console.log($data);
             $data.forEach(element => {
                 document.writeln("<li class='users'>" + element + "<br><br></li>")
             });
