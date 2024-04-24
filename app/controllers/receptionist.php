@@ -25,7 +25,7 @@ private $appointmodel;
             // Load the DashboardModel
             $this->model('appointment_model');
         $this->appointmodel = new appointment();
-        $result = $this->appointmodel->getAppoinmentbyPatient($_POST['doctor']); 
+        $result = $this->appointmodel->getAppoinmentbyPatient(); 
        
         // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());
        // print_r($resultUser);
