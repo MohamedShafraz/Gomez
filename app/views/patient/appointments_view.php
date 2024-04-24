@@ -25,60 +25,81 @@
     
     <!-- <a>Welcome to Gomez</a> -->
     
-    <ul style="background-color: white;padding:1% 5% 1% 5%;width: 64%;">
-        <form method="post" action="appointments" action="<?=URLROOT.'/patient/appointments'?>">
-            <div class="d" style="margin-left: 10%;">
-        <a class="search">
-           <b> Doctor: </b>
-            <input type="text" placeholder="Search.." name="doctor" class="searchbox">
-        </a><br>
-        <a class="search">
-           <b> Date: </b>
-            <input type="text" placeholder="Search.." name="date" class="searchbox">
-        </a>
-        <input type="submit" style="margin: 3rem 0rem 0rem 1rem;font-weight: bold;font-size: medium;color: white;background-color: #0972ea;border-radius: 16px;height: 2rem;width: 7rem;">
-        </form>
-        <br>
-        <table class="complainttable" style="margin-left: -11%; width: 111%;">
-
-    <thead class="complaint" style="margin-left: -37%;    width: 30rem;">
     
-            <td style="width: 20%;">Reference Number</td>
-            <td style="width: 20%;">Appointment ID</td>
-            <td style="width: 20%;">Date</td>
-            <td style="width: 20%;">Time</td>
-            <td style="width: 20%;">Doctor </td>
-        
-        <tr style='color:white;margin: 1%;'></tr>
-    </thead>
-    <tbody class="complaint" style="margin-left: -150%;
-    margin-top: 5rem;height: 17rem;    overflow-y: scroll;width: 67rem;overflow-x: clip;scrollbar-width: none;">
-        
+    <ul style="height: 26rem;padding: 5%;margin-left:22%">
+    <form action="" method="get">
+        <section class="make" id="make" style="    margin-top: -4rem;
+    margin-left: 1rem;
+    background: #FFF;
+    display: flex;
+    flex-direction: row;
+    width: 54rem;
+    padding: 2%;">
 
-        <?php 
-            for ($i=0; $i < sizeof($data); $i++) { 
-                list($date, $time) = explode(" ", $data[$i]['Date']);
-                echo "<tr style='background-color: #F1EAD2;'>
-                <td style='width: 20%;'>".$data[$i]['refence_No']."</td>
-                <td style='width: 20%;'>".$data[$i]['Appointment_Id']."</td>
-                <td style='width: 20%;'>".$date."</td>
-                <td style='width: 20%;'>".$time."</td>
-                <td style='width: 20%;'>".$data[$i]['Doctor_name']."</td>
-                
-            </tr>";
-            echo" <tr style='color:white;margin: 1%;'></tr>";
-            }
-            ?>
-        
-    </tbody>
+            <div class="dis">
+                <label for="Doctor" style="font-weight: bold;font-size: 22px;"> Doctor Name :&ensp; </label>
+                <input type="text" name="doctor" id="Doctor" placeholder="Max- 20 Characters" class="holder">
+            </div>
 
-</table>
-    </div><br>
-        <a href="<?=URLROOT."/patient/appointments/make"?>"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;background-color: var(--Gomez-highlight);">Make appointment</button></a>           
-</div>
-    <!-- Your JavaScript Code -->
-    
+            <div class="dis">
+                <label for="Date" style="font-weight: bold;font-size: 22px;">Date :&ensp;</label>
+                <input type="date" name="Date" id="Date" date-placeholder="11/6/2023" class="holder">
+            </div>
+
+
+
+
+            <input class='logbutton font1' id="maked" style="border-radius: 15%;
+    padding: 0.5% 1%;
+    box-shadow: none;width:7%;color:white;
+" type="submit" value="search">
+
+            <br>
+        </section>
+    </form>
+    <br>
+
+    <div id="appointments" style="height: 59vh;width:57rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+">
+        <?php
+        for ($i = 0; $i < sizeof($data); $i++) {
+            $image = $data[$i]['image'] ?? "http://localhost/gomez/public/resources/doctor1.png'";
+            $name = $data[$i]['Doctor_name'];
+            $Date =$data[$i]['Date'];
+            $special = $data[$i]['Specialization'] ?? "Heart specialist";
+            echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
+             <div style='display: flex;flex-direction: row;'>
+                 <div style='width: 20%;'><img src='" . $image . " style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
+                 <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
+                     <ul style='list-style-type: none;padding:0;'>
+                         <li>" . $name . "</li>
+                         <li style='font-size: medium;'>" . $special . "</li>
+                     </ul>
+                 </div>
+                 <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
+                     <ul style='list-style-type: none;padding:0;'>
+                         <li>" . $Date . "</li>
+                         
+                     </ul>
+                 </div>
+                  <div style='width: 27%;'>
+                  
+                     <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
+                         <a href='' style='text-decoration: none;'>
+                             <font class='font1'>More</font>
+                         </a>
+                     </div>
+                 </div></div></div><br>";
+        }
+        ?> 
+        </div>
+        <a href="<?=URLROOT."/patient/appointments/make"?>"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin: 0.5rem 0rem 0rem 48rem;;background-color: var(--Gomez-highlight);">Make appointment</button></a>           
+
     </ul>
+    
 </div>
 </article>
 </body>

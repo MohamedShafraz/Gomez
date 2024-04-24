@@ -70,7 +70,7 @@ class Database
                 $i++;
             }
         }
-
+        
         return $data;
     }
 
@@ -89,7 +89,7 @@ class Database
                 $i++;
             }
         }
-        print_r($this->connection);
+        
         return $data;
     }
 

@@ -4,7 +4,7 @@ use LDAP\Result;
 
 class patient extends Controller
 {
-    private $registrationmodel;
+    private $userinfo_model;
     private $contactusmodel;
     private $appointmodel;
     public function __construct()
@@ -29,11 +29,37 @@ class patient extends Controller
         $this->view('Patient/labreportregistered_view');
         exit();
     }
-    public function userdetails()
+    public function userdetails($update = Null)
     {
-        $this->view('Patient/userdetails_view');
+        $this->model($_SESSION["userType"] . '/userinfo_model');
+        $this->userinfo_model = new userPatientModel();
+        $result = $this->userinfo_model->getUserDetails();
+        // print_r($result);
+        if($update == 'update'){
+        
+            // print_r($_FILES["file"]["tmp_name"]);
+
+            // Path to the PDF file
+
+            $fileContents = file_get_contents($_FILES["file"]['tmp_name']);
+            $hexString = '0x' . bin2hex($fileContents);
+
+            $result2  = $this->userinfo_model->updateUserDetails($hexString, $fileContents);
+            header("location: ./");
+        }
+        $this->view('Patient/userdetails_view',$result);
         exit();
     }
+    
+        
+        
+
+        // } else {
+        //     header("location:" . URLROOT . "/users/login");
+        // }
+    
+
+    
     public function appointments($make=null,$ShowDoc=null,$bookappo=null,$fixed=null)
     {
 
@@ -42,11 +68,20 @@ class patient extends Controller
             $this->model('appointment_model');
         $this->appointmodel = new appointment();
         $result = $this->appointmodel->getAppoinmentbyPatient(); 
-
-        if (!empty($_POST)){
-            $result = $this->appointmodel->getAppoinmentbyPatient($_POST['doctor']);
+        if (isset($_GET['doctor']) || isset($_GET['Date'])) {
+        if ($_GET['doctor'] != NULL && $_GET['Date'] == NULL){
+            $result = $this->appointmodel->getAppoinmentbyPatient($_GET['doctor']);
             $this->view('Patient/appointments_view',$result);
         }
+        if ($_GET['Date']){
+            $where = $_GET['Date'];
+                    $where = DateTime::createFromFormat('Y-m-d', $where);
+                    $where = $where->format('m/d/Y');
+                    
+            $result= $this->appointmodel->getAppoinmentbyDate($where);
+            $this->view('Patient/appointments_view',$result);
+        }
+    }
        
         // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());
        // print_r($resultUser);
@@ -58,7 +93,9 @@ class patient extends Controller
             exit();
         }
         if($ShowDoc!= null&& $bookappo==null){
-            $this->view('patient/Registerd_appointdoctor_view');
+            $result = $this->appointmodel->getDoctors();
+            // print_r($result);
+             $this->view('patient/Registerd_appointdoctor_view',$result);
             exit();
         }
         if($bookappo != null && $fixed==null){
