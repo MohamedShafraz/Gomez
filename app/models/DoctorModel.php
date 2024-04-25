@@ -145,8 +145,27 @@ class DoctorModel extends Database
         return $result;
     }
 
+    public function deactivateAccount($username)
+    {
+        $query = "UPDATE Doctors SET 'Status'='Inactive' WHERE 	Username='$username'";
+        $result = $this->executeQuery($query);
+        return $result;
+    }
 
 
+    public function addMedicine($data)
+    {
+        $this->setTable(Medicine);
+        $result = $this->insertData($data);
+        return $result;
+    }
+
+    public function getMedicinebyUniqeid($uniqeid){
+        $where = "unique_id='$uniqeid'";
+        $this->setTable(Medicine);
+        $result = $this->fetchData($where);
+        return $result;
+    }
 }
 
 

@@ -1,24 +1,6 @@
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
-<aside class="sidenav">
-    <ul>
-        <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
-        <li id="Dashboard" onclick="y('Dashboard')">Dashboard</li>
-        <li id="ViewAppointment" onclick="y('ViewAppointment')">Appointment</li>
-        <li id="ViewReminder" onclick="y('ViewReminder')">Reminder</li>
-    </ul>
-</aside>
-<style>
-    .details {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-    }
+<link rel="stylesheet" href="<?= URLROOT ?>/css/Doctor/doctorcommon.css">
 
-    .details p {
-        margin: 0;
-        line-height: 1.5;
-    }
-</style>
 
 <body>
     <div style="margin-left:23%;">
@@ -59,6 +41,33 @@
                     echo "<p>labtesting  : ".$prescription[0]["labtesting"]."</p>";
                 ?>
             </div>
+            <br>
+            
+                <?php 
+                    var_dump($medicine);
+                    if($medicine != null){
+                    echo '<div class="details" style="width:98%;">';
+                    echo '<h3>Medicines</h3>';
+                    echo "<table>";
+                        echo "<tr>";
+                        echo "<th>Medicine Name</th>";
+                        echo "<th>Medicine Dosage</th>";
+                        echo "<th>Tiems</th>";
+                        echo "<th>before after meal</th>";
+                    echo "</tr>";
+                    foreach($medicine as $med){
+                        echo "<tr>";
+                        echo "<td>".$med["medicine"]."</td>";
+                        echo "<td>".$med["dose"]."</td>";
+                        echo "<td>".$med["times"]."</td>";
+                        echo "<td>".$med["before_after"]."</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                    echo '</div>';
+                    }
+                ?>
+           
         </div>
     </div>
     <button class="bluebutton" onclick="editprescription()" style="margin-left:24%;margin-top:2%;width:200px">Edit Prescription</button>

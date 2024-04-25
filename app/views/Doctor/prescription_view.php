@@ -1,45 +1,5 @@
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
-<aside class="sidenav">
-    <ul>
-        <img src="<?= URLROOT . "/resources/user.png" ?>"><br><br>
-        <li id="Dashboard" onclick="y('Dashboard')">Dashboard</li>
-        <li id="ViewAppointment" onclick="y('ViewAppointment')">Appointment</li>
-        <li id="ViewReminder" onclick="y('ViewReminder')">Reminder</li>
-    </ul>
 
-    <style>
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        ul li a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-
-        th,
-        td {
-            border: 1px solid #dddddd;
-            text-align: left;
-            padding: 8px;
-        }
-
-        th {
-            background-color: #f2f2f2;
-        }
-    </style>
-
-
-
-</aside>
 <article class="dashboard">
     <div style="margin-left:24%;">
 

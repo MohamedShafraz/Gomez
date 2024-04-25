@@ -50,6 +50,7 @@ class Database
                 $i++;
             }
         }
+        
         return $data;
     }
 

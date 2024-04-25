@@ -1,13 +1,6 @@
 <?php require_once(APPROOT."/views/Doctor/navbar_view.php");?>
-<aside class="sidenav">
-    <ul>
-        <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
-        <li id="Dashboard" onclick="y('Dashboard')">Dashboard</li>
-        <li id="ViewAppointment" onclick="y('ViewAppointment')">Appointment</li>
-        <li id="ViewReminder" onclick="y('ViewReminder')">Reminder</li>
-    </ul>
-
-    <style>
+<link rel="stylesheet" href="<?= URLROOT ?>/css/Doctor/doctorcommon.css">
+<style>
     ul {
         list-style: none;
         padding: 0;
@@ -60,8 +53,6 @@
         text-align: center;}
 
 </style>
-
-
 </aside>
 <article class="dashboard">
     <div style="margin-left:24%; display:flex; justify-content:center;">

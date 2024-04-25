@@ -1,14 +1,5 @@
 <?php require_once(APPROOT."/views/Doctor/navbar_view.php");?>
-<aside class="sidenav">
-    <ul>
-        <img src="<?=URLROOT."/resources/user.png"?>" ><br><br>
-        <li><a href="<?=URLROOT."/Doctor"?>">Dashboard</a></li>
-        <li><a href="<?=URLROOT."/Doctor/ViewAppointment/"?>">Appointment</a></li>
-        <li><a href="<?=URLROOT."/Doctor/ViewReminder"?>">Reminder</a></li>
-    </ul>
-
-
-</aside>
+<link rel="stylesheet" href="<?= URLROOT ?>/css/Doctor/doctorcommon.css">
 <style>
    
     .details {
