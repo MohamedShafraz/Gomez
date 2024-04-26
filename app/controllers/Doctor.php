@@ -355,7 +355,7 @@ public function AddMedicine(){
         $doctor_id = $doctor[0]['Doctor_id'];
 
         $appointments = $this->doctorModel->getAppointmentsbyDoctoronTodayandbetweentimeslots($doctor_id, $starttime, $endtime);
-        $patient = $this->doctorModel->getPatient($appointments[0]['Patient_ID']);
+        //$patient = $this->doctorModel->getPatient($appointments[0]['Patient_ID']);
         
         $this->view('Doctor/timeslotpatients', ['appointments' => $appointments]);
         exit();
