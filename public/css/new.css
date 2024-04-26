@@ -1,4 +1,26 @@
+.manageuser{
+    display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(13rem, 0fr));
+  gap: 1.5rem;
+  margin-left: 25%;
+  margin-top: 1%;
 
+}
+.options{
+    border-radius: 5px;
+  color: var(--Gomez-White);
+  text-align: center;
+  font-family: inter;
+  display: flex;
+  flex-direction: column;
+  padding: 10%;
+  box-sizing: border-box;
+  background-image: var(--Gomez-Option-Box);
+  font-size: 1rem;
+}
+.users{
+    font-family: inter;
+}
 .lay{
     box-shadow: 0 4px 12px rgba(0,0,0,0.15);
 padding: 4% 11% 9% 11%;
@@ -72,7 +94,7 @@ justify-content: center;
 flex-shrink: 0;
 color: var(--Gomez-Purple);
 font-family: inter;
-font-size: 10px;
+font-size: 12px;
 font-style: normal;
 font-weight: 900;
 line-height: normal;
@@ -90,7 +112,8 @@ background-color: var(--Gomez-Purple);
 padding-top: 17px;
 margin: -4px 0px 0px -8px;
 padding-bottom: 52px;
-width: 102%;
+width: 101.6%;
+
     }
     .footer{
         background-color: var(--Gomez-Blue);
@@ -194,6 +217,7 @@ border-bottom: 0.1vh solid white;
 padding: 1rem 0;
 font-size: 1.5rem;
 line-height: 1.8;
+text-align: center;
     }
     .navbar {
 /*padding:0.5rem 5%;*/
@@ -235,7 +259,7 @@ justify-content: center;
     color:white;
     padding: 7px 10px ;
 }
-.logbutton#make{
+.logbutton#maked{
     color:black;
     padding: 1% 2% 1% 2%;
 }
@@ -243,10 +267,25 @@ justify-content: center;
     padding: 1% 2% 1% 2%;
   margin: 0% 0% 0% 28%;
 }
+.flex-scroll-container {
+    display: flex;
+    flex-direction: column; /* or row, depending on your layout */
+    height: 300px; /* Set a fixed height for the container */
+    overflow: auto; /* Enable scrolling for overflow content */
+    border: 1px solid #ccc; /* Optional: Add a border for better visualization */
+    
+  }
+
+  /* Optional: Add styling for the content inside the flex container */
+  .flex-scroll-item {
+    /* padding: 10px; */
+    border-bottom: 1px solid #eee;
+  }
 :root{
 --Gomez-highlight:#0972ea;
 --Gomez-Purple: #8693D1;
---Gomez-Blue: #242c52;
+--Gomez-Blue:#174E95;
+ /* #242c52; */
 --Gomez-Pears: #eaf5e0;
 --Gomez-Gray: #d9d9d9;
 --Gomez-White: #fafafa;
@@ -256,4 +295,5 @@ justify-content: center;
 --Gomez-Brown: #948686;
 --animation-timing:200ms ease-in-out;
 --menu-height:calc(8px*3+6px*2);
+--Gomez-Option-Box:linear-gradient(45deg,rgba(13, 71, 128, 1),rgba(9, 114, 234, 1));
 }
