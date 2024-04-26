@@ -45,26 +45,11 @@ button{
   font-size: initial;height: max-content;width: max-content;
 }
 
+.option{
+    min-width: 22rem;
+}
+
 </style>
-<div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999; display: none;"></div>
-
-<div id="alertBox" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 5px; z-index: 1000; display: none;">
-  <div id="alertMessage"></div> <!-- Alert message will be displayed here -->
-  <button onclick="closeAlert()" style="display: block; margin: 0 auto;">Close</button> <!-- Close button -->
-</div>
-
-
-<?php
-  if(isset($message)){
-    echo "<script>
-            // Show the overlay and alert box
-            document.getElementById('overlay').style.display = 'block';
-            document.getElementById('alertBox').style.display = 'block';
-            // Set the alert message
-            document.getElementById('alertMessage').innerHTML = '<p>$message</p>';
-          </script>";
-  }
-?>
 
 
 </aside>
@@ -75,11 +60,11 @@ button{
             <ul class="horizontal-scroll" style="    width: 84rem;height: 12rem;margin: 3rem 0rem 0rem 0rem;line-height: normal;">
                 <li class="option">
                     <div><img src=<?php echo URLROOT . "/resources/ReceptionistCount.png" ?>></div>
-                    <div><br> Total Appointments<br><a style="font-size:8vh"><?php echo count($totalmonthappointment) ?></a><br>
+                    <div><br>Total Appointments<br><a style="font-size:8vh"><?php echo count($totalappointment) ?></a><br>
                 </li>
                 <li class="option">
-                    <div><img src=<?php echo URLROOT . "/resources/PatientCount2.png" ?>></div>
-                    <div><br>Total Patients<br><a style="font-size:8vh"><?php echo count($patients) ?></a></div><br><br>
+                    <div><img src=<?php echo URLROOT . "/resources/ReceptionistCount.png" ?>></div>
+                    <div><br><?php echo date('F') ?> Appointments<br><a style="font-size:8vh"><?php echo count($totalmonthappointment) ?></a><br>
                 </li>
                 <li class="option">
                     <div><img src=<?php echo URLROOT . "/resources/ReceptionistCount.png" ?>></div>
@@ -89,52 +74,21 @@ button{
              </ul>
             </div>
         </div>
-                    
-
-        <div id="appointmentSlots" style="margin-top:50px;background-color:grey;margin-left:-18%;padding:2%">
-                <?php
+        <div style="display: flex;   margin-left: -11rem;">
+            <div class="scrollable-container">
+            <ul class="horizontal-scroll" style="    width: 84rem;height: 12rem;margin: 3rem 0rem 0rem 0rem;line-height: normal;">
+                <li class="option">
+                    <div><img src=<?php echo URLROOT . "/resources/PatientCount2.png" ?>></div>
+                    <div><br>Today Patients<br><a style="font-size:8vh"><?php echo count($totalmonthappointment) ?></a></div><br><br>
+                </li>
                 
-                $hourlyCounts = array_fill(0, 24, 0); 
-                $currentDate = date('n/j/Y'); // Format: Month/Day/Year
-                $currentWeekday = date('l');
-                            
-                foreach ($appointments as $appointment) {
-                    
-                    $hour = (int)substr($appointment['Appointment_Time'], 0, 2);
-                    
-                    $hourlyCounts[$hour]++;
-                }
-                
-               
-                for ($hour = 0; $hour < 24; $hour++) {
-                    
-                    if ($hourlyCounts[$hour] > 0) {
-                        echo "<div class='appointmentsection' style='display: flex; align-items: center; justify-content: space-around; margin-bottom: 10px;font-weight:bolder;color:darkblue; border-left:solid black 5px'>";
-                        echo "<div class='current-date'>";
-                        echo "<p>Today is $currentDate ($currentWeekday)</p>";
-                        echo "</div>";
-                        echo "<p style='font-size: 18px; margin-right: 20px;'>$hour:00 - " . ($hour + 1) . ":00</p>";
-                        echo "<p style='font-size: 18px; margin-right: 20px;'>{$hourlyCounts[$hour]}</p>";
-                        echo "<button style='width:200px;text-align: center;' onclick='viewtimeslot($hour, " . ($hour + 1) . ")'>View</button>";
-                        echo "</div>";
-                    }
-                }
-                ?>
+             </ul>
+            </div>
         </div>
-
+                 
 </article>
 <script>
 
-function viewtimeslot(startTime,endTime){
-    window.location.href = '<?= URLROOT ?>/Doctor/ShowPatientsAllocatedTimeSlot/' + encodeURIComponent(startTime) + '/' + encodeURIComponent(endTime);
-}
-
-function closeAlert() {
-    document.getElementById('overlay').style.display = 'none';
-    document.getElementById('alertBox').style.display = 'none';
-    document.getElementById('alertMessage').innerHTML = '';
-    window.location.href = '<?= URLROOT ?>/Doctor/dashboard';
-  }
 
 </script>
 

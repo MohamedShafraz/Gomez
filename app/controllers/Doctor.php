@@ -11,24 +11,15 @@ class Doctor extends Controller
         $user = $_SESSION["USER"];
 
         if ($user["usertype"] == "Doctor") {
-            $this->model("DoctorModel");
-            $this->doctorModel = new DoctorModel(new Database());
-            $doctor = $this->doctorModel->getDoctor($user["Username"]);
-
-            $appointments = $this->doctorModel->getUpcomingAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
-            $patients = $this->doctorModel->getMonthPatientsbyDoctor($doctor[0]['Doctor_id']);
-
-            $totalmonthappointment = $this->doctorModel->getMonthAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
-            $totalappointment = $this->doctorModel->getTotalAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
-
-            $this->view('Doctor/dashboard_view', ['appointments' => $appointments, 'patients' => $patients , 'totalappointment' => $totalappointment , 'totalmonthappointment' => $totalmonthappointment]);
+           
+            header("Location: " . URLROOT . "/Doctor/dashboard");
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
         }
     }
 
-    public function dashboard($message=null){
+    public function dashboard(){
         if (!isset($_SESSION)) {
             session_start();
         }
@@ -45,18 +36,15 @@ class Doctor extends Controller
             $totalmonthappointment = $this->doctorModel->getMonthAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
             $totalappointment = $this->doctorModel->getTotalAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
 
-            if($message != null){
-                $message = "Prescription Added Successfully";
-            }
 
-            $this->view('Doctor/dashboard_view', ['appointments' => $appointments, 'patients' => $patients , 'totalappointment' => $totalappointment , 'totalmonthappointment' => $totalmonthappointment, 'message' => $message]);
+            $this->view('Doctor/dashboard_view', ['appointments' => $appointments, 'patients' => $patients , 'totalappointment' => $totalappointment , 'totalmonthappointment' => $totalmonthappointment]);
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
         }
     }
 
-    public function appointments()
+    public function appointments($message=null)
     {
         if (!isset($_SESSION)) {
             session_start();
@@ -67,7 +55,13 @@ class Doctor extends Controller
             $this->doctorModel = new DoctorModel(new Database());
             $doctor = $this->doctorModel->getDoctor($user["Username"]);
             $appointments = $this->doctorModel->getAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
-            $this->view('Doctor/appointment_view', ['appointments' => $appointments]);
+
+            
+            if($message != null){
+                $message = "Prescription Added Successfully";
+            }
+
+            $this->view('Doctor/appointment_view', ['appointments' => $appointments, 'message' => $message]);
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
@@ -129,15 +123,11 @@ class Doctor extends Controller
             $this->model("DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
             $doctor = $this->doctorModel->getDoctor($user["Username"]);
-            $this->view('Doctor/editprofile_view', ['doctor' => $doctor[0]]);
+            $this->view('Doctor/editprofile_view', ['doctor' => $doctor[0], 'user' => $user]);
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
         }
-    }
-
-    public function EditProfile(){
-        
     }
 
     public function ViewMoreAppoinment($id)
@@ -371,4 +361,8 @@ public function AddMedicine(){
         exit();
     
     }
+
+
+    
+
 }

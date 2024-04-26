@@ -51,7 +51,7 @@
   padding-top: 2%;
   padding-bottom: 4%;">no</button></div>
 </div>
-<article class="dashboard">
+<article class="dashboard" style="margin-left:10%;">
     
     <!-- <a>Welcome to Gomez</a> -->
     

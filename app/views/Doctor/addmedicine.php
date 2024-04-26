@@ -105,7 +105,7 @@
   $(document).ready(function() {
     $("#addMedicine").click(function(e) {
       e.preventDefault();
-      $("#medicineItems").prepend(`
+      $("#medicineItems").append(`
         <div style="display: flex;flex-direction:row; justify-content:center">
           <label for="medicineName">Medicine Name</label>
           <select name="medicineName[]" id="medicineName">

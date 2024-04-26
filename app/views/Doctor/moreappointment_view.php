@@ -24,20 +24,26 @@
                 <div style="display: flex; flex-direction:row; justify-content:space-between; width :100%">
                     <div class="details">
                         <?php
+                        
                         echo "Name  : " . $appointments["Name"];
                         echo "<br>";
                         echo "<br>";
-                        echo "Date  : ".$appointments["Appointment_Date"];
-                        echo "<br>";
-                        echo "<br>";
-                        echo "Time  : ".$appointments["Appointment_Time"];
-                            echo "<br>";
-                            echo "<br>";
+
 
                         ?>
 
                     </div>
-                    
+                    <div class="details">
+                        <?php   
+                            echo "Date  : ".$appointments["Appointment_Date"];
+                            echo "<br>";
+                            echo "<br>";
+                            echo "Time  : ".$appointments["Appointment_Time"];
+                            echo "<br>";
+                            echo "<br>";
+
+                        ?>
+                    </div>
                 </div>
             </div>
 
@@ -54,16 +60,15 @@
                         echo "Patient Age  : " . $patient["age"];
                         echo "<br>";
                         echo "<br>";
-                        echo "Gender  : " . $patient["gender"];
-                        echo "<br>";
-                        echo "<br>";
-
 
                         ?>
 
                     </div>
                     <div class="details">
                         <?php
+                        echo "Gender  : " . $patient["gender"];
+                        echo "<br>";
+                        echo "<br>";
                         echo "Address  : " . $patient["address"];
                         echo "<br>";
                         echo "<br>";
@@ -78,7 +83,7 @@
                         echo "Gaurdian Phone  : " . $patient["guardianPhone"];
                         echo "<br>";
                         echo "<br>";
-                        echo "Type  : " . $patient["type"];
+                        echo "type  : " . $patient["type"];
                         ?>
                     </div>
 
