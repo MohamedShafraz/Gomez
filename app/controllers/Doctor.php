@@ -8,7 +8,6 @@ class Doctor extends Controller
         if (!isset($_SESSION)) {
             session_start();
         }
-<<<<<<< HEAD
         $user = $_SESSION["USER"];
 
         if ($user["usertype"] == "Doctor") {
@@ -46,13 +45,6 @@ class Doctor extends Controller
     }
 
     public function appointments($message=null)
-=======
-
-        $this->view('Doctor/dashboard_view');
-    }
-
-    public function ViewAppointment()
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
     {
         if (!isset($_SESSION)) {
             session_start();
@@ -62,7 +54,6 @@ class Doctor extends Controller
             $this->model("DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
             $doctor = $this->doctorModel->getDoctor($user["Username"]);
-<<<<<<< HEAD
             $appointments = $this->doctorModel->getAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
 
             
@@ -71,12 +62,6 @@ class Doctor extends Controller
             }
 
             $this->view('Doctor/appointment_view', ['appointments' => $appointments, 'message' => $message]);
-=======
-            // print_r($doctor);
-            $appointments = $this->doctorModel->getAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
-            // print_r($appointments);
-            $this->view('Doctor/appointment_view', ['appointments' => $appointments]);
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
@@ -110,11 +95,7 @@ class Doctor extends Controller
         $this->view('Doctor/reminder_view');
     }
 
-<<<<<<< HEAD
     public function userdetails()
-=======
-    public function ViewProfile()
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
     {
         if (!isset($_SESSION)) {
             session_start();
@@ -133,7 +114,6 @@ class Doctor extends Controller
     }
     public function EditProfileView()
     {
-<<<<<<< HEAD
         if (!isset($_SESSION)) {
             session_start();
         }
@@ -148,9 +128,6 @@ class Doctor extends Controller
             header("Location: " . URLROOT . "/Users/login");
             exit();
         }
-=======
-        $this->view('Doctor/editprofile_view');
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
     }
 
     public function ViewMoreAppoinment($id)
@@ -158,20 +135,16 @@ class Doctor extends Controller
         if (!isset($_SESSION)) {
             session_start();
         }
-<<<<<<< HEAD
 
         if(isset($_SESSION["prescription"])){
             unset($_SESSION["prescription"]);
         }
 
 
-=======
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
         $user = $_SESSION["USER"];
         if ($user["usertype"] == "Doctor") {
             $this->model("DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
-<<<<<<< HEAD
             $appointments = $this->doctorModel->getAppointment($id);
             $patient = $this->doctorModel->getPatient($appointments[0]['Patient_ID']);
             $prescription = $this->doctorModel->getPrescriptionbyAppointment($id);
@@ -181,25 +154,13 @@ class Doctor extends Controller
             }else{
                 $this->view('Doctor/moreappointment_view', ['appointments' => $appointments[0], 'patient' => $patient[0], 'prescription' => $prescription]);
             }
-=======
-            $appointment = $this->doctorModel->getAppointment($id);
-            $patient = $this->doctorModel->getPatient($appointment[0]['Patient_ID']);
-            $prescription = $this->doctorModel->getPrescriptionbyAppointment($id);
-
-
-            $this->view('Doctor/moreappointment_view', ['appointments' => $appointment[0], 'patient' => $patient[0], 'prescription' => $prescription[0]]);
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
         }
     }
 
-<<<<<<< HEAD
     public function AddprescriptionView($appointmentid)
-=======
-    public function AddprescriptionView()
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
     {
         if (!isset($_SESSION)) {
             session_start();
@@ -209,11 +170,7 @@ class Doctor extends Controller
             $this->model("DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
             $doctor = $this->doctorModel->getDoctor($user["Username"]);
-<<<<<<< HEAD
             $appointments = $this->doctorModel->getAppoinmentbyID($appointmentid);
-=======
-            $appointments = $this->doctorModel->getAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
             $patient = $this->doctorModel->getPatient($appointments[0]['Patient_ID']);
 
             $this->view('Doctor/addprescription_view', ['appointments' => $appointments, 'doctorid' => $doctor[0]['Doctor_id'], 'patientid' => $patient[0]['ID'], 'patientname' => $patient[0]['name']]);
@@ -236,25 +193,17 @@ class Doctor extends Controller
             $this->doctorModel = new DoctorModel(new Database());
             $doctor = $this->doctorModel->getDoctor($user["Username"]);
             $patient = $this->doctorModel->getPatient($_POST['patient_id']);
-<<<<<<< HEAD
 
             $uniqueid = uniqid();
             $data = [
                 'doctorid' => intval($doctor[0]['Doctor_id']),
                 'patient_id' => intval($_POST['patient_id']),
                 'Appointment_id' => intval($_POST['appointment_id']),
-=======
-            $data = [
-                'doctorid' => intval($doctor[0]['Doctor_id']),
-                'patient_id' => intval($_POST['patient_id']),
-                'Appointment_id	' => intval($_POST['appointment_id']),
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
                 'patient_name' => $patient[0]['name'],
                 'patient_age' => $patient[0]['age'],
                 'Medications' => $_POST['medications'],
                 'instructions' => $_POST['instructions'],
                 'datesigned' => $_POST['dateSigned'],
-<<<<<<< HEAD
                 'labtesting' => $_POST['labTesting'],
                 'unique_id' => $uniqueid,
             ];
@@ -266,21 +215,6 @@ class Doctor extends Controller
            header("Location: ".URLROOT."/Doctor/addMedicineView");
            exit();  
             
-=======
-                'labtesting' => $_POST['labTesting']
-            ];
-
-            $result1 = $this->doctorModel->addPrescription($data);
-            $result2 = $this->doctorModel->updateAppointmentStatus($_POST['appointment_id'], "Prescription Added");
-
-            if($result1 && $result2){
-                header("Location: " . URLROOT . "/Doctor/ViewPrescription");
-                exit();
-            }else{
-                header("Location: " . URLROOT . "/Doctor/ViewAppointment");
-                exit();
-            }
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
@@ -300,14 +234,10 @@ class Doctor extends Controller
             $prescription = $this->doctorModel->getPrescriptionbyID($prescriptionid);
             $appointment = $this->doctorModel->getAppoinmentbyID($appointmentid);
             $patient = $this->doctorModel->getPatient($appointment[0]["Patient_ID"]);
-<<<<<<< HEAD
             $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
             
             $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'appointment' => $appointment[0], 'patient' => $patient[0], 'medicine' => $medicine]);
            exit();
-=======
-            $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'appointment' => $appointment[0], 'patient' => $patient[0]]);
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
@@ -359,7 +289,6 @@ class Doctor extends Controller
             header("Location: ".URLROOT."/Users/login"); 
             exit(); 
         }
-<<<<<<< HEAD
 }
 
 public function DeactivateAccount(){
@@ -437,7 +366,3 @@ public function AddMedicine(){
     
 
 }
-=======
-       }
-}
->>>>>>> 37e9981b42f8d4f278f54e450635e6edfb72d364
