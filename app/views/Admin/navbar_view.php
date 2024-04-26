@@ -18,10 +18,7 @@
 
     <header class="header">
         <nav class="navbar">
-            <img style="border-radius: 41px;
-    height: 41px;
-    width: 46px;
-    border: 1px solid black;" src="<?= 'data:image/png;base64,' . base64_encode($_SESSION["USER"]["profilepicture"]) ?>" class="profilepic">
+            <img src="<?= URLROOT . "/resources/user.png" ?>" class="profilepic">
             <a href="<?= URLROOT . '/logout' ?>">
                 <div class="selected">
                     <font class="GMfont" style="font-family: 'inter';" onclick="windows.location.href = 'location:logout'"> Hello, Shaf</font>

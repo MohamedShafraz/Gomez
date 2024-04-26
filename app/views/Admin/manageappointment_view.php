@@ -45,7 +45,7 @@
 <br><br>
 <div class="complainttext">Appointments</div>
 <ul style="height: 26rem;padding: 5%;margin-left:22%">
-    <form action="" method="get">
+    <form action="./manageappointment/search" method="get">
         <section class="make" id="make" style="    margin-top: -4rem;
     margin-left: 1rem;
     background: #FFF;
@@ -86,6 +86,8 @@
             $image = $data[$i]['image'] ?? "http://localhost/gomez/public/resources/doctor1.png'";
             $name = $data[$i]['Doctor_name'];
             $special = $data[$i]['Specialization'] ?? "Heart specialist";
+            $date = $data[$i]['Date'] ?? "11/08/2023";
+
             echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
              <div style='display: flex;flex-direction: row;'>
                  <div style='width: 20%;'><img src='" . $image . " style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
@@ -95,10 +97,16 @@
                          <li style='font-size: medium;'>" . $special . "</li>
                      </ul>
                  </div>
+                 <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
+                     <ul style='list-style-type: none;padding:0;'>
+                         
+                         <li style='font-size: large;'>" . $date . "</li>
+                     </ul>
+                 </div>
                   <div style='width: 27%;'>
                      <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
-                         <a href='../showdoc' style='text-decoration: none;'>
-                             <font class='font1'>Channel</font>
+                         <a href='./report?name=$name&?special=$special' style='text-decoration: none;'>
+                             <font class='font1'>view</font>
                          </a>
                      </div>
                  </div></div></div><br>";

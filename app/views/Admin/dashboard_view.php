@@ -1,4 +1,5 @@
 <?php require_once(APPROOT . "/views/Admin/navbar_view.php"); ?>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <style>
     .donut-chart {
         position: relative;
@@ -66,19 +67,19 @@
         <ul class="horizontal-scroll">
             <li class="option">
                 <div><img src=<?php echo URLROOT . "/resources/PatientCount2.png" ?>></div>
-                <div><br>Total Patients<br><a style="font-size:8vh"><?php echo $data['Patient']??9 ?></a></div><br><br>
+                <div><br>Total Patients<br><a style="font-size:8vh"><?php echo $data['Patient'] ?? 9 ?></a></div><br><br>
             </li>
             <li class="option">
                 <div><img src=<?php echo URLROOT . "/resources/DoctorCount.png" ?>></div>
-                <div><br>Active Doctors<br><a style="font-size:8vh"><?php echo $data['Doctor']??7 ?></a></div><br><br>
+                <div><br>Active Doctors<br><a style="font-size:8vh"><?php echo $data['Doctor'] ?? 7 ?></a></div><br><br>
             </li>
             <li class="option">
                 <div><img src=<?php echo URLROOT . "/resources/ReceptionistCount.png" ?>></div>
-                <div><br>Active Receptionists<br><a style="font-size:8vh"><?php echo $data['Receptionist']??7 ?></a><br>
+                <div><br>Active Receptionists<br><a style="font-size:8vh"><?php echo $data['Receptionist'] ?? 7 ?></a><br>
             </li>
             <li class="option">
                 <div><img src=<?php echo URLROOT . "/resources/LabAssistantCount.png" ?>></div>
-                <div><br>Active <br>Lab Assistants<br><a style="font-size:8vh"><?php echo $data['Lab_Assistant']??1 ?></a>
+                <div><br>Active <br>Lab Assistants<br><a style="font-size:8vh"><?php echo $data['Lab_Assistant'] ?? 1 ?></a>
             </li>
         </ul>
         <ul style="display: flex;flex-direction:row">
@@ -94,7 +95,7 @@
                 <div class="donut-chart" style="background: conic-gradient(
     rgba(13, 71, 128, 1) 0% <?php echo 2 * 100 / ($data['Patient']); ?>%, 
     rgba(9, 114, 234, 1) <?php echo 2 * 100 / ($data['Patient']); ?>% 100%);">
-                    <div class="center-circle"></div>
+                    <div class="center-circle" style="background-color:#f5f5f5"></div>
                     <!-- <div class="label">Patient</div> -->
                     <br>
                     <div class="donut-chart-text">
@@ -105,7 +106,37 @@
                     </div>
                 </div>
             </li>
-            <img src="<?= URLROOT . '/resources/line-chart.jpg' ?>" alt="line-chart" width="400px" style="margin-left:16%">
+            <div>
+                <canvas style="width:80rem;background:#f5f5f5;margin-top:-6%" id="myChart"></canvas>
+            </div>
+
+            <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+            <script>
+                const ctx = document.getElementById('myChart');
+
+                new Chart(ctx, {
+                    type: 'line',
+                    data: {
+                        labels: ['Solved', 'Unsolved', 'check', 'need to check'],
+                        datasets: [{
+                            label: 'Issues solved percentage',
+                            data: [60, 50, 70, 40],
+                            borderWidth: 1
+                        }]
+                    },
+                    options: {
+                        scales: {
+                            y: {
+                                beginAtZero: true
+                            }
+                        }
+                    }
+                });
+            </script>
+
+
+
             </li>
         </ul>
     </div>

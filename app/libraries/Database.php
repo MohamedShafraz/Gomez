@@ -24,11 +24,22 @@ class Database
     }
     public function executeQuery($query)
     {
+        try {
+            $result = $this->connection->query($query);
+        } catch (Exception $e) {
+            $result = "error";
+        }
 
-        $result = $this->connection->query($query);
-        // print_r($query);
-        // print_r($this->connection->error);
+
         return $result;
+    }
+    public function printId()
+    {
+        return $this->connection->insert_id;
+    }
+    public function printError()
+    {
+        return $this->connection->errno;
     }
     public function check()
     {
@@ -45,6 +56,10 @@ class Database
         $query = "Select * FROM " . $this->table . " WHERE " . $where;
 
         $result = $this->executeQuery($query);
+        if ($result == "error") {
+            print_r("Failed to retrieve");
+            return;
+        }
 
         $data = [];
         $i = 0;
@@ -54,7 +69,41 @@ class Database
                 $i++;
             }
         }
+        return $data;
+    }
+    public function fetchUsers($where)
+    {
+        $datas = "";
+        switch ($this->table) {
+            case 'patients':
+                $datas = 'ID';
+                break;
 
+            case 'doctors':
+                $datas = 'Doctor_id';
+                break;
+            case 'lab_assistants':
+                $datas = 'id';
+                break;
+            case 'receptionist':
+                $datas = 'receptionist_id';
+                break;
+            case 'gm_admin':
+                $datas = 'GM_AD_ID';
+                break;
+        }
+        $query = "SELECT * FROM " . $this->table . " JOIN user_db ON user_db.`User_Id` = " . $this->table . "." . $datas . " WHERE " . $where;
+
+        $result = $this->executeQuery($query);
+        $data = [];
+        $i = 0;
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[$i] = $row;
+                $i++;
+            }
+        }
+        // print_r($query);
         return $data;
     }
     public function filter($where, $data)
@@ -89,16 +138,15 @@ class Database
                 $i++;
             }
         }
-        print_r($this->connection);
+
         return $data;
     }
 
     public function insertData($data)
     {
-        $fields = implode(', ', array_keys($data));
+        $fields = "`" . implode("`, `", array_keys($data)) . "`";
         $values = "'" . implode("', '", array_values($data)) . "'";
         $query = "INSERT INTO " . $this->table . " ($fields) VALUES ($values)";
-
 
         return $this->executeQuery($query);
     }

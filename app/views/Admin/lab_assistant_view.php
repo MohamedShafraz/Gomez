@@ -34,7 +34,7 @@
 
 
     <tbody class="complaint">
-        <tr>
+        <tr style="background-color: beige;">
             <td style="width: 111px;">Name</td>
             <td style="width: 146px;">NIC</td>
             <td style="width: 170px;">Mobile Number</td>
