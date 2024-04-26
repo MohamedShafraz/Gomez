@@ -1,14 +1,5 @@
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
-<aside class="sidenav">
-    <ul>
-        <img src="<?= URLROOT . "/resources/user.png" ?>"><br><br>
-        <li id="Dashboard" onclick="y('Dashboard')">Dashboard</li>
-        <li id="Doctor/ViewAppointment" onclick="y('Doctor/ViewAppointment')">Appointment</li>
-        <li id="Doctor/ViewPrescription" onclick="y('Doctor/ViewPrescription')"> Prescription </li>
-        <li id="Doctor/ViewReminder" onclick="y('Doctor/ViewReminder')">Reminder</li>
-    </ul>
-
-    <style>
+<style>
         ul {
             list-style: none;
             padding: 0;
@@ -58,18 +49,26 @@
         .dashboard {
             text-align: center;
         }
-    </style>
 
+        .card{
+            border-radius: 27px;
+            background: #ffffff;
+            box-shadow:  5px 5px 10px #b0b0b0,
+                        -5px -5px 10px #ffffff;
+            padding: 20px;
+        }
+
+    </style>
 
 </aside>
 <article class="dashboard">
     <div style="margin-left:24%; display:flex; justify-content:center;">
-
-
-        <form action="<?= URLROOT . "/Doctor/AddPrescription" ?>" method="post" style="margin-top:5%;>
-    <input type=" hidden" name="appointment_id" value="<?php echo $appointments[0]['Appointment_Id'] ?>">
-            <input type="hidden" name="patient_id" value="<?php echo $patientid ?>">
-            <input type="hidden" name="Doctor_id" value="<?php echo $doctorid ?>">
+    
+  
+    <form class="card" action="<?=URLROOT."/Doctor/AddPrescription"?>" method="post" style="margin-top:5%;">
+            <input type="hidden" name="appointment_id" value="<?php echo $appointments[0]['Appointment_Id']?>">
+            <input type="hidden" name="patient_id" value="<?php echo $patientid?>">
+            <input type="hidden" name="Doctor_id" value="<?php echo $doctorid?>">
 
 
             <label for="medications">Medications</label><br>
@@ -81,8 +80,7 @@
             <label for="labTesting">Lab Testing</label><br>
             <input type="text" id="labTesting" name="labTesting" value=""><br><br>
 
-            <label for="dateSigned">Date Signed</label><br>
-            <input type="date" id="dateSigned" name="dateSigned" value=""><br><br>
+            <input type="hidden" id="dateSigned" name="dateSigned" value="<?= date('Y-m-d'); ?>">
 
             <input type="submit" value="Submit">
         </form>
@@ -93,4 +91,4 @@
     </div>
 </article>
 
-<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
+<?php require_once(APPROOT . "/views/Admin/footer_view.php");?>

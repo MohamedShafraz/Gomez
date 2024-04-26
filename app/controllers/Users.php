@@ -33,6 +33,7 @@ class Users extends Controller
             $username = $_POST["username"];
             $password = $_POST["password"];
 
+
             $result = $this->loginModel->loginUser($username, $password);
 
             if ($result && count($result) > 0) {
@@ -40,12 +41,12 @@ class Users extends Controller
                 session_start();
                 $_SESSION['User_Id'] = $user['User_Id'];
                 $_SESSION["userType"] = $user['usertype'];
-                $_SESSION["uname"] = md5($user["Username"]);
+                $_SESSION["uname"] =$user["Username"];
                 $_SESSION["USER"] = $user;
                 header('Location: ' . URLROOT . '/' . $_SESSION["userType"] . '/Dashboard');
                 exit();
             } else {
-                $this->view('login_view');
+                $this->view('login_view',);
             }
         } else {
             $this->view('login_view');

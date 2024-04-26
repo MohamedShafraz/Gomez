@@ -17,14 +17,20 @@
                 <img src=<?= URLROOT . "/resources/gomezlogo1.jpg" ?> class="logo">
             </div>
             <a href="./" id="set1" onmouseenter="select()" onmouseleave="unselect()" class="">Home</a>
-            <a href="contactus.html" id="set" onmouseenter="select1()" onmouseleave="unselect1()" class="">Contact us</a>
-            <a href="#b1" id="set2" onmouseenter="select2()" onmouseleave="unselect2()" class="">Facilities</a>
+            <a href="contactus" id="set" onmouseenter="select1()" onmouseleave="unselect1()" class="">Contact us</a>
+            <a href="<?=URLROOT."#b1"?>" id="set2" onmouseenter="select2()" onmouseleave="unselect2()" class="">Facilities</a>
             </a>
-            <a href="#make">
+            <a href="<?=URLROOT."#make"?>">
                 <div class="selected">
                     <font class="GMfont" style="font-family: 'inter';">Appointment </font>
                 </div>
             </a>
+            <a href="users/login">
+                <div class="selected">
+                    <font class="GMfont" style="font-family: 'inter';">Login </font>
+                </div>
+            </a>
+            
             <script>
                 function select() {
                     document.getElementById("set1").innerHTML = "<font class='GMfont'>" + document.getElementById("set1").innerText + "</font>";

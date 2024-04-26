@@ -1,69 +1,82 @@
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
-<aside class="sidenav">
-    <ul>
-        <img src="<?= URLROOT . "/resources/user.png" ?>"><br><br>
-        <li><a href="<?= URLROOT . "/Doctor" ?>">Dashboard</a></li>
-        <li><a href="<?= URLROOT . "/Doctor/ViewAppointment/" ?>">Appointment</a></li>
-        <li><a href="<?= URLROOT . "/Doctor/ViewPrescription" ?>">Prescription</a></li>
-        <li><a href="<?= URLROOT . "/Doctor/ViewReminder" ?>">Reminder</a></li>
-    </ul>
+<link rel="stylesheet" href="<?= URLROOT ?>/css/Doctor/doctorcommon.css">
 
-
-</aside>
 <style>
-    .details {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-    }
-
-
-    .details p {
-        margin: 0;
-        line-height: 1.5;
+    tr{
+        text-align: center;
     }
 </style>
 
 <body>
     <div style="margin-left:23%;">
-        <div class="details-container" style="display: flex; flex-direction:column; justify-content:flex-start; width :100%;margin-top:2%">
+        <div class="card">
             <div style="display: flex; flex-direction:row">
                 <div class="details" style="width:50%">
-                    <?php
-                    echo "<p>Patient Name  : " . $patient["name"] . "</p>";
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<p>Patient Email  : " . $patient["age"] . "</p>";
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<p>Patient Phone Number  : " . $patient["gender"] . "</p>";
+                    <?php 
+                        echo "<p>Patient Name  : ".$patient["name"]."</p>";
+                        echo "<br>";
+                        
+                        echo "<p>Patient Age  : ".$patient["age"]."</p>";
+                        echo "<br>";
+                        
+                        echo "<p>Patient Gender  : ".$patient["gender"]."</p>";
+        
+                        
                     ?>
-
                 </div>
                 <div class="details" style="width:50%">
-                    <?php echo "<p>Appointment Date  : " . $appointment["Date"] . "</p>";
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<p>Appointment Time  : " . $appointment["Appointment_Time"] . "</p>";
-                    echo "<br>";
-                    echo "<br>";
-                    echo "<p>Appointment Status  : " . $appointment["Days_left"] . "</p>";
+                    <?php
+                        echo "<p>Appointment Date  : ".$appointment["Appointment_Date"]."</p>"; 
+                        echo "<br>";
+                        echo "<p>Appointment Time  : ".date('H:i:s', strtotime($appointment['Appointment_Time']))."</p>";
+                        
                     ?>
                 </div>
             </div>
-            <div class="details" style="width:95%;">
-                <?php
-                echo "<p>Medications  : " . $prescription[0]["Medications"] . "</p>";
-                echo "<br>";
-                echo "<br>";
-                echo "<p>instructions  : " . $prescription[0]["instructions"] . "</p>";
-                echo "<br>";
-                echo "<br>";
-                echo "<p>labtesting  : " . $prescription[0]["labtesting"] . "</p>";
+            <br>
+            <div class="details" style="width:98%;">
+                <?php 
+                    echo "<p>Medications  : ".$prescription[0]["Medications"]."</p>";
+                    echo "<br>";
+                    echo "<p>instructions  : ".$prescription[0]["instructions"]."</p>";
+                    echo "<br>";
+                    echo "<p>labtesting  : ".$prescription[0]["labtesting"]."</p>";
                 ?>
-
             </div>
+            <br>
+            
+                <?php 
+                if ($medicine != null) {
+                    echo '<div class="details" style="width: 98%;">';
+                    echo '<h3>Medicines</h3>';
+                    echo "<table style='width: 100%; border-collapse: collapse;'>";
+                    echo "<tr style='background-color: darkblue; color: white;'>";
+                    echo "<th style='padding: 10px;'>Medicine Name</th>";
+                    echo "<th style='padding: 10px;'>Medicine Dosage</th>";
+                    echo "<th style='padding: 10px;'>Times</th>";
+                    echo "<th style='padding: 10px;'>Before/After Meal</th>";
+                    echo "</tr>";
+                    foreach ($medicine as $med) {
+                        echo "<tr style='background-color: white; color: black;'>";
+                        echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["medicine"]."</td>";
+                        echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["dose"]."</td>";
+                        echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["times"]."</td>";
+                        echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["before_after"]."</td>";
+                        echo "</tr>";
+                    }
+                    echo "</table>";
+                    echo '</div>';
+                }
+                ?>
+           
         </div>
     </div>
+    <button class="bluebutton" onclick="editprescription()" style="margin-left:24%;margin-top:2%;width:200px">Edit Prescription</button>
+    <script>
+        function editprescription() {
+            window.location.href = '<?= URLROOT ?>/Doctor/EditPrescriptionView/<?= $appointment["Appointment_Id"] ?>/<?= $prescription[0]["prescription_id"] ?>';
+        }
+    </script>
 </body>
-<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
+</body>
+<?php require_once(APPROOT . "/views/Admin/footer_view.php");?>

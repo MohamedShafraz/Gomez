@@ -23,3 +23,6 @@ define('Patients', 'patients'); // this changed
 define('Appointment', 'appointment'); //
 //Prescription Table
 define('Prescription', 'prescription'); //
+
+define('Medicine','medicine_data');
+
