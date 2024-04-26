@@ -6,51 +6,11 @@ $message = "";
 <link rel="stylesheet" href="<?= URLROOT ?>/public/css/patient/registration.css">
 
 <body style="overflow-x: hidden;" cz-shortcut-listen="true">
-    <header class="header">
-        <nav class="navbar">
-        <div class="navbar-image">
-            <img src="<?=URLROOT.'/resources/gomezlogo1.jpg'?>" class="logo">
-        </div>
-            <a href="http://localhost/Gomez/Users/" id="set1" onmouseenter="select()" onmouseleave="unselect()" class="">Home</a>
-            <a href="http://localhost/Gomez/Users/contactus.html" id="set" onmouseenter="select1()" onmouseleave="unselect1()" class="">Contact us</a>
-            <a href="#b1" id="set2" onmouseenter="select2()" onmouseleave="unselect2()" class="">Facilities</a>
-            
-            <a href="#make"><div class="selected">
-                <font class="GMfont" style="font-family: 'inter';">Appointment </font></div>
-            </a>
-            <script>
-                function select() {
-                    document.getElementById("set1").innerHTML = "<font class='GMfont'>"+document.getElementById("set1").innerText+"</font>" ;
-                    document.getElementById("set1").className = "selected" ;
-                }
-                function unselect(){
-                    document.getElementById("set1").innerHTML = "Home";
-                    document.getElementById("set1").className = "";
-                }
-                document.getElementById("set").onmouseenter=function select1() {
-                    document.getElementById("set").innerHTML = "<font class='GMfont'>"+document.getElementById("set").innerText+"</font>" ;
-                    document.getElementById("set").className = "selected" ;
-                }
-                document.getElementById("set").onmouseleave=function unselect1(){
-                    document.getElementById("set").innerHTML = "Contact Us";
-                    document.getElementById("set").className = "";
-                }
-                document.getElementById("set2").onmouseenter=function select2() {
-                    document.getElementById("set2").innerHTML = "<font class='GMfont'>"+document.getElementById("set2").innerText+"</font>" ;
-                    document.getElementById("set2").className = "selected" ;
-                }
-                document.getElementById("set2").onmouseleave=function unselect2(){
-                    document.getElementById("set2").innerHTML = "Facilities";
-                    document.getElementById("set2").className = "";
-                }
-            </script>
-            
-        </nav>
-    </header>
+    
 <br>
 
 
-    <br><br><br><br>
+    <br>
     <form action="" method="post">
         <div class="container" style="
   margin-top: 2%;width:64%;padding: 0%;
@@ -72,9 +32,13 @@ border-radius: 8px 0px 0px 8px;"></div>
                                 <div>
                     <div style="display: grid;grid-template-columns:minmax(200px,500px) minmax(200px,500px);gap:15px">
                         <div><label for="fullname">
-                            First Name:
+                            Full Name:
                         </label>
                     <input type="text" name="fullname" id="fullname"></div>
+                    <div><label for="Username">
+                            User Name:
+                        </label>
+                    <input type="text" name="Username" id="Username"></div>
                     <div>
                             <label for="gender">Gender:</label>
                             <input type="text" name="gender" id="gender">
@@ -107,7 +71,10 @@ function updateNicLabel() {
 updateNicLabel();
 </script>
 
-                        
+                        <div>
+                            <label for="date_of_birth">Date Of Birth:</label>
+                            <input type="date" name="date_of_birth" id="date_of_birth" style="width: 10.5rem;">
+                        </div>
                         <div>
                             <label for="phonenumber">Phone Number:</label>
                             <input type="phonenumber" name="phonenumber" id="phonenumber">
@@ -137,10 +104,7 @@ updateNicLabel();
                     </div>
                     
                 </div>
-                <?php
-                date_default_timezone_set("Asia/Colombo");
-                print_r( date("y:m:d:h:i:s"));
-                ?>
+                
                 <input name="submit" type="submit" value="Sign up" class="logbutton" id="submit" style="font-family: inter;font-size:15px; padding:3% 4%">
             </div>
             </div>

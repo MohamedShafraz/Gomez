@@ -28,13 +28,13 @@
 <!-- background-color:#E9F3FD -->
 <?php require_once(APPROOT . "/views/Admin/navbar_view.php"); ?>
 
-
-<div class="complainttext">Doctors</div>
+<br><br>
+<div class="complainttext">Receptionist</div>
 <table class="complainttable">
 
 
     <tbody class="complaint">
-        <tr>
+        <tr style="background-color: beige;">
             <td style="width: 111px;">Name</td>
             <td style="width: 146px;">NIC</td>
             <td style="width: 160px;">Mobile Number</td>

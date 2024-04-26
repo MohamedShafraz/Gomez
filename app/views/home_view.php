@@ -26,7 +26,7 @@ include_once(APPROOT . '/views/header_view.php');
     </div>
     <div class="images" id="b1">
         <div><a href=<?= URLROOT . "/Users/labreport" ?> style="text-decoration: none;">
-                <img src=<?= URLROOT . "/resources/medical-report.png" ?> alt="online lab reports" id="lab"><br><b style="color: #054f7d;">lab reports</b></a></div>
+                <img src=<?= URLROOT . "/resources/medical-report2.png" ?> alt="online lab reports" id="lab"><br><b style="color: #054f7d;">lab reports</b></a></div>
         <div><a href=<?= URLROOT . "/Users/consultation" ?> style="text-decoration: none;">
                 <img src=<?= URLROOT . "/resources/consultation.png" ?> alt="online consultation" id="consult"><br><b style="color: #054f7d;">online consultation</b></a></div>
         <div><a href=<?= URLROOT . "/Users/registration" ?> style="text-decoration: none;">
@@ -657,7 +657,9 @@ include_once(APPROOT . '/views/header_view.php');
         <label for="Date">Date</label>
         <input type="date" name="userName" id="Date" date-placeholder="11/6/2023" class="holder">
         <div class='logbutton' id="maked">
-           <a href="Patient/appointdoctor" style="text-decoration: none;"> <font class="font1">Make appointment</font></a>
+            <a href="Patient/appointdoctor" style="text-decoration: none;">
+                <font class="font1">Make appointment</font>
+            </a>
         </div>
         <br>
     </section>
@@ -665,7 +667,7 @@ include_once(APPROOT . '/views/header_view.php');
         <br><br><br>
         <p style="font-size: 28px;color: rgb(36, 44, 82);margin-left: 29px;"><b>If you want to save you details and appointment history</b></p>
         <br>
-        <a href="patient/registration" style="text-decoration: none;">
+        <a href="registration" style="text-decoration: none;">
             <div class="logbutton" id="reg">
                 <font class="font1" style="color:white">Register</font>
             </div>

@@ -61,7 +61,7 @@
     <ul style="background-color: white;padding:5%;width: 64%;">
     <div class="d" style="margin-left: 10%;">
         <a class="search" style="background: white;
-    box-shadow: 1px 1px 7px;
+    
     padding: 2% 4% 5.2% 4%;
     border-radius: 44px;
     height: 7px;margin-left: 6%;">
@@ -69,7 +69,7 @@
             <input type="text" placeholder="Search.." name="search" class="searchbox" style="height: 400%;">
         </a><br>
         <a class="search" style="background: white;
-    box-shadow: 1px 1px 7px;
+   
     padding: 2% 4% 5.2% 4%;
     border-radius: 44px;
     height: 7px; margin-left: 5%;">

@@ -1,5 +1,4 @@
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
-
 <article class="dashboard">
     <div style="margin-left:24%;">
 

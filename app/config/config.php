@@ -26,3 +26,5 @@ define('Prescription', 'prescription'); //
 
 define('Medicine','medicine_data');
 
+
+define('Receptionists','receptionist');

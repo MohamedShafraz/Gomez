@@ -10,7 +10,7 @@ class Home extends Controller {
     }
     
 }
-/*
+/*a
  *param = hello c
  controller-> method (parameter = param) 
  */

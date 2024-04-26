@@ -18,7 +18,7 @@ class Users extends Controller
     public function __construct()
     {
         $this->model("login_model");
-        $this->loginModel = new LoginModel(new Database());
+        $this->loginModel = new LoginModel();
     }
 
     public function login()
@@ -41,7 +41,8 @@ class Users extends Controller
                 session_start();
                 $_SESSION['User_Id'] = $user['User_Id'];
                 $_SESSION["userType"] = $user['usertype'];
-                $_SESSION["uname"] =$user["Username"];
+                $_SESSION["uname"] = $user["Username"];
+                // $_SESSION["image"] = $user["Profilepicture"] ?? "test";
                 $_SESSION["USER"] = $user;
                 header('Location: ' . URLROOT . '/' . $_SESSION["userType"] . '/Dashboard');
                 exit();

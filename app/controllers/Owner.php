@@ -26,8 +26,11 @@ class Owner extends Controller
     }
     public function UserInfo()
     {
-        $UserInfo = new UserInfo();
-        $UserInfo->Index();
+        // $UserInfo = new UserInfo();
+        // $UserInfo->Index();
+        session_start();
+        $this->view("Owner/Userinformation_view");
+        exit();
     }
     public function Logout()
     {

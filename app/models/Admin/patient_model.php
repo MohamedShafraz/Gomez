@@ -4,23 +4,27 @@ class PatientModel extends Database
 {
     public function getUsersDetails()
     {
+        // session_start();
         $where = "1";
         $this->setTable('patients');
-        $data = $this->fetchData($where);
-
+        $data = $this->fetchUsers($where);
+        // $where1 = "1";
+        // $this->setTable('patients');
+        // $data = $this->fetchData($where);
         $users = [];
-        $i = 0;
-        foreach ($data as $row) {
-            $users[$i]['age'] = $row['age'];
-            $users[$i]['gender'] = $row['gender'];
-            $users[$i]['id'] = $row["ID"];
-            $users[$i]['userName'] = $row["username"];
-            $users[$i]['type'] = $row['type'] ?? 'unregister';
-            $users[$i]['phonenumber'] = $row['phonenumber'];
-            $users[$i]['profilepicture'] = $row['profilepicture'];
-            $users[$i]['email'] = $row['email'];
-            $i++;
+        // $i = 0;
+        for ($i = 0; $i < sizeof($data); $i++) {
+            $users[$i]['age'] = $data[$i]['age'];
+            $users[$i]['gender'] = $data[$i]['gender'];
+            $users[$i]['id'] = $data[$i]["ID"];
+            $users[$i]['userName'] = $data[$i]["Username"];
+            $users[$i]['type'] = $data[$i]['type'] ?? 'unregister';
+            $users[$i]['phonenumber'] = $data[$i]['phonenumber'];
+
+            $users[$i]['email'] = $data[$i]['Email'];
+            // $i++;
         }
+        // print_r($users);
         return $users;
     }
     public function getUserDetails($id)
@@ -28,19 +32,18 @@ class PatientModel extends Database
 
         $where = "ID=" . $id;
         $this->setTable('patients');
-        $data = $this->fetchData($where);
-
+        $data = $this->fetchUsers($where);
         $users = [];
         $i = 0;
         foreach ($data as $row) {
             $users['age'] = $row['age'];
             $users['gender'] = $row['gender'];
             $users['id'] = $row["ID"];
-            $users['userName'] = $row["username"];
+            $users['userName'] = $row["Username"];
             $users['type'] = $row['type'] ?? 'unregister';
             $users['phonenumber'] = $row['phonenumber'];
-            $users['profilepicture'] = $row['profilepicture'];
-            $users['email'] = $row['email'];
+
+            $users['email'] = $row['Email'];
             $i++;
         }
         return $users;

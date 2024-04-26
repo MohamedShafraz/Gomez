@@ -13,16 +13,16 @@
     <!-- <a>Welcome to Gomez</a> -->
     <div style="    line-height: 300px;flex-direction: column;margin-left: 36%;display: flex;">
         <div style="display:flex; line-height: 15rem;" >
-            <div  style="background: var(--Gomez-Option-Box);
-    margin: 3% 0% 0% -20%;
+            <div  style="background:var(--Gomez-Option-Box);
+    margin: 5% 0% 0% -20%;
     /* background: floralwhite; */
     box-shadow: 1px 1px 7px;
     border-radius: 44px;
     flex-basis: 69%;
-    height: 19rem;">
-                <div style="text-align: center;font-size: x-large;font-weight: bolder;margin: -12% 0% 0% 0%;">Welcome Back!</div>
-                <article style="color: var(--Gomez-Pears);font-weight: bolder;font-family: 'Inter';font-size: 43px;line-height: 131%;margin: -8% 0% 0% 6%;">Check Your Health <br>Regularly</article>
-                <button style="font-weight: bold;color: orangered;background-color: gainsboro;padding: 1% 2% 1% 2%;border-radius: inherit;font-size: larger;width: max-content;margin: 1% 0% 0% 6%;"> Make Appointment</button>
+    height: 17.5rem;">
+                <div style="text-align: center;font-size: x-large;font-weight: bolder;margin: -14% 0% 0% 0%;">Welcome Back!</div>
+                <article style="color: var(--Gomez-Pears);font-weight: bolder;font-family: 'Inter';font-size: 43px;line-height: 131%;margin: -12% 0% 0% 6%;">Check Your Health <br>Regularly</article>
+                <a href="<?=URLROOT."/patient/appointments/make"?>"><button style="font-weight: bold;color: #11235A;background-color: #f6f5ed;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: larger;width: max-content;margin: 1% 0% 0% 6%;"> Make Appointment</button></a>
                 <img src="<?=URLROOT."/public/resources/heart1.png"?>" style="margin: -25% 67%;width: 26%;" class="beating-container">
 
             </div>
@@ -32,34 +32,36 @@
                 <span id="month-year"></span>
                 <button onclick="nextMonth()">&#9655;</button>
                 </div>
-                <table class="caltable" style="height: 15rem;width: 76%;margin-top: -41%;">
+                <table class="caltable" style="height: 17.5rem;width: 89%;margin-top: 1%;border-radius: 20px;">
                     <thead>
+                        
                         <tr>
-                            <br>
-                        </tr>
-                        <tr>
-                            <th style="color: rgb(37, 42, 176);">Sun</th>
-                            <th style="color: rgb(37, 42, 176);">Mon</th>
-                            <th style="color: rgb(37, 42, 176);">Tue</th>
-                            <th style="color: rgb(37, 42, 176);">Wed</th>
-                            <th style="color: rgb(37, 42, 176);">Thu</th>
-                            <th style="color: rgb(37, 42, 176);">Fri</th>
-                            <th style="color: rgb(37, 42, 176);">Sat</th>
+                            <th style="color: #f6eca9;">Sun</th>
+                            <th style="color: #f6eca9;">Mon</th>
+                            <th style="color: #f6eca9;">Tue</th>
+                            <th style="color: #f6eca9;">Wed</th>
+                            <th style="color: #f6eca9;">Thu</th>
+                            <th style="color: #f6eca9;">Fri</th>
+                            <th style="color: #f6eca9;">Sat</th>
                         </tr>
                     </thead>
                     <tbody id="calendar-body"></tbody>
                 </table>
-                <button onclick="addEvent()" style="margin-left: 44%;">Add Event</button>
+                <!-- <button onclick="addEvent()" style="margin-left: 44%;">Add Event</button> -->
             </div>
-            <article id="events-container" style=""></article></div>
+            <article id="events-container" ></article></div>
         </div>
         <div style="display: flex;">
-            <div class="" style="margin: 6% 0% 0% -20%;background: white;box-shadow: 1px 1px 7px;flex-basis: 69%;height:16rem;flex-direction: row;display:flex;line-height: 1px;"> 
+            <div class="" style="width:71rem;margin: 3% 0% 0% -20%;background: white;box-shadow: 1px 1px 7px;flex-basis: 69%;height:16rem;flex-direction: row;display:flex;line-height: 1px;"> 
             <div class='flex-scroll-container' style='display: flex;flex-direction: column;height: 16rem;width:50%'>
             <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Appointments</div>
             <div>
             <?php 
-            for ($i=0; $i < 2; $i++) { 
+             $length = 2;
+             if(sizeof($data)<2){
+                 $length = sizeof($data);
+             }
+            for ($i=0; $i < $length; $i++) { 
                 
             echo "
                 <div class='flex-scroll-item' style= 'line-height: 2;'>
@@ -82,7 +84,11 @@
               <div class='flex-scroll-container' style='display: flex;flex-direction: column;height: 16rem;width:50%'>
             <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Lab Reports</div>
             <div><?php 
-            for ($i=0; $i < 2; $i++) { 
+            $length = 2;
+            if(sizeof($data)<2){
+                $length = sizeof($data);
+            }
+            for ($i=0; $i < $length; $i++) { 
                 
             echo "
                 <div class='flex-scroll-item' style= 'line-height: 2;'>
@@ -95,6 +101,7 @@
             </div></div>
             ";
             }
+        
               ?></div>
               </div >
             </div >

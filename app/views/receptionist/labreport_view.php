@@ -45,38 +45,8 @@
 
 <!-- background-color:#E9F3FD -->
 <body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
-<img src="<?=URLROOT."/resources/gomezlogo2.png"?>" alt="" class="image">
-<br>
-<br>
-<br>
+<?php include APPROOT.'/views/patient/navbar_view.php'?>
 
-<header class="header">
-        <nav class="navbar">
-            <img src="<?=URLROOT."/resources/user.png"?>" class="profilepic">
-            <a href="#make"><div class="selected">
-                <font class="GMfont" style="font-family: 'inter';"> Hello, Shaf</font></div>
-            </a>
-        </nav>
-    </header>
-<aside class="sidenav">
-    <ul>
-        <img src="<?=URLROOT."/resources/user.png"?>" alt=""><br><br>
-        <li id="Dashboard" onclick="y('Dashboard')">Dashboard
-        </li><br>
-        <li  id="appointments" onclick="y('appointments')">
-            Appointment
-        </li><br>
-        <li  id="labreports" onclick="y('labreports')">
-            Lab Reports
-        </li><br>
-        <li  id="treatments" onclick="y('treatments')">
-            Treatments
-        </li><br>
-        <li id="UserInfo" onclick="y('UserInfo')">
-            User information
-        </li>
-    </ul>
-</aside>
 <div class="popup" style="margin-top:9%;margin-right:29%;margin-left:29%;display:none">
     Are you sure you want to deactivate your account<br>
     <br><div class="buttonspace" style="justify-content:center"><button class="button" style="background-color:red;padding-left: 5%;
@@ -93,11 +63,11 @@
     <ul style="background-color: white;padding:5%;width: 64%;height:61%; ">
     <div class="d" style="margin-left: 10%;">
         <a class="search">
-           <b> Patient: </b>
+           <b> Doctor: </b>
             <input type="text" placeholder="Search.." name="search" class="searchbox">
         </a><br>
         <a class="search">
-           <b> Category: </b>
+           <b> Date: </b>
             <input type="text" placeholder="Search.." name="search" class="searchbox">
         </a>
         <br>
@@ -106,7 +76,7 @@
 
     <tbody class="complaint" style="margin-left: -33%;">
         <tr>
-            <td style="width: 20%;">Patient ID</td>
+            <td style="width: 20%;">Reference Number</td>
             <td style="width: 20%;">Category</td>
             <td style="width: 20%;">Date</td>
             <td style="width: 20%;">Time</td>
@@ -120,20 +90,15 @@
             <td style='width: 20%;'>X-Ray</td>
             <td style='width: 20%;'>18/03/2024</td>
             <td style='width: 20%;'>08.00 AM</td>
-            <td style='width: 20%;'><div style="    display: flex;flex-direction: row;gap: 33%;">
-                <div style="margin: auto;"><img src="<?=URLROOT."/public/resources/accept.png"?>"  style="width:34px;"></div>
-                <div><img src="<?=URLROOT."/public/resources/decline.png"?>"  style="width:34px"></div>
-            </div></td>        </tr>
+            <td style='width: 20%;'><a href="make_appointment.php" style="margin-left: -54%;"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">View More</button></a></td>
+        </tr>
         <tr style='color:white;margin: 3%;'></tr>
         <tr>
             <td style='width: 20%;'>001356</td>
             <td style='width: 20%;'>Blood Count</td>
             <td style='width: 20%;'>04/04/2024</td>
             <td style='width: 20%;'>07.00 PM</td>
-            <td style='width: 20%;'><div style="    display: flex;flex-direction: row;gap: 33%;">
-                <div style="margin: auto;"><img src="<?=URLROOT."/public/resources/accept.png"?>"  style="width:34px;"></div>
-                <div><img src="<?=URLROOT."/public/resources/decline.png"?>"  style="width:34px"></div>
-            </div></td>
+            <td style='width: 20%;'><a href="make_appointment.php" style="margin-left: -54%;"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">View More</button></a></td>
         </tr>
         <tr style='color:white;margin: 3%;'></tr>
     </tbody>
