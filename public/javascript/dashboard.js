@@ -10,8 +10,8 @@ function setActiveFromURL() {
   const url = window.location.href;
 
   const parts = url.split("/");
-
-  const id = parts[5].toLowerCase();
+  
+  const id = parts[5].toLowerCase().split('?')[0];
 
   const element = document.getElementById(id);
   if (element) {

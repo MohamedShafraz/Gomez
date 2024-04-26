@@ -6,12 +6,13 @@ class patient extends Controller
 {
     private $userinfo_model;
     private $contactusmodel;
+    private $labreport_model;
     private $appointmodel;
     public function __construct()
     {
         session_start();
         if (!isset($_SESSION["userType"])) {
-            header("location:" . URLROOT . "/users/login"); 
+            header("location:" . URLROOT . "/users/login");
         }
     }
     public function index()
@@ -21,22 +22,47 @@ class patient extends Controller
     }
     public function labreport()
     {
-        $this->view('Patint/labreport_view');
+
+        $this->view('Patient/labreport_view');
         exit();
     }
-    public function labreport_registered()
+    public function labreport_registered($filename = Null, $file = Null)
     {
-        $this->view('Patient/labreportregistered_view');
+        $this->model('Patient/labreport_model');
+        $this->labreport_model = new labReportModel();
+        $result = $this->labreport_model->getLabReportDetails();
+        if(isset($_GET['testname'])){
+            $result = $this->labreport_model->getLabReportDetails($_GET['testname']);
+        }
+        if ($filename == 'view') {
+
+            $pdf = APPROOT . '/views/uploadPDF/1/' . $file . '.pdf';
+            header('Content-type: application/pdf');
+            $file = fopen($pdf, 'rb');
+            fpassthru($file);
+            fclose($file);
+            // fopen(APPROOT.'/views/uploadPDF/1/'.$filename,'r');
+        } else if ($filename != Null) {
+
+
+            header('Content-type:application/pdf');
+            header('Content-Disposition:inline; filename="' . APPROOT . '/views/uploadPDF/1/' . $filename . '"');
+            header('Content-Transfer-Encoding:binary');
+            header('Accept-Ranges:bytes');
+            @readfile(APPROOT . '/views/uploadPDF/1/' . $filename);
+        } else {
+            $this->view('Patient/labreportregistered_view', $result);
+        }
         exit();
     }
     public function userdetails($update = Null)
     {
         $this->model($_SESSION["userType"] . '/userinfo_model');
         $this->userinfo_model = new userPatientModel();
-        $result = $this->userinfo_model->getUserDetails();
+        $result = $this->userinfo_model->fetchPatient();
         // print_r($result);
-        if($update == 'update'){
-        
+        if ($update == 'update') {
+
             // print_r($_FILES["file"]["tmp_name"]);
 
             // Path to the PDF file
@@ -47,109 +73,149 @@ class patient extends Controller
             $result2  = $this->userinfo_model->updateUserDetails($hexString, $fileContents);
             header("location: ./");
         }
-        $this->view('Patient/userdetails_view',$result);
+        // print_r($result);
+        $this->view('Patient/userdetails_view', $result);
         exit();
     }
-    
-        
-        
 
-        // } else {
-        //     header("location:" . URLROOT . "/users/login");
-        // }
-    
 
-    
-    public function appointments($make=null,$ShowDoc=null,$bookappo=null,$fixed=null)
+
+
+
+
+
+    public function appointments($make = null, $ShowDoc = null, $bookappo = null, $fixed = null, $more = null)
     {
 
         if (isset($_SESSION["userType"])) {
             // Load the DashboardModel
             $this->model('appointment_model');
-        $this->appointmodel = new appointment();
-        $result = $this->appointmodel->getAppoinmentbyPatient(); 
-        if (isset($_GET['doctor']) || isset($_GET['Date'])) {
-        if ($_GET['doctor'] != NULL && $_GET['Date'] == NULL){
-            $result = $this->appointmodel->getAppoinmentbyPatient($_GET['doctor']);
-            $this->view('Patient/appointments_view',$result);
-        }
-        if ($_GET['Date']){
-            $where = $_GET['Date'];
+            $this->appointmodel = new appointment();
+            $result = $this->appointmodel->getAppoinmentbyPatient();
+            if ($ShowDoc == null && (isset($_GET['doctor']) || isset($_GET['Date']))) {
+                if ($_GET['doctor'] != NULL && $_GET['Date'] == NULL) {
+                    $result = $this->appointmodel->getAppoinmentbyPatient($_GET['doctor']);
+                    $this->view('Patient/appointments_view', $result);
+                }
+                else if ($_GET['Date']) {
+                    $where = $_GET['Date'];
                     $where = DateTime::createFromFormat('Y-m-d', $where);
-                    $where = $where->format('m/d/Y');
-                    
-            $result= $this->appointmodel->getAppoinmentbyDate($where);
-            $this->view('Patient/appointments_view',$result);
-        }
-    }
-       
-        // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());
-       // print_r($resultUser);
-        // $this->view('Patient/appointments_view',$result);
-        // $this->view('Patient/dashboard_view',$resultUser);
-        if($make!= null&&$ShowDoc== null){
-            
-            $this->view('patient/makeappointment_view');
-            exit();
-        }
-        if($ShowDoc!= null&& $bookappo==null){
-            $result = $this->appointmodel->getDoctors();
-            // print_r($result);
-             $this->view('patient/Registerd_appointdoctor_view',$result);
-            exit();
-        }
-        if($bookappo != null && $fixed==null){
-            $this->view('patient/bookdoc_view_registered');
-            exit();
-        if($fixed != null){
-            $this->view('patient/appointments_view');
-        }
+                    $where = $where->format('Y-m-d');
 
-        }
-        else{
-            $result = $this->appointmodel->getAppoinmentbyPatient(); 
-        $this->view('Patient/appointments_view',$result);
-        // print_r("hello");
-        }
-        exit();
+                    $result = $this->appointmodel->getAppoinmentbyDate($where);
+                    $this->view('Patient/appointments_view', $result);
+                }
+                
+                // exit();
+                
+
+            }
+            
+
+            if ($make == 'more') {
+                $this->view('patient/appointment_more_view');
+                exit();
+            }
+            if ($make == 'make') {
+                
+
+                if ($ShowDoc == 'ShowDoc') {
+                    $result = $this->appointmodel->getDoctors();
+                    if (isset($_GET['doctor']) || isset($_GET['Date']) || isset($_GET['specialization'])) {
+                        
+                        // if ($_GET['doctor']) {
+                            
+                        //     $result = $this->appointmodel->getAllAppoinmentbyDoctor($_GET['doctor']);
+                            
+                        // }
+                        if ($_GET['Date']) {
+                            // $where = $_GET['Date'];
+                            $_GET['Date'] = DateTime::createFromFormat('Y-m-d', $_GET['Date']);
+                            $_GET['Date'] = $_GET['Date']->format('Y-m-d');
+        
+                            // $result = $this->appointmodel->getAllAppoinmentbyDate($where);
+                            
+                        }
+                        // if ($_GET['specialization']) {
+                        //     $result = $this->appointmodel->getAllAppoinmentbySpecialization($_GET['specialization']);
+                        //     // $this->view('Patient/appointments_view', $result);
+                        // }
+                        
+                        // exit();
+                        $result = $this->appointmodel->getAllAppoinmentbyDoctor($_GET['doctor'],$_GET['specialization'],$_GET['Date']);
+                        
+        
+                    }
+                    if ($bookappo == 'bookappo') {
+                        
+        
+                        if ($fixed == 'fixed') {
+                            $this->view('patient/appointments_view');
+                            
+                        }
+                        else{
+                            
+                            $this->view('patient/bookdoc_view_registered');
+                        }
+        
+                    }
+                    else{
+                    // print_r(sizeof($result));
+                        $this->view('patient/Registerd_appointdoctor_view', $result);
+                    }
+                } else {
+                    $this->view('patient/makeappointment_view');
+                    
+                }
+                exit();
+            }
+
+            if ($bookappo != null && $fixed == null) {
+                $this->view('patient/bookdoc_view_registered');
+                exit();
+
+
+                if ($fixed != null) {
+                    $this->view('patient/appointments_view');
+                    exit();
+                }
+
+
+            } else {
+                $result = $this->appointmodel->getAppoinmentbyPatient();
+                // print_r($result);
+                $this->view('Patient/appointments_view', $result);
+                // print_r("hello");
+            }
+            exit();
         } else {
             header("location:" . URLROOT . "/users/login");
         }
-
-        
-
-        
-     
     }
     public function treatments()
     {
         $this->view('Patient/treatment_view');
         exit();
     }
-    public function dashboard($make=null)
+    public function dashboard($make = null)
     {
-        
+
         if (isset($_SESSION["userType"])) {
             // Load the DashboardModel
             $this->model('appointment_model');
-        $this->appointmodel = new appointment();
-        $result = $this->appointmodel->getAppoinmentbyPatient(); 
-       
-        // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());
-       // print_r($resultUser);
-        $this->view('Patient/dashboard_view',$result);
-        // $this->view('Patient/dashboard_view',$resultUser);
-        exit();
-        } 
-        else {
+            $this->appointmodel = new appointment();
+            $result = $this->appointmodel->getAppoinmentbyPatient();
+
+            // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());
+            // print_r($resultUser);
+            $this->view('Patient/dashboard_view', $result);
+            // $this->view('Patient/dashboard_view',$resultUser);
+            exit();
+        } else {
             header("location:" . URLROOT . "/users/login");
         }
-        
-        
-       
-        
     }
-    
+
     // public function registration()
     // {
     //     $this->view('Patient/registration_view');
@@ -173,6 +239,6 @@ class patient extends Controller
     //     }
     //     exit();
     // }
-    
-    
+
+
 }

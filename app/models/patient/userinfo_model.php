@@ -10,6 +10,7 @@ class UserPatientModel extends Database
         $data = $this->fetchData($where);
 
         $users = [];
+        
         $i = 0;
         foreach ($data as $row) {
             $users['id'] = $row["ID"];
@@ -17,11 +18,12 @@ class UserPatientModel extends Database
             $users['phonenumber'] = $row['phonenumber'];
             $users['NIC'] = $row['nic'];
             $users['gender'] = $row['gender'];
-            // $users['email'] = $row['email'];
+            $users['email'] = $row['Email'];
             $users['age'] = $row['age'];
             $users['image'] = $_SESSION["USER"]["profilepicture"];
             $i++;
         }
+        
         return $users;
     }
     public function updateUserDetails($details, $filecontent)

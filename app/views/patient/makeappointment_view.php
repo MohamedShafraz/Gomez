@@ -59,12 +59,12 @@
 <article class="dashboard">
     
     <!-- <a>Welcome to Gomez</a> -->
-    
+    <form action="<?=URLROOT."/".$_SESSION['userType']."/appointments/make/ShowDoc"?>" method="get">
     <ul style="height: 26rem;background-color: white;padding: 5%;width: 59rem;">
     <section class="make" id="make" style="margin-top: -4rem;width: 59rem;margin-left: -1rem; background:#FFF;">
         <h1 style="margin-bottom: 0rem;font-size: xxx-large;font-weight: bold;">Make Appointment</h1>
         <label for="Doctor" style="font-weight: bold;font-size: 22px;"> Doctor Name</label>
-        <input type="text" name="userName" id="Doctor" placeholder="Max- 20 Characters" class="holder">
+        <input type="text" name="doctor" id="Doctor" placeholder="Max- 20 Characters" class="holder">
         <label for="Specialization" style="font-weight: bold;font-size: 22px;">Specialization</label>
         <select placeholder="Any Specialization" name="specialization" id="Specialization" class="holder">
             <option value=""></option>
@@ -298,7 +298,7 @@
             <option value="513" data-area="513">Facial Plastic Surgeon</option>
             <option value="59" data-area="59">Family And General Counsellor</option>
             <option value="580" data-area="580">Family Counseling and Career Guidance</option>
-            <option value="437" data-area="437">Family Medicine</option>
+            <option value="Family Medicine" data-area="437">Family Medicine</option>
             <option value="35" data-area="35">Family Physician</option>
             <option value="205" data-area="205">Family Planning /Reproductive And Female Sexual Health</option>
             <option value="440" data-area="440">Family Planning Clinic</option>
@@ -679,15 +679,16 @@
             <option value="520" data-area="520">X-Ray</option>
         </select>
         <label for="Date" style="font-weight: bold;font-size: 22px;">Date</label>
-        <input type="date" name="userName" id="Date" date-placeholder="11/6/2023" class="holder">
+        <input type="date" name="Date" id="Date" date-placeholder="11/6/2023" class="holder">
         <div class='logbutton' id="maked">
-           <a href="<?=URLROOT."/".$_SESSION['userType']."/appointments/make/ShowDoc"?>" style="text-decoration: none;"> <font class="font1">Make appointment</font></a>
+           <input type="submit" style="border: none;width: 8rem;background-color: transparent;text-decoration: none;" value="Make Appointment" class="font1">
         </div>
         <br>
     </section>
     <!-- Your JavaScript Code -->
     
     </ul>
+    </form>
 </div>
 </article>
 </body>

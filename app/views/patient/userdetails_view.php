@@ -2,17 +2,19 @@
 
 
 require_once(APPROOT . "/views/patient/navbar_view.php");
+
 ?>
 
 <script>
+    
     $data = [];
-    $data.push("<?= "Fullname :" . $data['userName'] ?>");
-    $data.push("<?= "gender :" . $data['gender'] ?>");
-    $data.push("<?= "age : " . $data['age'] ?>");
-    $data.push("<?= "phonenumber : " . $data['phonenumber'] ?>");
-    $data.push("<?= "email : " . $data['email']??'sam@live.com' ?>");
+    $data.push("<?= "Fullname :" . $data[0]['fullname'] ?>");
+    $data.push("<?= "gender :" . $data[0]['gender'] ?>");
+    $data.push("<?= "age : " . $data[0]['age'] ?>");
+    $data.push("<?= "phonenumber : " . $data[0]['phonenumber'] ?>");
+    $data.push("<?= "email : " . $data[0]['Email'] ?>");
 
-    console.log($data);
+    // console.log($data);
 </script>
 <style>
     .button {
@@ -105,9 +107,9 @@ require_once(APPROOT . "/views/patient/navbar_view.php");
     <!-- <a>Welcome to Gomez</a> -->
 
     <ul style="background-color: white;padding:5%; width:50%">
- 
+  
         <!-- <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div> -->
-        <div class="users" style="float: left;gap: 5%;width:50% ;"><?= "<img src='data:image/png;base64," . base64_encode($data['image']) . "' alt='Profile Picture' style='    width: 12.3rem;
+        <div class="users" style="float: left;gap: 5%;width:50% ;"><?= "<img src='data:image/png;base64," . base64_encode($_SESSION['USER']['profilepicture']) . "' alt='Profile Picture' style='    width: 12.3rem;
     height: 12.3rem;;'>" ?></div>
 
         <script>

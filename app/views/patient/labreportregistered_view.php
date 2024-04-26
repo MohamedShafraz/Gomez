@@ -47,105 +47,82 @@
 <body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
 <?php include APPROOT.'/views/patient/navbar_view.php'?>
 
-<div class="popup" style="margin-top:9%;margin-right:29%;margin-left:29%;display:none">
-    Are you sure you want to deactivate your account<br>
-    <br><div class="buttonspace" style="justify-content:center"><button class="button" style="background-color:red;padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;" id ="yes">yes</button><br><button id="no" class="button" style="background-color:green;padding-right: 5%;padding-left: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;">no</button></div>
-</div>
+
 <article class="dashboard">
     
     <!-- <a>Welcome to Gomez</a> -->
     
-    <ul style="background-color: white;padding:5%;width: 64%;height:61%; ">
-    <div class="d" style="margin-left: 10%;">
-        <a class="search">
-           <b> Doctor: </b>
-            <input type="text" placeholder="Search.." name="search" class="searchbox">
-        </a><br>
-        <a class="search">
-           <b> Date: </b>
-            <input type="text" placeholder="Search.." name="search" class="searchbox">
-        </a>
-        <br>
-        <table class="complainttable" style="margin-left: -11%; width: 111%;">
+   
+    <ul style="width: 64rem;height: 26rem;padding: 3rem 3rem 4rem 4rem;margin: 3rem 0rem 0rem 20rem;">
+    <form action="" method="get">
+        <section class="make" id="make" style="margin-top: -4rem;margin-left: 1rem;background: #FFF;display: flex;flex-direction: row;width: 33.5rem;padding: 2%;">
 
+            <div class="dis" style="margin: 0rem 0rem 0rem -1rem;">
+                <label for="testname" style="font-weight: bold;font-size: 22px;"> Test Name :&ensp; </label>
+                <input type="text" name="testname" id="testname" placeholder="Max- 20 Characters" class="holder" value="<?=$_GET['testname']??""?>" oninput="console.log(this.value)">
+            </div>
+           
+            <input class='logbutton font1' id="maked" style="font-size: medium; margin: 0rem 0rem 0rem 3rem;border-radius: 1rem;padding: 0.5% 3%;box-shadow: none;width: 5rem;color: white;" type="submit" value="search">
 
-    <tbody class="complaint" style="margin-left: -33%;">
-        <tr>
-            <td style="width: 20%;">Reference Number</td>
-            <td style="width: 20%;">Category</td>
-            <td style="width: 20%;">Date</td>
-            <td style="width: 20%;">Time</td>
-            <td style="width: 20%;"> </td>
-        </tr>
+            <br>
+        </section>
+    </form>
+    <br>
+
+    <div id="appointments" style="height: 59vh;width: 66rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;
+">
+        <?php
+        for ($i = 0; $i < sizeof($data); $i++) {
+            $file = $data[$i]["File_Name" ];
+            $filename =$data[$i]['Test_Name'];
+            
+            
+            echo "<div class='flex-item' style='padding: 0.5rem;background: white;width: 64.5rem;;margin-left:1rem'>
+             <div style='display: flex;flex-direction: row;'>
+                 
+                 <div style='margin: -1rem 0rem 0rem 0rem;font-weight: bold;font-size: 1.6rem; padding: 2rem 0rem 1rem 0rem;width: 37%;'>
+                     <ul style='list-style-type: none;padding:0;margin: 0rem;'>
+                         <li>Reference Number</li>
+                         <li style='font-size: medium;'>".$data[$i]['Reference_No']."</li>
+                     </ul>
+                 </div>
+                 <div style='margin: -1rem 0rem 0rem 0rem;font-weight: bold;font-size: 1.6rem;padding: 2rem 0rem 1rem 0rem;width: 24%;'>
+                     <ul style='list-style-type: none;padding:0;margin: 0rem;'>
+                         <li>Passcode</li>
+                         <li style='font-size: medium;'>".$data[$i]['Passcode']."</li>
+                     </ul>
+                 </div>
+                 <div style='    margin: -1rem 0rem 0rem 0rem;font-weight: bold;font-size: 1.6rem;padding: 2rem 0rem 1rem 0rem;width: 25%;'>
+                     <ul style='list-style-type: none;padding:0;margin: 0rem;'>
+                         <li>Test Name</li>
+                         <li style='font-size: medium;'>".$data[$i]['Test_Name']."</li>
+                     </ul>
+                 </div>
+                 <div style='margin: -1rem 0rem 0rem 0rem;font-weight: bold;font-size: 1.6rem;padding: 2rem 0rem 1rem 0rem;width: 16%;'>
+                     <ul style='list-style-type: none;padding:0;margin: 0rem;'>
+                         <li>Status</li>
+                         <li style='font-size: medium;'>".$data[$i]['Status']."</li>
+                     </ul>
+                 </div>
+                 <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 1rem 3rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none;    width: 4rem;'>
+                         <a href='".URLROOT."/Patient/labreport_registered/view/$filename' style='text-decoration: none;'>
+                             <font class='font1'>View</font>
+                         </a>
+                     </div>
+                     <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 1rem 1rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
+                         <a href='".URLROOT."/Patient/labreport_registered/$file' style='text-decoration: none;'>
+                             <font class='font1'>Download</font>
+                         </a>
+                     </div>
+                 
+                 </div></div><br>";
+        }echo "</div>";
+        ?> 
         
-        <tr style='color:white;margin: 3%;'></tr>
+        </div>
+        
 
-        <tr>
-            <td style='width: 20%;'>001245</td>
-            <td style='width: 20%;'>X-Ray</td>
-            <td style='width: 20%;'>18/03/2024</td>
-            <td style='width: 20%;'>08.00 AM</td>
-            <td style='width: 20%;'><a href="make_appointment.php" style="margin-left: -54%;"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">View More</button></a></td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-        <tr>
-            <td style='width: 20%;'>001356</td>
-            <td style='width: 20%;'>Blood Count</td>
-            <td style='width: 20%;'>04/04/2024</td>
-            <td style='width: 20%;'>07.00 PM</td>
-            <td style='width: 20%;'><a href="make_appointment.php" style="margin-left: -54%;"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">View More</button></a></td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-    </tbody>
-
-</table>
-    </div></div>
-    <!--
-         Your JavaScript Code -->
-    <script>
-        // Sample Data: Replace this with your actual appointment data
-        const appointmentsData = [5, 8, 12, 6, 10, 15, 7];
-
-        // Get the chart container element
-        const chartContainer = document.getElementById('chartContainer');
-
-        // Create bars based on the data
-        appointmentsData.forEach((count, index) => {
-            const bar = document.createElement('div');
-            bar.className = 'bar';
-            bar.style.height = `${count * 10}px`; // Adjust the scaling factor as needed
-            chartContainer.appendChild(bar);
-        });
-    </script>
     </ul>
-</div>
 </article>
 </body>
 <script src="<?=URLROOT?>./javascript/dashboard.js"></script>
-<script>
-    function select2()
-{if(document.getElementsByClassName("navbar")[0].style.display=="none"){
-    document.getElementsByClassName("navbar")[0].style.display="flex";
-}
-else{
-    document.getElementsByClassName("navbar")[0].style.display="none";
-}
-}
-document.getElementById("deactivate").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="block";
-            document.getElementsByClassName("dashboard")[0].style.filter = "blur(3px)";
-        };
-        document.getElementById("no").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="none";
-            document.getElementsByClassName("dashboard")[0].style.filter = "";
-        }
-        document.getElementById("yes").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="none";
-            document.getElementsByClassName("dashboard")[0].style.filter = "";
-        }   
-</script>

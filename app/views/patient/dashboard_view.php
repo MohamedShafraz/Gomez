@@ -80,7 +80,7 @@
                 <div class='flex-scroll-item' style= 'line-height: 2;'>
                 <div  style='border-radius: 7px;flex-basis: 69%;height: 4rem;width: 23.5rem;'>
                 <img src='".URLROOT."/public/resources/doctor1.png' ". "style=' padding: 0.5rem 0rem 0rem 0.5rem; width: 14%;' >
-                <div style='text-align: center;font-size: x-large;font-weight: bolder;margin: -14% 0% 0% -35%;'>".$data[$i]['Doctor_name']."</div>
+                <div style='text-align: center;font-size: x-large;font-weight: bolder;margin: -14% 0% 0% -35%;'>".$data[$i]['fullname']."</div>
                 
                 
 
@@ -107,7 +107,7 @@
                 <div class='flex-scroll-item' style= 'line-height: 2;'>
                 <div  style='border-radius: 7px;flex-basis: 69%;height: 4rem;width: 23.5rem;'>
                 <img src='".URLROOT."/public/resources/doctor1.png' ". "style=' padding: 0.5rem 0rem 0rem 0.5rem; width: 14%;' >
-                <div style='text-align: center;font-size: x-large;font-weight: bolder;margin: -14% 0% 0% -35%;'>".$data[$i]['Doctor_name']."</div>
+                <div style='text-align: center;font-size: x-large;font-weight: bolder;margin: -14% 0% 0% -35%;'>".$data[$i]['fullname']."</div>
                 
                 
 

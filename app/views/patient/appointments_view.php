@@ -65,10 +65,24 @@
     scrollbar-width: none;
 ">
         <?php
+        if(sizeof($data)==0){
+            echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
+            <div style='display: flex;flex-direction: row;'>
+                <div style='width: 20%;'></div>
+                <div style='font-family:Inter;margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
+                    <center>No matches found</center>
+                </div>
+                
+                
+                 <div style='width: 27%;'>
+                 
+                    
+                </div></div></div><br>"; 
+        }
         for ($i = 0; $i < sizeof($data); $i++) {
             $image = $data[$i]['image'] ?? "http://localhost/gomez/public/resources/doctor1.png'";
-            $name = $data[$i]['Doctor_name'];
-            $Date =$data[$i]['Date'];
+            $name = $data[$i]['fullname'];
+            $Date =$data[$i]['date'];
             $special = $data[$i]['Specialization'] ?? "Heart specialist";
             echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
              <div style='display: flex;flex-direction: row;'>
@@ -85,10 +99,11 @@
                          
                      </ul>
                  </div>
+                 
                   <div style='width: 27%;'>
                   
                      <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
-                         <a href='' style='text-decoration: none;'>
+                         <a href='".URLROOT."/Patient/appointments/more' style='text-decoration: none;'>
                              <font class='font1'>More</font>
                          </a>
                      </div>

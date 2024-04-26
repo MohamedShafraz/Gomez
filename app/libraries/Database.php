@@ -57,6 +57,48 @@ class Database
 
         return $data;
     }
+    public function fetchAppointment($where, $data=1)
+    {
+        
+        $query = "SELECT * FROM session JOIN doctors ON session.`Doctor_Id` = doctors.Doctor_id JOIN appointment ON appointment.session_id = session.session_id JOIN user_db ON user_db.User_Id = session.Doctor_id WHERE " . $where . " AND " . $data;
+    
+        $result = $this->executeQuery($query);
+        $data = [];
+        $i = 0;
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[$i] = $row;
+                $i++;
+            }
+        }
+        
+        return $data;
+    }
+    public function fetchDataByUser($where, $data=1)
+    {
+        $id = null;
+        switch ($this->table) {
+            case  Doctors:
+                $id = 'Doctor_id';
+                break;
+            case Patients:
+                $id =  'ID';
+                break;
+        }
+        $query = "SELECT * FROM doctors JOIN user_db ON user_db.User_Id = $this->table.$id JOIN `session` ON session.Doctor_id = $this->table.$id WHERE " . $where . " AND " . $data;
+
+        $result = $this->executeQuery($query);
+        $data = [];
+        $i = 0;
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[$i] = $row;
+                $i++;
+            }
+        }
+        
+        return $data;
+    }
     public function filter($where, $data)
     {
         $query = "SELECT * FROM doctors JOIN appointment ON appointment.`doctor_id` = doctors.`Doctor_id` WHERE " . $where . " AND " . $data;
@@ -73,7 +115,24 @@ class Database
         
         return $data;
     }
-
+    public function fetchPatient()
+    {
+        $where = "ID = " . $_SESSION['User_Id'];
+        
+        $query = "SELECT * FROM patients JOIN user_db ON patients.`ID` = user_db.`User_Id` WHERE " . $where ;
+       
+        $result = $this->executeQuery($query);
+        $data = [];
+        $i = 0;
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[$i] = $row;
+                $i++;
+            }
+        }
+        
+        return $data;
+    }
     public function filterByDoctor($where, $doctor)
     {
         $query = "Select * FROM " . $this->table . " WHERE " . $where . " AND " . $doctor;
