@@ -9,6 +9,11 @@ class manageappointment extends Controller
             header("location:" . URLROOT . "/users/login");
         }
     }
+    public function report()
+    {
+
+        $this->view($_SESSION['userType'] . "/report_view",);
+    }
     public function index($param = Null, $doctor = Null, $test = null)
     {
         // session_start();
@@ -37,7 +42,6 @@ class manageappointment extends Controller
 
                     // if ($doctor) {
                     $manageappointmentDetails =  $manangeappointmentModel->getAppoinmentbyDate($where);
-
                     // }""
                 }
                 if ($_GET['Date'] != NULL && $_GET['doctor'] != NULL) {
@@ -45,10 +49,10 @@ class manageappointment extends Controller
                     $where = DateTime::createFromFormat('Y-m-d', $where);
                     $where = $where->format('m/d/Y');
 
-                    // if ($doctor) {
+
                     $manageappointmentDetails =  $manangeappointmentModel->getAppoinmentbyDateAndDoctor($where, $_GET['doctor']);
 
-                    // }""
+
                     $this->view($_SESSION['userType'] . "/manageappointment_view", $manageappointmentDetails);
                 }
             }

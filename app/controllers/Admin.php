@@ -28,7 +28,8 @@ class Admin extends Controller
     public function ManageAppointment($user = Null, $para1 = Null, $para2 = Null)
     {
         $ManageAppointment = new ManageAppointment();
-        if ($user == Null && $para1 == Null) {
+
+        if ($user == Null && $para1 == Null || $user == 'search') {
             $ManageAppointment->Index();
         } else {
             if ($para2 != Null) {
