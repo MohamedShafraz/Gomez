@@ -1,6 +1,11 @@
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
 <link rel="stylesheet" href="<?= URLROOT ?>/css/Doctor/doctorcommon.css">
 
+<style>
+    tr{
+        text-align: center;
+    }
+</style>
 
 <body>
     <div style="margin-left:23%;">
@@ -10,22 +15,21 @@
                     <?php 
                         echo "<p>Patient Name  : ".$patient["name"]."</p>";
                         echo "<br>";
+                        
+                        echo "<p>Patient Age  : ".$patient["age"]."</p>";
                         echo "<br>";
-                        echo "<p>Patient Email  : ".$patient["age"]."</p>";
-                        echo "<br>";
-                        echo "<br>";
-                        echo "<p>Patient Phone Number  : ".$patient["gender"]."</p>";
+                        
+                        echo "<p>Patient Gender  : ".$patient["gender"]."</p>";
+        
+                        
                     ?>
                 </div>
                 <div class="details" style="width:50%">
                     <?php
                         echo "<p>Appointment Date  : ".$appointment["Appointment_Date"]."</p>"; 
                         echo "<br>";
-                        echo "<br>";
-                        echo "<p>Appointment Time  : ".$appointment["Appointment_Time"]."</p>";
-                        echo "<br>";
-                        echo "<br>";
-                        echo "<p>Appointment Status  : ".$appointment["Days_left"]."</p>";
+                        echo "<p>Appointment Time  : ".date('H:i:s', strtotime($appointment['Appointment_Time']))."</p>";
+                        
                     ?>
                 </div>
             </div>
@@ -34,9 +38,7 @@
                 <?php 
                     echo "<p>Medications  : ".$prescription[0]["Medications"]."</p>";
                     echo "<br>";
-                    echo "<br>";
                     echo "<p>instructions  : ".$prescription[0]["instructions"]."</p>";
-                    echo "<br>";
                     echo "<br>";
                     echo "<p>labtesting  : ".$prescription[0]["labtesting"]."</p>";
                 ?>
@@ -44,28 +46,27 @@
             <br>
             
                 <?php 
-                    var_dump($medicine);
-                    if($medicine != null){
-                    echo '<div class="details" style="width:98%;">';
+                if ($medicine != null) {
+                    echo '<div class="details" style="width: 98%;">';
                     echo '<h3>Medicines</h3>';
-                    echo "<table>";
-                        echo "<tr>";
-                        echo "<th>Medicine Name</th>";
-                        echo "<th>Medicine Dosage</th>";
-                        echo "<th>Tiems</th>";
-                        echo "<th>before after meal</th>";
+                    echo "<table style='width: 100%; border-collapse: collapse;'>";
+                    echo "<tr style='background-color: darkblue; color: white;'>";
+                    echo "<th style='padding: 10px;'>Medicine Name</th>";
+                    echo "<th style='padding: 10px;'>Medicine Dosage</th>";
+                    echo "<th style='padding: 10px;'>Times</th>";
+                    echo "<th style='padding: 10px;'>Before/After Meal</th>";
                     echo "</tr>";
-                    foreach($medicine as $med){
-                        echo "<tr>";
-                        echo "<td>".$med["medicine"]."</td>";
-                        echo "<td>".$med["dose"]."</td>";
-                        echo "<td>".$med["times"]."</td>";
-                        echo "<td>".$med["before_after"]."</td>";
+                    foreach ($medicine as $med) {
+                        echo "<tr style='background-color: white; color: black;'>";
+                        echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["medicine"]."</td>";
+                        echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["dose"]."</td>";
+                        echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["times"]."</td>";
+                        echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["before_after"]."</td>";
                         echo "</tr>";
                     }
                     echo "</table>";
                     echo '</div>';
-                    }
+                }
                 ?>
            
         </div>

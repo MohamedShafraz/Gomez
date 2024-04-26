@@ -86,7 +86,7 @@ class DoctorModel extends Database
 
     public function getUpcomingAppoinmentsbyDoctor($id)
     {
-        $where = "doctor_id='$id' AND Appointment_Date = CURDATE() AND Appointment_Time > TIME(DATE_ADD(NOW(), INTERVAL 5 MINUTE)) AND Appointment_Status='Pending'";
+        $where = "doctor_id='$id' AND Appointment_Date = CURDATE() AND Appointment_Status='Pending'";
         $this->setTable(Appointment);
         $result = $this->fetchData($where);
         return $result;
@@ -160,12 +160,23 @@ class DoctorModel extends Database
         return $result;
     }
 
-    public function getMedicinebyUniqeid($uniqeid){
-        $where = "unique_id='$uniqeid'";
+    public function getMedicinebyUniqeid($unique_id){
+        $where = "unique_id='$unique_id'";
         $this->setTable(Medicine);
         $result = $this->fetchData($where);
         return $result;
+        
     }
+
+    public function getAppointmentsbyDoctoronTodayandbetweentimeslots($id,$starttime,$endtime){
+        $where = "doctor_id='$id' AND Appointment_Date = CURDATE() AND HOUR(Appointment_Time) >= '$starttime' AND HOUR(Appointment_Time) < '$endtime'";
+        $this->setTable(Appointment);
+        $result = $this->fetchData($where);
+        return $result;
+    }
+
+    
+    
 }
 
 

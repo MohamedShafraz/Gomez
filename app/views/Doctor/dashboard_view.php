@@ -9,13 +9,24 @@
   background-image: linear-gradient(to right, red , yellow);
 }
 
-.buttonspace{
-    display: flex;
-    justify-content: end;
-    font-size: 30px;
-    grid-template-columns: repeat(auto-fit, minmax(1rem, 0.3fr));
-    gap: 1rem;
+th {
+    background-color: #f2f2f2;
+    font-weight: bold;
+    
 }
+tr{
+    border-radius: 10px;
+}
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+    
+}
+
+.appointmentsection {
+    background-color: #FFF;
+    height: 150px;
+}
+
 button{
     height: 31px;
   flex-direction: column;
@@ -34,42 +45,26 @@ button{
   font-size: initial;height: max-content;width: max-content;
 }
 
-th {
-    background-color: #f2f2f2;
-    font-weight: bold;
-    
-}
-tr{
-    border-radius: 10px;
-}
-tr:nth-child(even) {
-    background-color: #f2f2f2;
-    
-}
-
-.complaint tr{
-    display: flex;
-    flex-direction: row;
-    align-content: center;
-    gap: 16px;
-    font-size: large;
-    /* width: 795px; */
-    background-color: beige;
-    width: 1023px;
-    padding: 0% 5% 0% 5%;
-    line-height: 7vh;
-    border-radius: 8px;
-
-}
-
-.complaint {
-        margin-top: 50px;
-        margin-left: -16%; /* Adjust the margin-left value to move the table to the left */
-        width: 70%; /* Adjust the width if necessary */
-    }
-
-
 </style>
+<div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999; display: none;"></div>
+
+<div id="alertBox" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 5px; z-index: 1000; display: none;">
+  <div id="alertMessage"></div> <!-- Alert message will be displayed here -->
+  <button onclick="closeAlert()" style="display: block; margin: 0 auto;">Close</button> <!-- Close button -->
+</div>
+
+
+<?php
+  if(isset($message)){
+    echo "<script>
+            // Show the overlay and alert box
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('alertBox').style.display = 'block';
+            // Set the alert message
+            document.getElementById('alertMessage').innerHTML = '<p>$message</p>';
+          </script>";
+  }
+?>
 
 
 </aside>
@@ -96,33 +91,53 @@ tr:nth-child(even) {
         </div>
                     
 
-        <div class="complaint"style="margin-top:50px;">
-            <?php
-
-                echo '<table style="width:70%">';
-                echo '<tr>';
-                echo '<td style="width: 20%;"> Reference No </td>';
-                echo '<td style="width: 20%;"> Date </td>';
-                echo '<td style="width: 20%;"> Appointment Time </td>';
-                echo '<td style="width: 20%;"> Name </td>';
-                echo '<td style="width: 20%;"> More </td>';
-                echo '<tr style="color:white;margin: 1%;"></tr>';
-                echo '</tr>';
-
-                foreach ($appointments as $row) {
-                    echo '<tr>';
-                    echo '<td style="width: 20%;">'.$row['refence_No'].'</td>';
-                    echo '<td style="width: 20%;">'.$row['Appointment_Date'].'</td>';
-                    echo '<td style="width: 20%;">'.date('H:i:s', strtotime($row['Appointment_Time'])).'</td>';
-                    echo '<td style="width: 20%;">'.$row['Name'].'</td>';
-                    echo '<td style="width: 20%;"><button onclick="window.location.href=\''.URLROOT.'/Doctor/ViewMoreAppoinment/'.$row['Appointment_Id'].'\'">More</button></td>';
-                    echo '<tr style="color:white;margin: 1%;"></tr>';
-                    echo '</tr>';
+        <div id="appointmentSlots" style="margin-top:50px;background-color:grey;margin-left:-18%;padding:2%">
+                <?php
+                
+                $hourlyCounts = array_fill(0, 24, 0); 
+                $currentDate = date('n/j/Y'); // Format: Month/Day/Year
+                $currentWeekday = date('l');
+                            
+                foreach ($appointments as $appointment) {
+                    
+                    $hour = (int)substr($appointment['Appointment_Time'], 0, 2);
+                    
+                    $hourlyCounts[$hour]++;
                 }
-
-            ?>
+                
+               
+                for ($hour = 0; $hour < 24; $hour++) {
+                    
+                    if ($hourlyCounts[$hour] > 0) {
+                        echo "<div class='appointmentsection' style='display: flex; align-items: center; justify-content: space-around; margin-bottom: 10px;font-weight:bolder;color:darkblue; border-left:solid black 5px'>";
+                        echo "<div class='current-date'>";
+                        echo "<p>Today is $currentDate ($currentWeekday)</p>";
+                        echo "</div>";
+                        echo "<p style='font-size: 18px; margin-right: 20px;'>$hour:00 - " . ($hour + 1) . ":00</p>";
+                        echo "<p style='font-size: 18px; margin-right: 20px;'>{$hourlyCounts[$hour]}</p>";
+                        echo "<button style='width:200px;text-align: center;' onclick='viewtimeslot($hour, " . ($hour + 1) . ")'>View</button>";
+                        echo "</div>";
+                    }
+                }
+                ?>
         </div>
-    </div>
+
 </article>
+<script>
+
+function viewtimeslot(startTime,endTime){
+    window.location.href = '<?= URLROOT ?>/Doctor/ShowPatientsAllocatedTimeSlot/' + encodeURIComponent(startTime) + '/' + encodeURIComponent(endTime);
+}
+
+function closeAlert() {
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('alertBox').style.display = 'none';
+    document.getElementById('alertMessage').innerHTML = '';
+    window.location.href = '<?= URLROOT ?>/Doctor/dashboard';
+  }
+
+</script>
+
+
 
 <?php require_once(APPROOT . "/views/doctor/footer_view.php")?>

@@ -80,8 +80,7 @@
             <label for="labTesting">Lab Testing</label><br>
             <input type="text" id="labTesting" name="labTesting" value=""><br><br>
 
-            <label for="dateSigned">Date Signed</label><br>
-            <input type="date" id="dateSigned" name="dateSigned" value="<?= date('Y-m-d'); ?>"><br><br>
+            <input type="hidden" id="dateSigned" name="dateSigned" value="<?= date('Y-m-d'); ?>">
 
             <input type="submit" value="Submit">
         </form>

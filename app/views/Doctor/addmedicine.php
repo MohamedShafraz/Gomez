@@ -78,7 +78,7 @@
                     <option value="MedicineE">MedicineE</option>
                 <select>
                 <label for="dose">Dose</label>
-                <input type="number" id="dose" name="dose[]" required>
+                <input type="number" id="dose" name="dose[]" min="1" required>
                 <label for="timing">Timing</label>
                 <select name="timing[]" id="timing">
                     <option value="Morning">Morning</option>
@@ -96,7 +96,7 @@
                 <button class="bluebutton" id="addMedicine">Add Medicine</button>
             </div>
         </div>
-        <button class="greenbutton" type="submit" class="btn" style="width: 25%; margin-top:20px">Submit</button>
+        <button id="submit"  type="submit" class="greenbutton btn" style="width: 25%; margin-top:20px">Submit</button>
     </form>
     </div>
 
@@ -116,7 +116,7 @@
             <option value="MedicineE">MedicineE</option>
           </select>
           <label for="dose">Dose</label>
-          <input type="number" id="dose" name="dose[]" required>
+          <input type="number" id="dose" name="dose[]" min="1" required>
           <label for="timing">Timing</label>
           <select name="timing[]" id="timing">
             <option value="Morning">Morning</option>
@@ -150,11 +150,12 @@
         url: "<?php echo URLROOT; ?>/Doctor/AddMedicine",
         data: formData,
         success: function(data) {
-          console.log(data);
+          window.location.href = "<?php echo URLROOT; ?>/Doctor/dashboard/prescription";
         }
       });
     });
   });
+
 </script>
 
 

@@ -24,16 +24,9 @@
                 <div style="display: flex; flex-direction:row; justify-content:space-between; width :100%">
                     <div class="details">
                         <?php
-                        echo "Appointment ID  : " . $appointments["Appointment_Id"];
-                        echo "<br>";
-                        echo "<br>";
                         echo "Name  : " . $appointments["Name"];
                         echo "<br>";
                         echo "<br>";
-                        echo "Patient ID  : " . $appointments["Patient_ID"];
-                        echo "<br>";
-                        echo "<br>";
-
 
                         ?>
 
@@ -59,9 +52,6 @@
                 <div style="display: flex; flex-direction:row; justify-content:space-between; width :100%">
                     <div class="details">
                         <?php
-                        echo "Appointment ID  : " . $patient["ID"];
-                        echo "<br>";
-                        echo "<br>";
                         echo "Name  : " . $patient["name"];
                         echo "<br>";
                         echo "<br>";

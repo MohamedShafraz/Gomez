@@ -28,7 +28,7 @@ class Doctor extends Controller
         }
     }
 
-    public function dashboard(){
+    public function dashboard($message=null){
         if (!isset($_SESSION)) {
             session_start();
         }
@@ -45,7 +45,11 @@ class Doctor extends Controller
             $totalmonthappointment = $this->doctorModel->getMonthAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
             $totalappointment = $this->doctorModel->getTotalAppoinmentsbyDoctor($doctor[0]['Doctor_id']);
 
-            $this->view('Doctor/dashboard_view', ['appointments' => $appointments, 'patients' => $patients , 'totalappointment' => $totalappointment , 'totalmonthappointment' => $totalmonthappointment]);
+            if($message != null){
+                $message = "Prescription Added Successfully";
+            }
+
+            $this->view('Doctor/dashboard_view', ['appointments' => $appointments, 'patients' => $patients , 'totalappointment' => $totalappointment , 'totalmonthappointment' => $totalmonthappointment, 'message' => $message]);
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
@@ -141,6 +145,12 @@ class Doctor extends Controller
         if (!isset($_SESSION)) {
             session_start();
         }
+
+        if(isset($_SESSION["prescription"])){
+            unset($_SESSION["prescription"]);
+        }
+
+
         $user = $_SESSION["USER"];
         if ($user["usertype"] == "Doctor") {
             $this->model("DoctorModel");
@@ -235,7 +245,7 @@ class Doctor extends Controller
             $appointment = $this->doctorModel->getAppoinmentbyID($appointmentid);
             $patient = $this->doctorModel->getPatient($appointment[0]["Patient_ID"]);
             $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
-           
+            
             $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'appointment' => $appointment[0], 'patient' => $patient[0], 'medicine' => $medicine]);
            exit();
         } else {
@@ -330,12 +340,35 @@ public function AddMedicine(){
     }
     
     $prescription = $_SESSION['prescription'];
-    var_dump($_SESSION['prescription']);
 
     $result1 = $this->doctorModel->addPrescription($prescription);
     $result2 = $this->doctorModel->updateAppointmentStatus($prescription["Appointment_id"], "Prescription Added");
     
+    
+    header("Location: ".URLROOT."/Doctor/ViewMoreAppoinment/".$prescription["Appointment_id"]."");
     exit();
     
+    
 }
+
+
+    public function ShowPatientsAllocatedTimeSlot($starttime, $endtime){
+        if (!isset($_SESSION)) {
+            session_start();
+        }
+        $user = $_SESSION["USER"];
+
+        $this->model("DoctorModel");
+        $this->doctorModel = new DoctorModel(new Database());
+        $doctor = $this->doctorModel->getDoctor($user["Username"]);
+
+        $doctor_id = $doctor[0]['Doctor_id'];
+
+        $appointments = $this->doctorModel->getAppointmentsbyDoctoronTodayandbetweentimeslots($doctor_id, $starttime, $endtime);
+        $patient = $this->doctorModel->getPatient($appointments[0]['Patient_ID']);
+        
+        $this->view('Doctor/timeslotpatients', ['appointments' => $appointments]);
+        exit();
+    
+    }
 }
