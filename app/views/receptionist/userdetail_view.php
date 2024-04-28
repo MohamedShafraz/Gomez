@@ -43,47 +43,15 @@
 
 <!-- background-color:#E9F3FD -->
 <body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
-<img src="<?=URLROOT."/resources/gomezlogo2.png"?>" alt="" class="image">
+<?php include APPROOT.'/views/receptionist/navbar_view.php'?>
+
 <br>
 <br>
 <br>
 
-<header class="header">
-        <nav class="navbar">
-            <img src="<?=URLROOT."/resources/user.png"?>" class="profilepic">
-            <a href="#make"><div class="selected">
-                <font class="GMfont" style="font-family: 'inter';"> Hello, Shaf</font></div>
-            </a>
-        </nav>
-    </header>
-<aside class="sidenav">
-    <ul>
-        <img src="<?=URLROOT."/resources/user.png"?>" alt=""><br><br>
-        <li id="Dashboard" onclick="y('Dashboard')">Dashboard
-        </li><br>
-        <li  id="appointments" onclick="y('appointments')">
-            Appointments
-        </li><br>
-        <li  id="labreports" onclick="y('labreports')">
-            Lab Reports
-        </li><br>
-        <li  id="treatments" onclick="y('treatments')">
-            Treatments
-        </li><br>
-        <li id="UserInfo" onclick="y('UserInfo')">
-            User information
-        </li>
-    </ul>
-</aside>
-<div class="popup" style="margin-top:9%;margin-right:29%;margin-left:29%;display:none">
-    Are you sure you want to deactivate your account<br>
-    <br><div class="buttonspace" style="justify-content:center"><button class="button" style="background-color:red;padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;" id ="yes">yes</button><br><button id="no" class="button" style="background-color:green;padding-right: 5%;padding-left: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;">no</button></div>
-</div>
+
+
+
 <article class="dashboard">
     
     <!-- <a>Welcome to Gomez</a> -->
@@ -129,25 +97,3 @@
 </article>
 </body>
 <script src="<?=URLROOT?>./javascript/dashboard.js"></script>
-<script>
-    function select2()
-{if(document.getElementsByClassName("navbar")[0].style.display=="none"){
-    document.getElementsByClassName("navbar")[0].style.display="flex";
-}
-else{
-    document.getElementsByClassName("navbar")[0].style.display="none";
-}
-}
-document.getElementById("deactivate").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="block";
-            document.getElementsByClassName("dashboard")[0].style.filter = "blur(3px)";
-        };
-        document.getElementById("no").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="none";
-            document.getElementsByClassName("dashboard")[0].style.filter = "";
-        }
-        document.getElementById("yes").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="none";
-            document.getElementsByClassName("dashboard")[0].style.filter = "";
-        }   
-</script>

@@ -59,15 +59,7 @@
 <body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
         <?php include APPROOT.'/views/patient/navbar_view.php'?>
 
-<div class="popup" style="margin-top:9%;margin-right:29%;margin-left:29%;display:none">
-    Are you sure you want to deactivate your account<br>
-    <br><div class="buttonspace" style="justify-content:center"><button class="button" style="background-color:red;padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;" id ="yes">yes</button><br><button id="no" class="button" style="background-color:green;padding-right: 5%;padding-left: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;">no</button></div>
-</div>
+
 <article class="dashboard">
     
     <!-- <a>Welcome to Gomez</a> -->

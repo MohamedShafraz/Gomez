@@ -1,5 +1,8 @@
 <?php
-class appointment extends Database{
+
+use LDAP\Result;
+
+class appointmentModel extends Database{
     
     public function getAppoinmentbyPatient($doctor = Null){
         if (empty($doctor)) {
@@ -16,6 +19,27 @@ class appointment extends Database{
         
         return $result;
     }
+    public function getAppoinmentbyDoctors($doctor = Null){
+        
+            $where = 1;
+            $doctor = "user_db.Username REGEXP \"".$doctor . "*\"";
+        $this->setTable(Appointment);
+        $result = $this->fetchSession($where, $doctor);
+        
+        
+        return $result;
+    }
+
+    public function getAppoinmentOneDoctor($doctor = Null){
+        
+        $where = 1;
+        $doctor = "user_db.Username REGEXP \"".$doctor . "*\"";
+    $this->setTable(Appointment);
+    $result = $this->fetchAppointmentbydoctor($where, $doctor);
+    
+    
+    return $result;
+}
     public function getAllAppoinmentbyDoctor($doctor = Null,$specialization=Null,$date=Null){
         $where = "`availability`= 1";
         if (empty($doctor)&&empty($specialization)&&empty($date)) {
@@ -38,6 +62,51 @@ class appointment extends Database{
           }
         $this->setTable(Doctors);
         $result = $this->fetchDataByUser($where, 1);
+        }
+        
+        
+        return $result;
+    }
+
+    public function getAllDoctorsforSession($doctor = Null,$specialization=Null,$date=Null){
+        $where = 1;
+        if (empty($doctor)&&empty($specialization)&&empty($date)) {
+            
+        $this->setTable(Doctors);
+        $result = $this->fetchdoctorforsession($where);
+        } else {
+          if(!empty($doctor)){
+                $doctor = "doctors.Username = \"".$doctor . "\"";
+            
+            $where .= ' AND '.$doctor;
+            $result = $this->fetchdoctorforsession($where, 1);
+            
+          }
+          
+        $this->setTable(Doctors);
+        // $result = $this->fetchDataByUser($where, 1);
+        }
+        
+        
+        return $result;
+    }
+    public function getAllAppointmnetforDoctor($doctor = Null,$specialization=Null,$date=Null){
+        $where = 1;
+        if (empty($doctor)&&empty($specialization)&&empty($date)) {
+            
+        $this->setTable(Doctors);
+        $result = $this->fetchAppointmentByDoctors($where);
+        } else {
+          if(!empty($doctor)){
+                $doctor = "doctors.Username = \"".$doctor . "\"";
+            
+            $where .= ' AND '.$doctor;
+            $result = $this->fetchAppointmentByDoctors($where, 1);
+            
+          }
+          
+        $this->setTable(Doctors);
+        // $result = $this->fetchDataByUser($where, 1);
         }
         
         
@@ -136,6 +205,11 @@ class appointment extends Database{
             $this->setTable(Appointment);
             $result = $this->filter($where, $date);
         }
+        return $result;
+    }
+    public function checkSessionbyDoctor($id){
+        $where= "Doctor_id = $id";
+        $result = $this->checkSession($where);
         return $result;
     }
    

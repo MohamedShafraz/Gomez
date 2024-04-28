@@ -90,7 +90,7 @@ class patient extends Controller
         if (isset($_SESSION["userType"])) {
             // Load the DashboardModel
             $this->model('appointment_model');
-            $this->appointmodel = new appointment();
+            $this->appointmodel = new appointmentModel();
             $result = $this->appointmodel->getAppoinmentbyPatient();
             if ($ShowDoc == null && (isset($_GET['doctor']) || isset($_GET['Date']))) {
                 if ($_GET['doctor'] != NULL && $_GET['Date'] == NULL) {
@@ -203,7 +203,7 @@ class patient extends Controller
         if (isset($_SESSION["userType"])) {
             // Load the DashboardModel
             $this->model('appointment_model');
-            $this->appointmodel = new appointment();
+            $this->appointmodel = new appointmentModel();
             $result = $this->appointmodel->getAppoinmentbyPatient();
 
             // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());

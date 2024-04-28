@@ -45,7 +45,7 @@
 
 <!-- background-color:#E9F3FD -->
 <body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
-<?php include APPROOT.'/views/patient/navbar_view.php'?>
+<?php include APPROOT.'/views/receptionist/navbar_view.php'?>
 
 <div class="popup" style="margin-top:9%;margin-right:29%;margin-left:29%;display:none">
     Are you sure you want to deactivate your account<br>

@@ -115,29 +115,7 @@
 
     </ul>
     
-</div>
+
 </article>
 </body>
 <script src="<?=URLROOT?>./javascript/dashboard.js"></script>
-<script>
-    function select2()
-{if(document.getElementsByClassName("navbar")[0].style.display=="none"){
-    document.getElementsByClassName("navbar")[0].style.display="flex";
-}
-else{
-    document.getElementsByClassName("navbar")[0].style.display="none";
-}
-}
-document.getElementById("deactivate").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="block";
-            document.getElementsByClassName("dashboard")[0].style.filter = "blur(3px)";
-        };
-        document.getElementById("no").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="none";
-            document.getElementsByClassName("dashboard")[0].style.filter = "";
-        }
-        document.getElementById("yes").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="none";
-            document.getElementsByClassName("dashboard")[0].style.filter = "";
-        }   
-</script>

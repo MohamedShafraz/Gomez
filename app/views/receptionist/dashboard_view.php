@@ -1,11 +1,23 @@
 <?php require_once(APPROOT."/views/receptionist/navbar_view.php");?>
 <link rel="stylesheet" href="<?=URLROOT?>/css/patient/dashboard.css">
 <style>
-    #grad1 {
-  height: 200px;
-  background-color: red; /* For browsers that do not support gradients */
-  background-image: linear-gradient(to right, red , yellow);
-}
+    .btn1{
+        font-weight: bold;
+        background: transparent;
+        color:#f7f5f5;
+        border: none;
+        /* color: #11235A;background-color: #f7f9f9; */
+        padding: 1% 2% 1% 2%;
+        border-radius: 15px;
+        font-size: xx-large;
+        width: max-content;
+    }
+    .btn1:hover{
+        color: #11235A;
+        background-color: #f7f9f9;
+        border: 2px solid;
+    }
+    
 </style>
 
 <article class="dashboard">
@@ -16,12 +28,12 @@
             <div style="margin-left: -2.5rem;margin: 3rem 0rem 0rem orem;flex-basis: 42%;margin-top: 3rem;">
             <div  style="background: var(--Gomez-Option-Box);margin: 3% 0% 0% -33%;box-shadow: 1px 1px 7px;border-radius: 44px;flex-basis: 69%;height: 9rem;">
                 <div style="    margin: 1rem 0rem 0rem 4rem;position: fixed;height: 6rem;width: 6rem;"><img src="<?=URLROOT."/public/resources/appointment-book.png"?>" style="    margin: 0rem 0rem 0rem 0rem;width: 100%;" alt=""></div>
-                <button style="font-weight: bold;color: #11235A;background-color: #f7f9f9;;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: xx-large;width: max-content;margin: 8% 0% 0% 36%;"> Make Appointment</button>
+                <button class="btn1" style="margin: 8% 0% 0% 36%;"> Make Appointment</button>
 
             </div>
             <div  style="background: var(--Gomez-Option-Box);margin: 3% 0% 0% -33%;box-shadow: 1px 1px 7px;border-radius: 44px;flex-basis: 69%;height: 9rem;">
                 <div style="    margin: 1rem 0rem 0rem 4rem;position: fixed;height: 6rem;width: 6rem;"><img src="<?=URLROOT."/public/resources/medical-report.png"?>" style="    margin: 0rem 0rem 0rem 0rem;width: 100%;" alt=""></div>
-                <button style="font-weight: bold;color: #11235A;background-color: #f7f9f9;;padding: 1% 2% 1% 2%;border-radius: 15px;font-size: xx-large;width: max-content;margin: 8% 0% 0% 36%;"> Get Labreport</button>
+                <button class="btn1" style="margin: 8% 0% 0% 36%;"> Get Labreport</button>
 
             </div>
             </div>
@@ -31,7 +43,7 @@
                 <span id="month-year"></span>
                 <button onclick="nextMonth()">&#9655;</button>
                 </div>
-                <table class="caltable" style="height: 19rem;width: 94%;margin-top: 3%;    padding: 3%;">
+                <table class="caltable" style="height: 19rem;width: 94%;margin-top: 3%;    padding: 3%;border-redius:20px;">
                     <thead>
                         <tr>
                             

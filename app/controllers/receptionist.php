@@ -20,27 +20,73 @@ private $appointmodel;
         $this->view('receptionist/userdetail_view');
         exit();
     }
-    public function appointments($make=null,$ShowDoc=null){
+    public function appointments($make=null,$more1=null,$more2=null,$create=null){
         if (isset($_SESSION["userType"])) {
             // Load the DashboardModel
             $this->model('appointment_model');
-        $this->appointmodel = new appointment();
-        $result = $this->appointmodel->getAppoinmentbyPatient(); 
+        $this->appointmodel = new appointmentModel();
+        $result = $this->appointmodel->getAllDoctorsforSession();  
        
         // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());
        // print_r($resultUser);
         // $this->view('Patient/appointments_view',$result);
         // $this->view('Patient/dashboard_view',$resultUser);
-        if($make!= null&&$ShowDoc== null){
+        if($make=='more1'){
+            $result = $this->appointmodel->getAppoinmentbyDoctors($_GET['doctor']);
+            if(isset($_GET['doctor'])){
+                
+                $result2 = $this->appointmodel->checkSessionbyDoctor($result[0]['Doctor_id']);
+                // print_r([0=>$result,1=>$result2]);
+                $this->view('receptionist/session_date_view',[0=>$result,1=>$result2]);
+                
+            }
+            if(isset($_POST['create'])&&isset($_POST['Date'])){
+                $data['date'] = $_POST['Date'];
+                $start_time = $_POST['start_time'];
+                $endtime = date('H:i:s', strtotime($start_time . ' +1 hour'));
+                $data['start_time'] = date('H:i:s', strtotime($start_time));;
+                $data['end_time'] = $endtime;
+                $data['Doctor_Id'] = $result[0]['Doctor_id'];
+                $this->appointmodel->setTable('session');
+                $result2 = $this->appointmodel->insertData($data);
+                $error = $this->appointmodel->printErrno();
+                if($error ='1062'){
+                    echo "<script>
+                    alert(' Session Already Created');
+                </script>";
+                }
+                else{
+                echo "<script>
+                    alert(' Session Created');
+                </script>";
+                }
+            }
             
-            $this->view('patient/makeappointment_view');
+            exit();
         }
-        if($ShowDoc!= null){
-            $this->view('patient/Registerd_appointdoctor_view');
+        if($make== 'create'){
+            
+            $this->view('receptionist/create_session_view');
+            exit();
+        }
+        if($make== 'more2'){
+            if(isset($_GET['doctor'])){
+                $result = $this->appointmodel->getAppoinmentOneDoctor($_GET['doctor']);
+
+                // print_r($result);
+
+                 $this->view('receptionist/session_appointments_view',$result);
+            }
+            
+            exit();
+            
+
+            
         }
         else{
-            $result = $this->appointmodel->getAllAppointmentDetails(new Database()); 
-        $this->view('Patient/appointments_view',$result);
+           
+            // print_r($result);
+        $this->view('receptionist/appointment_view',$result);
         // print_r("hello");
         }
         exit();
@@ -48,10 +94,7 @@ private $appointmodel;
             header("location:" . URLROOT . "/users/login");
         }
     }
-    public function treatments(){
-        $this->view('Patient/treatment_view');
-        exit();
-    }
+    
     public function dashboard(){
         $this->view('receptionist/dashboard_view');
         exit();

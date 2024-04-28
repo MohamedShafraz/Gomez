@@ -14,9 +14,9 @@
         <li  id="labreport_registered" onclick="y('labreport_registered')">
             Lab Reports
         </li><br>
-        <li  id="treatments" onclick="y('treatments')">
+        <!-- <li  id="treatments" onclick="y('treatments')">
             Treatments
-        </li><br>
+        </li><br> -->
         <li id="userdetails" onclick="y('userdetails')">
             User information
         </li>
