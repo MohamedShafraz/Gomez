@@ -17,9 +17,7 @@
             <img src="<?=URLROOT."/resources/user.png"?>" class="profilepic" >
             <a href="http://localhost/Gomez/Users/login">
                 <font class="GMfont" style="font-family: 'inter';" onclick="windows.location.href = 'location:logout'"> Hello, <?=$_SESSION['uname']?></font></div>
-                <script>
-                    console.log(<?=$_SESSION["USER"]?>);
-                </script>
+                
             </a>
         </nav>
         <?php include APPROOT.'/views/Doctor/sidebar.php'?>

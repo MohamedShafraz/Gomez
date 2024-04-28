@@ -15,7 +15,7 @@ body {
 }
 
 .details {
-    background-color: white;
+    background-color:beige;
     margin: 1%;
 }
 
@@ -32,14 +32,16 @@ body {
 }
 
 .bluebutton {
-    background-color: #1f1fa0;
-    color: white;
+    background-color: white;
+    color: blue;
     border: none;
     border-radius: 5px;
-    cursor: pointer;
+    cursor: hover;
     padding: 5px 10px;
     height: 40px;
     width: 100px;
+    display: block;
+    
 }
 
 .yellowbutton {
@@ -66,11 +68,15 @@ body {
 
 .card{
     border-radius: 27px;
-    background: #ffffff;
-    box-shadow:  5px 5px 10px #b0b0b0,
-                -5px -5px 10px #ffffff;
+    background:  beige;
+    box-shadow:  5px 5px 10px  beige,
+                -5px -5px 10px  beige;
     padding: 20px;
-    color: #1f1fa0;
-    font-weight: bolder;
+    color: black;
+    font-weight:500;
     margin-top:2%;
+    font-family: 'inter-bold';
+    font-size: 15px;
+    font-style: normal;
+    
 }

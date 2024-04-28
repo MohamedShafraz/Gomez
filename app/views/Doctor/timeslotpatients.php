@@ -48,14 +48,15 @@ button{
             echo '<table>';
             echo '<tr>';
             echo '<td style="width: 20%;"> Name </td>';
-            echo '<td style="width: 20%;"> Age </td>';
-            echo '<td style="width: 20%;"> More </td>';
+            echo '<td style="width: 20%;"> NIC </td>';
+            echo '<td style="width: 20%;"> Phone Number </td>';
             echo '</t style="width: 20%;"r>';
             echo '<tr style="color:white;margin: 1%;"></tr>';
             foreach ($appointments as $row) {
                 echo '<tr>';
                     echo '<td style="width: 20%;">'.$row['Name'].'</td>';
-                    echo '<td style="width: 20%;">'.$row['Age'].'</td>';
+                    echo '<td style="width: 20%;">'.$row['Nic_No'].'</td>';
+                    echo '<td style="width: 20%;">'.$row['phonenumber'].'</td>';
                     echo '<td style="width: 20%;"><a><button onclick="window.location.href=\''.URLROOT.'/Doctor/ViewMoreAppoinment/'.$row['Appointment_Id'].'\'">More</button></a></td>';
                     echo '<tr style="color:white;margin: 1%;"></tr>';
                 echo '</tr>';

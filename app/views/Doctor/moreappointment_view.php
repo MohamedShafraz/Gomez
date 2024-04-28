@@ -11,7 +11,8 @@
 
                     
                     <?php
-                        if ($appointments["Appointment_Status"] == "Pending") {
+                   
+                        if ($appointments["Appointment_Status"] == "pending") {
                             echo '<button style="width: 150px;" class="bluebutton" onclick="location.href=\'' . URLROOT . '/Doctor/AddprescriptionView/' . $appointments["Appointment_Id"] . '\'">Add Prescription</button>';
                         }
                         else if ($appointments["Appointment_Status"] == "Prescription Added") {
@@ -28,22 +29,18 @@
                         echo "Name  : " . $appointments["Name"];
                         echo "<br>";
                         echo "<br>";
+                        echo "Date  : ".$appointments["Appointment_Date"];
+                        echo "<br>";
+                        echo "<br>";
+                        echo "Time  : ".explode(".",$appointments["Appointment_Time"])[0];
+                        echo "<br>";
+                        echo "<br>";
 
 
                         ?>
 
                     </div>
-                    <div class="details">
-                        <?php   
-                            echo "Date  : ".$appointments["Appointment_Date"];
-                            echo "<br>";
-                            echo "<br>";
-                            echo "Time  : ".$appointments["Appointment_Time"];
-                            echo "<br>";
-                            echo "<br>";
-
-                        ?>
-                    </div>
+            
                 </div>
             </div>
 
@@ -60,12 +57,6 @@
                         echo "Patient Age  : " . $patient["age"];
                         echo "<br>";
                         echo "<br>";
-
-                        ?>
-
-                    </div>
-                    <div class="details">
-                        <?php
                         echo "Gender  : " . $patient["gender"];
                         echo "<br>";
                         echo "<br>";
@@ -73,19 +64,18 @@
                         echo "<br>";
                         echo "<br>";
                         echo "Contact  : " . $patient["phonenumber"];
-                        ?>
-                    </div>
-                    <div class="details">
-                        <?php
+                        echo "<br>";
+                        echo "<br>";
                         echo "Gaurdian Name  : " . $patient["guardianName"];
                         echo "<br>";
                         echo "<br>";
                         echo "Gaurdian Phone  : " . $patient["guardianPhone"];
                         echo "<br>";
                         echo "<br>";
-                        echo "type  : " . $patient["type"];
+                        echo "Type  : " . $patient["type"];
+
                         ?>
-                    </div>
+
 
                 </div>
             </div>

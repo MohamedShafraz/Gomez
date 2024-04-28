@@ -21,7 +21,7 @@
     gap: 1rem;
 }
 button{
-    height: 31px;
+  height: 31px;
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
@@ -60,9 +60,9 @@ button{
 
 </aside>
 <article class="dashboard">
-<ul style="height: 26rem;background-color: white;padding: 5%;width: 60rem ; margin-top:2%">
+<ul style="height: 26rem;background-color: white;padding: 5%;width: 61.7rem ; margin-top:2%">
                         
-                        <div style="display:flex ;width: 71.5rem;background-color: darkgray;margin-top: -4.7rem;height: 25rem;flex-direction: column;    margin-left: -4.8rem;">
+                        <div style="display:flex ;width: 71.5rem;background-color: darkgray;margin-top: -4.7rem;height: 36rem;flex-direction: column;    margin-left: -4.8rem;">
                             <div><br></div>
                             
                                 <div><br></div>

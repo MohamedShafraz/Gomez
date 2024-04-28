@@ -12,8 +12,8 @@
         }
 
         input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
+            background-color: beige;
+            color: beige;
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
@@ -25,7 +25,7 @@
         }
 
         input[type="submit"]:hover {
-            background-color: #45a049;
+            background-color: blue;
         }
 
         input[type="text"],
