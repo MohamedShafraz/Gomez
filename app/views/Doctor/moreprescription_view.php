@@ -13,7 +13,7 @@
             <div style="display: flex; flex-direction:row">
                 <div class="details" style="width:50%">
                     <?php 
-                        echo "<p>Patient Name  : ".$patient["name"]."</p>";
+                        echo "<p>Patient Name  : ".$patient["fullname"]."</p>";
                         echo "<br>";
                         
                         echo "<p>Patient Age  : ".$patient["age"]."</p>";
@@ -26,9 +26,8 @@
                 </div>
                 <div class="details" style="width:50%">
                     <?php
-                        echo "<p>Appointment Date  : ".$appointment["Appointment_Date"]."</p>"; 
-                        echo "<br>";
-                        echo "<p>Appointment Time  : ".date('H:i:s', strtotime($appointment['Appointment_Time']))."</p>";
+                        echo "<p>Prescription Date  : ".$prescription[0]["priscription_date"]."</p>"; 
+        
                         
                     ?>
                 </div>
@@ -36,11 +35,17 @@
             <br>
             <div class="details" style="width:98%;">
                 <?php 
-                    echo "<p>Medications  : ".$prescription[0]["Medications"]."</p>";
+                    echo "<p>Disease  : ".$prescription[0]["disease"]."</p>";
                     echo "<br>";
-                    echo "<p>instructions  : ".$prescription[0]["instructions"]."</p>";
+                    echo "<p>Prescription  : ".$prescription[0]["prescription"]."</p>";
                     echo "<br>";
-                    echo "<p>labtesting  : ".$prescription[0]["labtesting"]."</p>";
+                    echo "<p>Labtesting  : ".$prescription[0]["labtesting"]."</p>";
+                ?>
+            </div>
+            <div class="details" style="width:98%;">
+                <?php 
+                    echo "<br>";
+                    echo "<p>Othermarks  : ".$prescription[0]["otherremarks"]."</p>";
                 ?>
             </div>
             <br>
@@ -74,7 +79,7 @@
     <button class="bluebutton" onclick="editprescription()" style="margin-left:24%;margin-top:2%;width:200px">Edit Prescription</button>
     <script>
         function editprescription() {
-            window.location.href = '<?= URLROOT ?>/Doctor/EditPrescriptionView/<?= $appointment["Appointment_Id"] ?>/<?= $prescription[0]["prescription_id"] ?>';
+            window.location.href = '<?= URLROOT ?>/Doctor/EditPrescriptionView/<?= $prescription[0]["prescriptionnumber"] ?>';
         }
     </script>
 </body>

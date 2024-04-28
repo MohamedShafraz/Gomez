@@ -1,3 +1,4 @@
+
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
 <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 <style>
@@ -71,12 +72,23 @@
             <div style="display: flex;flex-direction:row; justify-content:center">
                 <label for="medicineName">Medicine Name</label>
                 <select name="medicineName[]" id="medicineName">
-                    <option value="MedicineA">MedicineA</option>
-                    <option value="MedicineB">MedicineB</option>
-                    <option value="MedicineC">MedicineC</option>
-                    <option value="MedicineD">MedicineD</option>
-                    <option value="MedicineE">MedicineE</option>
-                <select>
+                    <?php
+                    // List of medicines
+                    $medicines = [
+                        "Acetaminophen", "Adderall", "Amitriptyline", "Amlodipine", "Amoxicillin", "Ativan", "Atorvastatin", "Azithromycin", "Benzonatate", "Brilinta",
+                        "Bunavail", "Buprenorphine", "Cephalexin", "Ciprofloxacin", "Citalopram", "Clindamycin", "Clonazepam", "Cyclobenzaprine", "Cymbalta", "Doxycycline",
+                        "Dupixent", "Entresto", "Entyvio", "Farxiga", "Fentanyl Patch", "Gabapentin", "Gilenya", "Humira", "Hydrochlorothiazide", "Hydroxychloroquine", "Ibuprofen",
+                        "Imbruvica", "Invokana", "Januvia", "Jardiance", "Kevzara", "Leqvio", "Lexapro", "Lisinopril", "Lofexidine", "Loratadine", "Lyrica", "Melatonin", "Meloxicam",
+                        "Metformin", "Methadone", "Methotrexate", "Metoprolol", "Mounjaro", "Naloxone", "Naltrexone", "Naproxen", "Narcan", "Nurtec", "Omeprazole", "Onpattro", "Otezla",
+                        "Ozempic", "Pantoprazole", "Plan B", "Prednisone", "Probuphine", "Rybelsus", "secukinumab", "Sublocade", "Tramadol", "Trazodone", "Viagra", "Wegovy", "Wellbutrin",
+                        "Xanax", "Zubsolv"
+                    ];
+
+                    foreach ($medicines as $medicine) {
+                        echo "<option value='$medicine'>$medicine</option>";
+                    }
+                    ?>
+                </select>
                 <label for="dose">Dose</label>
                 <input type="number" id="dose" name="dose[]" min="1" required>
                 <label for="timing">Timing</label>
@@ -93,7 +105,7 @@
                     <option value="Before">Before</option>
                     <option value="After">After</option>
                 </select>
-                <button class="bluebutton" id="addMedicine">Add Medicine</button>
+                <button class="bluebutton" id="addMedicine">add</button>
             </div>
         </div>
         <button id="submit"  type="submit" class="greenbutton btn" style="width: 25%; margin-top:20px">Submit</button>
@@ -109,12 +121,24 @@
         <div style="display: flex;flex-direction:row; justify-content:center">
           <label for="medicineName">Medicine Name</label>
           <select name="medicineName[]" id="medicineName">
-            <option value="MedicineA">MedicineA</option>
-            <option value="MedicineB">MedicineB</option>
-            <option value="MedicineC">MedicineC</option>
-            <option value="MedicineD">MedicineD</option>
-            <option value="MedicineE">MedicineE</option>
-          </select>
+            <?php
+            // List of medicines
+            $medicines = [
+                "Acetaminophen", "Adderall", "Amitriptyline", "Amlodipine", "Amoxicillin", "Ativan", "Atorvastatin", "Azithromycin", "Benzonatate", "Brilinta",
+                "Bunavail", "Buprenorphine", "Cephalexin", "Ciprofloxacin", "Citalopram", "Clindamycin", "Clonazepam", "Cyclobenzaprine", "Cymbalta", "Doxycycline",
+                "Dupixent", "Entresto", "Entyvio", "Farxiga", "Fentanyl Patch", "Gabapentin", "Gilenya", "Humira", "Hydrochlorothiazide", "Hydroxychloroquine", "Ibuprofen",
+                "Imbruvica", "Invokana", "Januvia", "Jardiance", "Kevzara", "Leqvio", "Lexapro", "Lisinopril", "Lofexidine", "Loratadine", "Lyrica", "Melatonin", "Meloxicam",
+                "Metformin", "Methadone", "Methotrexate", "Metoprolol", "Mounjaro", "Naloxone", "Naltrexone", "Naproxen", "Narcan", "Nurtec", "Omeprazole", "Onpattro", "Otezla",
+                "Ozempic", "Pantoprazole", "Plan B", "Prednisone", "Probuphine", "Rybelsus", "secukinumab", "Sublocade", "Tramadol", "Trazodone", "Viagra", "Wegovy", "Wellbutrin",
+                "Xanax", "Zubsolv"
+            ];
+
+            // Generating options
+            foreach ($medicines as $medicine) {
+                echo "<option value='$medicine'>$medicine</option>";
+            }
+            ?>
+        </select>
           <label for="dose">Dose</label>
           <input type="number" id="dose" name="dose[]" min="1" required>
           <label for="timing">Timing</label>
@@ -150,7 +174,7 @@
         url: "<?php echo URLROOT; ?>/Doctor/AddMedicine",
         data: formData,
         success: function(data) {
-          window.location.href = "<?php echo URLROOT; ?>/Doctor/dashboard/prescription";
+          window.location.href = "<?php echo URLROOT; ?>/Doctor/appointments/message";
         }
       });
     });

@@ -12,8 +12,8 @@
         }
 
         input[type="submit"] {
-            background-color: beige;
-            color: beige;
+            background-color: #4CAF50;
+            color: white;
             padding: 10px 20px;
             border: none;
             border-radius: 4px;
@@ -25,11 +25,13 @@
         }
 
         input[type="submit"]:hover {
-            background-color: blue;
+            background-color: #45a049;
         }
 
         input[type="text"],
         input[type="date"],
+
+        input[type="number"],
         textarea {
             width: 100%;
             padding: 12px 20px;
@@ -65,30 +67,97 @@
     <div style="margin-left:24%; display:flex; justify-content:center;">
     
   
-    <form class="card" action="<?=URLROOT."/Doctor/AddPrescription"?>" method="post" style="margin-top:5%;">
-            <input type="hidden" name="appointment_id" value="<?php echo $appointments[0]['Appointment_Id']?>">
-            <input type="hidden" name="patient_id" value="<?php echo $patientid?>">
-            <input type="hidden" name="Doctor_id" value="<?php echo $doctorid?>">
+    <form id="labForm" class="card" onsubmit="submitForm()" action="<?=URLROOT."/Doctor/AddPrescription"?>" method="post" style="margin-top:5%;">
+            <input type="hidden" name="Appointment_Id" value="<?php echo $appointment[0]['Appointment_Id']?>">
+            <input type="hidden" name="patient_id" value="<?php echo $appointment[0]['Patient_Id']?>">
 
+            <label for="age">Age</label><br>
+            <input type="number" id="age" name="age" min=0 value=""><br><br>
 
-            <label for="medications">Medications</label><br>
-            <textarea id="medications" name="medications" rows="4" cols="50"></textarea><br><br>
+            <label for="disease">Disease</label><br>
+            <textarea id="disease" name="disease" rows="4" cols="50"></textarea><br><br>
 
-            <label for="instructions">Instructions</label><br>
-            <input type="text" id="instructions" name="instructions" value=""><br><br>
+            <label for="prescription">Prescription</label><br>
+            <textarea id="prescription" name="prescription" rows="4" cols="50"></textarea><br><br>
 
-            <label for="labTesting">Lab Testing</label><br>
-            <input type="text" id="labTesting" name="labTesting" value=""><br><br>
+            <label for="labtesting">Lab Testing</label><br>
+            
+            <div style="display:flex;flex-direction:row;">
+                <select id="labtestinglist" name="labtesting">
+                        <option value="">Select a Test</option>
+                        <option value="Urine Full Report (UFR)">Urine Full Report (UFR)</option>
+                        <option value="Thyroid Profile (TSH / fT4)">Thyroid Profile (TSH / fT4)</option>
+                        <option value="Vitamin D (25-Hydroxy)">Vitamin D (25-Hydroxy)</option>
+                        <option value="VDRL/RPR (Quantitative)">VDRL/RPR (Quantitative)</option>
+                        <option value="Urine Pregnancy Test">Urine Pregnancy Test</option>
+                        <option value="Urine for Albumin">Urine for Albumin</option>
+                        <option value="Uric Acid">Uric Acid</option>
+                        <option value="Urea">Urea</option>
+                        <option value="TSH">TSH</option>
+                        <option value="Troponin T (High Sensitive)">Troponin T (High Sensitive)</option>
+                        <option value="Troponin I">Troponin I</option>
+                        <option value="TPHA">TPHA</option>
+                </select><br><br>
+                <button type="button" onclick="addValue()">Add Value</button> <!-- Changed type to button -->
+            </div>
 
-            <input type="hidden" id="dateSigned" name="dateSigned" value="<?= date('Y-m-d'); ?>">
+            <label for="otherremarks">Other Remarks</label><br>
+            <textarea id="otherremarks" name="otherremarks" rows="4" cols="50"></textarea><br><br>
+
+            <input type="hidden" id="labtesting" name="labtesting" value="">
+
+            <input type="hidden" id="priscription_date" name="priscription_date" value="<?= date('Y-m-d'); ?>">
 
             <input type="submit" value="Submit">
         </form>
-
-
-    </div>
-    </div>
     </div>
 </article>
+
+<!-- Display selected values -->
+<p>Selected Values:</p>
+<ul id="selectedValues"></ul>
+
+<script>
+    var selectedValues = [];
+
+    // Function to add selected value to array
+    function addValue() {
+        var select = document.getElementById("labtestinglist");
+        var selectedOption = select.options[select.selectedIndex];
+        var selectedValue = selectedOption.value;
+        var selectedText = selectedOption.text;
+
+        // Check if value is already in array
+        if (!selectedValues.includes(selectedValue)) {
+            selectedValues.push(selectedValue);
+
+            // Display selected value
+            var selectedValuesList = document.getElementById("selectedValues");
+            var listItem = document.createElement("li");
+            listItem.textContent = selectedText;
+            selectedValuesList.appendChild(listItem);
+        }
+    
+        console.log(selectedValues);
+    }
+
+    
+    function submitForm() {
+        
+       
+        var labtestingValue = selectedValues.join(', ');
+        
+        
+        document.getElementById("labtesting").value = labtestingValue;
+
+        
+        selectedValues = [];
+        
+        document.getElementById("selectedValues").innerHTML = "";
+       
+        return true;
+        
+    }
+</script>
 
 <?php require_once(APPROOT . "/views/Admin/footer_view.php");?>

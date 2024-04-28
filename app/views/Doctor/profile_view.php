@@ -1,97 +1,136 @@
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
-<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-<link rel="stylesheet" href="<?=URLROOT?>/css/Admin/dashboard.css">
-<link rel="stylesheet" href="<?=URLROOT?>/css/new.css">
+<script>
+    $data = [];
+    $data.push("<?= "Fullname :" . $data['userName'] ?>");
+    $data.push("<?= "gender :" . $data['gender'] ?>");
+    $data.push("<?= "age : " . $data['age'] ?>");
+    $data.push("<?= "phonenumber : " . $data['phonenumber'] ?>");
+    $data.push("<?= "email : " . $data['email'] ?>");
+
+    // console.log($data);
+</script>
 <style>
-    .buttonspace{
-    display: flex;
-    justify-content: end;
-    font-size: 30px;
-    grid-template-columns: repeat(auto-fit, minmax(1rem, 0.3fr));
-    gap: 1rem;
-}
-.popup{
-    height: 10vh;
-    background-color: white;
-    color:black;
-    width: 50%;
-    align-items: center;
-    gap: 1rem;
-    position: fixed;
-    padding: 5%;
-    z-index: 5;
-}
-.button{
-    height: 31px;
-  flex-direction: column;
-  justify-content: center;
-  flex-shrink: 0;
-  color: #FFF;
-  font-family: 'inter-bold';
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  padding: 10px;
-  background-color: var(--Gomez-Purple);
-  border-style: hidden;
-  border-radius: 6px;
-}
+    .button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--Gomez-White);
+        font-family: 'inter-bold';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: var(--Gomez-highlight);
+        position: relative;
+        padding: 1.4% 2.5%;
+        filter: drop-shadow(3px 3px 7px --Gomez-Black);
+        width: max-content;
+        border-style: none;
+        /* box-shadow: 2px 2px 1px var(--Gomez-Black); */
+        font-family: inter;
+
+    }
+
+    /* input[type="file"] {
+        display: none;
+    }
+
+    .custom-file-upload {
+        border: 1px solid #ccc;
+        display: inline-block;
+        padding: 6px 12px;
+        cursor: pointer;
+    } */
 </style>
 
-<!-- background-color:#E9F3FD -->
-<body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
+<div class="lay" style="
+    position: fixed;
+    margin: 1% 10% 0% 28%;z-index:100;
+    padding: 4% 11% 5% 11%;
+" id='popup1'>
+    <a href="./" style="position: fixed;
+    margin: -5% 0% 0% 16%;
+    z-index: 107;
+    padding: 4% 11% 5% 11%;"><img style="width:5%;postion:fixed" src="<?= URLROOT . "/resources/back-button-svgrepo-com.svg" ?>"></img></a><br>
 
-<div class="popup" style="margin-top:9%;margin-right:29%;margin-left:33%;display:none">
-    Are you sure you want to deactivate your account<br>
-    <br><div class="buttonspace" style="justify-content:center"><button class="button" style="background-color:red;padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;" id ="yes">yes</button><br><button id="no" class="button" style="background-color:green;padding-right: 5%;padding-left: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;">no</button></div>
-</div>
-<article class="dashboard" style="margin-left:10%;">
-    
-    <!-- <a>Welcome to Gomez</a> -->
-    
-    <ul style="background-color: white;padding:5%; width:50%">
-    <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?=URLROOT."/public/resources/user.jpeg"?>" alt="Profile Picture" style="width: 73%;"></div>   
-        <li class="users" style="color: black;">Full Name : <?php echo $data["doctor"]["fullname"] ?><br><br></li>
-        <li class="users">Gender : <?php echo $data["doctor"]["gender"] ?> <br><br></li>
-        <li class="users">Age : <?php echo $data["doctor"]["age"] ?> <br><br></li>
-        <li class="users">Phone number : <?php echo $data["doctor"]["phonenumber"] ?> <br><br></li>
-        <li class="users">Email : <?php echo $data["user"]["Email"] ?> <br><br></li>
-        <a onclick="location.href='<?= URLROOT . "/Doctor/EditProfileView" ?>'"><button class="button" style="margin-left: 50%;" id="no">Edit Profile</button></a>
-        <button id="deactivate"  class="button">Deactivate Account</button>
-        <div id="chartContainer"></div>
-        
-        <div class="popup" style="margin-top:9%;margin-right:29%;margin-left:29%;display:none">Are you sure you want to deactivate your account<br>
-        <br><div class="buttonspace" style="justify-content:center"><button class="button" style="background-color:red;padding-left: 5%;
-            padding-right: 5%;
-            padding-top: 2%;
-            padding-bottom: 4%;" id ="yes">yes</button><br><button id="no" class="button" style="background-color:green;padding-right: 5%;padding-left: 5%;
-            padding-top: 2%;
-            padding-bottom: 4%;">no</button></div>
+    <h1>Update Profile</h1>
+
+    <form action="./update" method="post" enctype="multipart/form-data">
+        <div style="display:flex">
+            <div class="users" style="float: left;gap: 5%;width:50% ;">
+                <label for="file">Image</label><br>
+                <!-- <label for="image" class="custom-file-upload">
+                    Upload Image
+                </label> -->
+                <br>
+                <input type="file" name="file">
+
+                <br>
+
+            </div>
+            <!-- <script>
+                function v() {
+                    console.log("<?= $_FILES ?? "test" ?>");
+                }
+            </script> -->
+            <div id="img">
+
+            </div>
+            <div class="users" style="float: right;gap: 5%;width:50% ;">
+                <script>
+                    $data.forEach(element => {
+
+                        document.writeln(
+                            " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
+                            "<input type='text' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' value=" + element.split(" :")[1] + " required><br><br>")
+                    });
+                </script>
+                <input name="submit" type="submit" class="button" value="update" style="padding:6% 7%;">
+
+            </div>
         </div>
-   
+    </form>
+
 </div>
+<article class="dashboard">
+
+    <!-- <a>Welcome to Gomez</a> -->
+
+    <ul style="background-color: white;padding:5%; width:50%">
+        <!-- <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div> -->
+        <div class="users" style="float: left;gap: 5%;width:50% ;"><?= "<img src='data:image/png;base64," . base64_encode($data['image']) . "' alt='Profile Picture' style='    width: 12.3rem;
+    height: 12.3rem;;'>" ?></div>
+
+        <script>
+            $data.forEach(element => {
+                document.writeln("<li class='users'>" + element + "<br><br></li>")
+            });
+        </script>
+
+
+        <div id="chartContainer"></div>
+        <button onclick="window.location.href += '/id?'+.<?= $_SESSION['User_Id'] ?>" style="float:right" class="button">Edit</button>
+    </ul>
+    </div>
 </article>
-<script>
-    
-document.getElementById("deactivate").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="block";
-            document.getElementsByClassName("dashboard")[0].style.filter = "blur(3px)";
-        };
-        document.getElementById("no").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="none";
-            document.getElementsByClassName("dashboard")[0].style.filter = "";
-        }
-        document.getElementById("yes").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="none";
-            document.getElementsByClassName("dashboard")[0].style.filter = "";
-            window.location.href = "<?=URLROOT?>/Doctor/DeactivateAccount";
-        }   
-</script>
 </body>
+<script>
+    if (window.location.href.split('?').length < 2) {
+        document.getElementById('popup1').style.visibility = 'hidden';
+
+    }
+
+    function m($id) {
+
+        console.log($data);
+        // window.location.href = '.';
+        document.getElementById($id.toString()).style.visibility = 'hidden';
+    }
+    if (window.location.href.split('?').length == 2) {
+        document.getElementsByClassName('dashboard')[0].style.filter = 'blur(4px)';
+    }
+</script>
 <?php require_once(APPROOT . "/views/doctor/footer_view.php")?>

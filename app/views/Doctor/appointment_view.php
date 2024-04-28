@@ -21,7 +21,7 @@
     gap: 1rem;
 }
 button{
-  height: 31px;
+    height: 31px;
   flex-direction: column;
   justify-content: center;
   flex-shrink: 0;
@@ -60,40 +60,28 @@ button{
 
 </aside>
 <article class="dashboard">
-<ul style="height: 26rem;background-color: white;padding: 5%;width: 61.7rem ; margin-top:2%">
+<ul style="height: 26rem;background-color: white;padding: 5%;width: 60rem ; margin-top:2%">
                         
-                        <div style="display:flex ;width: 71.5rem;background-color: darkgray;margin-top: -4.7rem;height: 36rem;flex-direction: column;    margin-left: -4.8rem;">
+                        <div style="display:flex ;width: 71.5rem;background-color: darkgray;margin-top: -4.7rem;height: 25rem;flex-direction: column;    margin-left: -4.8rem;">
                             <div><br></div>
                             
                                 <div><br></div>
 
                                 <?php
-                
-                                        $hourlyCounts = array_fill(0, 24, 0); 
-                                        $currentDate = date('n/j/Y'); // Format: Month/Day/Year
-                                        $currentWeekday = date('l');
-                                                                    
-                                        foreach ($appointments as $appointment) {
-                                            $hour = (int)substr($appointment['Appointment_Time'], 0, 2);
-                                            $hourlyCounts[$hour]++;
-                                        }
                                                         
-                                        for ($hour = 0; $hour < 24; $hour++) {
-                                            if ($hourlyCounts[$hour] > 0) {
-                                                echo "<div class='custom-div' style='align-self: center;width: 98%;background-color: #fff;height: fit-content;'>";
-                                                echo "<div style='display: flex; flex-direction:row'>";
-                                                echo "<div style='border-left: solid;width:13rem;'>";
-                                                echo "<ul style='list-style-type: none;text-align: left;margin: 1rem 0rem 0rem 0rem;'><li>$currentDate</li><li style='font-weight: bold;font-size: x-large;'>$currentWeekday $hour:00</li></ul>";
-                                                echo "</div>";
-                                                echo "<div style='width: 13rem;'>";
-                                                echo "<ul style='list-style-type: none;text-align: left;margin: 1rem 0rem 0rem 0rem;width: 10rem;'><li>Active Appointments</li><li style='font-weight: bold;font-size: x-large;'>{$hourlyCounts[$hour]}</li></ul>";
-                                                echo "</div>";
-                                                echo "<div style='width: 30rem;'>";
-                                                echo "<ul style='list-style-type: none;text-align: left;'><div style='flex-direction: row;display: flex;margin-left:14rem'><div style='margin-top: -1.75rem;'><li><div style='width: 27%;'><div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;background:#8393ca;'><a onclick='viewtimeslot($hour, " . ($hour + 1) . ")' style='text-decoration: none;'><font class='font1'>View Appointments</font></a></div></div></li></div><div style='margin-left: 1rem;margin-top: 0.75rem;width: 10rem;'><li style='font-weight: bold;font-size: x-large;width: 10rem;'>$currentWeekday $hour:00</li></div></div></ul>";
-                                                echo "</div></div></div>";
-                                                echo "<br>";
-                                            }
-                                        }
+                                        foreach($sessions as $session) {
+                                          echo "<div class='custom-div' style='align-self: center;width: 98%;background-color: #fff;height: fit-content;display: flex; flex-direction:row'>";
+                                          echo "<div style='display: flex; flex-direction:row'>";
+                                          echo "<div style='border-left: solid;width:13rem;'>";
+                                          echo "<ul style='list-style-type: none;text-align: left;margin: 1rem 0rem 0rem 0rem;'><li>Date: " . $session['date'] . "</li></ul>";
+                                          echo "<ul style='display:flex;flex-direction:row'><li style='font-weight: bold;font-size: x-large;'>Start Time: </li> <li style='font-weight: bold;font-size: x-large;'>" . $session['start_time'] . "</li><li style='font-weight: bold;font-size: x-large;'>End Time: </li> <li style='font-weight: bold;font-size: x-large;'> " . $session['end_time'] . "</li></ul>";
+                                          echo "</div>";
+                                          echo "<div style='width: 30rem;'>";
+                                          echo "<ul style='list-style-type: none;text-align: left;'><div style='flex-direction: row;display: flex;margin-left:14rem'><div style='margin-top: -1.75rem;'><li><div style='width: 27%;'><div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;background:#8393ca;'><a onclick='viewtimeslot(".$session['session_id'].")' style='text-decoration: none;'><font class='font1'>View Appointments</font></a></div></div></li></div><div style='margin-left: 1rem;margin-top: 0.75rem;width: 10rem;'><li style='font-weight: bold;font-size: x-large;width: 10rem;'></li></div></div></ul>";
+                                          echo "</div></div></div>";
+                                          echo "<br>";
+                                      }
+                                        
                                 ?>
 
                                
@@ -104,10 +92,16 @@ button{
     </div>
 </article>
 <script>
-    function viewtimeslot(startTime,endTime){
-    window.location.href = '<?= URLROOT ?>/Doctor/ShowPatientsAllocatedTimeSlot/' + encodeURIComponent(startTime) + '/' + encodeURIComponent(endTime);
+    function viewtimeslot(sessionid){
+    window.location.href = '<?= URLROOT ?>/Doctor/ShowPatientsAllocatedTimeSlot/' + sessionid ;
 }
 
+  // Function to close the alert box
+  function closeAlert() {
+    // Hide the overlay and alert box
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('alertBox').style.display = 'none';
+  }
 
 
 </script>

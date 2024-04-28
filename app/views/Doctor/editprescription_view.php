@@ -37,45 +37,39 @@
                 <div class="card" style="display: flex; flex-direction:row">
                     <div class="details" style="width:50%">
                         <?php 
-                            echo "<p>Patient Name  : ".$patient["name"]."</p>";
+                            echo "<p>Patient Name  : ".$patient["fullname"]."</p>";
                             echo "<br>";
                             echo "<br>";
-                            echo "<p>Patient Email  : ".$patient["age"]."</p>";
+                            echo "<p>Patient Age  : ".$patient["age"]."</p>";
                             echo "<br>";
                             echo "<br>";
                             echo "<p>Patient Phone Number  : ".$patient["gender"]."</p>";
                         ?>
 
                     </div>
-                    <div class="details" style="width:50%">
-                        <?php   echo "<p>Appointment Date  : ".$appointment["Appointment_Date"]."</p>"; 
-                                echo "<br>";
-                                echo "<br>";
-                                echo "<p>Appointment Time  : ".$appointment["Appointment_Time"]."</p>";
-                                echo "<br>";
-                                echo "<br>";
-                                echo "<p>Appointment Status  : ".$appointment["Days_left"]."</p>";
-                        ?>
-                    </div>
                 </div>
                 <div class="card" style="width:96%;">
                     <form  action="<?=URLROOT."/Doctor/EditPrescription"?>" method="post">
                         
-                        <label for="medications">Medications:</label><br>
-                        <textarea id="medications" name="medications"><?php echo $prescription[0]["Medications"]; ?></textarea>
+                        <label for="disease">Dicease:</label><br>
+                        <textarea id="disease" name="disease"><?php echo $prescription["disease"]; ?></textarea>
                         <br><br>
 
-                        <label for="instructions">Instructions:</label><br>
-                        <textarea id="instructions" name="instructions"><?php echo $prescription[0]["instructions"]; ?></textarea>
+                        <label for="instructions">Prescription:</label><br>
+                        <textarea id="instructions" name="prescription"><?php echo $prescription["prescription"]; ?></textarea>
                         <br><br>
 
                         <label for="labtesting">Lab Testing:</label><br>
-                        <textarea id="labtesting" name="labtesting"><?php echo $prescription[0]["labtesting"]; ?></textarea>
+                        <textarea id="labtesting" name="labtesting"><?php echo $prescription["labtesting"]; ?></textarea>
                         <br><br>
 
-                        <input type="hidden" name="prescription_id" value="<?php echo $prescription[0]["prescription_id"]; ?>">
-                        <input type="hidden" name="appointment_id" value="<?php echo $appointment["Appointment_Id"]; ?>">
+                        <label for="otherremarks">Other Marks:</label><br>
+                        <textarea id="otherremarks" name="otherremarks"><?php echo $prescription["otherremarks"]; ?></textarea>
+                        <br><br>
 
+                        <input type="hidden" name="prescriptionnumber" value="<?php echo $prescription["prescriptionnumber"]; ?>">
+                        <input type="hidden" name="Appointment_Id" value="<?php echo $prescription["Appointment_Id"]; ?>">
+                        <input type="hidden" name="patientid" value="<?php echo $prescription["patientid"]; ?>">
                         <input style="width: 200px;"  class="bluebutton" type="submit" value="Save Changes">
                 </form>
 

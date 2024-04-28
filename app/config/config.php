@@ -28,3 +28,5 @@ define('Medicine','medicine_data');
 
 
 define('Receptionists','receptionist');
+
+define('Session','session');

@@ -3,31 +3,49 @@
 class DoctorModel extends Database
 {
 
-    public function getDoctor($username)
+    public function getDoctor($userid)
     {
-        $where = "Username='$username'";
+        $where = "Doctor_id ='$userid'";
         $this->setTable(Doctors);
         $result = $this->fetchData($where);
 
         return $result;
     }
 
-    public function getAppoinmentsbyDoctor($id)
+    public function getSessions($id)
     {
         $where = "doctor_id='$id'";
-        $this->setTable(Appointment);
+        $this->setTable(Session);
         $result = $this->fetchData($where);
 
         return $result;
     }
 
-    public function getAppointment($id)
+    public function getSessionsToday($id)
     {
-        $where = "Appointment_Id='$id'";
+        $where = "date = CURDATE() AND doctor_id='$id'";
+        $this->setTable(Session);
+        $result = $this->fetchData($where);
+
+        return $result;
+    }
+
+    public function getAppointmentbySession($id)
+    {
+        $where = "session_id='$id'";
         $this->setTable(Appointment);
         $result = $this->fetchData($where);
         return $result;
     }
+
+    public function getPatientbyPatiend($id)
+    {
+        $where = "ID='$id'";
+        $this->setTable(Patients);
+        $result = $this->fetchData($where);
+        return $result;
+    }
+
 
     public function getPatient($id)
     {
@@ -44,14 +62,6 @@ class DoctorModel extends Database
         return $result;
     }
 
-    public function getPrescriptionbyDoctor($id)
-    {
-        $where = "doctorid='$id'";
-        $this->setTable(Prescription);
-        $result = $this->fetchData($where);
-        return $result;
-    }
-
 
     public function getAppoinmentbyID($id)
     {
@@ -63,18 +73,12 @@ class DoctorModel extends Database
 
     public function getPrescriptionbyID($id)
     {
-        $where = "prescription_id='$id'";
+        $where = "prescriptionnumber='$id'";
         $this->setTable(Prescription);
         $result = $this->fetchData($where);
         return $result;
     }
 
-    public function updateAppointmentStatus($id, $data)
-    {
-       $query = "UPDATE Appointment SET Appointment_Status='$data' WHERE Appointment_Id='$id'";
-       $result = $this->executeQuery($query);
-       return $result;
-    }
 
     public function getPrescriptionbyAppointment($id)
     {
@@ -84,17 +88,10 @@ class DoctorModel extends Database
         return $result;
     }
 
-    public function getUpcomingAppoinmentsbyDoctor($id)
-    {
-        $where = "doctor_id='$id' AND Appointment_Date = CURDATE() AND Appointment_Status='Pending'";
-        $this->setTable(Appointment);
-        $result = $this->fetchData($where);
-        return $result;
-    }
 
     public function updateprescription($id, $data)
     {
-        $query = "UPDATE Prescription SET Medications='$data[Medications]', instructions='$data[instructions]', labtesting='$data[labtesting]' WHERE prescription_id='$id'";
+        $query = "UPDATE Prescription SET 	disease='$data[disease]', prescription='$data[prescription]', labtesting='$data[labtesting]',otherremarks='$data[otherremarks]' WHERE prescriptionnumber='$id'";
         $result = $this->executeQuery($query);
         return $result;
     }
@@ -121,29 +118,6 @@ class DoctorModel extends Database
         return $result;
     }
 
-    public function getMonthPatientsbyDoctor($id)
-    {
-        $where = "doctor_id='$id' AND MONTH(Appointment_Date) = MONTH(CURDATE())";
-        $this->setTable(Appointment);
-        $result = $this->fetchData($where);
-        return $result;
-    }
-
-    public function getMonthAppoinmentsbyDoctor($id)
-    {
-        $where = "doctor_id='$id' AND MONTH(Appointment_Date) = MONTH(CURDATE())";
-        $this->setTable(Appointment);
-        $result = $this->fetchData($where);
-        return $result;
-    }
-
-    public function getTotalAppoinmentsbyDoctor($id)
-    {
-        $where = "doctor_id='$id'";
-        $this->setTable(Appointment);
-        $result = $this->fetchData($where);
-        return $result;
-    }
 
     public function deactivateAccount($username)
     {
@@ -167,14 +141,6 @@ class DoctorModel extends Database
         return $result;
         
     }
-
-    public function getAppointmentsbyDoctoronTodayandbetweentimeslots($id,$starttime,$endtime){
-        $where = "doctor_id='$id' AND Appointment_Date = CURDATE() AND HOUR(Appointment_Time) >= '$starttime' AND HOUR(Appointment_Time) < '$endtime'";
-        $this->setTable(Appointment);
-        $result = $this->fetchData($where);
-        return $result;
-    }
-
     
     
 }
