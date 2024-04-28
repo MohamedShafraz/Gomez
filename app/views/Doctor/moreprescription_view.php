@@ -4,6 +4,7 @@
 <style>
     tr{
         text-align: center;
+        
     }
 </style>
 

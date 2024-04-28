@@ -10,12 +10,12 @@ ul li a {
 }
 
 body {
-    font-family: 'Segoe UI';
-    background-color: #f2f2f2;
+    font-family:'inter-bold';
+    background-color: white;
 }
 
 .details {
-    background-color:beige;
+    background-color:white;
     margin: 1%;
 }
 
@@ -68,15 +68,16 @@ body {
 
 .card{
     border-radius: 27px;
-    background:  beige;
-    box-shadow:  5px 5px 10px  beige,
-                -5px -5px 10px  beige;
+    background:  white;
+    box-shadow:  5px 5px 10px  white,
+                -5px -5px 10px  white;
     padding: 20px;
     color: black;
     font-weight:500;
     margin-top:2%;
     font-family: 'inter-bold';
-    font-size: 15px;
+    font-size: 17px;
     font-style: normal;
     
 }
+
