@@ -64,15 +64,14 @@
     
     <!-- <a>Welcome to Gomez</a> -->
     
-    <ul style="height: 26rem;background-color: white;padding: 5%;width: 62rem;">
-    
-    <div class="users" style="height: 9rem;margin: 2rem;float: left;gap: 5%;width: 10rem;"><img src="<?=URLROOT."/public/resources/doctor1.png"?>" style="padding: 1rem 1rem 1rem 1rem;height: 9rem;width: 12rem;border: 1px solid;" ></div>
+    <ul style="height: 26rem;background-color: white;padding: 5%;width: 62rem;display:flex">
+    <div style="    display: flex;flex-direction: column;width:50%;">
     <div class="users" style="height: 9rem;margin: 2rem;float: left;gap: 5%;width: 10rem;">
         <ul style="width: max-content;">
             <li> <b> Appointment</b></li><br>
             <li>Date:</li><br>
             <li>Time:</li><br>
-            <li>Appointment ID:</li>
+            
         </ul>
     </div>
     <div class="users" style="height: 9rem;margin: 2rem;float: left;gap: 5%;width: 10rem;">
@@ -82,7 +81,17 @@
             <li>Phone Number:</li><br>
             <li>Nic:</li>
         </ul>
-    </div>
+    </div></div>
+    <div style="    display: flex;flex-direction: column;">
+    <div class="users" style="height: 9rem;margin: 2rem;float: left;gap: 5%;width: 10rem;">
+    <ul style="width: max-content;">
+            <li> <b> Prescription</b></li><br>
+            <li>Disease:</li><br>
+            <li>Prescription:</li><br>
+            <li>Lab Test:</li><br>
+            <li>Other Remarks:</li>
+        </ul>
+    </div></div>
 
 
     </ul>

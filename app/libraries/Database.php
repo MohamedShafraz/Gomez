@@ -71,7 +71,8 @@ class Database
                 $i++;
             }
         }
-        
+        // print_r($query);
+    
         return $data;
     }
     public function fetchAppointment($where, $data=1)
@@ -108,6 +109,9 @@ class Database
         }
         // print_r($query);
         return $data;
+    }
+    public function printId(){
+     return $this->connection->insert_id;
     }
 
     public function fetchDataByUser($where, $data=1)
@@ -183,7 +187,7 @@ class Database
                 $i++;
             }
         }
-        
+        // print_r($query);
         return $data;
     }
 
@@ -246,7 +250,8 @@ class Database
         $values = "'" . implode("', '", array_values($data)) . "'";
         $query = "INSERT INTO " . $this->table . " ($fields) VALUES ($values)";
 
-        // print_r($query);
+        print_r($query);
+        print_r('<br>');
         return $this->executeQuery($query);
     }
 public function printErrno()

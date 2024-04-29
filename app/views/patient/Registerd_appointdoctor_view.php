@@ -82,7 +82,7 @@
                   <div style='width: 27%;'>
                   
                      <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 17rem;border-radius: 0.5rem;box-shadow:none'>
-                         <a href=".URLROOT.'/'.$_SESSION['userType']."/appointments/make/ShowDoc/bookappo"." style='text-decoration: none;'>
+                         <a href=".URLROOT.'/'.$_SESSION['userType']."/appointments/make/ShowDoc/bookappo?doctor=".$data[$i]['Username']."&Date="."&specialization=".$special." style='text-decoration: none;'>
                              <font class='font1'>Channel</font>
                          </a>
                      </div>

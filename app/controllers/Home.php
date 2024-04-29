@@ -6,6 +6,7 @@ class Home extends Controller {
           session_start(); 
     }
     public function index(){
+        
         $this->view('home_view');
     }
     

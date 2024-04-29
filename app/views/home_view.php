@@ -1,5 +1,10 @@
 <?php
 include_once(APPROOT . '/views/header_view.php');
+session_start();
+if($_SESSION!=null){
+    print_r($_SESSION['status']);
+    $_SESSION['status']='';
+}
 ?>
 
 <div>
@@ -38,9 +43,10 @@ include_once(APPROOT . '/views/header_view.php');
 </div>
 <div class="container">
     <section class="make" id="make">
+        <form action="appointment" method="get">
         <h1>Make Appointment</h1>
         <label for="Doctor">Doctor Name</label>
-        <input type="text" name="userName" id="Doctor" placeholder="Max- 20 Characters" class="holder">
+        <input type="text" name="fullname" id="Doctor" placeholder="Max- 20 Characters" class="holder">
         <label for="Specialization">Specialization</label>
         <select placeholder="Any Specialization" name="specialization" id="Specialization" class="holder">
             <option value=""></option>
@@ -655,11 +661,12 @@ include_once(APPROOT . '/views/header_view.php');
             <option value="520" data-area="520">X-Ray</option>
         </select>
         <label for="Date">Date</label>
-        <input type="date" name="userName" id="Date" date-placeholder="11/6/2023" class="holder">
+        <input type="date" name="date" id="Date" date-placeholder="11/6/2023" class="holder">
         <div class='logbutton' id="maked">
-           <a href="appointment" style="text-decoration: none;"> <font class="font1">Make appointment</font></a>
+           <input type="submit" style="text-decoration: none;" value="Make appointment">
         </div>
         <br>
+        </form>
     </section>
     <section class="make" style="background-color: var(--Gomez-Pears);">
         <br><br><br>

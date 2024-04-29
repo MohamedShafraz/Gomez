@@ -59,15 +59,7 @@
 <body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
         <?php include APPROOT.'/views/patient/navbar_view.php'?>
 
-<div class="popup" style="margin-top:9%;margin-right:29%;margin-left:29%;display:none">
-    Are you sure you want to deactivate your account<br>
-    <br><div class="buttonspace" style="justify-content:center"><button class="button" style="background-color:red;padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;" id ="yes">yes</button><br><button id="no" class="button" style="background-color:green;padding-right: 5%;padding-left: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;">no</button></div>
-</div>
+
 <article class="dashboard">
     
     <!-- <a>Welcome to Gomez</a> -->
@@ -76,9 +68,29 @@
     
     <div style="display: flex;width: 71.5rem;background-color: darkgray;margin-top: -4.7rem;height: 25rem;flex-direction: column;    margin-left: -4.8rem;">
     <div><br></div>
-        <div style="align-self: center;height: 7rem;background-color: #ffffff;width: 69.5rem;margin-left: 0rem;">
-        <div style="display: flex;flex-direction: row;"><div style="height: 6rem;padding: 0.25rem;"><img src="<?=URLROOT."/public/resources/doctor1.png"?>" style="padding: 1rem 1rem 1rem 1rem;height: 4rem;width: 4rem;border: 1px solid;" ></div><div style="margin: -1rem 0rem 0rem 1rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;"><ul style="list-style-type: none;padding:0;"><li>Dr.Shamath</li><li style="font-size: medium;">Heart specialist</li></ul></div></div>
-        </div>
+    <?php
+            $name = $data[0][0]['fullname'];
+            $name = $data[0][0]['Username'];
+            $specialization = $data[0][0]['Specialization'];
+            echo "
+            <div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
+                    <div style='display: flex;flex-direction: row;'>
+                        <div style='width: 20%;'><img src='" . URLROOT . "/resources/doctor1.png' style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
+                        <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
+                            <ul style='list-style-type: none;padding:0;'>
+                                <li>$name</li>
+                                <li style='font-size: medium;'>$specialization</li>
+                            </ul>
+                        </div>
+                        
+                        <div style='width: 27%;'>
+
+                            
+                        </div>
+                    </div>
+                    
+                </div><br>";
+                ?>
         <div><br></div>
     <div class="custom-div" style="align-self: center;width: 98%;background-color: #fff;height: fit-content;">
         <div style="display: flex; flex-direction:row">

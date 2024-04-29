@@ -104,7 +104,7 @@
                   
                      <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
                          <a href='".URLROOT."/Patient/appointments/more' style='text-decoration: none;'>
-                             <font class='font1'>More</font>
+                             <font class='font1'>View Prescription</font>
                          </a>
                      </div>
                  </div></div></div><br>";

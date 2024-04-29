@@ -41,7 +41,7 @@ class appointmentModel extends Database{
     return $result;
 }
     public function getAllAppoinmentbyDoctor($doctor = Null,$specialization=Null,$date=Null){
-        $where = "`availability`= 1";
+        $where = 1;
         if (empty($doctor)&&empty($specialization)&&empty($date)) {
             
         $this->setTable(Doctors);
@@ -76,7 +76,7 @@ class appointmentModel extends Database{
         $result = $this->fetchdoctorforsession($where);
         } else {
           if(!empty($doctor)){
-                $doctor = "doctors.Username = \"".$doctor . "\"";
+                $doctor = "user_db.Username REGEXP \"".$doctor . "\"";
             
             $where .= ' AND '.$doctor;
             $result = $this->fetchdoctorforsession($where, 1);
@@ -98,7 +98,7 @@ class appointmentModel extends Database{
         $result = $this->fetchAppointmentByDoctors($where);
         } else {
           if(!empty($doctor)){
-                $doctor = "doctors.Username = \"".$doctor . "\"";
+                $doctor = "users_db.Username = \"".$doctor . "\"";
             
             $where .= ' AND '.$doctor;
             $result = $this->fetchAppointmentByDoctors($where, 1);
@@ -119,7 +119,7 @@ class appointmentModel extends Database{
             $this->setTable(Doctors);
             $result = $this->fetchDataByUser($where);
         } else {
-            $where = "`availability`= 1";
+            $where = 1;
             $date = "date = \"" . $date . "\"";
             $this->setTable(Doctors);
             $result = $this->fetchDataByUser($where, $date);
@@ -128,11 +128,11 @@ class appointmentModel extends Database{
     }
     public function getAllAppoinmentbySpecialization($doctor = Null){
         if (empty($doctor)) {
-            $where = "`availability`= 1";
+            $where = 1;
         $this->setTable(Doctors);
         $result = $this->fetchDataByUser($where);
         } else {
-            $where = "`availability`= 1";
+            $where = 1;
             $doctor = "Specialization REGEXP \"".$doctor . "*\"";
         $this->setTable(Doctors);
         $result = $this->fetchDataByUser($where, $doctor);
@@ -180,7 +180,7 @@ class appointmentModel extends Database{
     public function getDoctors($doctor = Null)
     {
         if (empty($doctor)) {
-            $where = "`availability`= 1";
+            $where = 1;
             $this->setTable(Doctors);
             $result = $this->fetchDataByUser($where);
         } else {

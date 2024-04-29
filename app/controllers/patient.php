@@ -31,7 +31,7 @@ class patient extends Controller
         $this->model('Patient/labreport_model');
         $this->labreport_model = new labReportModel();
         $result = $this->labreport_model->getLabReportDetails();
-        if(isset($_GET['testname'])){
+        if (isset($_GET['testname'])) {
             $result = $this->labreport_model->getLabReportDetails($_GET['testname']);
         }
         if ($filename == 'view') {
@@ -96,8 +96,7 @@ class patient extends Controller
                 if ($_GET['doctor'] != NULL && $_GET['Date'] == NULL) {
                     $result = $this->appointmodel->getAppoinmentbyPatient($_GET['doctor']);
                     $this->view('Patient/appointments_view', $result);
-                }
-                else if ($_GET['Date']) {
+                } else if ($_GET['Date']) {
                     $where = $_GET['Date'];
                     $where = DateTime::createFromFormat('Y-m-d', $where);
                     $where = $where->format('Y-m-d');
@@ -105,67 +104,89 @@ class patient extends Controller
                     $result = $this->appointmodel->getAppoinmentbyDate($where);
                     $this->view('Patient/appointments_view', $result);
                 }
-                
+
                 // exit();
-                
+
 
             }
-            
+
 
             if ($make == 'more') {
                 $this->view('patient/appointment_more_view');
                 exit();
             }
             if ($make == 'make') {
-                
+
 
                 if ($ShowDoc == 'ShowDoc') {
                     $result = $this->appointmodel->getDoctors();
                     if (isset($_GET['doctor']) || isset($_GET['Date']) || isset($_GET['specialization'])) {
-                        
+
                         // if ($_GET['doctor']) {
-                            
+
                         //     $result = $this->appointmodel->getAllAppoinmentbyDoctor($_GET['doctor']);
-                            
+
                         // }
                         if ($_GET['Date']) {
                             // $where = $_GET['Date'];
                             $_GET['Date'] = DateTime::createFromFormat('Y-m-d', $_GET['Date']);
                             $_GET['Date'] = $_GET['Date']->format('Y-m-d');
-        
+
                             // $result = $this->appointmodel->getAllAppoinmentbyDate($where);
-                            
+
                         }
                         // if ($_GET['specialization']) {
                         //     $result = $this->appointmodel->getAllAppoinmentbySpecialization($_GET['specialization']);
                         //     // $this->view('Patient/appointments_view', $result);
                         // }
-                        
+
                         // exit();
-                        $result = $this->appointmodel->getAllAppoinmentbyDoctor($_GET['doctor'],$_GET['specialization'],$_GET['Date']);
-                        
-        
+                        $result = $this->appointmodel->getAllDoctorsforSession($_GET['doctor'], $_GET['specialization'], $_GET['Date']);
                     }
                     if ($bookappo == 'bookappo') {
-                        
-        
+
+
                         if ($fixed == 'fixed') {
                             $this->view('patient/appointments_view');
-                            
-                        }
-                        else{
-                            
+                        } else {
+                            $result = $this->appointmodel->getAppoinmentbyDoctors($_GET['doctor']);
+                            if (isset($_GET['doctor'])) {
+
+                                $result2 = $this->appointmodel->checkSessionbyDoctor($result[0]['Doctor_id']);
+                                // print_r([0=>$result,1=>$result2]);
+                                $this->view('patient/bookdoc_view_registered', [0 => $result, 1 => $result2]);
+                            }
+                            if (isset($_POST['create']) && isset($_POST['Date'])) {
+                                $data['date'] = $_POST['Date'];
+                                $start_time = $_POST['start_time'];
+                                $endtime = date('H:i:s', strtotime($start_time . ' +1 hour'));
+                                $data['start_time'] = date('H:i:s', strtotime($start_time));;
+                                $data['end_time'] = $endtime;
+                                $data['Doctor_Id'] = $result[0]['Doctor_id'];
+                                $this->appointmodel->setTable('session');
+                                $result2 = $this->appointmodel->insertData($data);
+                                $error = $this->appointmodel->printErrno();
+                                if ($error = '1062') {
+                                    echo "<script>
+                    alert(' Session Already Created');
+                </script>";
+                                } else {
+                                    echo "<script>
+                    alert(' Session Created');
+                </script>";
+                                }
+                            }
+
+                            exit();
+
                             $this->view('patient/bookdoc_view_registered');
                         }
-        
-                    }
-                    else{
-                    // print_r(sizeof($result));
+                    } else {
+                        // print_r(sizeof($result));
                         $this->view('patient/Registerd_appointdoctor_view', $result);
                     }
                 } else {
                     $this->view('patient/makeappointment_view');
-                    
                 }
                 exit();
             }
@@ -179,8 +200,6 @@ class patient extends Controller
                     $this->view('patient/appointments_view');
                     exit();
                 }
-
-
             } else {
                 $result = $this->appointmodel->getAppoinmentbyPatient();
                 // print_r($result);
