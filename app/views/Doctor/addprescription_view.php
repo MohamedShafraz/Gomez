@@ -121,7 +121,8 @@
 
             <input type="hidden" id="priscription_date" name="priscription_date" value="<?= date('Y-m-d'); ?>">
 
-            <input type="submit" value="Submit">
+            <input type="submit" value="Submit" style="background-color: blue; color: white;">
+
         </form>
     </div>
 </article>
