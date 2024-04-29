@@ -111,7 +111,7 @@
                         <option value="TPHA">TPHA</option>
 
                 </select><br><br>
-                <button type="button" onclick="addValue()">Add Value</button> <!-- Changed type to button -->
+                <button type="button" onclick="addValue()"></button> <!-- Changed type to button -->
             </div>
 
             <label for="otherremarks">Other Remarks</label><br>
