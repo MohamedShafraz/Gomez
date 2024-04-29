@@ -77,7 +77,7 @@
             <label for="disease">Disease</label><br>
             <textarea id="disease" name="disease" rows="4" cols="50"></textarea><br><br>
 
-            <label for="prescription">Prescription</label><br>
+            <label for="prescription">Instructions</label><br>
             <textarea id="prescription" name="prescription" rows="4" cols="50"></textarea><br><br>
 
             <label for="labtesting">Lab Testing</label><br>
