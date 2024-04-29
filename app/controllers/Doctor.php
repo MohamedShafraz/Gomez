@@ -256,9 +256,6 @@ class Doctor extends Controller
             $this->model("DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
             $data = [
-                'disease' => $_POST['disease'],
-                'prescription' => $_POST['prescription'],
-                'labtesting' => $_POST['labtesting'],
                 'otherremarks' => $_POST['otherremarks'],
             ];
             

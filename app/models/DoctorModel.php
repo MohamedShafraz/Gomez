@@ -91,7 +91,7 @@ class DoctorModel extends Database
 
     public function updateprescription($id, $data)
     {
-        $query = "UPDATE Prescription SET 	disease='$data[disease]', prescription='$data[prescription]', labtesting='$data[labtesting]',otherremarks='$data[otherremarks]' WHERE prescriptionnumber='$id'";
+        $query = "UPDATE Prescription SET otherremarks='$data[otherremarks]' WHERE prescriptionnumber='$id'";
         $result = $this->executeQuery($query);
         return $result;
     }

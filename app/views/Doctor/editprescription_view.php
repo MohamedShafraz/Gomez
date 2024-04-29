@@ -50,18 +50,7 @@
                 </div>
                 <div class="card" style="width:96%;">
                     <form  action="<?=URLROOT."/Doctor/EditPrescription"?>" method="post">
-                        
-                        <label for="disease">Dicease:</label><br>
-                        <textarea id="disease" name="disease"><?php echo $prescription["disease"]; ?></textarea>
-                        <br><br>
-
-                        <label for="instructions">Prescription:</label><br>
-                        <textarea id="instructions" name="prescription"><?php echo $prescription["prescription"]; ?></textarea>
-                        <br><br>
-
-                        <label for="labtesting">Lab Testing:</label><br>
-                        <textarea id="labtesting" name="labtesting"><?php echo $prescription["labtesting"]; ?></textarea>
-                        <br><br>
+                    
 
                         <label for="otherremarks">Other Marks:</label><br>
                         <textarea id="otherremarks" name="otherremarks"><?php echo $prescription["otherremarks"]; ?></textarea>

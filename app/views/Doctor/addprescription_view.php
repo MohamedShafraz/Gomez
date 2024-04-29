@@ -81,9 +81,21 @@
             <textarea id="prescription" name="prescription" rows="4" cols="50"></textarea><br><br>
 
             <label for="labtesting">Lab Testing</label><br>
-            
+            <ul id="selectedValues" ></ul>
             <div style="display:flex;flex-direction:row;">
                 <select id="labtestinglist" name="labtesting">
+                       <option value="FBS">FBS</option>
+                       <option value="Lipid">Lipid</option>
+                       <option value="CBC">CBC</option>
+                       <option value="PTT">PTT</option>
+                      <option value="UA">UA</option>
+                      <option value="X-rays">X-rays</option>
+                       <option value="CT Scan">CT Scan</option>
+                       <option value="ECG">ECG</option>
+                        <option value="GTT">GTT</option>
+                       <option value="TB Testing">TB Testing</option>
+                       <option value="Stool Culture">Stool Culture</option>
+                        <option value="Blood Drug Test">Blood Drug Test</option>
                         <option value="">Select a Test</option>
                         <option value="Urine Full Report (UFR)">Urine Full Report (UFR)</option>
                         <option value="Thyroid Profile (TSH / fT4)">Thyroid Profile (TSH / fT4)</option>
@@ -97,6 +109,7 @@
                         <option value="Troponin T (High Sensitive)">Troponin T (High Sensitive)</option>
                         <option value="Troponin I">Troponin I</option>
                         <option value="TPHA">TPHA</option>
+
                 </select><br><br>
                 <button type="button" onclick="addValue()">Add Value</button> <!-- Changed type to button -->
             </div>
@@ -135,12 +148,28 @@
             var selectedValuesList = document.getElementById("selectedValues");
             var listItem = document.createElement("li");
             listItem.textContent = selectedText;
+
+            // Create delete button
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function() {
+                listItem.remove(); // Remove the associated list item when the delete button is clicked
+                // Remove the value from the selectedValues array
+                var index = selectedValues.indexOf(selectedValue);
+                if (index !== -1) {
+                    selectedValues.splice(index, 1);
+                }
+            };
+
+            // Append delete button to list item
+            listItem.appendChild(deleteButton);
+
+            // Append list item to selected values list
             selectedValuesList.appendChild(listItem);
         }
-    
+
         console.log(selectedValues);
     }
-
     
     function submitForm() {
         

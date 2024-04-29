@@ -47,16 +47,16 @@ button{
         <?php
             echo '<table>';
             echo '<tr>';
-            echo '<td style="width: 20%;"> Appoinment ID</td>';
-            echo '<td style="width: 20%;"> Name </td>';
+            echo '<td style="width: 20%;"> Name</td>';
+            echo '<td style="width: 20%;"> Contact Number </td>';
             echo '<td style="width: 20%;"> Age </td>';
             echo '<td style="width: 20%;"> More </td>';
             echo '</t style="width: 20%;"r>';
             echo '<tr style="color:white;margin: 1%;"></tr>';
             foreach ($patients as $row) {
                 echo '<tr>';
-                    echo '<td style="width: 20%;">'.$row['Appointment_Id'].'</td>';
                     echo '<td style="width: 20%;">'.$row[0]['fullname'].'</td>';
+                    echo '<td style="width: 20%;">'.$row[0]['phonenumber'].'</td>';
                     echo '<td style="width: 20%;">'.$row[0]['age'].'</td>';
                     if($row["prescription"] != null){
                         echo '<td style="width: 20%;"><a><button onclick="window.location.href=\''.URLROOT.'/Doctor/ViewMorePrescription/'.$row['Appointment_Id'].'/'.$row[0]['ID'].'\'">View Prescription</button></a></td>';

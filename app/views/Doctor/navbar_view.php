@@ -14,7 +14,7 @@
 
 <header class="header">
         <nav class="navbar">
-            <img src="<?=URLROOT."/resources/user.png"?>" class="profilepic" >
+            <img src="<?= 'data:image/png;base64,' . base64_encode($_SESSION["USER"]["profilepicture"]) ?>" class="profilepic" >
             <a href="http://localhost/Gomez/Users/login">
                 <font class="GMfont" style="font-family: 'inter';" onclick="windows.location.href = 'location:logout'"> Hello, <?=$_SESSION['uname']?></font></div>
                 
