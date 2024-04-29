@@ -83,6 +83,7 @@ button{
                                 <?php
                                                         
                                         foreach($nexttwosessions as $session) {
+                                
                                           echo "<div class='custom-div' style='align-self: center;width: 98%;background-color: #fff;height: fit-content;display: flex; flex-direction:row'>";
                                           echo "<div style='display: flex; flex-direction:row'>";
                                           echo "<div style='border-left: solid;width:13rem;'>";
@@ -93,6 +94,8 @@ button{
                                           echo "<ul style='list-style-type: none;text-align: left;'><div style='flex-direction: row;display: flex;margin-left:14rem'><div style='margin-top: -1.75rem;'><li><div style='width: 27%;'><div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;background:#8393ca;'><a onclick='viewtimeslot(".$session['session_id'].")' style='text-decoration: none;'><font class='font1'>View Appointments</font></a></div></div></li></div><div style='margin-left: 1rem;margin-top: 0.75rem;width: 10rem;'><li style='font-weight: bold;font-size: x-large;width: 10rem;'></li></div></div></ul>";
                                           echo "</div></div></div>";
                                           echo "<br>";
+
+                                          
                                       }
                                         
                                 ?>

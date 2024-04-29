@@ -45,7 +45,7 @@ class Doctor extends Controller
                 $patients = array_merge($patients, $patient);
             }
 
-            $nexttwosessions = array_slice($sessions, 0, 2);
+            $nexttwosessions = array_slice($sessions, 0, 3);
 
             $this->view('Doctor/dashboard_view', ['appointments' => $appointments, 'patients' => $patients, 'sessions' => $sessions, 'nexttwosessions' => $nexttwosessions]);
         } else {
@@ -287,7 +287,7 @@ class Doctor extends Controller
             $data = $this->doctorModel->getDoctor($user["User_Id"]);
 
 
-            $this->view('Doctor/profile_view',['data' => $data]);
+            $this->view('Doctor/profile_view', $data[0]);
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
