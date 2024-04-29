@@ -95,8 +95,7 @@
                         <option value="GTT">GTT</option>
                        <option value="TB Testing">TB Testing</option>
                        <option value="Stool Culture">Stool Culture</option>
-                        <option value="Blood Drug Test">Blood Drug Test</option>
-                        <option value="">Select a Test</option>
+                        <option value="Blood Drug Test">Blood Drug Test</option>
                         <option value="Urine Full Report (UFR)">Urine Full Report (UFR)</option>
                         <option value="Thyroid Profile (TSH / fT4)">Thyroid Profile (TSH / fT4)</option>
                         <option value="Vitamin D (25-Hydroxy)">Vitamin D (25-Hydroxy)</option>

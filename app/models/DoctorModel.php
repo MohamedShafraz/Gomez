@@ -23,7 +23,7 @@ class DoctorModel extends Database
 
     public function getSessionsToday($id)
     {
-        $where = "date = CURDATE() AND doctor_id='$id'";
+        $where = "date = CURDATE() AND Doctor_id='$id'";
         $this->setTable(Session);
         $result = $this->fetchData($where);
 
