@@ -95,7 +95,7 @@
               <label style="margin-left: 2%;" for="dose">Dose</label>
               <input type="number" id="dose" name="dose[]" min="1" required>
               
-              <select name="dosage_type">
+              <select name="dosage_type[]">
                   <option value="ml">ml</option>
                   <option value="tablets">tablets</option>
                   <option value="drops">drops</option>
@@ -128,7 +128,7 @@
   $(document).ready(function() {
     $("#addMedicine").click(function(e) {
       e.preventDefault();
-      $("#medicineItems").append(`
+      $("#medicineItems").prepend(`
       <div style="display: flex; flex-direction: row; justify-content: center;">
               <label for="medicineName">Medicine Name</label>
               <select name="medicineName[]" id="medicineName">
@@ -155,7 +155,7 @@
               <label style="margin-left: 2%;" for="dose">Dose</label>
               <input type="number" id="dose" name="dose[]" min="1" required>
               
-              <select name="dosage_type">
+              <select name="dosage_type[]">
                   <option value="ml">ml</option>
                   <option value="tablets">tablets</option>
                   <option value="drops">drops</option>
@@ -176,7 +176,7 @@
                   <option value="After">After</option>
               </select>
               
-              <button class="bluebutton" id="addMedicine" style="margin-left: 5%;">Add</button>
+              <button class="bluebutton" id="removeMedicine" style="margin-left: 5%;">Remove</button>
           </div>
       `);
     });

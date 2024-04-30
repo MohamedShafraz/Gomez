@@ -151,7 +151,7 @@
 
             // Create delete button
             var deleteButton = document.createElement("button");
-            deleteButton.textContent = "Delete";
+            deleteButton.textContent = " Delete";
             deleteButton.onclick = function() {
                 listItem.remove(); // Remove the associated list item when the delete button is clicked
                 // Remove the value from the selectedValues array

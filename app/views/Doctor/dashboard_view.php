@@ -27,6 +27,18 @@ tr:nth-child(even) {
     height: 150px;
 }
 
+#grad1 {
+  height: 200px;
+  background-color: red; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to right, red , yellow);
+}
+.buttonspace{
+    display: flex;
+    justify-content: end;
+    font-size: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(1rem, 0.3fr));
+    gap: 1rem;
+}
 button{
     height: 31px;
   flex-direction: column;
@@ -43,17 +55,14 @@ button{
   border-style: hidden;
   border-radius: 6px;
   font-size: initial;height: max-content;width: max-content;
-}
-
-.option{
-    min-width: 22rem;
+  background-color: blue; color: white;
 }
 
 </style>
 
 
 </aside>
-<article class="dashboard" style="margin-left:36%;font-family: inter;">
+<article class="dashboard" style="margin-left:36%;font-family: inter; ">
 
         <div style="display: flex;   margin-left: -11rem;">
             <div class="scrollable-container">

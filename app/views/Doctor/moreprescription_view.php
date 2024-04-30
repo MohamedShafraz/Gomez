@@ -59,6 +59,7 @@
                     echo "<tr style='background-color: darkblue; color: white;'>";
                     echo "<th style='padding: 10px;'>Medicine Name</th>";
                     echo "<th style='padding: 10px;'>Medicine Dosage</th>";
+                    echo "<th style='padding: 10px;'>Dosage Type</th>";
                     echo "<th style='padding: 10px;'>Times</th>";
                     echo "<th style='padding: 10px;'>Before/After Meal</th>";
                     echo "</tr>";
@@ -66,6 +67,7 @@
                         echo "<tr style='background-color: white; color: black;'>";
                         echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["medicine"]."</td>";
                         echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["dose"]."</td>";
+                        echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["doseunit"]."</td>";
                         echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["times"]."</td>";
                         echo "<td style='padding: 10px; border: 1px solid darkblue;'>".$med["before_after"]."</td>";
                         echo "</tr>";

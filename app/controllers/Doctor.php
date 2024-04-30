@@ -190,19 +190,21 @@ class Doctor extends Controller
                 'medicine' => $medicine['medicineName'][$i],
                 'dose' => $medicine['dose'][$i],
                 'times' => $medicine['timing'][$i],
-                'before_after' => $medicine['meal'][$i]
+                'before_after' => $medicine['meal'][$i],
+                'doseunit' => $medicine['dosage_type'][$i]
             ];
             $result = $this->doctorModel->addMedicine($data);
         }
         
-        $prescription = $_SESSION['prescription'];
-        unset($_SESSION['uniqueid']);
-        unset($_SESSION['prescription']);
-        var_dump($prescription);
+         $prescription = $_SESSION['prescription'];
+         unset($_SESSION['uniqueid']);
+         unset($_SESSION['prescription']);
+         var_dump($prescription);
     
-        $this->doctorModel->addPrescription($prescription);
+         $this->doctorModel->addPrescription($prescription);
         
-        
+       
+
         header("Location: ".URLROOT."/Doctor/appointments/message");
         exit();
         
