@@ -45,31 +45,34 @@ button{
     <div class="complaint" style="margin-left:24%; margin-top:50px;font-family: inter;">
 
 
-        <?php
-            echo '<table>';
+    <?php
+        echo '<table>';
+        echo '<tr>';
+        echo '<td style="width: 20%;"> Name</td>';
+        echo '<td style="width: 20%;"> Contact Number </td>';
+        echo '<td style="width: 20%;"> Age </td>';
+        echo '<td style="width: 20%;"> More </td>';
+        echo '</tr>';
+        foreach ($patients as $row) {
             echo '<tr>';
-            echo '<td style="width: 20%;"> Name</td>';
-            echo '<td style="width: 20%;"> Contact Number </td>';
-            echo '<td style="width: 20%;"> Age </td>';
-            echo '<td style="width: 20%;"> More </td>';
-            echo '</t style="width: 20%;"r>';
-            echo '<tr style="color:white;margin: 1%;"></tr>';
-            foreach ($patients as $row) {
-                echo '<tr>';
-                    echo '<td style="width: 20%;">'.$row[0]['fullname'].'</td>';
-                    echo '<td style="width: 20%;">'.$row[0]['phonenumber'].'</td>';
-                    echo '<td style="width: 20%;">'.$row[0]['age'].'</td>';
-                    if($row["prescription"] != null){
-                        echo '<td style="width: 20%;"><a><button onclick="window.location.href=\''.URLROOT.'/Doctor/ViewMorePrescription/'.$row['Appointment_Id'].'/'.$row[0]['ID'].'\'">View Prescription</button></a></td>';
-                    }else{
-                        echo '<td style="width: 20%;style;"><a><button onclick="window.location.href=\''.URLROOT.'/Doctor/AddprescriptionView/'.$row['Appointment_Id'].'\'">Add Prescription</button></a></td>';
-                    }
-                    echo '<tr style="color:white;margin: 1%;"></tr>';
-                echo '</tr>';
+            echo '<td style="width: 20%;">'.$row[0]['fullname'].'</td>';
+            echo '<td style="width: 20%;">'.$row[0]['phonenumber'].'</td>';
+            
+            // Calculate age
+            $age = date_diff(date_create($row[0]["date_of_birth"]), date_create('now'))->y;
+            echo '<td style="width: 20%;">'.$age.' </td>';
+            
+            if($row["prescription"] != null){
+                echo '<td style="width: 20%;"><a><button onclick="window.location.href=\''.URLROOT.'/Doctor/ViewMorePrescription/'.$row['Appointment_Id'].'/'.$row[0]['ID'].'\'">View Prescription</button></a></td>';
+            }else{
+                echo '<td style="width: 20%;style;"><a><button onclick="window.location.href=\''.URLROOT.'/Doctor/AddprescriptionView/'.$row['Appointment_Id'].'\'">Add Prescription</button></a></td>';
             }
-            echo '</table>';
-      
-        ?>
+            
+            echo '</tr>';
+            echo '<tr style="color:white;margin: 1%;"></tr>'; // Not sure why you need this line
+        }
+        echo '</table>';
+?>
     </div>
     </div>
     </div>

@@ -71,15 +71,18 @@
             <input type="hidden" name="Appointment_Id" value="<?php echo $appointment[0]['Appointment_Id']?>">
             <input type="hidden" name="patient_id" value="<?php echo $appointment[0]['Patient_Id']?>">
 
-            <label for="age">Age</label><br>
-            <input type="number" id="age" name="age" min=0 value=""><br><br>
-
             <label for="disease">Disease</label><br>
             <textarea id="disease" name="disease" rows="4" cols="50"></textarea><br><br>
 
             <label for="prescription">Instructions</label><br>
             <textarea id="prescription" name="prescription" rows="4" cols="50"></textarea><br><br>
 
+            
+            <!--<label for="prescription">New one</label><br>
+            <textarea id="newone" name="newone" rows="4" cols="50"></textarea><br><br> -->
+
+
+            
             <label for="labtesting">Lab Testing</label><br>
             <ul id="selectedValues" ></ul>
             <div style="display:flex;flex-direction:row;">

@@ -93,6 +93,7 @@ class Doctor extends Controller
             $patients = [];
 
             foreach ($appointments as $appointment) {
+               // $patient = $this->doctorModel->getPatientbyappointment($appointment['Patient_Id']);
                 $patient = $this->doctorModel->getPatientbyPatiend($appointment['Patient_Id']);
                 $prescription = $this->doctorModel->getPrescriptionbyAppointment($appointment['Appointment_Id']);
                 $patient['prescription'] = $prescription;
@@ -142,11 +143,13 @@ class Doctor extends Controller
             $doctor = $this->doctorModel->getDoctor($user["Username"]);
             $patient = $this->doctorModel->getPatient($_POST['patient_id']);
 
+            $age = date_diff(date_create($patient[0]["date_of_birth"]), date_create('now'))->y;
+
             $uniqueid = uniqid();
             $data = [
                 'patientid' => intval($_POST['patient_id']),
                 'Appointment_id' => intval($_POST['Appointment_Id']),
-                'age' => $_POST['age'],
+                'age' =>  $age,
                 'disease' => $_POST['disease'],
                 'prescription' => $_POST['prescription'],
                 'labtesting' => $_POST['labtesting'],
@@ -165,15 +168,15 @@ class Doctor extends Controller
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
-        }
-    }
+}
+}
 
-    public function addMedicineView(){
+public function addMedicineView(){
         if(!isset($_SESSION)){
             session_start();}
 
         $this->view('Doctor/addmedicine');
-    }
+    } 
     
     public function AddMedicine(){
         if(!isset($_SESSION)){
@@ -312,8 +315,31 @@ class Doctor extends Controller
         }
     }
 
+    public function update()
+    {
+        session_start();
+        if (isset($_SESSION["userType"])) {
+           // $this->model($_SESSION["userType"] . '/userinfo_model');
 
-   
+            $user = $_SESSION["USER"];
+
+            $this->model("DoctorModel");
+            $this->doctorModel = new DoctorModel(new Database());
+            
+            // print_r($_FILES["file"]["tmp_name"]);
+
+            // Path to the PDF file
+
+           // $fileContents = file_get_contents($_FILES["file"]['tmp_name']);
+           // $hexString = '0x' . bin2hex($fileContents);
+
+            $userDetails  = $this->doctorModel->updateUserDetails();
+            header("Location: ".URLROOT."/Doctor/userdetails");
+            exit();
+}
+}
+
+
 
 public function DeactivateAccount(){
     if(!isset($_SESSION)){
@@ -327,9 +353,42 @@ public function DeactivateAccount(){
 }
 
 
+//public function moreappointments($message=null)
+//{
+   // if (!isset($_SESSION)) {
+        //session_start();
+  //  }
+   // $user = $_SESSION["USER"];
+   // if ($user["usertype"] == "Doctor") {
+      //  $this->model("DoctorModel");
+      //  $this->doctorModel = new DoctorModel(new Database());
+
+      //  $doctor = $this->doctorModel->getDoctor($user["User_Id"]);
+     //   $sessions = $this->doctorModel->getSessionsToday($doctor[0]['Doctor_id']);
+
+      //  if($message != null){
+      //      $message = "Prescription Added Successfully";
+      //  }
+
+     //   $this->view('Doctor/moreappoin_view', ['sessions' => $sessions, 'message' => $message]);
+ //   } else {
+     //   header("Location: " . URLROOT . "/Users/login");
+     //   exit();
+  //  }
+
+//}
+    
+}
+
+
+
+
+
+
+
 
 
 
     
 
-}
+

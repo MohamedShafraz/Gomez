@@ -12,7 +12,7 @@ require_once(APPROOT . "/views/doctor/navbar_view.php");
     $data.push("<?= "phonenumber : " . $data['phonenumber'] ?>");
 
 
-    // console.log($data);
+     console.log($data);
 </script>
 <style>
     .button {
@@ -34,7 +34,7 @@ require_once(APPROOT . "/views/doctor/navbar_view.php");
         filter: drop-shadow(3px 3px 7px --Gomez-Black);
         width: max-content;
         border-style: none;
-        /* box-shadow: 2px 2px 1px var(--Gomez-Black); */
+         box-shadow: 2px 2px 1px var(--Gomez-Black); 
         font-family: inter;
 
     }
@@ -53,7 +53,7 @@ require_once(APPROOT . "/views/doctor/navbar_view.php");
         text-decoration: solid;
     }
 
-    /* input[type="file"] {
+     input[type="file"] {
         display: none;
     }
 
@@ -62,7 +62,7 @@ require_once(APPROOT . "/views/doctor/navbar_view.php");
         display: inline-block;
         padding: 6px 12px;
         cursor: pointer;
-    } */
+    } 
 </style>
 
 <div class="lay" style="
@@ -74,7 +74,7 @@ require_once(APPROOT . "/views/doctor/navbar_view.php");
 
     <h1>Update Profile</h1>
 
-    <form action="./update" method="post" enctype="multipart/form-data">
+    <form action="<?php echo URLROOT; ?>/Doctor/update" method="post">
         <div style="display:flex">
             <div class="users" style="float: left;gap: 5%;width:50% ;">
 
@@ -84,16 +84,12 @@ require_once(APPROOT . "/views/doctor/navbar_view.php");
                     Upload Image
                 </label> -->
                 <br>
-                <input style="display: none;" id="file" type="file" name="file" required>
+           
 
                 <br>
 
             </div>
-            <!-- <script>
-                function v() {
-                    console.log("<?= $_FILES ?? "test" ?>");
-                }
-            </script> -->
+           
             <div id="img">
 
             </div>

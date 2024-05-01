@@ -17,7 +17,7 @@
                         echo "<p>Patient Name  : ".$patient["fullname"]."</p>";
                         echo "<br>";
                         
-                        echo "<p>Patient Age  : ".$patient["age"]."</p>";
+                        echo "<p>Patient Age  : ".$prescription[0]["age"]."</p>";
                         echo "<br>";
                         
                         echo "<p>Patient Gender  : ".$patient["gender"]."</p>";

@@ -141,6 +141,39 @@ class DoctorModel extends Database
         return $result;
         
     }
+
+    public function updateUserDetails($details=null, $filecontent=null)
+    {
+        $where = "Doctor_id = " . $_SESSION['User_Id'];
+        $this->setTable(Doctors);
+
+        $users['fullname'] = $_POST["Fullname"];
+        $users['phonenumber'] = $_POST['phonenumber'];
+        // $users['NIC'] = $_POST['NIC'];
+        $users['gender'] = $_POST['gender'];
+        $users['age'] = $_POST['age'];
+        $picture["profilepicture"] = $details;
+        $data = $this->updateData($users, $where);
+        
+       // $this->setTable('user_db');
+      //  $where1 = "User_Id = " . $_SESSION['User_Id'];
+       // $data = $this->updateData($picture, $where1);
+
+       // $_SESSION["USER"]["profilepicture"] = $filecontent;
+        // print_r($_SESSION["USER"]["profilepicture"]);
+        //return $details;
+        return $data;
+}
+
+  // public function getPatientbyappointment($userid)
+ // {
+  //  $where = "ID =''"; // 
+   // $this->setTable('Patients'); // 
+    //$result = $this->fetchData($where);
+
+  //  return $result;
+ //}
+
     
     
 }
