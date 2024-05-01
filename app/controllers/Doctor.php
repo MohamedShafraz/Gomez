@@ -156,13 +156,17 @@ class Doctor extends Controller
                 'otherremarks' => $_POST['otherremarks'],
                 'priscription_date' => $_POST['priscription_date'],
                 'unique_id' => $uniqueid,
+              //  'symptoms' => $_POST['symptoms'],
+                 // 'newone'=> $_POST['newone'],
+
             ];
 
             $_SESSION['uniqueid'] = $uniqueid;
             $_SESSION['prescription'] = $data;
 
 
-           header("Location: ".URLROOT."/Doctor/addMedicineView");
+        header("Location: ".URLROOT."/Doctor/addMedicineView");
+        
            exit();  
             
         } else {

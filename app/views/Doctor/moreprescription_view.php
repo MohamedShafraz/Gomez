@@ -46,7 +46,7 @@
             <div class="details" style="width:98%;">
                 <?php 
                     echo "<br>";
-                    echo "<p>Othermarks  : ".$prescription[0]["otherremarks"]."</p>";
+                    echo "<p>Otheremarks  : ".$prescription[0]["otherremarks"]."</p>";
                 ?>
             </div>
             <br>

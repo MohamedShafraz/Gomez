@@ -115,7 +115,8 @@
                 </select><br><br>
                 <button type="button" onclick="addValue()"></button> <!-- Changed type to button -->
             </div>
-
+           
+            
             <label for="otherremarks">Other Remarks</label><br>
             <textarea id="otherremarks" name="otherremarks" rows="4" cols="50"></textarea><br><br>
 
@@ -125,16 +126,17 @@
 
             <input type="submit" value="Submit" style="background-color: blue; color: white;">
 
+           
+                      
+
         </form>
     </div>
 </article>
 
-<!-- Display selected values -->
-<p>Selected Values:</p>
-<ul id="selectedValues"></ul>
 
 <script>
     var selectedValues = [];
+   
 
     // Function to add selected value to array
     function addValue() {
@@ -173,23 +175,120 @@
 
         console.log(selectedValues);
     }
+
+
+ /*  var selectedValues2 = [];
     
+    function addValue2() {
+        
+        var select = document.getElementById("symptoms");
+        var selectedOption = select.options[select.selectedIndex];
+        var selectedValue = selectedOption.value;
+        var selectedText = selectedOption.text;
+
+        // Check if value is already in array
+        if (!selectedValues2.includes(selectedValue)) {
+            selectedValues2.push(selectedValue);
+
+            // Display selected value
+            var selectedValuesList = document.getElementById("selectedValues2");
+            var listItem = document.createElement("li");
+            listItem.textContent = selectedText;
+
+            // Create delete button
+            var deleteButton = document.createElement("button");
+            deleteButton.textContent = " Delete";
+            deleteButton.onclick = function() {
+                listItem.remove(); // Remove the associated list item when the delete button is clicked
+                // Remove the value from the selectedValues array
+                var index = selectedValues2.indexOf(selectedValue);
+                if (index !== -1) {
+                    selectedValues2.splice(index, 1);
+                }
+            };
+
+            // Append delete button to list item
+            listItem.appendChild(deleteButton);
+
+            // Append list item to selected values list
+            selectedValuesList.appendChild(listItem);
+        }
+
+        console.log(selectedValues2);
+    } */
     function submitForm() {
         
        
         var labtestingValue = selectedValues.join(', ');
+      //  var symptoms = selectedValues2.join(', ');
         
         
         document.getElementById("labtesting").value = labtestingValue;
+     //   document.getElementById("symptoms").value = symptoms;
+
 
         
         selectedValues = [];
+        selectedValues2 = [];
         
         document.getElementById("selectedValues").innerHTML = "";
+     //   document.getElementById("selectedValues2").innerHTML = "";
        
         return true;
         
     }
 </script>
 
+
+
+
+
+
+
+
+
+
+
+
 <?php require_once(APPROOT . "/views/Admin/footer_view.php");?>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<label for="symptoms">Symptoms</label><br>
+            <ul id="selectedValues2" ></ul>
+            <div style="display:flex;flex-direction:row;">
+                <select id="symptoms" name="symptoms">
+                       <option value="fever">fever</option>
+                       <option value="cough">cough</option>
+                       <option value="headache">headche</option>
+                       </select><br><br>
+                <button type="button" onclick="addValue2()"></button> <!-- Changed type to button -->
+            </div> > --!
+
+
+
