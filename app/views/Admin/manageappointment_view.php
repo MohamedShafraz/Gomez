@@ -42,6 +42,9 @@
         width: 100%;
     }
 </style>
+<script defer="defer">
+    document.getElementById('startDate').onchange = document.getElementById('endDate').min = document.getElementById('startDate').value;
+</script>
 <br><br>
 <div class="complainttext">Appointments</div>
 <ul style="height: 26rem;padding: 5%;margin-left:22%">
@@ -61,9 +64,17 @@
 
             <div class="dis">
                 <label for="Date" style="font-weight: bold;font-size: 22px;">Date :&ensp;</label>
-                <input type="date" name="Date" id="Date" date-placeholder="11/6/2023" class="holder" value="<? $_GET['Date'] ?? '' ?>">
+                <input type="date" name="Date" id="Date" date-placeholder="11/6/2023" class="holder" value="<? $_GET['Date'] ?? '' ?>" require>
+            </div>
+            <div class="dis">
+                <label for="startDate" style="font-weight: bold;font-size: 22px;">StartDate :&ensp;</label>
+                <input type="date" name="startDate" id="startDate" date-placeholder="11/6/2023" class="holder" value="<? $_GET['startDate'] ?? '' ?>" onchange="qw()" require>
             </div>
 
+            <div class="dis">
+                <label for="endDate" style="font-weight: bold;font-size: 22px;">End Date :&ensp;</label>
+                <input type="date" name="endDate" id="endDate" date-placeholder="11/6/2023" class="holder" value="<? $_GET['endDate'] ?? '' ?>" require>
+            </div>
 
 
 
@@ -82,6 +93,12 @@
     scrollbar-width: none;
 ">
         <?php
+        if (sizeof($data) == 0) {
+            echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
+             <div style='display: flex;flex-direction: row;'>
+             No Appointments
+                 </div></div><br>";
+        }
         for ($i = 0; $i < sizeof($data); $i++) {
             $image = $data[$i]['image'] ?? "http://localhost/gomez/public/resources/doctor1.png'";
             $name = $data[$i]['fullname'];
@@ -123,5 +140,11 @@
 
 </article>
 </body>
+<script defer="defer">
+    function qw() {
+        document.getElementById('endDate').min = document.getElementById('startDate').value;
+    }
+</script>
 <script src="<?= URLROOT ?>./javascript/dashboard.js"></script>
+
 <?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>

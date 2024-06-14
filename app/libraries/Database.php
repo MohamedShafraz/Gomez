@@ -119,13 +119,14 @@ class Database
         $result = $this->executeQuery($query);
         $data = [];
         $i = 0;
+
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $data[$i] = $row;
                 $i++;
             }
         }
-        print_r($query);
+        // print_r($query);
         return $data;
     }
     public function fetchDataByUser($where, $data = 1)

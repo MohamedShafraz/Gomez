@@ -57,10 +57,21 @@ class manageappointment extends Controller
                 if ($_GET['Date'] != NULL && $_GET['doctor'] == NULL) {
                     $where = $_GET['Date'];
                     $where = DateTime::createFromFormat('Y-m-d', $where);
-                    $where = $where->format('m/d/Y');
+                    $where = $where->format('Y-m-d');
 
                     // if ($doctor) {
                     $manageappointmentDetails =  $manangeappointmentModel->getAppoinmentbyDate($where);
+                    // }""
+                }
+                if ($_GET['startDate'] != NULL && $_GET['endDate'] != NULL &&  $_GET['doctor'] == NULL) {
+                    $date1 = $_GET['startDate'];
+                    $date1 = DateTime::createFromFormat('Y-m-d', $date1);
+                    $date1 = $date1->format('Y-m-d');
+                    $date2 = $_GET['endDate'];
+                    $date2 = DateTime::createFromFormat('Y-m-d', $date2);
+                    $date2 = $date2->format('Y-m-d');
+                    // if ($doctor) {
+                    $manageappointmentDetails =  $manangeappointmentModel->getAppoinmentbystartandEnd($date1, $date2);
                     // }""
                 }
                 if ($_GET['Date'] != NULL && $_GET['doctor'] != NULL) {

@@ -22,7 +22,7 @@ class manageuser extends Controller
             // print_r($userdetails);
             // print_r($_SESSION['uid']);
             // print_r($detail);
-            $this->view('Admin' . "/patient_details_view", $detail);
+            $this->view($_SESSION['userType'] . "/patient_details_view", $detail);
             exit();
         } else if ($id == 'create') {
             $Model->setTable(User);
@@ -53,12 +53,12 @@ class manageuser extends Controller
             $Model->setTable($user . "s");
             $result1 = $Model->insertData($data);
             print_r("<script>alert('" . $result1 . "')</script>");
-            header("Location:" . URLROOT . "/" . 'Admin' . "/manageuser/" . $user);
+            header("Location:" . URLROOT . "/" . $_SESSION['userType'] . "/manageuser/" . $user);
             exit();
         } else {
             $details = $Model->getUsersDetails();
             $Model->printError();
-            $this->view('Admin' . "/" . $user . "_view", $details);
+            $this->view($_SESSION['userType'] . "/" . $user . "_view", $details);
             exit();
         }
     }
@@ -67,14 +67,14 @@ class manageuser extends Controller
         // session_start();
         if (isset($_SESSION["userType"]) == "admin") {
             // Load the DashboardModel
-            $this->model('Admin' . '/dashboard_model');
+            $this->model($_SESSION['userType'] . '/dashboard_model');
             $dashboardModel = new DashboardModel();
             // Call the method from the DashboardModel
             $users = $dashboardModel->getUserCounts();
 
             // Pass the data to the view
             $userCounts = $dashboardModel->getUserCounts();
-            $this->view('Admin' . "/manageuser_view");
+            $this->view($_SESSION['userType'] . "/manageuser_view");
             exit();
         } else {
             header("location:" . URLROOT . "/users/login");
@@ -83,7 +83,7 @@ class manageuser extends Controller
     public function patient($id = null)
     {
         // session_start();
-        $this->model('Admin' . "/patient_model");
+        $this->model($_SESSION['userType'] . "/patient_model");
         $patientModel = new PatientModel();
 
 
@@ -96,7 +96,7 @@ class manageuser extends Controller
     public function doctor($id = null)
     {
         // session_start();
-        $this->model('Admin' . "/doctor_model");
+        $this->model($_SESSION['userType'] . "/doctor_model");
         $doctorModel = new DoctorModel();
         // $DoctorsDetails = $doctorModel->getUsersDetails();
         // $DoctorDetails = $doctorModel->getUserDetails();
@@ -105,7 +105,7 @@ class manageuser extends Controller
     public function receptionist($id = null)
     {
         // session_start();
-        $this->model('Admin' . "/receptionist_model");
+        $this->model($_SESSION['userType'] . "/receptionist_model");
         $receptionistModel  = new ReceptionistModel();
         $this->getUserPage($id, $receptionistModel, "receptionist");
         exit();
@@ -113,7 +113,7 @@ class manageuser extends Controller
     public function labAssistant($id = null)
     {
         // session_start();
-        $this->model('Admin' . "/lab_assistant_model");
+        $this->model($_SESSION['userType'] . "/lab_assistant_model");
         $labAssitantModel = new LabAssistantModel();
         $this->getUserPage($id, $labAssitantModel, "lab_assistant");
         exit();
@@ -121,7 +121,7 @@ class manageuser extends Controller
     public function lab_Assistant($id = null)
     {
         // session_start();
-        $this->model('Admin' . "/lab_assistant_model");
+        $this->model($_SESSION['userType'] . "/lab_assistant_model");
         $labAssitantModel = new LabAssistantModel();
         $this->getUserPage($id, $labAssitantModel, "lab_assistant");
         exit();
