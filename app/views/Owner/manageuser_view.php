@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<?= URLROOT ?>/css/new.css">
 <link rel="stylesheet" href="<?= URLROOT ?>/css/Admin/manageuser.css">
 <!-- background-color:#E9F3FD -->
-<?php require_once(APPROOT . "/views/Owner/navbar_view.php"); ?>
+<?php require_once(APPROOT . "/views/Admin/navbar_view.php"); ?>
 
 <!-- <a>Welcome to Gomez</a> -->
 <style>
@@ -36,7 +36,7 @@
         border-radius: 8px;
     }
 </style>
-<ul class="manageuser">
+<ul class="manageuser" style="margin-top: 10rem;">
     <li id="manageuser/patient" onclick="y('manageuser/patient')" class="options" style="font-size: 3.5vh;">
         <div><img src=<?php echo URLROOT . "/resources/PatientCount2.png" ?>></div>
         <div><br>Manage Patients<br></div><br><br>
@@ -55,21 +55,21 @@
     </li>
 
 </ul>
-<div class="complainttext">Complaints</div>
+<!-- <div class="complainttext">Issues</div>
 <div class="complaintheader" style="
-    width: 26%;margin-bottom: 0.4%;
+    width: 17.6%;margin-bottom: 0.4%;
 ">
     <a>Name</a>
     <a>Type</a>
     <a style="
-    margin-left: 10%;
+    margin-left: 11%;
 ">Description</a>
     <a style>Date</a>
     <a style="
-    margin-left: 10%;
+    margin-left: 13%;
 ">Time</a>
-</div>
-<table class="complainttable" style="height: 19vh;">
+</div> -->
+<!-- <table class="complainttable" style="height: 19vh;">
     <tbody class="complaint">
         <tr>
             <td style='width: 120px;'>Saj</td>
@@ -97,7 +97,7 @@
         <tr style='color:white;margin: 3%;'></tr>
     </tbody>
 
-</table>
+</table> -->
 
 
 </article>

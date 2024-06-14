@@ -1,4 +1,4 @@
-<aside class="sidenav">
+<aside class="sidenav" id="idOdTableNotToPrint">
     <ul>
         <script>
             var $URLROOT = '<?= URLROOT ?>';

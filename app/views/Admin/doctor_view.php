@@ -59,6 +59,7 @@
     </tbody>
 
 </table>
-
+<button onclick="window.location.href += '/create'" style="    padding: 1%;margin:0%;
+    margin-left: 28%;margin-top:1%" class="test">Create new</button>
 
 <?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>

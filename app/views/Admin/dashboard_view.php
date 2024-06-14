@@ -82,55 +82,71 @@
                 <div><br>Active <br>Lab Assistants<br><a style="font-size:8vh"><?php echo $data['Lab_Assistant'] ?? 1 ?></a>
             </li>
         </ul>
-        <ul style="display: flex;flex-direction:row">
-            <li style="
-            background: #f5f5f5;
-        /* background: #f4f9ff; */
-    width: max-content;
-    padding: 7% 7%;
-    /* border-radius: 10px; */
-    /* box-shadow: 12px 6px 10px 0px; */
-    margin: -32px 0px 0px -41px;
-" class="doughnet">
-                <div class="donut-chart" style="background: conic-gradient(
-    rgba(13, 71, 128, 1) 0% <?php echo 2 * 100 / ($data['Patient']); ?>%, 
-    rgba(9, 114, 234, 1) <?php echo 2 * 100 / ($data['Patient']); ?>% 100%);">
-                    <div class="center-circle" style="background-color:#f5f5f5"></div>
-                    <!-- <div class="label">Patient</div> -->
-                    <br>
-                    <div class="donut-chart-text">
-                        <span class="color-box" style="background-color: rgba(13, 71, 128, 1);"></span>
-                        <span>Registered&ensp;</span>
-                        <span class="color-box" style="background-color: rgba(9, 114, 234, 1);"></span>
-                        <span>Unregistered</span>
-                    </div>
-                </div>
-            </li>
-            <div>
-                <canvas style="width:80rem;background:#f5f5f5;margin-top:-6%" id="myChart"></canvas>
+        <ul style="display: flex;
+  flex-direction: row;">
+            <div style="width: 15rem;
+  height: 15rem;box-shadow: 1px 1px 3px;
+  background: whitesmoke;">
+                <canvas style="width:100px;height:100px;background:#f5f5f5;margin-top:-6%" id="myChart1"></canvas>
+            </div>
+            <div style="width: 15rem;
+  height: 15rem;box-shadow: 1px 1px 3px;
+  background: whitesmoke;">
+                <canvas style="width:100px;height:100px;background:#f5f5f5;margin-top:-6%" id="myChart"></canvas>
+            </div>
+            <div style="width: 15rem;
+  height: 15rem;box-shadow: 1px 1px 3px;
+  background: whitesmoke;">
+                <canvas style="width:200px;height:200px;background:#f5f5f5;margin-top:-6%" id="myChart2"></canvas>
             </div>
 
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
             <script>
                 const ctx = document.getElementById('myChart');
-
+                const ctx1 = document.getElementById('myChart1');
+                const ctx2 = document.getElementById('myChart2');
                 new Chart(ctx, {
                     type: 'line',
                     data: {
                         labels: ['Solved', 'Unsolved', 'check', 'need to check'],
                         datasets: [{
-                            label: 'Issues solved percentage',
+                            label: 'Issues',
                             data: [60, 50, 70, 40],
                             borderWidth: 1
                         }]
                     },
-                    options: {
-                        scales: {
-                            y: {
-                                beginAtZero: true
-                            }
-                        }
+                    hoverOffset: 4,
+
+                });
+                new Chart(ctx1, {
+                    type: 'doughnut',
+                    data: {
+                        labels: ['Registered', 'Unregistered'],
+                        datasets: [{
+                            label: 'Registered and unregistered Patient',
+                            data: [<?php echo 2 * 100 / ($data['Patient']); ?>, <?php echo 2 * 100 / ($data['Patient']); ?>],
+                            borderWidth: 1
+                        }]
+                    },
+                    hoverOffset: 4,
+                });
+                new Chart(ctx2, {
+                    type: 'bar',
+                    data: {
+                        labels: ['2024-04-29', '2024-04-30', '2024-05-01', '2024-05-02', '2024-05-03', '2024-05-04', '2024-05-05'],
+                        datasets: [{
+                            label: 'Appointments',
+                            data: [3, 11, 0, 0, 0, 0, 0],
+                            backgroundColor: [
+                                'rgba(13, 71, 128)',
+                                'rgb(54, 162, 235)',
+                            ],
+                            hoverOffset: 4,
+                        }]
+                    },
+                    animation: {
+                        animateRotate: true,
                     }
                 });
             </script>

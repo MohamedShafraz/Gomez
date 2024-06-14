@@ -75,7 +75,16 @@
         </li>
         <li class="users">
             <label for="email">Email :</label><br><input id='email' name='email' value='<?= $data['email'] ?>'><br><br>
+
         </li>
+        <?php
+        foreach ($data as $key => $value) {
+            if ($key == 'id' || $key == 'type') {
+                continue;
+            }
+            echo "<li class='users'><label for=$key>$key :</label><br><input id=$key name=$key value=$value><br><br></li>";
+        }
+        ?>
     </ul>
     <button onclick="m('popup1')" style="float:center" class="logbutton1" id='update'>Update</button>
 </div>
@@ -84,13 +93,17 @@
     <!-- <a>Welcome to Gomez</a> -->
     <ul style="background-color: white;padding:5%; width:50%">
         <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div>
-        <li class="users">Full Name : <?= $data['userName'] ?><br><br></li>
-        <li class="users">Gender : <?= $data['gender'] ?><br><br></li>
-        <li class="users">Age : <?= $data['age'] ?><br><br></li>
-        <li class="users">Phone number : 0<?= $data['phonenumber'] ?><br><br></li>
-        <li class="users">Email : <?= $data['email'] ?><br><br></li>
 
-        <div style="display:flex;gap:10px"><button onclick="window.location.href = '<?= URLROOT . '/Admin/Manageuser/patient' ?>'" style="float:right" class="logbutton1">back</button><button onclick="f()" style="float:right" class="logbutton1">Edit</button>
+        <?php
+        foreach ($data as $key => $value) {
+            if ($key == 'id' || $key == 'type') {
+                continue;
+            }
+            echo "<li class='users'>$key:  $value <br><br></li>";
+        }
+        ?>
+        <div style="display:flex;gap:10px"><button onclick="window.location.href = '<?= URLROOT . '/Admin/Manageuser/patient' ?>'" style="float:right" class="logbutton1">back</button>
+            <button onclick="f()" style="float:right" class="logbutton1">Edit</button>
 
         </div>
 

@@ -3,8 +3,6 @@
 ?>
 <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 <link rel="stylesheet" href="<?= URLROOT ?>/css/Admin/dashboard.css">
-<link rel="stylesheet" href="<?= URLROOT ?>/css/Doctor/doctorcommon.css">
-<link rel="stylesheet" href="<?= URLROOT ?>/css/GMZ.css">
 <link rel="stylesheet" href="<?= URLROOT ?>/css/new.css">
 
 <!-- background-color:#E9F3FD -->
@@ -15,21 +13,14 @@
     <br>
     <br>
 
-    <?php
-
-    if (!isset($_SESSION)) {
-        session_start();
-    }
-
-    ?>
-
     <header class="header">
         <nav class="navbar">
-            <img src="<?= URLROOT . "/resources/user.png" ?>" class="profilepic">
-            <a href="<?php echo URLROOT . "/Doctor/ViewProfile"; ?>">
-                <div class="selected">
-                    <font class="GMfont" style="font-family: 'inter';"><?php echo $_SESSION["USER"]["Username"]; ?></font>
+            <img src="<?= 'data:image/png;base64,' . base64_encode($_SESSION["USER"]["profilepicture"]) ?>" class="profilepic">
+            <a href="http://localhost/Gomez/logout">
+                <font class="GMfont" style="font-family: 'inter';" onclick="windows.location.href = 'location:logout'"> Hello, <?= $_SESSION['uname'] ?></font>
                 </div>
+
             </a>
         </nav>
+        <?php include APPROOT . '/views/Doctor/sidebar.php' ?>
     </header>
