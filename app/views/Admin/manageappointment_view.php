@@ -67,7 +67,7 @@
                 <input type="date" name="Date" id="Date" date-placeholder="11/6/2023" class="holder" value="<? $_GET['Date'] ?? '' ?>" require>
             </div>
             <div class="dis">
-                <label for="startDate" style="font-weight: bold;font-size: 22px;">StartDate :&ensp;</label>
+                <label for="startDate" style="font-weight: bold;font-size: 22px;">Start Date :&ensp;</label>
                 <input type="date" name="startDate" id="startDate" date-placeholder="11/6/2023" class="holder" value="<? $_GET['startDate'] ?? '' ?>" onchange="qw()" require>
             </div>
 
