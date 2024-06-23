@@ -44,6 +44,10 @@ border-radius: 8px 0px 0px 8px;"></div>
     </div>
     </div>
     </div>
+                <input name="submit" type="submit" value="Log in" class="logbutton" id="submit" style=' font-family: inter;'>
+    </div>
+    </div>
+    </div>
     </form>
 </body>
 

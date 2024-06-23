@@ -108,7 +108,7 @@ padding: 10px;
     .Welcome{
         text-align: center;
         color: white;
-background-color: var(--Gomez-Purple);
+background-color: var(--Gomez-highlight);
 padding-top: 17px;
 margin: -4px 0px 0px -8px;
 padding-bottom: 52px;
@@ -290,7 +290,7 @@ justify-content: center;
 --Gomez-Gray: #d9d9d9;
 --Gomez-White: #fafafa;
 --Gomez-Black: #050505;
---Gomez-Login-Box-Purple: linear-gradient(90deg, #FCFCFC 0%, #C3CAE8 96.67%);
+--Gomez-Login-Box-Purple: linear-gdradient(90deg, #FCFCFC 0%, #C3CAE8 96.67%);
 --Gomez-Text-Box-Purple: linear-gradient(90deg, white, rgba(134, 147, 209, 1));
 --Gomez-Brown: #948686;
 --animation-timing:200ms ease-in-out;
