@@ -1,294 +1,290 @@
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 <style>
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-        ul li a {
-            text-decoration: none;
-            color: inherit;
-        }
+    ul li a {
+        text-decoration: none;
+        color: inherit;
+    }
 
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: block;
-            /* Change to block to make it a block element */
-            margin: 0 auto;
-            /* Center horizontally */
-        }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+        transition: background-color 0.3s ease;
+    }
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
+    input[type="submit"]:hover {
+        background-color: #45a049;
+    }
 
-        input[type="text"],
-        input[type="date"],
+    input[type="text"],
+    input[type="date"],
+    input[type="number"],
+    textarea,
+    select {
+        width: 100%;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        padding: 10px;
+        margin-top: 5px;
+        transition: border-color 0.3s ease;
+    }
 
-        input[type="number"],
-        textarea {
-            width: 100%;
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
+    input[type="text"]:focus,
+    input[type="date"]:focus,
+    input[type="number"]:focus,
+    textarea:focus,
+    select:focus {
+        border-color: #4CAF50;
+    }
 
-        label {
-            text-align: center;
-            color: darkblue;
-        }
+    label {
+        text-align: left;
+        color: darkblue;
+        display: block;
+        margin-top: 10px;
+    }
 
-        /* Center the form */
-        .dashboard {
-            text-align: center;
-        }
+    .dashboard {
+        text-align: center;
+        padding: 20px;
+        max-width: 800px;
+        margin: 0 auto;
+        border-radius: 8px;
+    }
 
-        .card{
-            border-radius: 27px;
-            background: #ffffff;
-            box-shadow:  5px 5px 10px #b0b0b0,
-                        -5px -5px 10px #ffffff;
-            padding: 20px;
-        }
+    .card {
+        padding: 20px;
+        border-radius: 8px;
+        width: 100%;
+    }
 
-    </style>
+    #selectedValuesTable {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 10px;
+    }
+
+    #selectedValuesTable th,
+    #selectedValuesTable td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    #selectedValuesTable th {
+        background-color: #f2f2f2;
+    }
+
+    #selectedValuesTable button {
+        background-color: #f44336;
+        color: white;
+        border: none;
+        padding: 5px 10px;
+        border-radius: 4px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    #selectedValuesTable button:hover {
+        background-color: #e53935;
+    }
+
+    .input-group {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .input-group select,
+    .input-group input,
+    .input-group button {
+        margin-top: 0;
+        width: auto;
+    }
+
+    .input-group input {
+        flex-grow: 1;
+        margin-right: 10px;
+    }
+
+    .input-group button {
+        margin-left: 10px;
+    }
+
+    .hidden {
+        display: none;
+    }
+</style>
+
 
 </aside>
 <article class="dashboard">
-    <div style="margin-left:24%; display:flex; justify-content:center;">
-    
-  
-    <form id="labForm" class="card" onsubmit="submitForm()" action="<?=URLROOT."/Doctor/AddPrescription"?>" method="post" style="margin-top:5%;">
-            <input type="hidden" name="Appointment_Id" value="<?php echo $appointment[0]['Appointment_Id']?>">
-            <input type="hidden" name="patient_id" value="<?php echo $appointment[0]['Patient_Id']?>">
+    <div>
+        <form id="labForm" class="card" onsubmit="return submitForm()" action="<?= URLROOT . '/Doctor/AddPrescription' ?>" method="post">
+            <input type="hidden" name="Appointment_Id" value="<?php echo $appointment[0]['Appointment_Id'] ?>">
+            <input type="hidden" name="patient_id" value="<?php echo $appointment[0]['Patient_Id'] ?>">
 
-            <label for="disease">Disease</label><br>
-            <textarea id="disease" name="disease" rows="4" cols="50"></textarea><br><br>
-
-            <label for="prescription">Instructions</label><br>
-            <textarea id="prescription" name="prescription" rows="4" cols="50"></textarea><br><br>
-
-            
-            <!--<label for="prescription">New one</label><br>
-            <textarea id="newone" name="newone" rows="4" cols="50"></textarea><br><br> -->
-
-
-            
-            <label for="labtesting">Lab Testing</label><br>
-            <ul id="selectedValues" ></ul>
-            <div style="display:flex;flex-direction:row;">
-                <select id="labtestinglist" name="labtesting">
-                       <option value="FBS">FBS</option>
-                       <option value="Lipid">Lipid</option>
-                       <option value="CBC">CBC</option>
-                       <option value="PTT">PTT</option>
-                      <option value="UA">UA</option>
-                      <option value="X-rays">X-rays</option>
-                       <option value="CT Scan">CT Scan</option>
-                       <option value="ECG">ECG</option>
-                        <option value="GTT">GTT</option>
-                       <option value="TB Testing">TB Testing</option>
-                       <option value="Stool Culture">Stool Culture</option>
-                        <option value="Blood Drug Test">Blood Drug Test</option>
-                        <option value="Urine Full Report (UFR)">Urine Full Report (UFR)</option>
-                        <option value="Thyroid Profile (TSH / fT4)">Thyroid Profile (TSH / fT4)</option>
-                        <option value="Vitamin D (25-Hydroxy)">Vitamin D (25-Hydroxy)</option>
-                        <option value="VDRL/RPR (Quantitative)">VDRL/RPR (Quantitative)</option>
-                        <option value="Urine Pregnancy Test">Urine Pregnancy Test</option>
-                        <option value="Urine for Albumin">Urine for Albumin</option>
-                        <option value="Uric Acid">Uric Acid</option>
-                        <option value="Urea">Urea</option>
-                        <option value="TSH">TSH</option>
-                        <option value="Troponin T (High Sensitive)">Troponin T (High Sensitive)</option>
-                        <option value="Troponin I">Troponin I</option>
-                        <option value="TPHA">TPHA</option>
-
-                </select><br><br>
-                <button type="button" onclick="addValue()"></button> <!-- Changed type to button -->
+            <label for="disease">Disease</label>
+            <div class="input-group">
+                <select id="disease" name="disease">
+                    <?php foreach ($diseases as $disease) : ?>
+                    <option value="<?php echo $disease['disease']; ?>"><?php echo $disease['disease']; ?></option>
+                    <?php endforeach; ?>
+                    <option value="custom">Enter custom Disease</option>
+                </select>
+                <input type="text" id="customDisease" style="display: none;" name="disease" placeholder="Enter Disease Name" class="hidden" />
+                <button type="button" id="customDiseaseClose" class="hidden">X</button>
             </div>
-           
-            
-            <label for="otherremarks">Other Remarks</label><br>
-            <textarea id="otherremarks" name="otherremarks" rows="4" cols="50"></textarea><br><br>
+
+            <label for="prescription">Instructions</label>
+            <textarea id="prescription" name="prescription" rows="4" cols="50"></textarea>
+
+            <label for="labtesting">Lab Testing</label>
+            <table id="selectedValuesTable"></table>
+            <div class="input-group">
+                <select id="labtestinglist" name="labtesting">
+                    <?php foreach ($labtests as $test) : ?>
+                    <option value="<?php echo $test['test']; ?>"><?php echo $test['test']; ?></option>
+                    <?php endforeach; ?>
+                    <option value="custom">Enter custom Labtest</option>
+                </select>
+                <input type="text" id="customLabtest" name="labtesting" style="display: none;" placeholder="Enter Test Name" class="hidden" />
+                <button type="button" id="customMedicineClose" class="hidden">X</button>
+                <button type="button" style="background-color: darkblue; color: white; border: none; height:34px" onclick="addValue()">Add test</button>
+            </div>
+
+            <label for="otherremarks">Other Remarks</label>
+            <textarea id="otherremarks" name="otherremarks" rows="4" cols="50"></textarea>
 
             <input type="hidden" id="labtesting" name="labtesting" value="">
-
             <input type="hidden" id="priscription_date" name="priscription_date" value="<?= date('Y-m-d'); ?>">
-
-            <input type="submit" value="Submit" style="background-color: blue; color: white;">
-
-           
-                      
-
+            <br></br>
+            <input type="submit" value="Submit">
         </form>
     </div>
 </article>
 
-
 <script>
     var selectedValues = [];
-   
 
-    // Function to add selected value to array
+    document.getElementById('disease').addEventListener('change', function () {
+        var customDiseaseInput = document.getElementById('customDisease');
+        var diseaseList = document.getElementById('disease');
+        var customDiseaseClose = document.getElementById('customDiseaseClose');
+
+        if (this.value === 'custom') {
+            customDiseaseInput.style.display = 'inline';
+            diseaseList.style.display = 'none';
+            customDiseaseClose.style.display = 'inline';
+        } else {
+            customDiseaseInput.style.display = 'none';
+            diseaseList.style.display = 'inline';
+            customDiseaseClose.style.display = 'none';
+        }
+
+        customDiseaseClose.addEventListener('click', function() {
+                customDiseaseInput.style.display = 'none';
+                diseaseList.style.display = 'inline';
+                customDiseaseClose.style.display = 'none';
+            });
+    });
+
+    document.getElementById('labtestinglist').addEventListener('change', function () {
+        var customLabtestInput = document.getElementById('customLabtest');
+        var labtestingList = document.getElementById('labtestinglist');
+        var customMedicineClose = document.getElementById('customMedicineClose');
+
+        if (this.value === 'custom') {
+            customLabtestInput.style.display = 'inline';
+            labtestingList.style.display = 'none';
+            customMedicineClose.style.display = 'inline';
+        } else {
+            customLabtestInput.style.display = 'none';
+            labtestingList.style.display = 'inline';
+            customMedicineClose.style.display = 'none';
+        }
+
+        customMedicineClose.addEventListener('click', function() {
+                customLabtestInput.style.display = 'none';
+                labtestingList.style.display = 'inline';
+                customMedicineClose.style.display = 'none';
+            });
+    });
+
     function addValue() {
         var select = document.getElementById("labtestinglist");
-        var selectedOption = select.options[select.selectedIndex];
-        var selectedValue = selectedOption.value;
-        var selectedText = selectedOption.text;
+        var customLabtestInput = document.getElementById("customLabtest");
 
-        // Check if value is already in array
+        var selectedValue = select.value === 'custom' ? customLabtestInput.value : select.value;
+        var selectedText = select.value === 'custom' ? customLabtestInput.value : select.options[select.selectedIndex].text;
+
+        if (selectedValue === '') {
+            alert('Please enter a custom lab test name.');
+            return;
+        }
+
         if (!selectedValues.includes(selectedValue)) {
             selectedValues.push(selectedValue);
 
-            // Display selected value
-            var selectedValuesList = document.getElementById("selectedValues");
-            var listItem = document.createElement("li");
-            listItem.textContent = selectedText;
+            var selectedValuesTable = document.getElementById("selectedValuesTable");
+            var newRow = selectedValuesTable.insertRow();
+            var cell1 = newRow.insertCell(0);
+            var cell2 = newRow.insertCell(1);
 
-            // Create delete button
+            cell1.textContent = selectedText;
+
             var deleteButton = document.createElement("button");
-            deleteButton.textContent = " Delete";
-            deleteButton.onclick = function() {
-                listItem.remove(); // Remove the associated list item when the delete button is clicked
-                // Remove the value from the selectedValues array
+            deleteButton.textContent = "Delete";
+            deleteButton.onclick = function () {
+                var rowIndex = newRow.rowIndex;
+                selectedValuesTable.deleteRow(rowIndex);
                 var index = selectedValues.indexOf(selectedValue);
                 if (index !== -1) {
                     selectedValues.splice(index, 1);
                 }
             };
 
-            // Append delete button to list item
-            listItem.appendChild(deleteButton);
+            cell2.appendChild(deleteButton);
+        }
 
-            // Append list item to selected values list
-            selectedValuesList.appendChild(listItem);
+        if (select.value === 'custom') {
+            customLabtestInput.value = '';
+            select.value = '';
+            customLabtestInput.style.display = 'none';
         }
 
         console.log(selectedValues);
     }
 
+    function submitForm() {
+        var diseaseSelect = document.getElementById('disease');
+        var customDiseaseInput = document.getElementById('customDisease');
 
- /*  var selectedValues2 = [];
-    
-    function addValue2() {
-        
-        var select = document.getElementById("symptoms");
-        var selectedOption = select.options[select.selectedIndex];
-        var selectedValue = selectedOption.value;
-        var selectedText = selectedOption.text;
-
-        // Check if value is already in array
-        if (!selectedValues2.includes(selectedValue)) {
-            selectedValues2.push(selectedValue);
-
-            // Display selected value
-            var selectedValuesList = document.getElementById("selectedValues2");
-            var listItem = document.createElement("li");
-            listItem.textContent = selectedText;
-
-            // Create delete button
-            var deleteButton = document.createElement("button");
-            deleteButton.textContent = " Delete";
-            deleteButton.onclick = function() {
-                listItem.remove(); // Remove the associated list item when the delete button is clicked
-                // Remove the value from the selectedValues array
-                var index = selectedValues2.indexOf(selectedValue);
-                if (index !== -1) {
-                    selectedValues2.splice(index, 1);
-                }
-            };
-
-            // Append delete button to list item
-            listItem.appendChild(deleteButton);
-
-            // Append list item to selected values list
-            selectedValuesList.appendChild(listItem);
+        if (diseaseSelect.value === 'custom') {
+            diseaseSelect.value = customDiseaseInput.value;
         }
 
-        console.log(selectedValues2);
-    } */
-    function submitForm() {
-        
-       
         var labtestingValue = selectedValues.join(', ');
-      //  var symptoms = selectedValues2.join(', ');
-        
-        
         document.getElementById("labtesting").value = labtestingValue;
-     //   document.getElementById("symptoms").value = symptoms;
 
-
-        
         selectedValues = [];
-        selectedValues2 = [];
-        
-        document.getElementById("selectedValues").innerHTML = "";
-     //   document.getElementById("selectedValues2").innerHTML = "";
-       
         return true;
-        
     }
 </script>
 
-
-
-
-
-
-
-
-
-
-
-
-<?php require_once(APPROOT . "/views/Admin/footer_view.php");?>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<!--<label for="symptoms">Symptoms</label><br>
-            <ul id="selectedValues2" ></ul>
-            <div style="display:flex;flex-direction:row;">
-                <select id="symptoms" name="symptoms">
-                       <option value="fever">fever</option>
-                       <option value="cough">cough</option>
-                       <option value="headache">headche</option>
-                       </select><br><br>
-                <button type="button" onclick="addValue2()"></button> <!-- Changed type to button -->
-            </div> > --!
-
-
-
+<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
+</div>

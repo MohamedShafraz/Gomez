@@ -134,6 +134,13 @@ class DoctorModel extends Database
         return $result;
     }
 
+    public function addDisese($data)
+    {
+        $this->setTable(Disease);
+        $result = $this->insertData($data);
+        return $result;
+    }
+
     public function getMedicinebyUniqeid($unique_id){
         $where = "unique_id='$unique_id'";
         $this->setTable(Medicine);
@@ -163,7 +170,31 @@ class DoctorModel extends Database
         // print_r($_SESSION["USER"]["profilepicture"]);
         //return $details;
         return $data;
-}
+    }
+
+    public function getLabtest(){
+        $this->setTable(Labtest);
+        $result = $this->fetchData("test_id != ''");
+        return $result;
+    }
+
+    public function getDrugs(){
+        $this->setTable(Drug);
+        $result = $this->fetchData("id != ''");
+        return $result;
+    }
+
+    public function getDisease(){
+        $this->setTable(Disease);
+        $result = $this->fetchData("diseaseid  != ''");
+        return $result;
+    }
+
+    public function findDisease($disease){
+        $this->setTable(Disease);
+        $result = $this->fetchData("disease = '$disease'");
+        return $result;
+    }
 
   // public function getPatientbyappointment($userid)
  // {

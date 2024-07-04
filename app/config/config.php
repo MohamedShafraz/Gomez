@@ -26,7 +26,13 @@ define('Prescription', 'prescription'); //
 
 define('Medicine','medicine_data');
 
+define('Labtest','labtests');
+
 
 define('Receptionists','receptionist');
 
 define('Session','session');
+
+define('Drug','medicines');
+
+define('Disease','disease');

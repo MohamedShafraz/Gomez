@@ -1,207 +1,293 @@
-
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
 <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 <style>
-        ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
+    ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
 
-        ul li a {
-            text-decoration: none;
-            color: inherit;
-        }
+    ul li a {
+        text-decoration: none;
+        color: inherit;
+    }
 
-        input[type="submit"] {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            display: block;
-            /* Change to block to make it a block element */
-            margin: 0 auto;
-            /* Center horizontally */
-        }
+    input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+    }
 
-        input[type="submit"]:hover {
-            background-color: #45a049;
-        }
+    label {
+        text-align: center;
+        color: darkblue;
+        margin-right: 2%;
+    }
 
-        input[type="text"],
-        input[type="date"],
-        textarea {
-            padding: 12px 20px;
-            margin: 8px 0;
-            display: inline-block;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-            margin-right: 2%;
-        }
+    .dashboard {
+        text-align: center;
+    }
 
-        label {
-            text-align: center;
-            color: darkblue;
-            margin-right: 2%;
-        }
+    .delete-button {
+        margin-left: 10px;
+        background-color: red;
+        color: white;
+        border: none;
+        padding: 5px;
+        cursor: pointer;
+    }
 
-        /* Center the form */
-        .dashboard {
-            text-align: center;
-        }
+    .delete-button:hover {
+        background-color: darkred;
+    }
 
-        .card{
-            border-radius: 27px;
-            background: #ffffff;
-            box-shadow:  5px 5px 10px #b0b0b0,
-                        -5px -5px 10px #ffffff;
-            padding: 20px;
-        }
+    #submit {
+        background-color: #4CAF50;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+        display: block;
+        margin: 0 auto;
+    }
 
-    </style>
+    .bluebutton {
+        background-color: darkblue;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+    }
 
-</aside>
-<article class="dashboard" style="font-family: inter;">
-    <div style="margin-left:24%; display:flex; justify-content:center;">
-    <form class="card" id="medicineForm" style="width: 90%; margin-top: 5%;width:100%">
-        <h1 style="text-align:center;margin-bottom:15px; margin-top:15px">Medicine Information</h1>
-        <div id="medicineItems">
-          <div style="display: flex; flex-direction: row; justify-content: center;">
-              <label for="medicineName">Medicine Name</label>
-              <select name="medicineName[]" id="medicineName">
-                  <?php
-                  // List of medicines
-                  $medicines = [
-                      "Hydrochlorothiazide" => ["type" => "tablet", "dosage_type" => "tablets"],
-                      "Hydroxychloroquine" => ["type" => "tablet", "dosage_type" => "tablets"],
-                      "Ibuprofen" => ["type" => "tablet", "dosage_type" => "tablets"],
-                      "Loratadine" => ["type" => "cyrup", "dosage_type" => "ml"],
-                      "Melatonin" => ["type" => "balm", "dosage_type" => "drops"],
-                      "Naproxen" => ["type" => "tablet", "dosage_type" => "tablets"],
-                      "Omeprazole" => ["type" => "balm", "dosage_type" => "drops"],
-                      "Xanax" => ["type" => "cyrup", "dosage_type" => "ml"],
-                      "Zubsolv" => ["type" => "cyrup", "dosage_type" => "ml"]
-                  ];
+    .medicine-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 20px;
+    }
 
-                  foreach ($medicines as $medicine => $details) {
-                      echo "<option value='$medicine'>$medicine ({$details['type']})</option>";
-                  }
-                  ?>
-              </select>
-              
-              <label style="margin-left: 2%;" for="dose">Dose</label>
-              <input type="number" id="dose" name="dose[]" min="1" required>
-              
-              <select name="dosage_type[]">
-                  <option value="ml">ml</option>
-                  <option value="tablets">tablets</option>
-                  <option value="drops">drops</option>
-              </select>
-              
-              <label style="margin-left: 2%;">Timing</label>
-              <select name="timing[]" id="timing">
-                  <option value="Morning">Morning</option>
-                  <option value="Evening">Evening</option>
-                  <option value="Night">Night</option>
-                  <option value="morningevening">Morning and Evening</option>
-                  <option value="morningnight">Morning and Night</option>
-              </select>
-              
-              <label style="margin-left: 2.5%;">Before/After Meal</label>
-              <select name="meal[]" id="meal">
-                  <option value="Before">Before</option>
-                  <option value="After">After</option>
-              </select>
-              
-              <button class="bluebutton" id="addMedicine" style="margin-left: 5%;">Add</button>
-          </div>
-      </div>
-        <button id="submit"  type="submit" class="greenbutton btn" style="width: 25%; margin-top:20px">Submit</button>
-    </form>
+    .medicine-table th, .medicine-table td {
+        border: 1px solid #ddd;
+        padding: 8px;
+        text-align: left;
+    }
+
+    .medicine-table th {
+        background-color: #f2f2f2;
+    }
+</style>
+
+<aside></aside>
+<article class="dashboard" style="font-family: Inter;">
+    <div style="margin-left: 24%; display: flex; justify-content: center;">
+        <form class="card" id="medicineForm" style="width: 90%; margin-top: 5%; width: 100%" action="<?php echo URLROOT; ?>/Doctor/AddMedicine" method="POST" onsubmit="return submitForm()">
+            <h1 style="text-align: center; margin-bottom: 15px; margin-top: 15px; color: darkblue">Medicine Information</h1>
+            <ul id="medicinelist"></ul>
+            <div id="medicineItems">
+                <div style="display: flex; flex-direction: row; justify-content: center;">
+                <label for="medicineName">Medicine Name</label>
+                <select name="medicineName" id="medicineName" style="border: none;" required>
+                    <?php foreach ($drugs as $drug) {
+                        echo "<option value='{$drug['name']}'>{$drug['name']}</option>";
+                    } ?>
+                    <option value="custom">Enter Custom Medicine</option>
+                </select>
+                <input type="text" id="customMedicineName" name="customMedicineName" placeholder="Enter Medicine Name" style="display: none; height: 40px;" />
+                <button type="button" id="customMedicineClose" style="display: none;">X</button>
+
+                    <label style="margin-left: 2%;" for="dose">Dose</label>
+                    <input type="number" id="dose" name="dose" min="1" required>
+
+                    <select name="dosage_type" id="dosage_type">
+                        <option value="ml">ml</option>
+                        <option value="tablets">tablets</option>
+                        <option value="drops">drops</option>
+                    </select>
+
+                    <label style="margin-left: 2%;">Timing</label>
+                    <select name="timing" id="timing">
+                        <option value="Morning">Morning</option>
+                        <option value="Evening">Evening</option>
+                        <option value="Night">Night</option>
+                        <option value="morningevening">Morning and Evening</option>
+                        <option value="morningnight">Morning and Night</option>
+                    </select>
+
+                    <label style="margin-left: 2.5%;">Before/After Meal</label>
+                    <select name="meal" id="meal">
+                        <option value="Before">Before</option>
+                        <option value="After">After</option>
+                    </select>
+
+                    <button class="bluebutton" onclick="addMedicine(event)" style="margin-left: 5%;">Add</button>
+                </div>
+            </div>
+            <input type="hidden" name="medicineNameValues[]" id="medicineNameValues">
+            <input type="hidden" name="doseValues[]" id="doseValues">
+            <input type="hidden" name="timingValues[]" id="timingValues">
+            <input type="hidden" name="mealValues[]" id="mealValues">
+            <input type="hidden" name="dosageTypeValues[]" id="dosageTypeValues">
+            <button id="submit" type="submit" style="width: 25%; margin-top: 20px;">Submit</button>
+        </form>
     </div>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
-<script>
-  $(document).ready(function() {
-    $("#addMedicine").click(function(e) {
-      e.preventDefault();
-      $("#medicineItems").prepend(`
-      <div style="display: flex; flex-direction: row; justify-content: center;">
-              <label for="medicineName">Medicine Name</label>
-              <select name="medicineName[]" id="medicineName">
-                  <?php
-                  // List of medicines
-                  $medicines = [
-                      "Hydrochlorothiazide" => ["type" => "tablet", "dosage_type" => "tablets"],
-                      "Hydroxychloroquine" => ["type" => "tablet", "dosage_type" => "tablets"],
-                      "Ibuprofen" => ["type" => "tablet", "dosage_type" => "tablets"],
-                      "Loratadine" => ["type" => "cyrup", "dosage_type" => "ml"],
-                      "Melatonin" => ["type" => "balm", "dosage_type" => "drops"],
-                      "Naproxen" => ["type" => "tablet", "dosage_type" => "tablets"],
-                      "Omeprazole" => ["type" => "balm", "dosage_type" => "drops"],
-                      "Xanax" => ["type" => "cyrup", "dosage_type" => "ml"],
-                      "Zubsolv" => ["type" => "cyrup", "dosage_type" => "ml"]
-                  ];
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <script>
+        var medicineItems = [];
+        var doses = [];
+        var timings = [];
+        var meals = [];
+        var dosageTypes = [];
 
-                  foreach ($medicines as $medicine => $details) {
-                      echo "<option value='$medicine'>$medicine ({$details['type']})</option>";
-                  }
-                  ?>
-              </select>
-              
-              <label style="margin-left: 2%;" for="dose">Dose</label>
-              <input type="number" id="dose" name="dose[]" min="1" required>
-              
-              <select name="dosage_type[]">
-                  <option value="ml">ml</option>
-                  <option value="tablets">tablets</option>
-                  <option value="drops">drops</option>
-              </select>
-              
-              <label style="margin-left: 2%;">Timing</label>
-              <select name="timing[]" id="timing">
-                  <option value="Morning">Morning</option>
-                  <option value="Evening">Evening</option>
-                  <option value="Night">Night</option>
-                  <option value="morningevening">Morning and Evening</option>
-                  <option value="morningnight">Morning and Night</option>
-              </select>
-              
-              <label style="margin-left: 2.5%;">Before/After Meal</label>
-              <select name="meal[]" id="meal">
-                  <option value="Before">Before</option>
-                  <option value="After">After</option>
-              </select>
-              
-              <button class="bluebutton" id="removeMedicine" style="margin-left: 5%;">Remove</button>
-          </div>
-      `);
-    });
+        document.addEventListener('DOMContentLoaded', function() {
+            var customMedicineInput = document.getElementById('customMedicineName');
+            var medicineNameSelect = document.getElementById('medicineName');
+            var customMedicineClose = document.getElementById('customMedicineClose');
 
-    $(document).on('click', '#removeMedicine', function(e) {
-      e.preventDefault();
-      $(this).parent('div').remove();
-    });
+            medicineNameSelect.addEventListener('change', function() {
+                if (this.value === 'custom') {
+                    customMedicineInput.style.display = 'inline';
+                    medicineNameSelect.style.display = 'none';
+                    customMedicineInput.setAttribute('required', 'required');
+                    customMedicineClose.style.display = 'inline';
+                } else {
+                    customMedicineInput.style.display = 'none';
+                    customMedicineInput.removeAttribute('required');
+                    medicineNameSelect.setAttribute('required', 'required');
+                    medicineNameSelect.style.display = 'inline';
+                    customMedicineClose.style.display = 'none';
+                }
+            });
 
-    $("#medicineForm").submit(function(e) {
-      e.preventDefault();
-      var formData = $(this).serialize(); // Serialize the medicineForm
+            customMedicineClose.addEventListener('click', function() {
+                customMedicineInput.style.display = 'none';
+                customMedicineInput.removeAttribute('required');
+                medicineNameSelect.setAttribute('required', 'required');
+                medicineNameSelect.style.display = 'inline';
+                customMedicineClose.style.display = 'none';
+                medicineNameSelect.value = '';  // Reset the dropdown to the default state
+            });
+        });
 
-      $.ajax({
-        type: "POST",
-        url: "<?php echo URLROOT; ?>/Doctor/AddMedicine",
-        data: formData,
-        success: function(data) {
-          window.location.href = "<?php echo URLROOT; ?>/Doctor/appointments/message";
+
+        function addMedicine(event) {
+            event.preventDefault(); // Prevent form submission
+
+            var medicineNameSelect = document.getElementById('medicineName');
+            var customMedicineName = document.getElementById('customMedicineName');
+            var dose = document.getElementById('dose').value;
+            var timing = document.getElementById('timing').value;
+            var meal = document.getElementById('meal').value;
+            var dosageType = document.getElementById('dosage_type').value;
+
+            var medicineName = medicineNameSelect.value === 'custom' ? customMedicineName.value : medicineNameSelect.value;
+
+            if (!medicineName) {
+                alert('Please enter a medicine name.');
+                return;
+            }
+
+            medicineItems.push(medicineName);
+            doses.push(dose);
+            timings.push(timing);
+            meals.push(meal);
+            dosageTypes.push(dosageType);
+
+            renderMedicineList();
         }
-      });
-    });
-  });
 
-</script>
+        function renderMedicineList() {
+            var ul = document.getElementById('medicinelist');
+            ul.innerHTML = '';
 
+            // Create table element
+            var table = document.createElement('table');
+            table.classList.add('medicine-table');
 
-<?php require_once(APPROOT . "/views/Admin/footer_view.php");?>
+            // Create table header row
+            var headerRow = document.createElement('tr');
+            var headers = ['Medicine', 'Dose', 'Dosage Type', 'Timings', 'Meals', 'Actions'];
+            headers.forEach(function(headerText) {
+                var th = document.createElement('th');
+                th.appendChild(document.createTextNode(headerText));
+                headerRow.appendChild(th);
+            });
+            table.appendChild(headerRow);
+
+            for (var i = 0; i < medicineItems.length; i++) {
+                var tr = document.createElement('tr');
+
+                // Create and append cells with medicine details
+                var tdMedicine = document.createElement('td');
+                tdMedicine.appendChild(document.createTextNode(medicineItems[i]));
+                tr.appendChild(tdMedicine);
+
+                var tdDose = document.createElement('td');
+                tdDose.appendChild(document.createTextNode(doses[i]));
+                tr.appendChild(tdDose);
+
+                var tdDosageType = document.createElement('td');
+                tdDosageType.appendChild(document.createTextNode(dosageTypes[i]));
+                tr.appendChild(tdDosageType);
+
+                var tdTimings = document.createElement('td');
+                tdTimings.appendChild(document.createTextNode(timings[i]));
+                tr.appendChild(tdTimings);
+
+                var tdMeals = document.createElement('td');
+                tdMeals.appendChild(document.createTextNode(meals[i]));
+                tr.appendChild(tdMeals);
+
+                // Create and append cell with delete button
+                var tdActions = document.createElement('td');
+                var deleteButton = document.createElement('button');
+                deleteButton.appendChild(document.createTextNode('Delete'));
+                deleteButton.classList.add('delete-button');
+                deleteButton.setAttribute('data-index', i);
+                deleteButton.addEventListener('click', function(event) {
+                    deleteMedicine(event.target.getAttribute('data-index'));
+                });
+                tdActions.appendChild(deleteButton);
+                tr.appendChild(tdActions);
+
+                table.appendChild(tr);
+            }
+
+            // Append the table to the ul element
+            ul.appendChild(table);
+        }
+
+        function deleteMedicine(index) {
+            medicineItems.splice(index, 1);
+            doses.splice(index, 1);
+            timings.splice(index, 1);
+            meals.splice(index, 1);
+            dosageTypes.splice(index, 1);
+            renderMedicineList();
+        }
+
+        function submitForm() {
+            var medicineNameValues = document.getElementById('medicineNameValues');
+            var doseValues = document.getElementById('doseValues');
+            var timingValues = document.getElementById('timingValues');
+            var mealValues = document.getElementById('mealValues');
+            var dosageTypeValues = document.getElementById('dosageTypeValues');
+
+            medicineNameValues.value = JSON.stringify(medicineItems);
+            doseValues.value = JSON.stringify(doses);
+            timingValues.value = JSON.stringify(timings);
+            mealValues.value = JSON.stringify(meals);
+            dosageTypeValues.value = JSON.stringify(dosageTypes);
+
+            return true; // Allow form submission
+        }
+    </script>
+</article>
+
+<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>

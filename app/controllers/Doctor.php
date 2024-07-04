@@ -122,8 +122,10 @@ class Doctor extends Controller
             $this->doctorModel = new DoctorModel(new Database());
            
             $appointment = $this->doctorModel->getAppoinmentbyID($appointmentid);
-            
-            $this->view('Doctor/addprescription_view', ['appointment' => $appointment]);
+            $labtests = $this->doctorModel->getLabtest();
+            $diseases = $this->doctorModel->getDisease();
+
+            $this->view('Doctor/addprescription_view', ['appointment' => $appointment, 'labtests' => $labtests, 'diseases' => $diseases]);
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
@@ -156,18 +158,24 @@ class Doctor extends Controller
                 'otherremarks' => $_POST['otherremarks'],
                 'priscription_date' => $_POST['priscription_date'],
                 'unique_id' => $uniqueid,
-              //  'symptoms' => $_POST['symptoms'],
-                 // 'newone'=> $_POST['newone'],
-
             ];
+
+
+            $founddisiease = $this->doctorModel->findDisease($_POST['disease']);
+            if (count($founddisiease) == 0) {
+                $diseasetoadd = [
+                    'disease' => $_POST['disease'],
+                ];
+                $this->doctorModel->addDisese($diseasetoadd);
+            }
 
             $_SESSION['uniqueid'] = $uniqueid;
             $_SESSION['prescription'] = $data;
 
 
-        header("Location: ".URLROOT."/Doctor/addMedicineView");
+            header("Location: ".URLROOT."/Doctor/addMedicineView");
         
-           exit();  
+            exit();  
             
         } else {
             header("Location: " . URLROOT . "/Users/login");
@@ -179,39 +187,50 @@ public function addMedicineView(){
         if(!isset($_SESSION)){
             session_start();}
 
-        $this->view('Doctor/addmedicine');
+        $this->model("DoctorModel");
+        $this->doctorModel = new DoctorModel(new Database());
+
+        $drugs = $this->doctorModel->getDrugs();
+        $this->view('Doctor/addmedicine', ['drugs' => $drugs]);
     } 
     
-    public function AddMedicine(){
-        if(!isset($_SESSION)){
-            session_start();}
+public function AddMedicine() {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
     
         $this->model("DoctorModel");
         $this->doctorModel = new DoctorModel(new Database());
     
         $medicine = $_POST;
     
-        for ($i=0; $i < count($medicine['medicineName']); $i++) { 
+        $medicineNames = json_decode($medicine['medicineNameValues'][0]);
+        $doses = json_decode($medicine['doseValues'][0]);
+        $timings = json_decode($medicine['timingValues'][0]);
+        $meals = json_decode($medicine['mealValues'][0]);
+        $dosageTypes = json_decode($medicine['dosageTypeValues'][0]);
+    
+        $allData = [];
+        for ($i = 0; $i < count($medicineNames); $i++) {
             $data = [
                 'unique_id' => $_SESSION['uniqueid'],
-                'medicine' => $medicine['medicineName'][$i],
-                'dose' => $medicine['dose'][$i],
-                'times' => $medicine['timing'][$i],
-                'before_after' => $medicine['meal'][$i],
-                'doseunit' => $medicine['dosage_type'][$i]
+                'medicine' => $medicineNames[$i],
+                'dose' => $doses[$i],
+                'times' => $timings[$i],
+                'before_after' => $meals[$i],
+                'doseunit' => $dosageTypes[$i]
             ];
+            $allData[] = $data;
+            
             $result = $this->doctorModel->addMedicine($data);
         }
-        
-         $prescription = $_SESSION['prescription'];
-         unset($_SESSION['uniqueid']);
-         unset($_SESSION['prescription']);
-         var_dump($prescription);
     
-         $this->doctorModel->addPrescription($prescription);
-        
-       
-
+    
+        $prescription = $_SESSION['prescription'];
+        unset($_SESSION['uniqueid']);
+        unset($_SESSION['prescription']);
+    
+        $this->doctorModel->addPrescription($prescription);
         header("Location: ".URLROOT."/Doctor/appointments/message");
         exit();
         

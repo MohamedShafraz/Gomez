@@ -9,6 +9,7 @@
         } else {
             echo "<table>";
             echo "<tr>";
+            echo  "<th>diseases</th>";
             echo "<th>Prescription ID</th>";
             echo "<th>Patient ID</th>";
             echo "<th>Appointment ID</th>";
@@ -25,9 +26,20 @@
                 echo "<td>" . $prescription["Medications"] . "</td>";
                 echo "<td>" . $prescription["labtesting"] . "</td>";
                 echo "<td>" . $prescription["instructions"] . "</td>";
-                echo '<td><button class="orangebutton" onclick="window.location.href=\'' . URLROOT . '/Doctor/ViewMorePrescription/' . $prescription["prescription_id"] . "/" . $prescription["Appointment_id"] . '\'" >View</button></td>';
+                foreach ($disease as $diseases){
+                    echo "<tr>";
+                    echo "<td>" . $disease["diseaseid"] . "</td>";
+                echo '<td><button class="orangebutton" onclick="window.location.href=\'' . URLROOT . '/Doctor/ViewMorePrescription/' . $prescription["prescription_id"] . "/" . $prescription["Appointment_id"] . $disease["diseaseid"] . '\'" >View</button></td>';
                 echo "</tr>";
             }
+
+        
+
+
+
+
+            }
+               
             echo "</table>";
         }
         ?>
