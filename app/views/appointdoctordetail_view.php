@@ -61,7 +61,7 @@ include_once(APPROOT . '/views/header_view.php');
         $url = "appointment/make?fullname=" . $name . "&specialization=&date=";
         // $Date =$data[$i]['Date'];
         $special = $data[$i]['Specialization'] ?? "Heart specialist";
-        echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
+        echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:76rem;margin-left:1rem'>
              <div style='display: flex;flex-direction: row;'>
                  <div style='width: 20%;'><img src='" . $image . " style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
                  <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
@@ -73,7 +73,7 @@ include_once(APPROOT . '/views/header_view.php');
                  
                   <div style='width: 27%;'>
                   
-                     <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 17rem;border-radius: 0.5rem;box-shadow:none'>
+                     <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 30rem;border-radius: 0.5rem;box-shadow:none'>
                          <a href=" . $url . " style='text-decoration: none;'>
                              <font class='font1'>Channel</font>
                          </a>

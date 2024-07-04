@@ -42,7 +42,7 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
     </div>
 </div>
 <div class="container">
-    <section class="make" id="make">
+    <section class="make1" id="make">
         <form action="appointment" method="get" style="display: flex;flex-direction:column;padding:5%;gap:2px;align-content: center;
   align-items: center;
 ">
@@ -663,7 +663,7 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
                 <option value="520" data-area="520">X-Ray</option>
             </select>
             <label for="Date">Date</label>
-            <input type="date" name="date" id="Date" date-placeholder="11/6/2023" class="holder">
+            <input type="date" name="date" id="Date" date-placeholder="11/6/2023" class="holder"><br>
             <div class='logbutton' id="maked">
                 <input type="submit" style="text-decoration: none;
   width: 100%;
@@ -674,9 +674,9 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
             <br>
         </form>
     </section>
-    <section class="make" style="background-color: var(--Gomez-Pears);">
+    <section class="make1">
         <br><br><br>
-        <p style="font-size: 28px;color: rgb(36, 44, 82);margin-left: 29px;"><b>If you want to save you details and appointment history</b></p>
+        <p style="font-size: 28px;margin-left: 29px;text-align:center;"><b>If you want to save you details and appointment history</b></p>
         <br>
         <a href="registration" style="text-decoration: none;">
             <div class="logbutton" id="reg">
