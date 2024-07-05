@@ -145,6 +145,7 @@ padding: 10px 10px;
         float: left;
         background-color:#f8f8f8;
     }
+    
     .make label{
         margin-left: 10px;
     }
@@ -159,6 +160,37 @@ padding: 10px 10px;
     .make .button1{
         margin-left: 5%;
     }
+
+    .make1{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 50%;
+        align-items: center;
+        float: left;
+        background-color:#f8f8f8;
+        transition: background-color 1.5s ease;
+    }
+    .make1:hover{
+        background-color: var(--Gomez-Blue);            
+        color: var(--Gomez-White);
+    }
+    
+    .make1 label{
+        margin-left: 10px;
+    }
+    .make1 input{
+        width: 50%;
+        height: 5vh;
+    }
+    .make1 select{
+        height: 5vh;
+        width: 51%;
+    }
+    .make1 .button1{
+        margin-left: 5%;
+    }
+
     .container{
         display: flex;
         width: 101%;
