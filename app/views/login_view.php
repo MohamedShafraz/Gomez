@@ -10,6 +10,7 @@ $message = "";
     
     <br><br><br><br>
     <form action="" method="post">
+    <form action="" method="post">
         <div class="container" style="
   margin-top: 2%;width:64%;padding: 0%;
   height: 100%;
