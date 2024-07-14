@@ -5,13 +5,13 @@ class appointmentAdminModel extends Database
     {
         if (empty($doctor)) {
             $where = 1;
-            $this->setTable(Appointment);
-            $result = $this->fetchData($where);
+            $this->setTable(Doctors);
+            $result = $this->filter($where, 1);
         } else {
             $where = 1;
-            $doctor = "Doctor_name = \"" . $doctor . "\"";
-            $this->setTable(Appointment);
-            $result = $this->filterByDoctor($where, $doctor);
+            $doctor = "fullname REGEXP \"" . $doctor . "*\" ";
+            $this->setTable(Doctors);
+            $result = $this->filter($where, $doctor);
         }
         return $result;
     }
@@ -29,6 +29,52 @@ class appointmentAdminModel extends Database
         }
         return $result;
     }
+
+    public function getAppoinmentbystartandEnd($startDate = Null, $endDate = Null)
+    {
+        $date = Null;
+        if (empty($startDate) && empty($endDate)) {
+            $where = 1;
+            $this->setTable(Appointment);
+            $result = $this->fetchData($where);
+        } else {
+            $where = 1;
+            $date = "session.`date`> '" . $startDate . "' AND session.date < '" . $endDate . "'";
+            $this->setTable(Appointment);
+            $result = $this->filter($where, $date);
+        }
+        return $result;
+    }
+    public function getAppoinmentbyEnd($startDate = Null, $endDate = Null)
+    {
+        $date = Null;
+        if (empty($startDate) && empty($endDate)) {
+            $where = 1;
+            $this->setTable(Appointment);
+            $result = $this->fetchData($where);
+        } else {
+            $where = 1;
+            $date = "session.`date`> '" . $startDate . "'";
+            $this->setTable(Appointment);
+            $result = $this->filter($where, $date);
+        }
+        return $result;
+    }
+    public function getAppoinmentbystart($startDate = Null, $endDate = Null)
+    {
+        $date = Null;
+        if (empty($startDate) && empty($endDate)) {
+            $where = 1;
+            $this->setTable(Appointment);
+            $result = $this->fetchData($where);
+        } else {
+            $where = 1;
+            $date = " session.date < '" . $endDate . "'";
+            $this->setTable(Appointment);
+            $result = $this->filter($where, $date);
+        }
+        return $result;
+    }
     public function getAppoinmentbyDateAndDoctor($date = Null, $doctor = Null)
     {
 
@@ -38,7 +84,7 @@ class appointmentAdminModel extends Database
             $result = $this->fetchData($where);
         } else {
             $where = 1;
-            $date = "Date = \"" . $date . "\" AND Doctor_name = \"" . $doctor . "\"";
+            $date = "Date = \"" . $date . "\" AND fullname REGEXP \"" . $doctor . "*\"";
 
             $this->setTable(Appointment);
             $result = $this->filter($where, $date);

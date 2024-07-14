@@ -7,17 +7,17 @@ class UserModel extends Database
 
         $where = "GM_AD_ID = " . $_SESSION['User_Id'];
         $this->setTable('gm_admin');
-        $data = $this->fetchData($where);
+        $data = $this->fetchUsers($where);
 
         $users = [];
         $i = 0;
         foreach ($data as $row) {
             $users['id'] = $row["GM_AD_ID"];
-            $users['userName'] = $row["GM_AD_User_Name"];
+            $users['userName'] = $row["Username"];
             $users['phonenumber'] = $row['GM_AD_Phone_Number'];
             $users['NIC'] = $row['NIC'];
             $users['gender'] = $row['GM_AD_Gender'];
-            $users['email'] = $row['email'];
+            $users['email'] = $row['Email'];
             $users['age'] = $row['age'];
             $users['image'] = $_SESSION["USER"]["profilepicture"];
             $i++;
@@ -26,7 +26,11 @@ class UserModel extends Database
     }
     public function updateUserDetails($details, $filecontent)
     {
-        $where = "GM_AD_ID = " . $_SESSION['User_Id'];
+
+        if ($_SESSION['userType'] == 'Admin') {
+            $where = "GM_AD_ID = " . $_SESSION['User_Id'];
+        }
+
         $this->setTable('gm_admin');
 
         $users['GM_AD_User_Name'] = $_POST["Fullname"];

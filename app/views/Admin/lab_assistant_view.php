@@ -42,13 +42,14 @@
         <tr style='color:white;margin: 3%;'></tr>
         <?php
         for ($index = 0; $index < sizeof($data); $index++) {
-            echo "<tr><td style='width: 120px;'>" . $data[$index]['userName'] . "</td><td style='width: 156px;'>" . $data[$index]['NIC'] . "</td><td style='width: 144px;'>" . $data[$index]['phonenumber'] . "</td><td><button class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
+            echo "<tr><td style='width: 120px;'>" . $data[$index]['full name'] . "</td><td style='width: 156px;'>" . $data[$index]['NIC'] . "</td><td style='width: 144px;'>" . $data[$index]['phonenumber'] . "</td><td><button class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
         }
         ?>
 
     </tbody>
 
 </table>
-
+<button onclick="window.location.href += '/create'" style="    padding: 1%;margin:0%;
+    margin-left: 28%;margin-top:1%" class="test">Create new</button>
 
 <?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>

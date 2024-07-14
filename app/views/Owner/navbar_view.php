@@ -9,6 +9,7 @@
 
 <body style="background-image:linear-gradient(90deg,#E9F3FD,#E9F3FD);overflow:hidden">
     <img src="<?= URLROOT . "/resources/gomezlogo2.png" ?>" alt="" class="image">
+    <img id="image" style="margin-top: -0.25%;" src="<?= URLROOT . "/resources/gomezlogo1.jpg" ?>" alt="" class="image">
     <br>
     <br>
     <br>
@@ -23,5 +24,5 @@
             </a>
         </nav>
     </header>
-    <?php include APPROOT . '/views/Admin/sidebar.php' ?>
-    <article>
+    <?php include APPROOT . '/views/Owner/sidebar.php' ?>
+    <article></article>

@@ -3,31 +3,49 @@
 class DoctorModel extends Database
 {
 
-    public function getDoctor($username)
+    public function getDoctor($userid)
     {
-        $where = "Username='$username'";
+        $where = "Doctor_id ='$userid'";
         $this->setTable(Doctors);
         $result = $this->fetchData($where);
 
         return $result;
     }
 
-    public function getAppoinmentsbyDoctor($id)
+    public function getSessions($id)
     {
         $where = "doctor_id='$id'";
-        $this->setTable(Appointment);
+        $this->setTable(Session);
         $result = $this->fetchData($where);
 
         return $result;
     }
 
-    public function getAppointment($id)
+    public function getSessionsToday($id)
     {
-        $where = "Appointment_Id='$id'";
+        $where = "date = CURDATE() AND Doctor_id='$id'";
+        $this->setTable(Session);
+        $result = $this->fetchData($where);
+
+        return $result;
+    }
+
+    public function getAppointmentbySession($id)
+    {
+        $where = "session_id='$id'";
         $this->setTable(Appointment);
         $result = $this->fetchData($where);
         return $result;
     }
+
+    public function getPatientbyPatiend($id)
+    {
+        $where = "ID='$id'";
+        $this->setTable(Patients);
+        $result = $this->fetchData($where);
+        return $result;
+    }
+
 
     public function getPatient($id)
     {
@@ -44,14 +62,6 @@ class DoctorModel extends Database
         return $result;
     }
 
-    public function getPrescriptionbyDoctor($id)
-    {
-        $where = "doctorid='$id'";
-        $this->setTable(Prescription);
-        $result = $this->fetchData($where);
-        return $result;
-    }
-
 
     public function getAppoinmentbyID($id)
     {
@@ -63,18 +73,12 @@ class DoctorModel extends Database
 
     public function getPrescriptionbyID($id)
     {
-        $where = "prescription_id='$id'";
+        $where = "prescriptionnumber='$id'";
         $this->setTable(Prescription);
         $result = $this->fetchData($where);
         return $result;
     }
 
-    public function updateAppointmentStatus($id, $data)
-    {
-       $query = "UPDATE Appointment SET Appointment_Status='$data' WHERE Appointment_Id='$id'";
-       $result = $this->executeQuery($query);
-       return $result;
-    }
 
     public function getPrescriptionbyAppointment($id)
     {
@@ -84,9 +88,10 @@ class DoctorModel extends Database
         return $result;
     }
 
+
     public function updateprescription($id, $data)
     {
-        $query = "UPDATE Prescription SET Medications='$data[Medications]', instructions='$data[instructions]', labtesting='$data[labtesting]' WHERE prescription_id='$id'";
+        $query = "UPDATE Prescription SET otherremarks='$data[otherremarks]' WHERE prescriptionnumber='$id'";
         $result = $this->executeQuery($query);
         return $result;
     }
@@ -111,27 +116,64 @@ class DoctorModel extends Database
         $this->setTable(User);
         $result = $this->fetchData($where);
         return $result;
+    }
+
+
+    public function deactivateAccount($username)
+    {
+        $query = "UPDATE Doctors SET 'Status'='Inactive' WHERE 	Username='$username'";
+        $result = $this->executeQuery($query);
+        return $result;
+    }
+
+
+    public function addMedicine($data)
+    {
+        $this->setTable(Medicine);
+        $result = $this->insertData($data);
+        return $result;
+    }
+
+    public function getMedicinebyUniqeid($unique_id)
+    {
+        $where = "unique_id='$unique_id'";
+        $this->setTable(Medicine);
+        $result = $this->fetchData($where);
+        return $result;
+    }
+
+    public function updateUserDetails($details = null, $filecontent = null)
+    {
+        $where = "Doctor_id = " . $_SESSION['User_Id'];
+        $this->setTable(Doctors);
+
+        $users['fullname'] = $_POST["Fullname"];
+        $users['phonenumber'] = $_POST['phonenumber'];
+        // $users['NIC'] = $_POST['NIC'];
+        $users['gender'] = $_POST['gender'];
+        $users['age'] = $_POST['age'];
+        $picture["profilepicture"] = $details;
+        $data = $this->updateData($users, $where);
+
+        // $this->setTable('user_db');
+        //  $where1 = "User_Id = " . $_SESSION['User_Id'];
+        // $data = $this->updateData($picture, $where1);
+
+        // $_SESSION["USER"]["profilepicture"] = $filecontent;
+        // print_r($_SESSION["USER"]["profilepicture"]);
+        //return $details;
+        return $data;
+    }
+
+    // public function getPatientbyappointment($userid)
+    // {
+    //  $where = "ID =''"; // 
+    // $this->setTable('Patients'); // 
+    //$result = $this->fetchData($where);
+
+    //  return $result;
+    //}
+
+
+
 }
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

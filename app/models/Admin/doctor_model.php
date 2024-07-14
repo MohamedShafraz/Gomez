@@ -28,13 +28,27 @@ class DoctorModel extends Database
         $users = [];
         $i = 0;
         foreach ($data as $row) {
-            $users['id'] = $row["Doctor_id"];
-            $users['userName'] = $row["fullname"];
-            $users['phonenumber'] = $row['phonenumber'];
-            $users['specialization'] = $row['Specialization'];
-            $users['email'] = $row['email'];
-            $users['age'] = $row['age'];
-            $users['gender'] = $row['gender'];
+            if (isset($row["Doctor_id"])) {
+                $users['id'] = $row["Doctor_id"];
+            }
+            if (isset($row["fullname"])) {
+                $users['full name'] = $row["fullname"];
+            }
+            if (isset($row['phonenumber'])) {
+                $users['phonenumber'] = $row['phonenumber'];
+            }
+            if (isset($row['Specialization'])) {
+                $users['specialization'] = $row['Specialization'];
+            }
+            if (isset($row['email'])) {
+                $users['email'] = $row['email'];
+            }
+            if (isset($row['age'])) {
+                $users['age'] = $row['age'];
+            }
+            if (isset($row['gender'])) {
+                $users['gender'] = $row['gender'];
+            }
             $i++;
         }
         return $users;

@@ -14,12 +14,12 @@ class PatientModel extends Database
         $users = [];
         // $i = 0;
         for ($i = 0; $i < sizeof($data); $i++) {
-            $users[$i]['age'] = $data[$i]['age'];
-            $users[$i]['gender'] = $data[$i]['gender'];
-            $users[$i]['id'] = $data[$i]["ID"];
             $users[$i]['userName'] = $data[$i]["Username"];
             $users[$i]['type'] = $data[$i]['type'] ?? 'unregister';
             $users[$i]['phonenumber'] = $data[$i]['phonenumber'];
+            $users[$i]['age'] = $data[$i]['age'];
+            $users[$i]['gender'] = $data[$i]['gender'];
+            $users[$i]['id'] = $data[$i]["ID"];
 
             $users[$i]['email'] = $data[$i]['Email'];
             // $i++;
@@ -36,14 +36,13 @@ class PatientModel extends Database
         $users = [];
         $i = 0;
         foreach ($data as $row) {
-            $users['age'] = $row['age'];
-            $users['gender'] = $row['gender'];
-            $users['id'] = $row["ID"];
-            $users['userName'] = $row["Username"];
+            $users['Fullname'] = $row["Username"];
             $users['type'] = $row['type'] ?? 'unregister';
-            $users['phonenumber'] = $row['phonenumber'];
-
-            $users['email'] = $row['Email'];
+            $users['Phonenumber'] = $row['phonenumber'];
+            $users['Age'] = $row['age'];
+            $users['Gender'] = $row['gender'];
+            $users['id'] = $row["ID"];
+            $users['Email'] = $row['Email'];
             $i++;
         }
         return $users;
