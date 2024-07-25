@@ -79,6 +79,10 @@ button{
                     <div><img src=<?php echo URLROOT . "/resources/ReceptionistCount.png" ?>></div>
                     <div><br>Today Patients<br><a style="font-size:8vh"><?php echo count($patients) ?></a></div><br><br>
                 </li>
+                <li class="option">
+                    <div><img src=<?php echo URLROOT . "/resources/ReceptionistCount.png" ?>></div>
+                    <div><br>Today Patients<br><a style="font-size:8vh"><?php echo count($patients) ?></a></div><br><br>
+                </li>
                 
              </ul>
             </div>
@@ -90,6 +94,10 @@ button{
                                 <div><br></div>
 
                                 <?php
+                                        
+                                        if (isset($_SESSION['message'])) {
+                                            echo "<div class='alert alert-success' style='color:red;font-weight:900;margin-left:5%;font-size:2rem;background-color:white;padding:5%;margin-right:15%'>" . $_SESSION['message'] . "</div>";
+                                        }else{
                                                         
                                         foreach($nexttwosessions as $session) {
                                 
@@ -104,7 +112,7 @@ button{
                                           echo "</div></div></div>";
                                           echo "<br>";
 
-                                          
+                                        }
                                       }
                                         
                                 ?>
