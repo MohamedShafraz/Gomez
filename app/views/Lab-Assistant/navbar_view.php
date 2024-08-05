@@ -24,4 +24,4 @@
         </nav>
     </header>
     <?php include APPROOT . '/views/Lab-Assistant/sidebar.php' ?>
-    <article>
+    <article></article>

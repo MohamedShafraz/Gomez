@@ -27,4 +27,4 @@
         </nav>
     </header>
     <?php include APPROOT . '/views/Admin/sidebar.php' ?>
-    <article>
+    <article></article>

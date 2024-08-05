@@ -40,13 +40,13 @@ include_once(APPROOT . '/views/header_view.php');
 
     <center>
 
-        <div style="display: flex;width: 90rem;background-color: darkgray;margin-top: 6rem;height: 37rem;flex-direction: column;">
+        <div style="display: flex;width: 90rem;margin-top: 6rem;height: 37rem;flex-direction: column;">
             <div><br></div>
             <?php
-            $doctorname = $data[0]['fullname'];
-            $specialization = $data[0]['Specialization'];
+            $doctorname = $data[0]['fullname'] ?? "";
+            $specialization = $data[0]['Specialization'] ?? "";
             ?>
-            <div style="align-self: center;height: 7rem;background-color: #ffffff;width: 88rem;">
+            <div style="align-self: center;height: 7rem;background-color: #ffffff;width: 88rem;    border: 2px solid #000;">
                 <div style="display: flex;flex-direction: row;">
                     <div style="height: 6rem;padding: 0.25rem;"><img src="<?= URLROOT . "/public/resources/doctor1.png" ?>" style="padding: 1rem 1rem 1rem 1rem;height: 4rem;width: 4rem;border: 1px solid;"></div>
                     <div style="margin: -3rem 0rem 0rem 1rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;">
@@ -58,18 +58,18 @@ include_once(APPROOT . '/views/header_view.php');
                 </div>
             </div>
             <div><br></div>
-            <div style="height: 24rem;overflow: scroll;">
+            <div style="height: 24rem;overflow: auto; scrollbar-width: none; -ms-overflow-style: none;">
                 <?php
 
+                if (isset($data['max_appointments'])) {
+                    for ($i = 0; $i < sizeof($data); $i++) {
+                        $test = $data[$i]['date'] ?? '03/15/2024';
 
-                for ($i = 0; $i < sizeof($data); $i++) {
-                    $test = $data[$i]['date'] ?? '03/15/2024';
+                        $startTime = $data[$i]['start_time'];
+                        $maxAppointments =  $data[$i]['max_appointments'];
+                        $activeAppointments =  $data[$i]['active_appointments'];
 
-                    $startTime = $data[$i]['start_time'];
-                    $maxAppointments =  $data[$i]['max_appointments'];
-                    $activeAppointments =  $data[$i]['active_appointments'];
-
-                    echo " <div class='custom-div' style='align-self: center;width: 98%;background-color: #fff;height: fit-content;'>
+                        echo " <div class='custom-div' style='align-self: center;width: 98%;background-color: #fff;height: fit-content;'>
                 <div style='display: flex; flex-direction:row'>
                     <div style='border-left: solid;width:13rem;'>
                         <ul style='list-style-type: none;text-align: left;'>
@@ -109,8 +109,10 @@ include_once(APPROOT . '/views/header_view.php');
                     </div>
                 </div>
             </div><br>";
+                    }
+                } else {
+                    echo "<div class='custom-div' style='align-self: center;width: 98%;background-color: #fff;height: fit-content;border: 2px solid #000;'>No appointment booked</div>";
                 }
-
                 ?>
 
             </div>

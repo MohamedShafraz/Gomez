@@ -119,13 +119,14 @@ class Database
         $result = $this->executeQuery($query);
         $data = [];
         $i = 0;
+
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $data[$i] = $row;
                 $i++;
             }
         }
-        print_r($query);
+        // print_r($query);
         return $data;
     }
     public function fetchDataByUser($where, $data = 1)
@@ -300,7 +301,22 @@ class Database
         }
         return $data;
     }
+    public function filterDoctor($where, $doctor)
+    {
+        $query = "Select * FROM " . $this->table . " JOIN user_db ON user_db.`User_Id` = doctors.`Doctor_id` WHERE " . $where . " AND " . $doctor;
 
+        $result = $this->executeQuery($query);
+        // print_r($result);
+        $data = [];
+        $i = 0;
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[$i] = $row;
+                $i++;
+            }
+        }
+        return $data;
+    }
     public function insertData($data)
     {
         $fields = "`" . implode("`, `", array_keys($data)) . "`";

@@ -108,7 +108,7 @@ padding: 10px;
     .Welcome{
         text-align: center;
         color: white;
-background-color: var(--Gomez-Purple);
+background-color: var(--Gomez-highlight);
 padding-top: 17px;
 margin: -4px 0px 0px -8px;
 padding-bottom: 52px;
@@ -145,6 +145,7 @@ padding: 10px 10px;
         float: left;
         background-color:#f8f8f8;
     }
+    
     .make label{
         margin-left: 10px;
     }
@@ -159,6 +160,37 @@ padding: 10px 10px;
     .make .button1{
         margin-left: 5%;
     }
+
+    .make1{
+        display: flex;
+        flex-direction: column;
+        gap: 20px;
+        width: 50%;
+        align-items: center;
+        float: left;
+        background-color:#f8f8f8;
+        transition: background-color 1.5s ease;
+    }
+    .make1:hover{
+        background-color: var(--Gomez-Blue);            
+        color: var(--Gomez-White);
+    }
+    
+    .make1 label{
+        margin-left: 10px;
+    }
+    .make1 input{
+        width: 50%;
+        height: 5vh;
+    }
+    .make1 select{
+        height: 5vh;
+        width: 51%;
+    }
+    .make1 .button1{
+        margin-left: 5%;
+    }
+
     .container{
         display: flex;
         width: 101%;
@@ -267,6 +299,9 @@ justify-content: center;
     padding: 1% 2% 1% 2%;
   margin: 0% 0% 0% 28%;
 }
+.make1#make{
+    width: 50.3%;
+}
 .flex-scroll-container {
     display: flex;
     flex-direction: column; /* or row, depending on your layout */
@@ -290,7 +325,7 @@ justify-content: center;
 --Gomez-Gray: #d9d9d9;
 --Gomez-White: #fafafa;
 --Gomez-Black: #050505;
---Gomez-Login-Box-Purple: linear-gradient(90deg, #FCFCFC 0%, #C3CAE8 96.67%);
+--Gomez-Login-Box-Purple: linear-gdradient(90deg, #FCFCFC 0%, #C3CAE8 96.67%);
 --Gomez-Text-Box-Purple: linear-gradient(90deg, white, rgba(134, 147, 209, 1));
 --Gomez-Brown: #948686;
 --animation-timing:200ms ease-in-out;

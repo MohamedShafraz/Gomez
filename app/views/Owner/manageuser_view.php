@@ -6,7 +6,7 @@
 <link rel="stylesheet" href="<?= URLROOT ?>/css/new.css">
 <link rel="stylesheet" href="<?= URLROOT ?>/css/Admin/manageuser.css">
 <!-- background-color:#E9F3FD -->
-<?php require_once(APPROOT . "/views/Admin/navbar_view.php"); ?>
+<?php require_once(APPROOT . "/views/Owner/navbar_view.php"); ?>
 
 <!-- <a>Welcome to Gomez</a> -->
 <style>

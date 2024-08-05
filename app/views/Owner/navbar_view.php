@@ -25,4 +25,4 @@
         </nav>
     </header>
     <?php include APPROOT . '/views/Owner/sidebar.php' ?>
-    <article>
+    <article></article>

@@ -2,114 +2,122 @@
 
 use LDAP\Result;
 
-class appointmentModel extends Database{
-    
-    public function getAppoinmentbyPatient($doctor = Null){
+class appointmentModel extends Database
+{
+
+    public function getAppoinmentbyPatient($doctor = Null)
+    {
         if (empty($doctor)) {
-            $where = "Patient_Id = ".$_SESSION['User_Id'];
-        $this->setTable(Appointment);
-        $result = $this->fetchAppointment($where);
+            $where = "Patient_Id = " . $_SESSION['User_Id'];
+            $this->setTable(Appointment);
+            $result = $this->fetchAppointment($where);
         } else {
-            $where = "Patient_Id = ".$_SESSION['User_Id'];
-            $doctor = "fullname REGEXP \"".$doctor . "*\"";
-        $this->setTable(Appointment);
-        $result = $this->fetchAppointment($where, $doctor);
+            $where = "Patient_Id = " . $_SESSION['User_Id'];
+            $doctor = "fullname REGEXP \"" . $doctor . "*\"";
+            $this->setTable(Appointment);
+            $result = $this->fetchAppointment($where, $doctor);
         }
-        
-        
+
+
         return $result;
     }
-    public function getAppoinmentbyDoctors($doctor = Null){
-        
-            $where = 1;
-            $doctor = "user_db.Username REGEXP \"".$doctor . "*\"";
+    public function getAppoinmentbyDoctors($doctor = Null)
+    {
+
+        $where = 1;
+        $doctor = "user_db.Username REGEXP \"" . $doctor . "*\"";
         $this->setTable(Appointment);
         $result = $this->fetchSession($where, $doctor);
-        
-        
+
+
         return $result;
     }
 
-    public function getAppoinmentOneDoctor($doctor = Null){
-        
+    public function getAppoinmentOneDoctor($doctor = Null)
+    {
+
         $where = 1;
-        $doctor = "user_db.Username REGEXP \"".$doctor . "*\"";
-    $this->setTable(Appointment);
-    $result = $this->fetchAppointmentbydoctor($where, $doctor);
-    
-    
-    return $result;
-}
-    public function getAllAppoinmentbyDoctor($doctor = Null,$specialization=Null,$date=Null){
+        $doctor = "user_db.Username REGEXP \"" . $doctor . "*\"";
+        $this->setTable(Appointment);
+        $result = $this->fetchAppointmentbydoctor($where, $doctor);
+
+
+        return $result;
+    }
+    public function getAllAppoinmentbyDoctor($doctor = Null, $specialization = Null, $date = Null)
+    {
         $where = 1;
-        if (empty($doctor)&&empty($specialization)&&empty($date)) {
-            
-        $this->setTable(Doctors);
-        $result = $this->fetchDataByUser($where);
+        if (empty($doctor) && empty($specialization) && empty($date)) {
+
+            $this->setTable(Doctors);
+            $result = $this->fetchDataByUser($where);
         } else {
-          if(!empty($doctor)){
-                $doctor = "fullname REGEXP \"".$doctor . "*\"";
-            
-            $where .= ' AND '.$doctor;
-          }
-          if(!empty($specialization)){
-            $specialization= "Specialization REGEXP \"".$specialization . "*\"";
-            $where .= ' AND '.$specialization;
-          }
-          if(!empty($date)){
-            $date = "date = \"" . $date . "\"";
-            $where .= ' AND '.$date;
-          }
-        $this->setTable(Doctors);
-        $result = $this->fetchDataByUser($where, 1);
+            if (!empty($doctor)) {
+                $doctor = "fullname REGEXP \"" . $doctor . "*\"";
+
+                $where .= ' AND ' . $doctor;
+            }
+            if (!empty($specialization)) {
+                $specialization = "Specialization REGEXP \"" . $specialization . "*\"";
+                $where .= ' AND ' . $specialization;
+            }
+            if (!empty($date)) {
+                $date = "date = \"" . $date . "\"";
+                $where .= ' AND ' . $date;
+            }
+            $where .= " AND session.`date` >='" . date('Y/m/d') . "'";
+            $this->setTable(Doctors);
+            $result = $this->fetchDataByUser($where, 1);
         }
-        
-        
+
+
         return $result;
     }
 
-    public function getAllDoctorsforSession($doctor = Null,$specialization=Null,$date=Null){
+
+
+    public function getAllDoctorsforSession($doctor = Null, $specialization = Null, $date = Null)
+    {
         $where = 1;
-        if (empty($doctor)&&empty($specialization)&&empty($date)) {
-            
-        $this->setTable(Doctors);
-        $result = $this->fetchdoctorforsession($where);
+        if (empty($doctor) && empty($specialization) && empty($date)) {
+
+            $this->setTable(Doctors);
+            $result = $this->fetchdoctorforsession($where);
         } else {
-          if(!empty($doctor)){
-                $doctor = "user_db.Username REGEXP \"".$doctor . "\"";
-            
-            $where .= ' AND '.$doctor;
-            $result = $this->fetchdoctorforsession($where, 1);
-            
-          }
-          
-        $this->setTable(Doctors);
-        // $result = $this->fetchDataByUser($where, 1);
+            if (!empty($doctor)) {
+                $doctor = "user_db.Username REGEXP \"" . $doctor . "\"";
+
+                $where .= ' AND ' . $doctor;
+                $result = $this->fetchdoctorforsession($where, 1);
+            }
+
+            $this->setTable(Doctors);
+            // $result = $this->fetchDataByUser($where, 1);
         }
-        
-        
+
+
         return $result;
     }
-    public function getAllAppointmnetforDoctor($doctor = Null,$specialization=Null,$date=Null){
+    public function getAllAppointmnetforDoctor($doctor = Null, $specialization = Null, $date = Null)
+    {
         $where = 1;
-        if (empty($doctor)&&empty($specialization)&&empty($date)) {
-            
-        $this->setTable(Doctors);
-        $result = $this->fetchAppointmentByDoctors($where);
+        if (empty($doctor) && empty($specialization) && empty($date)) {
+
+            $this->setTable(Doctors);
+            $result = $this->fetchAppointmentByDoctors($where);
         } else {
-          if(!empty($doctor)){
-                $doctor = "users_db.Username = \"".$doctor . "\"";
-            
-            $where .= ' AND '.$doctor;
-            $result = $this->fetchAppointmentByDoctors($where, 1);
-            
-          }
-          
-        $this->setTable(Doctors);
-        // $result = $this->fetchDataByUser($where, 1);
+            if (!empty($doctor)) {
+                $doctor = "users_db.Username = \"" . $doctor . "\"";
+
+                $where .= ' AND ' . $doctor;
+                $result = $this->fetchAppointmentByDoctors($where, 1);
+            }
+
+            $this->setTable(Doctors);
+            // $result = $this->fetchDataByUser($where, 1);
         }
-        
-        
+
+
         return $result;
     }
     public function getAllAppoinmentbyDate($date = Null)
@@ -126,19 +134,20 @@ class appointmentModel extends Database{
         }
         return $result;
     }
-    public function getAllAppoinmentbySpecialization($doctor = Null){
+    public function getAllAppoinmentbySpecialization($doctor = Null)
+    {
         if (empty($doctor)) {
             $where = 1;
-        $this->setTable(Doctors);
-        $result = $this->fetchDataByUser($where);
+            $this->setTable(Doctors);
+            $result = $this->fetchDataByUser($where);
         } else {
             $where = 1;
-            $doctor = "Specialization REGEXP \"".$doctor . "*\"";
-        $this->setTable(Doctors);
-        $result = $this->fetchDataByUser($where, $doctor);
+            $doctor = "Specialization REGEXP \"" . $doctor . "*\"";
+            $this->setTable(Doctors);
+            $result = $this->fetchDataByUser($where, $doctor);
         }
-        
-        
+
+
         return $result;
     }
     public function getAppoinmentbyDate($date = Null)
@@ -148,19 +157,20 @@ class appointmentModel extends Database{
             $this->setTable(Appointment);
             $result = $this->fetchAppointment($where);
         } else {
-            $where = "Patient_Id = ".$_SESSION['User_Id'];
+            $where = "Patient_Id = " . $_SESSION['User_Id'];
             $date = "date = \"" . $date . "\"";
             $this->setTable(Appointment);
             $result = $this->fetchAppointment($where, $date);
         }
         return $result;
     }
-    public function getAllAppointmentDetails(){
+    public function getAllAppointmentDetails()
+    {
         $where = 1;
         $this->setTable(Appointment);
         $result = $this->fetchAppointment($where);
-        
-        
+
+
         return $result;
     }
     public function getAppoinmentbyDoctor($doctor = Null)
@@ -185,9 +195,23 @@ class appointmentModel extends Database{
             $result = $this->fetchDataByUser($where);
         } else {
             $where = 1;
-            $doctor = "Doctor_name = \"" . $doctor . "\"";
+            $doctor = "doctors.fullname = \"" . $doctor . "\"";
             $this->setTable(Doctors);
             $result = $this->filterByDoctor($where, $doctor);
+        }
+        return $result;
+    }
+    public function getDoctor($doctor = Null)
+    {
+        if (empty($doctor)) {
+            $where = 1;
+            $this->setTable(Doctors);
+            $result = $this->fetchDataByUser($where);
+        } else {
+            $where = 1;
+            $doctor = "doctors.fullname = \"" . $doctor . "\"";
+            $this->setTable(Doctors);
+            $result = $this->filterDoctor($where, $doctor);
         }
         return $result;
     }
@@ -207,11 +231,10 @@ class appointmentModel extends Database{
         }
         return $result;
     }
-    public function checkSessionbyDoctor($id){
-        $where= "Doctor_id = $id";
+    public function checkSessionbyDoctor($id)
+    {
+        $where = "Doctor_id = $id";
         $result = $this->checkSession($where);
         return $result;
     }
-   
 }
-?>

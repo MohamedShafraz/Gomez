@@ -3,6 +3,10 @@ include_once(APPROOT . '/views/header_view.php');
 
 
 $message = "";
+include_once(APPROOT . '/views/header_view.php');
+
+
+$message = "";
 ?>
 <br>
 
@@ -19,6 +23,8 @@ $message = "";
 padding: 0%;
 margin: 0% 0% 0% 8%;
 height: initial;">
+                
+                <img src="<?= URLROOT . "/resources/loginpage.jpeg" ?>" alt="image" srcset="" width="50%" style="margin-left: 34%;
                 
                 <img src="<?= URLROOT . "/resources/loginpage.jpeg" ?>" alt="image" srcset="" width="50%" style="margin-left: 34%;
   width: 66%;height:100%;
