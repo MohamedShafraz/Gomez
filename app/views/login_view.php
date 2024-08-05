@@ -3,13 +3,16 @@ include_once(APPROOT . '/views/header_view.php');
 
 
 $message = "";
+include_once(APPROOT . '/views/header_view.php');
+
+
+$message = "";
 ?>
 <br>
 
 <body style="overflow-x: hidden;background-image:var(--Gomez-Login-Box-Purple);"'>
     
     <br><br><br><br>
-    <form action="" method="post">
     <form action="" method="post">
         <div class="container" style="
   margin-top: 2%;width:64%;padding: 0%;
@@ -20,6 +23,8 @@ $message = "";
 padding: 0%;
 margin: 0% 0% 0% 8%;
 height: initial;">
+                
+                <img src="<?= URLROOT . "/resources/loginpage.jpeg" ?>" alt="image" srcset="" width="50%" style="margin-left: 34%;
                 
                 <img src="<?= URLROOT . "/resources/loginpage.jpeg" ?>" alt="image" srcset="" width="50%" style="margin-left: 34%;
   width: 66%;height:100%;
@@ -43,8 +48,6 @@ border-radius: 8px 0px 0px 8px;"></div>
                 <a href="forgetpassword" class="hyperLink">Forget password</a>
                 <input name="submit" type="submit" value="Log in" class="logbutton" id="submit" style=' font-family: inter;'>
     </div>
-    </div>
-
     </div>
     </div>
     </form>
