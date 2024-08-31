@@ -3,7 +3,9 @@ class manageuser extends Controller
 {
     public function __construct()
     {
-        session_start();
+        if (session_status() != 2) {
+            session_start();
+        }
         if (isset($_SESSION['userType']) == null) {
             header("location:" . URLROOT . "/users/login");
         }
@@ -33,7 +35,7 @@ class manageuser extends Controller
                     array_push($UsersListdata, $value);
                 }
             }
-            $this->view("Admin/create_" . $user . "_view", $UsersListdata);
+            $this->view($_SESSION['userType'] . $user . "_view", $UsersListdata);
             exit();
         } else if ($id == 'created') {
 
@@ -85,11 +87,12 @@ class manageuser extends Controller
         // session_start();
         $this->model($_SESSION['userType'] . "/patient_model");
         $patientModel = new PatientModel();
-
-
+        $patientDetails = $patientModel->getUsersDetails();
+        $this->view($_SESSION['userType'] . "/patient_view", $patientDetails);
+        // $this->view($_SESSION['userType'] . "/patient_view");
         // $patientsDetails = $patientModel->getUsersDetails();
         // $patientDetails  = $patientModel->getUserDetails();
-        $this->getUserPage($id, $patientModel, "patient");
+        // $this->getUserPage($id, $patientModel, "patient");
     }
 
 
