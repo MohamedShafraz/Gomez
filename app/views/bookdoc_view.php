@@ -111,7 +111,7 @@ include_once(APPROOT . '/views/header_view.php');
             </div><br>";
                     }
                 } else {
-                    echo "<div class='custom-div' style='align-self: center;width: 98%;background-color: #fff;height: fit-content;border: 2px solid #000;'>No appointment booked</div>";
+                    echo "<div class='custom-div' style='align-self: center;width: 98%;background-color: #fff;height: fit-content;border: 2px solid #000;'>No appointment Available</div>";
                 }
                 ?>
 
