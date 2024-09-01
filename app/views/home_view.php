@@ -735,9 +735,8 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
             </ul>
         </div>
         <hr>
-
+        <script src="script.js"></script>
 
         </body>
-
 
         </html>
