@@ -663,7 +663,22 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
                 <option value="520" data-area="520">X-Ray</option>
             </select>
             <label for="Date">Date</label>
+
             <input type="date" name="date" id="Date" date-placeholder="11/6/2023" class="holder">
+            <script>
+                const today = new Date();
+
+                const formattedToday = today.toISOString().split('T')[0];
+
+
+                const maxDate = new Date();
+                maxDate.setDate(today.getDate() + 7);
+                const formattedMaxDate = maxDate.toISOString().split('T')[0];
+
+
+                document.getElementById('Date').setAttribute('min', formattedToday);
+                document.getElementById('Date').setAttribute('max', formattedMaxDate);
+            </script>
             <div class='logbutton' id="maked">
                 <input type="submit" style="text-decoration: none;
   width: 100%;

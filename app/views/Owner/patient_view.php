@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="<?= URLROOT ?>/css/Admin/manageuser.css">
 <style>
     .test:hover {
-        background: var(--Gomez-highlight);
+        background: #5998ff;
         color: white;
     }
 
@@ -28,24 +28,26 @@
 <!-- background-color:#E9F3FD -->
 <?php require_once(APPROOT . "/views/Owner/navbar_view.php"); ?>
 
-
+<br>
 <div class="complainttext">Patient</div>
-<table class="complainttable">
+<br>
+<table class="complainttable" style="height:80%">
 
 
     <tbody class="complaint">
-        <tr>
+        <tr id="header">
             <td style="width: 99px;">Name</td>
-            <td style="width: 65px;">Type</td>
             <td style="width: max-content;">Mobile Number</td>
+            <td style="width: 65px;">Type</td>
+
             <td></td>
         </tr>
-        <tr style='color:white;margin: 3%;'></tr>
+        <tr style='color:white;margin: 9.9%;'></tr>
         <?php
         for ($index = 0; $index < sizeof($data); $index++) {
             $id = $data[$index]['id'];
             $_SESSION['id'] = $data[$index]['id'];
-            echo "<tr><td style='width:100px'>" . $data[$index]['userName'] . "</td><td style='width: max-content;'>" . $data[$index]['type'] . "</td><td style='width: 144px;'>" . $data[$index]['phonenumber'] . "</td><td><button onclick = 'z($index)' class=test >view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
+            echo "<tr><td style='width:100px'>" . $data[$index]['userName'] . "</td><td style='width: max-content;'>0d" . $data[$index]['phonenumber'] . "</td><td style='width: 144px;'>" . explode("'", $data[$index]['type'])[1] . "</td><td><button onclick = 'z($index)' class=test >view</button></td></tr><tr style='color:white;margin: 0.2%;'></tr>";
         }
         ?>
 
