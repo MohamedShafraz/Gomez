@@ -736,7 +736,7 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
         </div>
         <hr>
         <script src="script.js"></script>
-        <script>
+        <!-- <script>
             document.addEventListener('DOMContentLoaded', function() {
                 const dateInput = document.getElementById('Date');
                 const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
@@ -748,7 +748,7 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
                 dateInput.setAttribute('min', today); // Set the minimum date to today
                 dateInput.setAttribute('max', maxDateString); // Set the maximum date to 14 days from today
             });
-        </script>
+        </script> -->
 
         </body>
 
