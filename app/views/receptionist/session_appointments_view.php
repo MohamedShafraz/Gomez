@@ -1,7 +1,7 @@
 <?php
 
 ?>
-
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 <link rel="stylesheet" href="<?= URLROOT ?>/css/Admin/dashboard.css">
 <link rel="stylesheet" href="<?= URLROOT ?>/css/patient/appointments.css">
 

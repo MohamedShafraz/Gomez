@@ -61,7 +61,7 @@ include_once(APPROOT . '/views/header_view.php');
             <div style="height: 24rem;overflow: auto; scrollbar-width: none; -ms-overflow-style: none;">
                 <?php
 
-                if (isset($data['max_appointments'])) {
+                if (isset($data)) {
                     for ($i = 0; $i < sizeof($data); $i++) {
                         $test = $data[$i]['date'] ?? '03/15/2024';
 
