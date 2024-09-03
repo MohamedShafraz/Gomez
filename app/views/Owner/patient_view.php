@@ -47,7 +47,7 @@
         for ($index = 0; $index < sizeof($data); $index++) {
             $id = $data[$index]['id'];
             $_SESSION['id'] = $data[$index]['id'];
-            echo "<tr><td style='width:100px'>" . $data[$index]['userName'] . "</td><td style='width: max-content;'>0d" . $data[$index]['phonenumber'] . "</td><td style='width: 144px;'>" . explode("'", $data[$index]['type'])[1] . "</td><td><button onclick = 'z($index)' class=test >view</button></td></tr><tr style='color:white;margin: 0.2%;'></tr>";
+            echo "<tr><td style='width:100px'>" . $data[$index]['userName'] . "</td><td style='width: max-content;'>0" . $data[$index]['phonenumber'] . "</td><td style='width: 144px;'>" . explode("'", $data[$index]['type'])[1] . "</td><td><button onclick = 'z($index)' class=test >view</button></td></tr><tr style='color:white;margin: 0.1%;'></tr>";
         }
         ?>
 

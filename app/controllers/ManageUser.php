@@ -35,7 +35,7 @@ class manageuser extends Controller
                     array_push($UsersListdata, $value);
                 }
             }
-            $this->view($_SESSION['userType'] . $user . "_view", $UsersListdata);
+            $this->view($_SESSION['userType'] . "/create_" . $user . "_view", $UsersListdata);
             exit();
         } else if ($id == 'created') {
 
@@ -92,7 +92,7 @@ class manageuser extends Controller
         // $this->view($_SESSION['userType'] . "/patient_view");
         // $patientsDetails = $patientModel->getUsersDetails();
         // $patientDetails  = $patientModel->getUserDetails();
-        // $this->getUserPage($id, $patientModel, "patient");
+        $this->getUserPage($id, $patientModel, "patient");
     }
 
 

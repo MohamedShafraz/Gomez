@@ -56,7 +56,6 @@ class Database
     {
 
         $query = "Select * FROM " . $this->table . " WHERE " . $where;
-
         $result = $this->executeQuery($query);
         if ($result == "error") {
             print_r("Failed to retrieve");
