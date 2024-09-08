@@ -89,11 +89,11 @@
   background: whitesmoke;">
                 <canvas style="width:100px;height:100px;background:#f5f5f5;margin-top:-6%" id="myChart1"></canvas>
             </div>
-            <div style="width: 15rem;
+            <!-- <div style="width: 15rem;
   height: 15rem;box-shadow: 1px 1px 3px;
   background: whitesmoke;">
                 <canvas style="width:100px;height:100px;background:#f5f5f5;margin-top:-6%" id="myChart"></canvas>
-            </div>
+            </div> -->
             <div style="width: 15rem;
   height: 15rem;box-shadow: 1px 1px 3px;
   background: whitesmoke;">
@@ -103,22 +103,22 @@
             <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
             <script>
-                const ctx = document.getElementById('myChart');
+                // const ctx = document.getElementById('myChart');
                 const ctx1 = document.getElementById('myChart1');
                 const ctx2 = document.getElementById('myChart2');
-                new Chart(ctx, {
-                    type: 'line',
-                    data: {
-                        labels: ['Solved', 'Unsolved', 'check', 'need to check'],
-                        datasets: [{
-                            label: 'Issues',
-                            data: [60, 50, 70, 40],
-                            borderWidth: 1
-                        }]
-                    },
-                    hoverOffset: 4,
+                // new Chart(ctx, {
+                //     type: 'line',
+                //     data: {
+                //         labels: ['Solved', 'Unsolved', 'check', 'need to check'],
+                //         datasets: [{
+                //             label: 'Issues',
+                //             data: [60, 50, 70, 40],
+                //             borderWidth: 1
+                //         }]
+                //     },
+                //     hoverOffset: 4,
 
-                });
+                // });
                 new Chart(ctx1, {
                     type: 'doughnut',
                     data: {
