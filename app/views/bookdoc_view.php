@@ -61,7 +61,7 @@ include_once(APPROOT . '/views/header_view.php');
             <div style="height: 24rem;overflow: auto; scrollbar-width: none; -ms-overflow-style: none;">
                 <?php
 
-                if (isset($data['max_appointments'])) {
+                if (isset($data)) {
                     for ($i = 0; $i < sizeof($data); $i++) {
                         $test = $data[$i]['date'] ?? '03/15/2024';
 
@@ -69,9 +69,9 @@ include_once(APPROOT . '/views/header_view.php');
                         $maxAppointments =  $data[$i]['max_appointments'];
                         $activeAppointments =  $data[$i]['active_appointments'];
 
-                        echo " <div class='custom-div' style='align-self: center;width: 98%;background-color: #fff;height: fit-content;'>
+                        echo " <div class='custom-div' style='border:1px solid;align-self: center;width: 98%;background-color: #fff;height: fit-content;'>
                 <div style='display: flex; flex-direction:row'>
-                    <div style='border-left: solid;width:13rem;'>
+                    <div style='width:13rem;'>
                         <ul style='list-style-type: none;text-align: left;'>
                             <li>$test</li>
                             <li style='font-weight: bold;font-size: x-large;'>$startTime</li>
@@ -83,9 +83,9 @@ include_once(APPROOT . '/views/header_view.php');
                             <li style='font-weight: bold;font-size: x-large;'>$activeAppointments</li>
                         </ul>
                     </div>
-                    <div style='margin-left: 1rem;margin-top: 0.75rem'>
+                    <div style='margin-left: 1rem;'>
                                 <ul style='width: 30rem;list-style-type: none;'>
-                                    <li style='font-weight: bold;font-size: x-large;'>Maximum Appointments</li>
+                                    <li style='font-size: medium;'>Maximum Appointments</li>
                                     <li>$maxAppointments </li>
                                 </ul>
                                 </div>
@@ -95,9 +95,9 @@ include_once(APPROOT . '/views/header_view.php');
                                 <div style='margin-top: -1.75rem;'>
                                     <li>
                                         <div style='width: 27%;'>
-                                            <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;background:#8393ca;'>
+                                            <div class='logbutton1' style='height: fit-content;;margin: 2rem 0rem 0rem 0rem;background:#5998ff;'>
                                                 <a href='" . URLROOT . "/appointment/finalized/data?fullname=" . $data[$i]['fullname'] . "&specialization=" . $data[$i]['Specialization'] . "&date=" . $data[$i]['date'] . "&strt_time=" . $data[$i]['start_time'] . "&end_time=" . $data[$i]['end_time'] . "&id=3-" . $data[$i]['Doctor_id'] . "' style='text-decoration: none;'>
-                                                    <font class='font1'>Finalized appointment</font>
+                                                    <font class='font1' style='color:white'>Finalize</font>
                                                 </a>
                                             </div>
                                         </div>
