@@ -66,20 +66,16 @@ class receptionist extends Controller
                     $this->view('receptionist/session_date_view', [0 => $result, 1 => $result2]);
                 }
                 if (isset($_POST['create']) && isset($_POST['Date'])) {
-                    // print_r($_POST);
-
                     $data['date'] = $_POST['Date'];
                     $start_time = $_POST['start_time'];
-                    $data['max_appointments'] = $_POST['make'];
                     $endtime = date('H:i:s', strtotime($start_time . ' +1 hour'));
                     $data['start_time'] = date('H:i:s', strtotime($start_time));;
                     $data['end_time'] = $endtime;
                     $data['Doctor_Id'] = $result[0]['Doctor_id'];
                     $this->appointmodel->setTable('session');
-                    // print_r($data);
                     $result2 = $this->appointmodel->insertData($data);
                     $error = $this->appointmodel->printErrno();
-                    if ($error == '1062') {
+                    if ($error = '1062') {
                         echo "<script>
                     alert(' Session Already Created');
                 </script>";

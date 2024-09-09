@@ -56,7 +56,6 @@ class Database
     {
 
         $query = "Select * FROM " . $this->table . " WHERE " . $where;
-
         $result = $this->executeQuery($query);
         if ($result == "error") {
             print_r("Failed to retrieve");
@@ -156,11 +155,12 @@ class Database
     }
     public function fetchreceptionist()
     {
-        $where = "receptionist_id = " . $_SESSION['User_Id'];
+        $where = "ID = " . $_SESSION['User_Id'];
 
-        $query = "SELECT * FROM receptionists JOIN user_db ON receptionists.`receptionist_id` = user_db.`User_Id` WHERE " . $where;
+        $query = "SELECT * FROM receptionists JOIN user_db ON receptionists.`ID` = user_db.`User_Id` WHERE " . $where;
 
         $result = $this->executeQuery($query);
+
         $data = [];
         $i = 0;
         if ($result && $result->num_rows > 0) {

@@ -24,34 +24,38 @@ class manageuser extends Controller
             // print_r($userdetails);
             // print_r($_SESSION['uid']);
             // print_r($detail);
-            $this->view($_SESSION['userType'] . "/patient_details_view", $detail);
+            // $this->view($_SESSION['userType'] . "/patient_details_view", $detail);
             exit();
         } else if ($id == 'create') {
             $Model->setTable(User);
-            $UsersList = $Model->fetchData(1);
+            $UsersList = $Model->fetchData("`usertype` = 'Patient'");
             $UsersListdata = [];
             foreach ($UsersList as $key => $value) {
-                if ($key == "Username") {
-                    array_push($UsersListdata, $value);
-                }
+
+
+
+                array_push($UsersListdata, $value["Username"]);
             }
-            $this->view($_SESSION['userType'] . $user . "_view", $UsersListdata);
+
+            // print_r($UsersListdata);
+            $this->view($_SESSION['userType'] . "/create_" . $user . "_view", $UsersListdata);
             exit();
         } else if ($id == 'created') {
 
             $users = [];
-            $users["Username"] = $_POST["Username"];
+            print_r($_POST);
+            $users["Username"] = $_POST["User_name"];
             $users['Email'] = $_POST["Email"];
             $users['Password'] = md5($_POST["Password"]);
             $Model->setTable(User);
             $Model->insertData($users);
             $data = [];
             $data['ID'] = $Model->printId();
-            $data["phonenumber"] = $_POST["Phonenumber"];
-            $data["fullname"] = $_POST["Fullname"];
+            $data["phonenumber"] = $_POST["Phone_number"];
+            $data["fullname"] = $_POST["Full_name"];
             $data["gender"] = $_POST["Gender"];
-            $data["age"] = $_POST['Age'];
-            $data["NIC"] = $_POST['NIC'];
+            $data["date_of_birth"] = $_POST['DOB'];
+            $data["NIC"] = $_POST['NIC'] ?? "";
             $Model->setTable($user . "s");
             $result1 = $Model->insertData($data);
             print_r("<script>alert('" . $result1 . "')</script>");
@@ -88,11 +92,49 @@ class manageuser extends Controller
         $this->model($_SESSION['userType'] . "/patient_model");
         $patientModel = new PatientModel();
         $patientDetails = $patientModel->getUsersDetails();
-        $this->view($_SESSION['userType'] . "/patient_view", $patientDetails);
+        // $this->view($_SESSION['userType'] . "/patient_view", $patientDetails);
         // $this->view($_SESSION['userType'] . "/patient_view");
         // $patientsDetails = $patientModel->getUsersDetails();
         // $patientDetails  = $patientModel->getUserDetails();
-        // $this->getUserPage($id, $patientModel, "patient");
+        $this->getUserPage($id, $patientModel, "patient");
+    }
+    public function checkPatientUserName()
+    {
+        // $username = $_POST;
+        $json = file_get_contents('php://input');
+
+        // Decode the JSON data into an associative array
+        $data = json_decode($json, true);
+        $username = $data['username'] ?? '';
+
+        // Load the patient model based on the user type in session
+        $this->model($_SESSION['userType'] . "/patient_model");
+        $patientModel = new PatientModel();
+        $patientModel->setTable(User); // Fix the argument to 'User' as a string
+
+        // // Fetch all users with user type 'Patient'
+        $UsersList = $patientModel->fetchData("`usertype` = 'Patient'");
+
+        // // Extract usernames from the result
+        $UsersListdata = [];
+        foreach ($UsersList as $user) {
+            array_push($UsersListdata, $user["Username"]);
+        }
+
+        // // Get the username from the POST request (sent by fetch)
+        // $json = file_get_contents('php://input'); // Fetch the raw POST data
+        // $data = json_decode($json, true); // Decode the JSON input
+        // $username = $data['username'] ?? ""; // Extract the 'username' field
+        // print_r($username);
+        // // Check if the username exists in the fetched user data
+        if (in_array($username, $UsersListdata)) {
+            // Return a JSON response indicating that the username exists
+            echo json_encode(['exists' => true]);
+        } else {
+            // Return a JSON response indicating that the username does not exist
+            echo json_encode(['exists' => false]);
+        }
+        exit();
     }
 
 

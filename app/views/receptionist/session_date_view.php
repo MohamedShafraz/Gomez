@@ -1,7 +1,7 @@
 <?php
 
 ?>
-
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 <link rel="stylesheet" href="<?= URLROOT ?>/css/Admin/dashboard.css">
 <link rel="stylesheet" href="<?= URLROOT ?>/css/patient/appointments.css">
 
@@ -140,29 +140,29 @@
                                     </select>
                                 </li>
                                 </li>
-
-                            </ul>
-                        </div>
-                        <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: larger;padding: 2rem 0rem 1rem 0rem;width:11rem'>
-
-                            <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
-                                <li>Maximum Patients</li>
-                                <input name="make" type="number" style="width: 10rem;height: 1.8rem;" require>
-                                </li>
-                            </ul>
-                        </div>
-
-                        <div style='width: 20%;'>
-
-                            <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 1.20rem 0rem 0rem 1rem;;border-radius: 0.5rem;box-shadow:none'>
-                                <a style='text-decoration: none;'>
-                                    <font class='font1'><input type="submit" name="create" value="Create Session" style="font-weight: bold;background: transparent;border: none;color: #f7f5f5;"></font>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
                 </form>
+        </ul>
+        </div>
+        <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: larger;padding: 2rem 0rem 1rem 0rem;width:11rem'>
+            <form action="" <?= URLROOT . "/receptionist/appointments/create" ?>"" method="post">
+                <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
+                    <li>Maximum Patients</li>
+                    <input type="number" style="width: 10rem;height: 1.8rem;">
+                    </li>
+                </ul>
+        </div>
+
+        <div style='width: 20%;'>
+
+            <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 1.20rem 0rem 0rem 1rem;;border-radius: 0.5rem;box-shadow:none'>
+                <a style='text-decoration: none;'>
+                    <font class='font1'><input type="submit" name="create" value="Create Session" style="font-weight: bold;background: transparent;border: none;color: #f7f5f5;"></font>
+                </a>
             </div>
+        </div>
+        </div>
+        </form>
+        </div>
 
 
 
