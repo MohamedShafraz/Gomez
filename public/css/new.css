@@ -220,6 +220,29 @@ font-family: inter;
 padding-bottom: 34px;
 padding-top: 79px;
     }
+    .button {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        flex-shrink: 0;
+        color: var(--Gomez-White);
+        font-family: 'inter-bold';
+        font-size: 14px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        flex-shrink: 0;
+        border-radius: 10px;
+        background: var(--Gomez-highlight);
+        position: relative;
+        padding: 1.4% 2.5%;
+        filter: drop-shadow(3px 3px 7px --Gomez-Black);
+        width: max-content;
+        border-style: none;
+        /* box-shadow: 2px 2px 1px var(--Gomez-Black); */
+        font-family: inter;
+
+    }
     .images img{
         width: 100px;
     }
