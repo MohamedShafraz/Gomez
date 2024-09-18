@@ -45,7 +45,6 @@
         for ($index = 0; $index < sizeof($data); $index++) {
             $id[$index] = $data[$index]['id'];
             $_SESSION['id'] = $data[$index]['id'];
-
             if (implode("", explode("'", $data[$index]['type'])) != 'Unregister') {
                 echo "<tr><td style='width:100px'>" . $data[$index]['userName'] . "</td><td style='width: 66px;'>" . implode("", explode("'", $data[$index]['type'])) . "</td><td style='width: 144px;'>0" . $data[$index]['phonenumber'] . "</td><td><button onclick = 'z(" .  $id[$index] . ")' class=test >view</button></td></tr><tr style='color:white;margin: 0.2%;'></tr>";
             }
