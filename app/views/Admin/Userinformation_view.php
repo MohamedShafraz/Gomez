@@ -138,8 +138,10 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
 
     <ul style="background-color: white;padding:5%; width:50%">
         <!-- <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div> -->
-        <div class="users" style="float: left;gap: 5%;width:50% ;"><?= "<img src='data:image/png;base64," . base64_encode($data['image']) . "' alt='Profile Picture' style='    width: 12.3rem;
-    height: 12.3rem;;'>" ?></div>
+        <div class="users" style="float: left;gap: 8%;width:50% ;">
+            <div style="display:flex;flex-direction:column;gap:5%"><?= "<img src='data:image/png;base64," . base64_encode($data['image']) . "' alt='Profile Picture' style='    width: 12.3rem;margin-bottom: 8px;
+    height: 12.3rem;;'>" ?><br /><button class="button" style="padding: 9px 22px;" onclick="document.getElementById('popup2').style.visibility = 'visible';">Update Profile Picture</button></div>
+        </div>
 
         <script>
             $data.forEach(element => {

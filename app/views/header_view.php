@@ -5,18 +5,10 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-<html lang="en">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
     <link rel="stylesheet" href="<?= URLROOT . '/css/new.css' ?>">
-    <link rel="stylesheet" href="<?= URLROOT . '/css/new.css' ?>">
 </head>
-
-<body style="overflow-x: hidden;font-family:inter;">
 
 <body style="overflow-x: hidden;font-family:inter;">
     <header class="header">
@@ -25,7 +17,7 @@
                 <img src=<?= URLROOT . "/resources/gomezlogo1.jpg" ?> class="logo">
             </div>
             <a href="./" id="set1" onmouseenter="select()" onmouseleave="unselect()" class="">Home</a>
-            <a href="contactus" id="set" onmouseenter="select1()" onmouseleave="unselect1()" class="">Contact us</a>
+            <a href="<?= URLROOT . "contactus" ?>" id="set" onmouseenter="select1()" onmouseleave="unselect1()" class="">Contact us</a>
             <a href="<?= URLROOT . "#b1" ?>" id="set2" onmouseenter="select2()" onmouseleave="unselect2()" class="">Facilities</a>
             </a>
             <a href="<?= URLROOT . "#make" ?>">
@@ -33,7 +25,7 @@
                     <font class="GMfont" style="font-family: 'inter';">Appointment </font>
                 </div>
             </a>
-            <a href="users/login">
+            <a href="<?= URLROOT . "/users/login" ?>">
                 <div class="selected">
                     <font class="GMfont" style="font-family: 'inter';">Login </font>
                 </div>
@@ -43,11 +35,7 @@
                 function select() {
                     document.getElementById("set1").innerHTML = "<font class='GMfont'>" + document.getElementById("set1").innerText + "</font>";
                     document.getElementById("set1").className = "selected";
-                    document.getElementById("set1").innerHTML = "<font class='GMfont'>" + document.getElementById("set1").innerText + "</font>";
-                    document.getElementById("set1").className = "selected";
                 }
-
-                function unselect() {
 
                 function unselect() {
                     document.getElementById("set1").innerHTML = "Home";
@@ -56,11 +44,7 @@
                 document.getElementById("set").onmouseenter = function select1() {
                     document.getElementById("set").innerHTML = "<font class='GMfont'>" + document.getElementById("set").innerText + "</font>";
                     document.getElementById("set").className = "selected";
-                document.getElementById("set").onmouseenter = function select1() {
-                    document.getElementById("set").innerHTML = "<font class='GMfont'>" + document.getElementById("set").innerText + "</font>";
-                    document.getElementById("set").className = "selected";
                 }
-                document.getElementById("set").onmouseleave = function unselect1() {
                 document.getElementById("set").onmouseleave = function unselect1() {
                     document.getElementById("set").innerHTML = "Contact Us";
                     document.getElementById("set").className = "";
@@ -68,17 +52,12 @@
                 document.getElementById("set2").onmouseenter = function select2() {
                     document.getElementById("set2").innerHTML = "<font class='GMfont'>" + document.getElementById("set2").innerText + "</font>";
                     document.getElementById("set2").className = "selected";
-                document.getElementById("set2").onmouseenter = function select2() {
-                    document.getElementById("set2").innerHTML = "<font class='GMfont'>" + document.getElementById("set2").innerText + "</font>";
-                    document.getElementById("set2").className = "selected";
                 }
-                document.getElementById("set2").onmouseleave = function unselect2() {
                 document.getElementById("set2").onmouseleave = function unselect2() {
                     document.getElementById("set2").innerHTML = "Facilities";
                     document.getElementById("set2").className = "";
                 }
             </script>
-
 
         </nav>
     </header>

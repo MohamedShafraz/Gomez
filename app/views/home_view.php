@@ -9,16 +9,7 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
 
 <div>
 
-
-<div>
-
     <div>
-        <img src=<?= URLROOT . "/resources/home.jpg" ?> alt="" width="100%" height="2%" style="position: relative;margin-left: -2%;width: 103%;height: 95vh;">
-
-        <div style="background-color: rgb(164,193,201,-2.9);position: absolute;bottom: 16%;;left: 0%;z-index: 2;width: 53%;margin-top: 81px;">
-            <b>
-                <p style="font-size: 67px;color: rgb(42, 42, 152);margin-left: 3%;margin-top: 162px;">Welcome to Gomez</p>
-            </b>
         <img src=<?= URLROOT . "/resources/home.jpg" ?> alt="" width="100%" height="2%" style="position: relative;margin-left: -2%;width: 103%;height: 95vh;">
 
         <div style="background-color: rgb(164,193,201,-2.9);position: absolute;bottom: 16%;;left: 0%;z-index: 2;width: 53%;margin-top: 81px;">
@@ -29,17 +20,7 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
                     needs is our priority</b></p>
             <p style="font-size: 20px;color: rgb(36, 44, 82);margin-left: 42px;">There nothing more important than our good health,cause <br>that's our principal capital asset for our good future.</p>
             <a href="#make" style="
-                    needs is our priority</b></p>
-            <p style="font-size: 20px;color: rgb(36, 44, 82);margin-left: 42px;">There nothing more important than our good health,cause <br>that's our principal capital asset for our good future.</p>
-            <a href="#make" style="
     text-decoration: none;
-">
-                <div class='logbutton' id="make1">
-                    <font class="font1">Make appointment</font>
-                </div>
-            </a>
-        </div>
-
 ">
                 <div class='logbutton' id="make1">
                     <font class="font1">Make appointment</font>
@@ -682,7 +663,22 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
                 <option value="520" data-area="520">X-Ray</option>
             </select>
             <label for="Date">Date</label>
-            <input type="date" name="date" id="Date" date-placeholder="11/6/2023" class="holder"><br>
+
+            <input type="date" name="date" id="Date" date-placeholder="11/6/2023" class="holder">
+            <script>
+                const today = new Date();
+
+                const formattedToday = today.toISOString().split('T')[0];
+
+
+                const maxDate = new Date();
+                maxDate.setDate(today.getDate() + 7);
+                const formattedMaxDate = maxDate.toISOString().split('T')[0];
+
+
+                document.getElementById('Date').setAttribute('min', formattedToday);
+                document.getElementById('Date').setAttribute('max', formattedMaxDate);
+            </script>
             <div class='logbutton' id="maked">
                 <input type="submit" style="text-decoration: none;
   width: 100%;
@@ -702,11 +698,6 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
                 <font class="font1" style="color:white">Register</font>
             </div>
         </a>
-        <a href="registration" style="text-decoration: none;">
-            <div class="logbutton" id="reg">
-                <font class="font1" style="color:white">Register</font>
-            </div>
-        </a>
     </section>
 </div>
 <div class="aboutus">
@@ -721,26 +712,7 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
             <ul>
                 <li><a href="#"> Home </a></li>
                 <li><a href="contactus"> Contact us </a></li>
-</div>
-<div class="aboutus">
-    <p> Gomez is a healthcare institution known for its commitment to quality care and continuous investment in staff training. They offer a wide range of services, from routine check-ups to complex surgeries, with a state-of-the-art OPD lab facility for quick and accurate diagnostics. They prioritize patient health and are at the forefront of medical technology, incorporating minimally invasive procedures and shorter recovery times. They treat patients like family, creating personalized treatment plans and adhering to infection control protocols. Gomez is conveniently located, providing immediate care for medical emergencies. </p>
-</div>
-
-
-<section class="footer">
-    <div class="box-container">
-        <div class="column">
-            <h3>Quick Links</h3>
-            <ul>
-                <li><a href="#"> Home </a></li>
-                <li><a href="contactus"> Contact us </a></li>
             </ul>
-        </div>
-        <hr>
-        <div class="column">
-            <h3>Facilities</h3>
-            <ul>
-                <li><a href="#b1"> Prescription</a></li>
         </div>
         <hr>
         <div class="column">
@@ -757,22 +729,10 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
         <div class="column">
             <h3 id="contact">Contact info</h3>
             <ul>
-        </div>
-        <hr>
-        <div class="column">
-            <h3 id="contact">Contact info</h3>
-            <ul>
                 <li><a href="">0766414857/0766654712 </a></li>
                 <li><a href="">gomezhospital@gmail.com</a></li>
                 <li><a href="">No 63, Avissawella,<br> Sri Lanka</a></li>
             </ul>
-        </div>
-        <hr>
-        <script src="script.js"></script>
-
-        </body>
-
-        </html>
         </div>
         <hr>
         <script src="script.js"></script>
