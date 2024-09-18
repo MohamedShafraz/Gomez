@@ -89,6 +89,12 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
                         document.writeln(
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
                             "<input type='text' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + "  aria-describedby='usernameStatus' required><div id='usernameStatus' style='width:200px'></div><br>");
+
+                    } else if (element.split(" :")[0] == "Full name") {
+                        document.writeln(
+                            " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
+                            "<input type='text' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' pattern='[A-Za-z\\\s]+' class='users' placeholder=" + element.split(" :")[1] + " required><br><div id='FullnameError' style='display:none; color:red;width:200px'>Invalid name</div><br>");
+
                     } else if (element.split(" :")[0] == "Phone number") {
                         document.writeln(
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
@@ -100,7 +106,9 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
                     } else if (element.split(" :")[0] == "Email") {
                         document.writeln(
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
-                            "<input type='email' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' pattern='' class='users' placeholder=" + element.split(" :")[1] + "  required ><br><div id='emailError' style='display:none; color:red;width:200px'>Invalid email address</div><br>");
+
+                            "<input type='email' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "'  class='users' placeholder=" + element.split(" :")[1] + "  required ><br><div id='emailError' style='display:none; color:red;width:200px'>Invalid email address</div><br>");
+
                     } else {
                         document.writeln(
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
@@ -124,6 +132,9 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         const phoneInput = document.getElementById('Phone number1')
         const phoneError = document.getElementById('phoneError');
 
+        const nameInput = document.getElementById('Full name1')
+        const nameError = document.getElementById('FullnameError');
+
         phoneInput.addEventListener('input', function() {
             if (phoneInput.value !== "" && !phoneInput.validity.valid) {
                 phoneError.style.display = 'block';
@@ -131,6 +142,15 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
                 phoneError.style.display = 'none';
             }
         });
+
+        nameInput.addEventListener('input', function() {
+            if (nameInput.value !== "" && !nameInput.validity.valid) {
+                nameError.style.display = 'block';
+            } else {
+                nameError.style.display = 'none';
+            }
+        });
+
         emailInput.addEventListener('input', function() {
             if (emailInput.validity.typeMismatch) {
                 emailError.style.display = 'block';

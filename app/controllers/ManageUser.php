@@ -24,7 +24,7 @@ class manageuser extends Controller
             // print_r($userdetails);
             // print_r($_SESSION['uid']);
             // print_r($detail);
-            // $this->view($_SESSION['userType'] . "/patient_details_view", $detail);
+            $this->view($_SESSION['userType'] . "/" . $user . "_details_view", $detail);
             exit();
         } else if ($id == 'create') {
             $Model->setTable(User);
@@ -136,7 +136,14 @@ class manageuser extends Controller
         }
         exit();
     }
-
+    public function updatePatientDetails($id)
+    {
+        print_r($id);
+        $this->model($_SESSION['userType'] . "/patient_model");
+        $patientModel = new PatientModel();
+        $patientModel->setTable(Patients);
+        $UsersList = $patientModel->updateUserDetails($id, $_POST);
+    }
 
     public function doctor($id = null)
     {
