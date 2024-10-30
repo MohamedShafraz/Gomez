@@ -1,11 +1,6 @@
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
 <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 <style>
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
 
     ul li a {
         text-decoration: none;

@@ -45,11 +45,6 @@ class Doctor extends Controller
                 $patients = array_merge($patients, $patient);
             }
 
-            if($appointments == null){
-                $_SESSION['message'] = "No Session Today";
-
-            }
-
             $nexttwosessions = array_slice($sessions, 0, 2);
 
             $this->view('Doctor/dashboard_view', ['appointments' => $appointments, 'patients' => $patients, 'sessions' => $sessions, 'nexttwosessions' => $nexttwosessions]);

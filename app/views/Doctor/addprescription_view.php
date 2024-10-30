@@ -1,11 +1,6 @@
 <?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
 <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 <style>
-    ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
 
     ul li a {
         text-decoration: none;
@@ -131,7 +126,6 @@
 </style>
 
 
-</aside>
 <article class="dashboard">
     <div>
         <form id="labForm" class="card" onsubmit="return submitForm()" action="<?= URLROOT . '/Doctor/AddPrescription' ?>" method="post">
@@ -151,7 +145,7 @@
             </div>
 
             <label for="prescription">Instructions</label>
-            <textarea id="prescription" name="prescription" rows="4" cols="50"></textarea>
+            <textarea id="prescription" name="prescription" rows="4" cols="50" required></textarea>
 
             <label for="labtesting">Lab Testing</label>
             <table id="selectedValuesTable"></table>
@@ -170,7 +164,7 @@
             <label for="otherremarks">Other Remarks</label>
             <textarea id="otherremarks" name="otherremarks" rows="4" cols="50"></textarea>
 
-            <input type="hidden" id="labtesting" name="labtesting" value="">
+            <input type="hidden" id="labtesting" name="labtesting" value="" >
             <input type="hidden" id="priscription_date" name="priscription_date" value="<?= date('Y-m-d'); ?>">
             <br></br>
             <input type="submit" value="Submit">
@@ -200,7 +194,7 @@
                 customDiseaseInput.style.display = 'none';
                 diseaseList.style.display = 'inline';
                 customDiseaseClose.style.display = 'none';
-            });
+        });
     });
 
     document.getElementById('labtestinglist').addEventListener('change', function () {
@@ -285,6 +279,6 @@
         return true;
     }
 </script>
-
-<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
 </div>
+<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
+
