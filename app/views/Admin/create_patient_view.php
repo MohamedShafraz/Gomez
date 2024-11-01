@@ -3,10 +3,18 @@
 
 require_once(APPROOT . "/views/Admin/navbar_view.php");
 
+
 ?>
 
 <script>
     $data = [];
+    $data.push("<?= "Full name :" .  "John Doe :" ?>");
+    $data.push("<?= "User name :" .  "John Doe :" ?>");
+    $data.push("<?= "Gender :" . "Male :" ?>");
+    $data.push("<?= "DOB : " . "2021-03-25 :" ?>");
+    $data.push("<?= "Phone number : " .  "0771234567 :" ?>");
+    $data.push("<?= "Email : " .  "Johndoe@live.com :"  ?>");
+    $data.push("<?= "Password : " .  "******* :" ?>");
     $data.push("<?= "Full name :" .  "John Doe :" ?>");
     $data.push("<?= "User name :" .  "John Doe :" ?>");
     $data.push("<?= "Gender :" . "Male :" ?>");
@@ -65,13 +73,29 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
   align-content: center;
   align-items: center;
 
+   position: fixed;
+  margin: 1% 10% 0% 27%;
+  z-index: 100;
+  padding: 2% 22% 5% 23%;
+  top: 81;
+  width: 282px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
 " id='popup1'>
     <a href="./" style="position: relative;
   margin: 0% 0% 0% -171%;
   width: 10%;
 
    "><img style="width:100%;postion:fixed" src="<?= URLROOT . "/resources/back-button-svgrepo-com.svg" ?>"></a><br>
+    <a href="./" style="position: relative;
+  margin: 0% 0% 0% -171%;
+  width: 10%;
 
+   "><img style="width:100%;postion:fixed" src="<?= URLROOT . "/resources/back-button-svgrepo-com.svg" ?>"></a><br>
+
+    <h1 style="">Create New Patient</h1>
     <h1 style="">Create New Patient</h1>
 
     <form action="./created" method="post" enctype="multipart/form-data">
@@ -89,12 +113,6 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
                         document.writeln(
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
                             "<input type='text' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + "  aria-describedby='usernameStatus' required><div id='usernameStatus' style='width:200px'></div><br>");
-
-                    } else if (element.split(" :")[0] == "Full name") {
-                        document.writeln(
-                            " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
-                            "<input type='text' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' pattern='[A-Za-z\\\s]+' class='users' placeholder=" + element.split(" :")[1] + " required><br><div id='FullnameError' style='display:none; color:red;width:200px'>Invalid name</div><br>");
-
                     } else if (element.split(" :")[0] == "Phone number") {
                         document.writeln(
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
@@ -106,9 +124,7 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
                     } else if (element.split(" :")[0] == "Email") {
                         document.writeln(
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
-
-                            "<input type='email' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "'  class='users' placeholder=" + element.split(" :")[1] + "  required ><br><div id='emailError' style='display:none; color:red;width:200px'>Invalid email address</div><br>");
-
+                            "<input type='email' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' pattern='' class='users' placeholder=" + element.split(" :")[1] + "  required ><br><div id='emailError' style='display:none; color:red;width:200px'>Invalid email address</div><br>");
                     } else {
                         document.writeln(
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
@@ -119,6 +135,9 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
             <input name="submit" type="submit" class="button" value="create" style="padding:12px 15px;">
 
         </div>
+</div>
+</form>
+</div>
 </div>
 </form>
 
@@ -132,9 +151,6 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         const phoneInput = document.getElementById('Phone number1')
         const phoneError = document.getElementById('phoneError');
 
-        const nameInput = document.getElementById('Full name1')
-        const nameError = document.getElementById('FullnameError');
-
         phoneInput.addEventListener('input', function() {
             if (phoneInput.value !== "" && !phoneInput.validity.valid) {
                 phoneError.style.display = 'block';
@@ -142,15 +158,6 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
                 phoneError.style.display = 'none';
             }
         });
-
-        nameInput.addEventListener('input', function() {
-            if (nameInput.value !== "" && !nameInput.validity.valid) {
-                nameError.style.display = 'block';
-            } else {
-                nameError.style.display = 'none';
-            }
-        });
-
         emailInput.addEventListener('input', function() {
             if (emailInput.validity.typeMismatch) {
                 emailError.style.display = 'block';
@@ -199,6 +206,9 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
 </article>
 </body>
 
+<?php
+
+require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
 <?php
 
 require_once(APPROOT . "/views/Admin/footer_view.php"); ?>

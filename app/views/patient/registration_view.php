@@ -62,9 +62,38 @@ border-radius: 8px 0px 0px 8px;">
                             </div>
                             <div>
                                 <label for="nic" id="niclabel">NIC:</label>
-                                <input type="text" name="nic" id="nic" oninput="verify()">
-                                <div id="nic_err" style="display:none;color:lightcoral;font-size:small">Please Enter NIC</div>
+                                <!-- <input type="text" name="nic" id="nic" oninput="verify()">
+                                <div id="nic_err" style="display:none;color:lightcoral;font-size:small">Please Enter NIC</div> -->
+                                <input type="text" id="nic" name="nic" maxlength="12" required />
+                                <div id="error-message" style="color:lightcoral;font-size:small"></div>
+
                             </div>
+                            <script>
+                                const nicInput = document.getElementById('nic');
+                                const errorMessage = document.getElementById('error-message');
+                                const nicPattern12 = /^\d{12}$/; // Pattern for 12 digit NIC
+                                const nicPattern10 = /^\d{9}[Vv]$/; // Pattern for 10 character NIC with 9 digits + 'V' or 'v'
+
+                                const validateNIC = (nic) => {
+                                    if (nicPattern12.test(nic) || nicPattern10.test(nic)) {
+                                        errorMessage.textContent = ''; // Clear error message
+                                        return true;
+                                    } else {
+                                        errorMessage.textContent = 'Enter Valid NIC';
+                                        return false;
+                                    }
+                                };
+
+                                nicInput.addEventListener('input', () => {
+                                    validateNIC(nicInput.value);
+                                });
+
+                                document.getElementById('nicForm').addEventListener('submit', function(event) {
+                                    if (!validateNIC(nicInput.value)) {
+                                        event.preventDefault(); // Prevent form submission if NIC is invalid
+                                    }
+                                });
+                            </script>
 
                             <script>
                                 function updateNicLabel() {
@@ -242,6 +271,19 @@ border-radius: 8px 0px 0px 8px;">
                 document.getElementById('password1_err1').style.display = 'none';
             }
         }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('date_of_birth');
+            const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+
+            const maxDate = new Date();
+            maxDate.setDate(maxDate.getDate() - 1); // Add 14 days to the current date
+            const maxDateString = maxDate.toISOString().split('T')[0]; // Get max date in YYYY-MM-DD format
+
+            // Set the minimum date to today
+            dateInput.setAttribute('max', maxDateString); // Set the maximum date to 14 days from today
+        });
     </script>
 
 
