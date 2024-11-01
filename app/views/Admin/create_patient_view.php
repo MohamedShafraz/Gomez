@@ -3,10 +3,18 @@
 
 require_once(APPROOT . "/views/Admin/navbar_view.php");
 
+
 ?>
 
 <script>
     $data = [];
+    $data.push("<?= "Full name :" .  "John Doe :" ?>");
+    $data.push("<?= "User name :" .  "John Doe :" ?>");
+    $data.push("<?= "Gender :" . "Male :" ?>");
+    $data.push("<?= "DOB : " . "2021-03-25 :" ?>");
+    $data.push("<?= "Phone number : " .  "0771234567 :" ?>");
+    $data.push("<?= "Email : " .  "Johndoe@live.com :"  ?>");
+    $data.push("<?= "Password : " .  "******* :" ?>");
     $data.push("<?= "Full name :" .  "John Doe :" ?>");
     $data.push("<?= "User name :" .  "John Doe :" ?>");
     $data.push("<?= "Gender :" . "Male :" ?>");
@@ -65,13 +73,29 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
   align-content: center;
   align-items: center;
 
+   position: fixed;
+  margin: 1% 10% 0% 27%;
+  z-index: 100;
+  padding: 2% 22% 5% 23%;
+  top: 81;
+  width: 282px;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+
 " id='popup1'>
     <a href="./" style="position: relative;
   margin: 0% 0% 0% -171%;
   width: 10%;
 
    "><img style="width:100%;postion:fixed" src="<?= URLROOT . "/resources/back-button-svgrepo-com.svg" ?>"></a><br>
+    <a href="./" style="position: relative;
+  margin: 0% 0% 0% -171%;
+  width: 10%;
 
+   "><img style="width:100%;postion:fixed" src="<?= URLROOT . "/resources/back-button-svgrepo-com.svg" ?>"></a><br>
+
+    <h1 style="">Create New Patient</h1>
     <h1 style="">Create New Patient</h1>
 
     <form action="./created" method="post" enctype="multipart/form-data">
@@ -111,6 +135,9 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
             <input name="submit" type="submit" class="button" value="create" style="padding:12px 15px;">
 
         </div>
+</div>
+</form>
+</div>
 </div>
 </form>
 
@@ -179,6 +206,9 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
 </article>
 </body>
 
+<?php
+
+require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
 <?php
 
 require_once(APPROOT . "/views/Admin/footer_view.php"); ?>

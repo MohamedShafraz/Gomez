@@ -14,7 +14,7 @@ class PatientModel extends Database
         $users = [];
         // $i = 0;
         for ($i = 0; $i < sizeof($data); $i++) {
-            $users[$i]['userName'] = $data[$i]["Username"];
+            $users[$i]['userName'] = $data[$i]["fullname"];
             $users[$i]['type'] = $data[$i]['type'] ?? 'unregister';
             $users[$i]['phonenumber'] = $data[$i]['phonenumber'];
             $users[$i]['age'] = $data[$i]['age'];
@@ -36,7 +36,7 @@ class PatientModel extends Database
         $users = [];
         $i = 0;
         foreach ($data as $row) {
-            $users['Fullname'] = $row["Username"];
+            $users['Fullname'] = $row["fullname"];
             $users['type'] = $row['type'] ?? 'unregister';
             $users['Phonenumber'] = $row['phonenumber'];
             $users['Age'] = $row['age'];
@@ -46,5 +46,13 @@ class PatientModel extends Database
             $i++;
         }
         return $users;
+    }
+    public function updateUserDetails($id, $userDetails)
+    {
+        $where = 'ID=' . $id;
+        print_r($_POST);
+        foreach ($userDetails as $userDetail) {
+            print_r($userDetail);
+        }
     }
 }
