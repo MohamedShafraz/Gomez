@@ -194,7 +194,7 @@
 
     <!-- <a>Welcome to Gomez</a> -->
 
-    <div class="MIS">MIS report</div>
+    <div class="MIS">MIS report</div><br><br>
 
     <div class="scrollable-container">
         <ul class="horizontal-scroll">

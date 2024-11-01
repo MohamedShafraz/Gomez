@@ -6,7 +6,6 @@ require_once(APPROOT . "/views/patient/navbar_view.php");
 ?>
 
 <script>
-    
     $data = [];
     $data.push("<?= "Fullname :" . $data[0]['fullname'] ?>");
     $data.push("<?= "gender :" . $data[0]['gender'] ?>");
@@ -107,10 +106,15 @@ require_once(APPROOT . "/views/patient/navbar_view.php");
     <!-- <a>Welcome to Gomez</a> -->
 
     <ul style="background-color: white;padding:5%; width:50%">
-  
+
         <!-- <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div> -->
-        <div class="users" style="float: left;gap: 5%;width:50% ;"><?= "<img src='data:image/png;base64," . base64_encode($_SESSION['USER']['profilepicture']) . "' alt='Profile Picture' style='    width: 12.3rem;
-    height: 12.3rem;;'>" ?></div>
+        <div class="users" style="float: left; gap: 5%; width:50%;">
+            <?= isset($_SESSION['USER']['profilepicture']) && !empty($_SESSION['USER']['profilepicture'])
+                ? "<img src='data:image/png;base64," . base64_encode($_SESSION['USER']['profilepicture']) . "' alt='Profile Picture' style='width: 12.3rem; height: 12.3rem;'>"
+                : "<img src='" . URLROOT . "/resources/new_pat.png' alt='Default Profile Picture' style='width: 12.3rem; height: 12.3rem;'>"
+            ?>
+        </div>
+
 
         <script>
             console.log($data);

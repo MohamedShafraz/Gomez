@@ -71,7 +71,7 @@
             </div>
         </div>
         <div style="display: flex;">
-            <div class="" style="width:71rem;margin: 3% 0% 0% -20%;background: white;box-shadow: 1px 1px 7px;flex-basis: 69%;height:16rem;flex-direction: row;display:flex;line-height: 1px;">
+            <div class="" style="width:71rem;margin: 3% 0% 0% -20%;background: white;box-shadow: 1px 1px 7px;flex-basis: 115%;height:16rem;flex-direction: row;display:flex;line-height: 1px;">
                 <div class='flex-scroll-container' style='display: flex;flex-direction: column;height: 16rem;width:50%'>
                     <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Appointments</div>
                     <div>
@@ -96,10 +96,10 @@
                         ?>
                     </div>
                 </div>
-                <div style="    width: 33rem;">
+                <!-- <div style="    width: 33rem;">
                     <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Time Remaining</div>
                     <div id="countdown" style="margin: 23% 0% 0% 14%;"></div>
-                </div>
+                </div> -->
                 <div class='flex-scroll-container' style='display: flex;flex-direction: column;height: 16rem;width:50%'>
                     <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Lab Reports</div>
                     <div><?php
