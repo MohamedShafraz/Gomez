@@ -44,11 +44,14 @@
         <tr style="color:white;margin: 14%;"></tr>
 
         <?php
-
-        for ($index = 0; $index < sizeof($data); $index++) {
-            $id = $data[$index]['id'];
-            $_SESSION['id'] = $data[$index]['id'];
-            echo "<tr><td style='width: 120px;'>" . $data[$index]['userName'] . "</td><td style='width: 156px;'>200068300174</td><td style='width: 144px;'>Cardiology</td><td><button onclick = 'z($id)' class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
+        if ($data != null) {
+            for ($index = 0; $index < sizeof($data); $index++) {
+                $id = $data[$index]['id'] ?? 0;
+                $_SESSION['id'] = $data[$index]['id'];
+                echo "<tr><td style='width: 120px;'>" . $data[$index]['userName'] ?? "" . "</td><td style='width: 156px;'>200068300174</td><td style='width: 144px;'>Cardiology</td><td><button onclick = 'z($id)' class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
+            }
+        } else {
+            echo "<tr><td style='width: 120px;'>" . 'userName' . "</td><td style='width: 156px;'>200068300174</td><td style='width: 144px;'>Cardiology</td><td><button onclick = 'z(0)' class=test>view</button></td></tr><tr style='color:white;margin: 3%;'></tr>";
         }
         ?>
 
@@ -58,3 +61,5 @@
 
 
 <?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
+
+<!-- Id has not been  get from db its hardcoded -->

@@ -24,7 +24,7 @@ class manageuser extends Controller
             // print_r($userdetails);
             // print_r($_SESSION['uid']);
             // print_r($detail);
-            // $this->view($_SESSION['userType'] . "/patient_details_view", $detail);
+            $this->view($_SESSION['userType'] . "/patient_details_view", $detail);
             exit();
         } else if ($id == 'create') {
             $Model->setTable(User);
@@ -62,7 +62,12 @@ class manageuser extends Controller
             header("Location:" . URLROOT . "/" . $_SESSION['userType'] . "/manageuser/" . $user);
             exit();
         } else {
-            $details = $Model->getUsersDetails();
+            try {
+                $details = $Model->getUsersDetails();
+            } catch (\Throwable $th) {
+                $details = [];
+            }
+
             $Model->printError();
             $this->view($_SESSION['userType'] . "/" . $user . "_view", $details);
             exit();

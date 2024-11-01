@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Sep 01, 2024 at 05:59 AM
+-- Generation Time: Oct 12, 2024 at 09:45 AM
 -- Server version: 8.0.31
 -- PHP Version: 8.2.0
 
@@ -268,7 +268,7 @@ CREATE TABLE IF NOT EXISTS `patients` (
   `date_of_birth` date NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `ID` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `patients`
@@ -277,18 +277,21 @@ CREATE TABLE IF NOT EXISTS `patients` (
 INSERT INTO `patients` (`ID`, `registration_date`, `age`, `gender`, `address`, `phonenumber`, `nic`, `fullname`, `type`, `date_of_birth`) VALUES
 (7, '2024-03-05', 23, 'Male', '17/71,kings road, colombo 6', 777123456, '200126200277', 'Sam', '\'Register\'', '2001-01-02'),
 (8, '2024-02-28', 23, 'Male', '18 kings road trincomalee', 777123456, '200126200277', 'Sham', '\'Register\'', '2001-01-16'),
-(14, '2024-02-28', 23, 'Male', 'colombo', 766414945, '200124900076', 'sami1', '\'Register\'', '2001-01-22'),
-(15, '2023-11-28', 23, 'Male', 'colombo', 766414598, '200124900076', 'sam3', '\'Register\'', '2001-06-12'),
+(14, '2024-02-28', 23, 'Male', 'colombo', 766414945, '200124900076', 'sami', '\'Register\'', '2001-01-22'),
+(15, '2023-11-28', 23, 'Male', 'colombo', 766414598, '200124900076', 'samson', '\'Register\'', '2001-06-12'),
 (26, '2024-01-23', 23, 'Male', 'matara', 770164525, '200129000864', 'shan', '\'Register\'', '2001-06-07'),
 (32, '2024-01-17', 23, 'Male', 'Bambalapitiya', 766451254, '200134600147', 'thusi', '\'Register\'', '2001-06-10'),
 (34, '2024-02-11', 23, 'Female', 'udupitty', 766451548, '200024966625', 'umai', '\'Register\'', '2000-12-12'),
 (35, '2024-02-15', 22, 'Female', 'pointpedro', 714568547, '200224856489', 'hamsa', '\'Register\'', '2002-01-01'),
-(36, '2024-01-23', 23, 'Male', 'Bambalapitiya', 766584895, '200124895587', 'sham2', '\'Register\'', '2001-07-10'),
+(36, '2024-01-23', 23, 'Male', 'Bambalapitiya', 766584895, '200124895587', 'shams', '\'Register\'', '2001-07-10'),
 (58, NULL, 27, 'Male', NULL, 777123456, '', 'Raguram ketheeswaran', '\'Register\'', '0000-00-00'),
 (60, NULL, 21, NULL, NULL, 133998382, '', 'Sahani', '\'Register\'', '2024-05-02'),
 (78, NULL, 21, NULL, NULL, 133998382, '', 'Sahani', '\'Register\'', '2024-05-02'),
 (90, NULL, 21, NULL, NULL, 133998382, '', 'Johnathan', '\'Register\'', '2024-03-03'),
-(92, NULL, 21, NULL, NULL, 133998382, '', 'Saha', '\'Register\'', '0000-00-00');
+(92, NULL, 21, NULL, NULL, 133998382, '', 'Saha', '\'Register\'', '0000-00-00'),
+(96, NULL, 25, 'Male', NULL, 771234578, '', 'Fur', '\'Register\'', '0000-00-00'),
+(98, NULL, 21, 'Male', NULL, 771234568, '', 'Riz', '\'Register\'', '2001-08-11'),
+(99, NULL, 21, 'Male', NULL, 771245368, '', 'Maj Haz', '\'Register\'', '2002-01-01');
 
 -- --------------------------------------------------------
 
@@ -411,7 +414,7 @@ INSERT INTO `session` (`date`, `start_time`, `end_time`, `active_appointments`, 
 ('2024-05-02', '11:00:00', '12:00:00', 0, 10, 3, 24),
 ('2024-05-02', '14:00:00', '15:00:00', 0, 50, 3, 25),
 ('2024-05-02', '13:00:00', '14:00:00', 0, 50, 3, 27),
-('2024-07-05', '14:00:00', '15:00:00', 0, 50, 3, 28),
+('2024-09-09', '14:00:00', '15:00:00', 0, 50, 3, 28),
 ('2024-07-05', '08:00:00', '09:00:00', 0, 10, 3, 30);
 
 -- --------------------------------------------------------
@@ -431,7 +434,7 @@ CREATE TABLE IF NOT EXISTS `user_db` (
   PRIMARY KEY (`User_Id`),
   UNIQUE KEY `User_Id` (`User_Id`),
   UNIQUE KEY `Username` (`Username`)
-) ENGINE=InnoDB AUTO_INCREMENT=93 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=100 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `user_db`
@@ -483,7 +486,11 @@ INSERT INTO `user_db` (`User_Id`, `Password`, `Email`, `usertype`, `Username`, `
 (78, '', '', 'Patient', 'Sahani133998382', ''),
 (90, '', '', 'Patient', 'Johnathan133998382', ''),
 (91, 'e10adc3949ba59abbe56e057f20f883e', 'Samare@gmail.com', '', 'Samare', ''),
-(92, '', '', 'Patient', 'Saha133998382', '');
+(92, '', '', 'Patient', 'Saha133998382', ''),
+(93, '53b43c2e48e7e54f7e4165e452bd8f5b', 'Admin@Kora.123', '', '', ''),
+(96, '53b43c2e48e7e54f7e4165e452bd8f5b', 'Admin@Kora.123', '', 'Furk', ''),
+(98, '25f9e794323b453885f5181f1b624d0b', 'Riz@live.com', '', 'Rizh', ''),
+(99, '25f9e794323b453885f5181f1b624d0b', 'Haz@live.com', '', 'Hazni', '');
 
 --
 -- Constraints for dumped tables
