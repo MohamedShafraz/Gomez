@@ -67,7 +67,8 @@ class appointment extends Controller
           $result = $this->appointmodel->getAppoinmentbyDoctorName($_GET['fullname']);
         }
         if ($_GET['date']) {
-          $result = $this->appointmodel->getAppoinmentbyDoctorName($_GET['fullname']);
+          $result = $this->appointmodel->getAppoinmentbyDoctorDate($_GET['date']);
+          // print_r($result);
         }
         // $result = $this->appointmodel->getAllDoctorsforSession($_GET['fullname'], $_GET['specialization'], $_GET['date']);
         $this->view('appointdoctordetail_view', $result);

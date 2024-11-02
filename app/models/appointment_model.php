@@ -181,7 +181,15 @@ class appointmentModel extends Database
         $result = $this->filterByDoctor($where, $doctor);
         return $result;
     }
-    
+    public function getAppoinmentbyDoctorDate($date)
+    {
+        $where = 1;
+        $doctor = "session.date = \"" . $date . "\"";
+        $this->setTable(Appointment);
+        $result = $this->filterByDoctor($where, $doctor);
+        return $result;
+    }
+
     public function getAppoinmentbyDoctorByDate($doctor = Null)
     {
         if (empty($doctor)) {
