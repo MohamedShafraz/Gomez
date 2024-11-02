@@ -75,6 +75,20 @@
             <div id="appointments" style="height: 59vh;width: 66rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;
 ">
                 <?php
+                if (sizeof($data) == 0) {
+                    echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
+            <div style='display: flex;flex-direction: row;'>
+                <div style='width: 20%;'></div>
+                <div style='font-family:Inter;margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
+                    <center>No matches found</center>
+                </div>
+                
+                
+                 <div style='width: 27%;'>
+                 
+                    
+                </div></div></div><br>";
+                }
                 for ($i = 0; $i < sizeof($data); $i++) {
                     $file = $data[$i]["File_Name"];
                     $filename = $data[$i]['Test_Name'];

@@ -113,7 +113,7 @@
                 }
                 ?>
             </div>
-            <a href="<?= URLROOT . "/patient/appointments/make" ?>"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin: 0.5rem 0rem 0rem 48rem;;background-color: var(--Gomez-highlight);">Make appointment</button></a>
+            <a style="text-decoration: none;cursor:" href="<?= URLROOT . "/patient/appointments/make" ?>"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin: 0.5rem 0rem 0rem 48rem;;background-color: var(--Gomez-highlight);">Make appointment</button></a>
 
         </ul>
 
