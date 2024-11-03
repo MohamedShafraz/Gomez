@@ -77,6 +77,9 @@
                     <div>
                         <?php
                         $length = 2;
+                        if (empty($data)) {
+                            echo "<div style='text-align: center; font-size: large; font-weight: bold;line-height:8'>No related data found.</div>";
+                        }
                         if (sizeof($data) < 2) {
                             $length = sizeof($data);
                         }
@@ -104,6 +107,9 @@
                     <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Lab Reports</div>
                     <div><?php
                             $length = 2;
+                            if (empty($data)) {
+                                echo "<div style='text-align: center; font-size: large; font-weight: bold;line-height:8'>No related data found.</div>";
+                            }
                             if (sizeof($data) < 2) {
                                 $length = sizeof($data);
                             }
