@@ -3,9 +3,10 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Nov 02, 2024 at 11:49 AM
--- Server version: 8.3.0
--- PHP Version: 8.2.18
+
+-- Generation Time: Oct 12, 2024 at 09:45 AM
+-- Server version: 8.0.31
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -519,6 +520,7 @@ INSERT INTO `user_db` (`User_Id`, `Password`, `Email`, `usertype`, `Username`, `
 (98, '25f9e794323b453885f5181f1b624d0b', 'Riz@live.com', '', 'Rizh', ''),
 (99, '25f9e794323b453885f5181f1b624d0b', 'Haz@live.com', '', 'Hazni', ''),
 (100, '81dc9bdb52d04dc20036dbd8313ed055', 'avish@gmail.com', 'Patient', 'avish', '');
+
 
 --
 -- Constraints for dumped tables
