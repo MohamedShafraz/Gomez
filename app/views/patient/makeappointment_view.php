@@ -718,3 +718,16 @@
         document.getElementsByClassName("dashboard")[0].style.filter = "";
     }
 </script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dateInput = document.getElementById('Date');
+        const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+
+        const maxDate = new Date();
+        maxDate.setDate(maxDate.getDate() + 14); // Add 14 days to the current date
+        const maxDateString = maxDate.toISOString().split('T')[0]; // Get max date in YYYY-MM-DD format
+
+        dateInput.setAttribute('min', today); // Set the minimum date to today
+        dateInput.setAttribute('max', maxDateString); // Set the maximum date to 14 days from today
+    });
+</script>

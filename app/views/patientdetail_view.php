@@ -145,11 +145,11 @@ include_once(APPROOT . '/views/header_view.php');
             <input type="time" name="end_time" value="<?= $_GET['end_time'] ?>" disabled><br>
 
             <label for="name">Patient Name:</label>
-            <input type="text" name="name" id="name"><br>
+            <input type="text" name="name" id="name" placeholder="Perera"><br>
             <label for="date_of_birth">Birth Of Date:</label>
             <input type="date" name="date_of_birth" id="date_of_birth"><br>
             <label for="phonenumber">Phone Number</label>
-            <input type="number" name="phonenumber" id="phonenumber"><br>
+            <input type="text" name="phonenumber" id="phonenumber"><br>
 
             <input type="submit" name="submitted" id="" value="Finished appointment">
         </div>
@@ -163,7 +163,17 @@ include_once(APPROOT . '/views/header_view.php');
     </div>
 
 
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const dateInput = document.getElementById('date_of_birth');
+            const today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
 
+            const maxDate = new Date();
+            maxDate.setDate(maxDate.getDate() - 1); // Add 14 days to the current date
+            const maxDateString = maxDate.toISOString().split('T')[0]; // Get max date in YYYY-MM-DD format
+            dateInput.setAttribute('max', maxDateString); // Set the maximum date to 14 days from today
+        });
+    </script>
 
 </body>
 

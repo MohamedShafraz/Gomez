@@ -12,6 +12,8 @@ $message = "";
 
 
 
+
+
 <body style="overflow-x: hidden;background-image:var(--Gomez-Login-Box-Purple);"'>
     
     <br><br><br><br>
@@ -25,6 +27,7 @@ $message = "";
 padding: 0%;
 margin: 0% 0% 0% 8%;
 height: initial;">
+                
                 
                 
                 

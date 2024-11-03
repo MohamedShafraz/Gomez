@@ -55,43 +55,44 @@
 <?php require_once(APPROOT . "/views/Owner/navbar_view.php"); ?>
 
 
-<div class="lay" style="
+<!-- <div class="lay" style="
     position: fixed;
-    margin: 1% 0% 0% 31%;z-index:100
+    margin: 1% 0% 0% 31%;z-index:100;
+    visbility:none
 " id='popup1'>
     <h1>Update Profile</h1>
     <ul>
         <li class="users">
-            <label for="fullname">Full Name :</label><br><input id='fullname' name='fullname' value='<?= $data['userName'] ?>'><br><br>
+            <label for="fullname">Full Name :</label><br><input id='fullname' name='fullname' value='<?= $data['userName'] ?? "" ?>'><br><br>
         </li>
         <li class="users">
-            <label for="gender">Gender :</label><br><input id='gender' name='gender' value='<?= $data['gender'] ?>'><br><br>
+            <label for="gender">Gender :</label><br><input id='gender' name='gender' value='<?= $data['gender'] ?? "" ?>'><br><br>
         </li>
         <li class="users">
-            <label for="age">Age :</label><br><input id='age' name='age' value='<?= $data['age'] ?>'><br><br>
+            <label for="age">Age :</label><br><input id='age' name='age' value='<?= $data['age'] ?? "" ?>'><br><br>
         </li>
         <li class="users">
-            <label for="phonenumber">Phone number :</label><br><input id='phonenumber' name='phonenumber' value='<?= $data['phonenumber'] ?>'><br><br>
+            <label for="phonenumber">Phone number :</label><br><input id='phonenumber' name='phonenumber' value='<?= $data['phonenumber'] ?? "" ?>'><br><br>
         </li>
         <li class="users">
-            <label for="email">Email :</label><br><input id='email' name='email' value='<?= $data['email'] ?>'><br><br>
+            <label for="email">Email :</label><br><input id='email' name='email' value='<?= $data['email'] ?? "" ?>'><br><br>
         </li>
     </ul>
     <button onclick="m('popup1')" style="float:center" class="logbutton1" id='update'>Update</button>
-</div>
+</div> -->
 <article class="dashboard">
 
     <!-- <a>Welcome to Gomez</a> -->
     <ul style="background-color: white;padding:5%; width:50%">
         <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div>
-        <li class="users">Full Name : <?= $data['userName'] ?><br><br></li>
-        <li class="users">Gender : <?= $data['gender'] ?><br><br></li>
-        <li class="users">Age : <?= $data['age'] ?><br><br></li>
-        <li class="users">Phone number : 0<?= $data['phonenumber'] ?><br><br></li>
-        <li class="users">Email : <?= $data['email'] ?><br><br></li>
+        <li class="users">Full Name : <?= $data['userName'] ?? "" ?><br><br></li>
+        <li class="users">Gender : <?= $data['gender'] ?? "" ?><br><br></li>
+        <li class="users">Age : <?= $data['age'] ?? "" ?><br><br></li>
+        <li class="users">Phone number : 0<?= $data['phonenumber'] ?? "" ?><br><br></li>
+        <li class="users">Email : <?= $data['email'] ?? "" ?><br><br></li>
 
         <div id="chartContainer"></div>
-        <button onclick="f()" style="float:right" class="logbutton1">Edit</button>
+        <button onclick="back()" style="float:right;padding:1.5% 4%;" class="logbutton1">Back</button>
     </ul>
     </div>
 </article>
@@ -107,8 +108,12 @@
         document.getElementsByClassName('dashboard')[0].style.filter = 'blur(4px)';
     }
 
+    function back() {
+        window.location.href = './';
+    }
+
     function m($id) {
-        window.location.href = './id=<?= $_SESSION['uid'] ?>';
+        window.location.href = './id=<?= $_SESSION['uid'] ?? "" ?>';
         document.getElementById($id.toString()).style.visibility = 'hidden';
     }
     if (window.location.href.split('#').length != 2 && window.location.href.split('=').length == 2) {
