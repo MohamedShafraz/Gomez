@@ -130,7 +130,7 @@ class patient extends Controller
                 if ($prescription) {
                     $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
                 }
-                $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
+                $this->view('patient/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
                 $this->view('patient/sidebar');
                 exit();
             }
