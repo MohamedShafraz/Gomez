@@ -1,3 +1,3 @@
 </body>
 
-<script src="<?=URLROOT?>./javascript/dashboard.js"></script>
+<script src="<?= URLROOT ?>./javascript/dashboard.js"></script>

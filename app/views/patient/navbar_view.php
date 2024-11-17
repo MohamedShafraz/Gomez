@@ -19,8 +19,10 @@
 
     <header class="header">
         <nav class="navbar">
-            <img src="<?= URLROOT . "/resources/user.png" ?>" class="profilepic">
-            <a href="./logout">
+            <img src="<?= isset($_SESSION["USER"]["profilepicture"]) && !empty($_SESSION["USER"]["profilepicture"])
+                            ? 'data:image/png;base64,' . base64_encode($_SESSION["USER"]["profilepicture"])
+                            : URLROOT . '\resources\new_pat.png' ?>" class="profilepic">
+            <a href="<?= URLROOT . "/logout" ?>">
                 <div class="selected">
                     <font class="GMfont" style="font-family: 'inter';" onclick="windows.location.href = 'location:logout'"> Hello, <?= $_SESSION['uname'] ?></font>
                 </div>

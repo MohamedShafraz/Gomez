@@ -10,10 +10,7 @@ class Users extends Controller
         header('location:' . URLROOT);
     }
 
-    public function labreport()
-    {
-        $this->view('labreport_view');
-    }
+
 
     public function __construct()
     {
@@ -23,10 +20,10 @@ class Users extends Controller
 
     public function login()
     {
-
-        if (isset($_SESSION["userType"]) != null) {
-            header('Location: ' . URLROOT . '/Dashboard');
-            exit;
+        session_start();
+        if (isset($_SESSION["userType"])) {
+            header('Location: ' . URLROOT . '/' . $_SESSION["userType"] . '/Dashboard');
+            exit();
         }
         if (isset($_POST["submit"]) && $_POST["submit"] == "Log in") {
 
@@ -48,10 +45,17 @@ class Users extends Controller
                 exit();
             } else {
                 $this->view('login_view',);
+                exit();
             }
         } else {
             $this->view('login_view');
+            exit();
         }
+    }
+    public function labreport()
+    {
+        $this->view('Patient/labreport_view');
+        exit();
     }
     public function forgetpassword()
     {

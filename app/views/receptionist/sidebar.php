@@ -11,7 +11,7 @@
         <li  id="appointments" onclick="y('appointments')">
             Appointments
         </li><br>
-        <li  id="labreport_registered" onclick="y('labreport_registered')">
+        <li  id="labreports" onclick="y('labreports')">
             Lab Reports
         </li><br>
         
