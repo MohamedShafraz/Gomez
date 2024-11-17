@@ -404,7 +404,6 @@ class Database
 
     // public function getcount($where){
     //     $query = "SELECT usertype, COUNT(*) as count FROM ".$this->table." WHERE ".$where;
-
     //     $data = [];
     //     $result = $this->executeQuery($query);if ($result && $result->num_rows > 0) {
     //         while ($row = $result->fetch_assoc()) {
@@ -418,7 +417,6 @@ class Database
     // public function updateData($data, $where) {
     //     $query = "UPDATE " . $this->table . " SET ";
     //     $valuesToUpdate = [];
-
     //     foreach ($data as $key => $value) {
     //         if ($value !== null) {
     //             $valuesToUpdate[] = $key . "='" . $value . "'";

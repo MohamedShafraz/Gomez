@@ -9,7 +9,7 @@
         <li id="dashboard" onclick="y('dashboard')">Dashboard
         </li><br>
         <li  id="appointments" onclick="y('appointments')">
-            Appointments
+            All Sessions
         </li><br>
         
         <li id="userdetails" onclick="y('userdetails')">

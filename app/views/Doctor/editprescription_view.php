@@ -40,10 +40,10 @@
                             echo "<p>Patient Name  : ".$patient["fullname"]."</p>";
                             echo "<br>";
                             echo "<br>";
-                            echo "<p>Patient Age  : ".$patient["age"]."</p>";
+                            echo "<p>Patient Age  : ".$prescription["age"]."</p>";
                             echo "<br>";
                             echo "<br>";
-                            echo "<p>Patient Phone Number  : ".$patient["gender"]."</p>";
+                            echo "<p>Patient Gender  : ".$patient["gender"]."</p>";
                         ?>
 
                     </div>
@@ -52,7 +52,7 @@
                     <form  action="<?=URLROOT."/Doctor/EditPrescription"?>" method="post">
                     
 
-                        <label for="otherremarks">Other Marks:</label><br>
+                        <label for="otherremarks">Other Remarks:</label><br>
                         <textarea id="otherremarks" name="otherremarks"><?php echo $prescription["otherremarks"]; ?></textarea>
                         <br><br>
 
