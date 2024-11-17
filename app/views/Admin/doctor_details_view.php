@@ -89,9 +89,10 @@
         <li class="users">Age : <?= $data['age'] ?><br><br></li>
         <li class="users">Phone number : 0<?= $data['phonenumber'] ?><br><br></li>
         <li class="users">Email : <?= $data['email'] ?><br><br></li>
-
-        <div id="chartContainer"></div>
-        <div style="display:flex;gap:10px"><button onclick="window.location.href = '<?= URLROOT . '/Admin/Manageuser/doctor' ?>'" style="float:right" class="logbutton1">back</button><button onclick="f()" style="float:right" class="logbutton1">Edit</button>
+        <div style="display:flex;gap:10px;float:left;padding: 9px 22px;">
+            <button onclick="window.location.href = '<?= URLROOT . '/Admin/Manageuser/doctor' ?>'" style="float:right;padding: 9px 22px;" class="button">Back</button>
+            <button onclick="f()" style="float:right;padding: 9px 22px;" class="button">Edit</button>
+        </div>
     </ul>
     </div>
 </article>
@@ -99,7 +100,6 @@
 <script>
     if (window.location.href.split('?').length !== 2) {
         document.getElementById('popup1').style.visibility = 'hidden';
-        // console.log("test");
     }
 
     function f() {
@@ -110,7 +110,7 @@
 
     function m($id) {
         const url = window.location.href.split('#')[0];
-        window.location.href = '../updateUserDetails/id=' + url.split('=')[1];
+        window.location.href = '../updateDoctorDetails/id=' + url.split('=')[1];
         document.getElementById($id.toString()).style.visibility = 'hidden';
     }
     if (window.location.href.split('#').length != 2 && window.location.href.split('=').length == 2) {
