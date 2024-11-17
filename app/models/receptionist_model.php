@@ -1,15 +1,15 @@
 <?php
 
-class ReceptionistModel2 extends Database
+class ReceptionistModel extends Database
 {
 
     public function getreceptionist($username)
     {
-
+        
         $where = "Username='$username'";
         $this->setTable("receptionists");
         $result = $this->fetchData($where);
-
+        
         return $result;
     }
 
@@ -34,20 +34,75 @@ class ReceptionistModel2 extends Database
         $this->setTable(User);
         $result = $this->fetchData($where);
         return $result;
-    }
+}
 
-    public function getReportData()
+public function getReportData()
     {
         $where = 1;
         $this->setTable(Report);
         $result = $this->fetchData($where);
         return $result;
+}
+    
+public function updatereceipt($id, $data)
+{
+    $query = "UPDATE report SET refno='$data[refno]',patientName='$data[patientName]', contactNo='$data[contactNo]', age='$data[age]',testname='$data[testname]']'WHERE id='$id'";
+    $result = $this->executeQuery($query);
+    return $result;
+}
+
+public function getTestNames()
+    {
+        
+        $where = 1;
+        $this->setTable(testing);
+        $result = $this->fetchData($where);
+        return $result;
     }
 
-    public function updatereceipt($id, $data)
+    public function getlastref()
     {
-        $query = "UPDATE report SET refno='$data[refno]',patientName='$data[patientName]', contactNo='$data[contactNo]', age='$data[age]',testname='$data[testname]']'WHERE id='$id'";
-        $result = $this->executeQuery($query);
+        
+        $where = "SELECT MAX(`refno`) as  m FROM `report` WHERE 1";
+        
+        $result = $this->executeQuery($where);
+        $i = 0;
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[$i] = $row;
+                $i++;
+            }
+        }
+
+        return $data[0]['m'];
+    }
+
+    public function getPatientNames()
+    {
+        
+        $where = 1;
+        $this->setTable(patients);
+        $result = $this->fetchData($where);
         return $result;
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+?>

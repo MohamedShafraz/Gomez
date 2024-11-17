@@ -4,7 +4,7 @@
 
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
     <link rel="stylesheet" href="<?= URLROOT ?>/css/Admin/dashboard.css">
     <link rel="stylesheet" href="<?= URLROOT ?>/css/new.css">
 </head>
