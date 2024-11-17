@@ -3,7 +3,7 @@
 class Doctor extends Controller
 {
     private $doctorModel;
-    public function index()
+    public function index(): void
     {
         if (!isset($_SESSION)) {
             session_start();
@@ -12,73 +12,73 @@ class Doctor extends Controller
 
         if ($user["usertype"] == "Doctor") {
            
-            header("Location: " . URLROOT . "/Doctor/dashboard");
+            header(header: "Location: " . URLROOT . "/Doctor/dashboard");
         } else {
-            header("Location: " . URLROOT . "/Users/login");
+            header(header: "Location: " . URLROOT . "/Users/login");
             exit();
         }
     }
 
-    public function dashboard(){
+    public function dashboard(): void{
         if (!isset($_SESSION)) {
             session_start();
         }
         $user = $_SESSION["USER"];
 
         if ($user["usertype"] == "Doctor") {
-            $this->model("DoctorModel");
+            $this->model(model: "DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
             
-            $doctor = $this->doctorModel->getDoctor($user["User_Id"]);
-            $sessions = $this->doctorModel->getSessionsToday($doctor[0]['Doctor_id']);
+            $doctor = $this->doctorModel->getDoctor(userid: $user["User_Id"]);
+            $sessions = $this->doctorModel->getSessionsToday(id: $doctor[0]['Doctor_id']);
 
             $appointments = [];
             $patients = [];
 
             foreach ($sessions as $session) {
-                $appointment = $this->doctorModel->getAppointmentbySession($session['session_id']);
+                $appointment = $this->doctorModel->getAppointmentbySession(id: $session['session_id']);
                 $appointments = array_merge($appointments, $appointment);
             }
 
             foreach ($appointments as $appointment) {
-                $patient = $this->doctorModel->getPatientbyPatiend($appointment['Patient_Id']);
+                $patient = $this->doctorModel->getPatientbyPatiend(id: $appointment['Patient_Id']);
                 $patients = array_merge($patients, $patient);
             }
 
-            $nexttwosessions = array_slice($sessions, 0, 2);
+            $nexttwosessions = array_slice(array: $sessions, offset: 0, length: 2);
 
-            $this->view('Doctor/dashboard_view', ['appointments' => $appointments, 'patients' => $patients, 'sessions' => $sessions, 'nexttwosessions' => $nexttwosessions]);
+            $this->view(view: 'Doctor/dashboard_view', data: ['appointments' => $appointments, 'patients' => $patients, 'sessions' => $sessions, 'nexttwosessions' => $nexttwosessions]);
         } else {
-            header("Location: " . URLROOT . "/Users/login");
+            header(header: "Location: " . URLROOT . "/Users/login");
             exit();
         }
     }
 
-    public function appointments($message=null)
+    public function appointments($message=null): void
     {
         if (!isset($_SESSION)) {
             session_start();
         }
         $user = $_SESSION["USER"];
         if ($user["usertype"] == "Doctor") {
-            $this->model("DoctorModel");
+            $this->model(model: "DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
 
-            $doctor = $this->doctorModel->getDoctor($user["User_Id"]);
-            $sessions = $this->doctorModel->getSessionsToday($doctor[0]['Doctor_id']);
+            $doctor = $this->doctorModel->getDoctor(userid: $user["User_Id"]);
+            $sessions = $this->doctorModel->getSessionsToday(id: $doctor[0]['Doctor_id']);
 
             if($message != null){
                 $message = "Prescription Added Successfully";
             }
 
-            $this->view('Doctor/appointment_view', ['sessions' => $sessions, 'message' => $message]);
+            $this->view(view: 'Doctor/appointment_view', data: ['sessions' => $sessions, 'message' => $message]);
         } else {
-            header("Location: " . URLROOT . "/Users/login");
+            header(header: "Location: " . URLROOT . "/Users/login");
             exit();
         }
     }
 
-    public function ShowPatientsAllocatedTimeSlot($sessionid){
+    public function ShowPatientsAllocatedTimeSlot($sessionid): never{
         if (!isset($_SESSION)) {
             session_start();
         }
@@ -88,67 +88,69 @@ class Doctor extends Controller
             $this->model("DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
             
-            $appointments = $this->doctorModel->getAppointmentbySession($sessionid);
+            $appointments = $this->doctorModel->getAppointmentbySession(id: $sessionid);
 
             $patients = [];
 
             foreach ($appointments as $appointment) {
                // $patient = $this->doctorModel->getPatientbyappointment($appointment['Patient_Id']);
-                $patient = $this->doctorModel->getPatientbyPatiend($appointment['Patient_Id']);
+                $patient = $this->doctorModel->getPatientbyPatiend(id: $appointment['Patient_Id']);
                 $prescription = $this->doctorModel->getPrescriptionbyAppointment($appointment['Appointment_Id']);
                 $patient['prescription'] = $prescription;
                 $patient['Appointment_Id'] = $appointment['Appointment_Id']; // Assuming 'Appointment_Id' is the key in the $appointment array
                 $patients[] = $patient;
             }
             
-            $this->view('Doctor/timeslotpatients', ['patients' => $patients]);
+            $this->view(view: 'Doctor/timeslotpatients', data: ['patients' => $patients]);
             exit();
            
         } else {
-            header("Location: " . URLROOT . "/Users/login");
+            header(header: "Location: " . URLROOT . "/Users/login");
             exit();
         }
     
     }
 
-    public function AddprescriptionView($appointmentid)
+    public function AddprescriptionView($appointmentid): void
     {
         if (!isset($_SESSION)) {
             session_start();
         }
         $user = $_SESSION["USER"];
         if ($user["usertype"] == "Doctor") {
-            $this->model("DoctorModel");
+            $this->model(model: "DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
            
             $appointment = $this->doctorModel->getAppoinmentbyID($appointmentid);
-            
-            $this->view('Doctor/addprescription_view', ['appointment' => $appointment]);
+            $labtests = $this->doctorModel->getLabtest();
+            $diseases = $this->doctorModel->getDisease();
+
+            $this->view(view: 'Doctor/addprescription_view', data: ['appointment' => $appointment, 'labtests' => $labtests, 'diseases' => $diseases]);
         } else {
-            header("Location: " . URLROOT . "/Users/login");
+            header(header: "Location: " . URLROOT . "/Users/login");
             exit();
         }
     }
 
 
-    public function AddPrescription()
+    public function AddPrescription(): never
     {
         if (!isset($_SESSION)) {
             session_start();
         }
         $user = $_SESSION["USER"];
         if ($user["usertype"] == "Doctor") {
-            $this->model("DoctorModel");
+            $this->model(model: "DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
-            $doctor = $this->doctorModel->getDoctor($user["Username"]);
-            $patient = $this->doctorModel->getPatient($_POST['patient_id']);
+            $doctor = $this->doctorModel->getDoctor(userid: $user["Username"]);
+            $patient = $this->doctorModel->getPatient(id: $_POST['patient_id']);
 
-            $age = date_diff(date_create($patient[0]["date_of_birth"]), date_create('now'))->y;
+            $age = date_diff(baseObject: date_create(datetime: $patient[0]["date_of_birth"]), targetObject: date_create(datetime: 'now'))->y;
 
             $uniqueid = uniqid();
             $data = [
-                'patientid' => intval($_POST['patient_id']),
-                'Appointment_id' => intval($_POST['Appointment_Id']),
+                'patientid' => intval(value: $_POST['patient_id']),
+                'Appointment_id' => intval(value: $_POST['Appointment_Id']),
                 'age' =>  $age,
                 'disease' => $_POST['disease'],
                 'prescription' => $_POST['prescription'],
@@ -156,21 +158,27 @@ class Doctor extends Controller
                 'otherremarks' => $_POST['otherremarks'],
                 'priscription_date' => $_POST['priscription_date'],
                 'unique_id' => $uniqueid,
-              //  'symptoms' => $_POST['symptoms'],
-                 // 'newone'=> $_POST['newone'],
-
             ];
+
+
+            $founddisiease = $this->doctorModel->findDisease(disease: $_POST['disease']);
+            if (count(value: $founddisiease) == 0) {
+                $diseasetoadd = [
+                    'disease' => $_POST['disease'],
+                ];
+                $this->doctorModel->addDisese(data: $diseasetoadd);
+            }
 
             $_SESSION['uniqueid'] = $uniqueid;
             $_SESSION['prescription'] = $data;
 
 
-        header("Location: ".URLROOT."/Doctor/addMedicineView");
+            header(header: "Location: ".URLROOT."/Doctor/addMedicineView");
         
-           exit();  
+            exit();  
             
         } else {
-            header("Location: " . URLROOT . "/Users/login");
+            header(header: "Location: " . URLROOT . "/Users/login");
             exit();
 }
 }
@@ -179,103 +187,114 @@ public function addMedicineView(){
         if(!isset($_SESSION)){
             session_start();}
 
-        $this->view('Doctor/addmedicine');
+        $this->model("DoctorModel");
+        $this->doctorModel = new DoctorModel(new Database());
+
+        $drugs = $this->doctorModel->getDrugs();
+        $this->view(view: 'Doctor/addmedicine', data: ['drugs' => $drugs]);
     } 
     
-    public function AddMedicine(){
-        if(!isset($_SESSION)){
-            session_start();}
+public function AddMedicine(): never {
+        if (!isset($_SESSION)) {
+            session_start();
+        }
     
         $this->model("DoctorModel");
         $this->doctorModel = new DoctorModel(new Database());
     
         $medicine = $_POST;
     
-        for ($i=0; $i < count($medicine['medicineName']); $i++) { 
+        $medicineNames = json_decode(json: $medicine['medicineNameValues'][0]);
+        $doses = json_decode(json: $medicine['doseValues'][0]);
+        $timings = json_decode(json: $medicine['timingValues'][0]);
+        $meals = json_decode(json: $medicine['mealValues'][0]);
+        $dosageTypes = json_decode(json: $medicine['dosageTypeValues'][0]);
+    
+        $allData = [];
+        for ($i = 0; $i < count(value: $medicineNames); $i++) {
             $data = [
                 'unique_id' => $_SESSION['uniqueid'],
-                'medicine' => $medicine['medicineName'][$i],
-                'dose' => $medicine['dose'][$i],
-                'times' => $medicine['timing'][$i],
-                'before_after' => $medicine['meal'][$i],
-                'doseunit' => $medicine['dosage_type'][$i]
+                'medicine' => $medicineNames[$i],
+                'dose' => $doses[$i],
+                'times' => $timings[$i],
+                'before_after' => $meals[$i],
+                'doseunit' => $dosageTypes[$i]
             ];
-            $result = $this->doctorModel->addMedicine($data);
+            $allData[] = $data;
+            
+            $result = $this->doctorModel->addMedicine(data: $data);
         }
-        
-         $prescription = $_SESSION['prescription'];
-         unset($_SESSION['uniqueid']);
-         unset($_SESSION['prescription']);
-         var_dump($prescription);
     
-         $this->doctorModel->addPrescription($prescription);
-        
-       
-
-        header("Location: ".URLROOT."/Doctor/appointments/message");
+    
+        $prescription = $_SESSION['prescription'];
+        unset($_SESSION['uniqueid']);
+        unset($_SESSION['prescription']);
+    
+        $this->doctorModel->addPrescription(data: $prescription);
+        header(header: "Location: ".URLROOT."/Doctor/appointments/message");
         exit();
         
         
     }
 
-    public function ViewMorePrescription($appointmentid,$patientid){
+    public function ViewMorePrescription($appointmentid,$patientid): void{
         if(!isset($_SESSION)){
             session_start();}
 
         $user = $_SESSION["USER"];
         if ($user["usertype"] == "Doctor"){
-            $this->model("DoctorModel");
+            $this->model(model: "DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
-            $prescription = $this->doctorModel->getPrescriptionbyAppointment($appointmentid);
-            $patient = $this->doctorModel->getPatient($patientid);
-            $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
+            $prescription = $this->doctorModel->getPrescriptionbyAppointment(id: $appointmentid);
+            $patient = $this->doctorModel->getPatient(id: $patientid);
+            $medicine = $this->doctorModel->getMedicinebyUniqeid(unique_id: $prescription[0]["unique_id"]);
 
-            $this->view('Doctor/moreprescription_view', ['prescription' => $prescription,'patient' => $patient[0], 'medicine' => $medicine]);
+            $this->view(view: 'Doctor/moreprescription_view', data: ['prescription' => $prescription,'patient' => $patient[0], 'medicine' => $medicine]);
         }
         else {
-            header("Location: ".URLROOT."/Users/login"); 
+            header(header: "Location: ".URLROOT."/Users/login"); 
             exit(); 
         }
     }
 
 
-    public function EditPrescriptionView($prescriptionid ){
+    public function EditPrescriptionView($prescriptionid ): void{
         if(!isset($_SESSION)){
             session_start();}
         $user = $_SESSION["USER"];
         if ($user["usertype"] == "Doctor"){
-            $this->model("DoctorModel");
+            $this->model(model: "DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
-            $prescription = $this->doctorModel->getPrescriptionbyID($prescriptionid);
-            $patient = $this->doctorModel->getPatient($prescription[0]["patientid"]);
+            $prescription = $this->doctorModel->getPrescriptionbyID(id: $prescriptionid);
+            $patient = $this->doctorModel->getPatient(id: $prescription[0]["patientid"]);
             
-            $this->view('Doctor/editprescription_view', ['prescription' => $prescription[0], 'patient' => $patient[0]]);
+            $this->view(view: 'Doctor/editprescription_view', data: ['prescription' => $prescription[0], 'patient' => $patient[0]]);
         }
         else {
-            header("Location: ".URLROOT."/Users/login"); 
+            header(header: "Location: ".URLROOT."/Users/login"); 
             exit(); 
         }
     }
 
-    public function EditPrescription(){
+    public function EditPrescription(): void{
         if(!isset($_SESSION)){
             session_start();}
         $user = $_SESSION["USER"];
         if ($user["usertype"] == "Doctor"){
-            $this->model("DoctorModel");
+            $this->model(model: "DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
             $data = [
                 'otherremarks' => $_POST['otherremarks'],
             ];
             
            
-            $result = $this->doctorModel->updatePrescription(intval($_POST['prescriptionnumber']),$data);
+            $result = $this->doctorModel->updatePrescription(id: intval(value: $_POST['prescriptionnumber']),data: $data);
 
-            header("Location: ".URLROOT."/Doctor/ViewMorePrescription/".$_POST['Appointment_Id']."/".$_POST['patientid']."");
+            header(header: "Location: ".URLROOT."/Doctor/ViewMorePrescription/".$_POST['Appointment_Id']."/".$_POST['patientid']."");
 
             }
         else {
-            header("Location: ".URLROOT."/Users/login"); 
+            header(header: "Location: ".URLROOT."/Users/login"); 
             exit(); 
         }
     }
@@ -288,20 +307,20 @@ public function addMedicineView(){
         $user = $_SESSION["USER"];
         if ($user["usertype"] == "Doctor") {
 
-            $this->model("DoctorModel");
+            $this->model(model: "DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
-            $data = $this->doctorModel->getDoctor($user["User_Id"]);
+            $data = $this->doctorModel->getDoctor(userid: $user["User_Id"]);
 
 
-            $this->view('Doctor/profile_view', $data[0]);
+            $this->view(view: 'Doctor/profile_view', data: $data[0]);
         } else {
-            header("Location: " . URLROOT . "/Users/login");
+            header(header: "Location: " . URLROOT . "/Users/login");
             exit();
         }
     }
 
 
-    public function EditProfileView()
+    public function EditProfileView(): void
     {
         if (!isset($_SESSION)) {
             session_start();
@@ -309,17 +328,17 @@ public function addMedicineView(){
         $user = $_SESSION["USER"];
         if ($user["usertype"] == "Doctor") {
 
-            $this->model("DoctorModel");
+            $this->model(model: "DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
-            $doctor = $this->doctorModel->getDoctor($user["Username"]);
-            $this->view('Doctor/editprofile_view', ['doctor' => $doctor[0], 'user' => $user]);
+            $doctor = $this->doctorModel->getDoctor(userid: $user["Username"]);
+            $this->view(view: 'Doctor/editprofile_view', data: ['doctor' => $doctor[0], 'user' => $user]);
         } else {
-            header("Location: " . URLROOT . "/Users/login");
+            header(header: "Location: " . URLROOT . "/Users/login");
             exit();
         }
     }
 
-    public function update()
+    public function update(): void
     {
         session_start();
         if (isset($_SESSION["userType"])) {
@@ -327,7 +346,7 @@ public function addMedicineView(){
 
             $user = $_SESSION["USER"];
 
-            $this->model("DoctorModel");
+            $this->model(model: "DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
             
             // print_r($_FILES["file"]["tmp_name"]);
@@ -338,21 +357,21 @@ public function addMedicineView(){
            // $hexString = '0x' . bin2hex($fileContents);
 
             $userDetails  = $this->doctorModel->updateUserDetails();
-            header("Location: ".URLROOT."/Doctor/userdetails");
+            header(header: "Location: ".URLROOT."/Doctor/userdetails");
             exit();
 }
 }
 
 
 
-public function DeactivateAccount(){
+public function DeactivateAccount(): never{
     if(!isset($_SESSION)){
         session_start();}
 
-    $this->model("DoctorModel");
+    $this->model(model: "DoctorModel");
     $this->doctorModel = new DoctorModel(new Database());
-    $result = $this->doctorModel->deactivateAccount($_SESSION["USER"]["Username"]);
-    header("Location: ".URLROOT."/Users/logout");
+    $result = $this->doctorModel->deactivateAccount(username: $_SESSION["USER"]["Username"]);
+    header(header: "Location: ".URLROOT."/Users/logout");
     exit();
 }
 
