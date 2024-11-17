@@ -287,10 +287,10 @@ class Database
     }
     public function filterByDoctor($where, $doctor)
     {
-        $query = "Select * FROM appointment JOIN session ON appointment.session_id = session.session_id JOIN doctors ON session.Doctor_Id=doctors.Doctor_id  JOIN user_db ON user_db.`User_Id` = doctors.`Doctor_id` WHERE " . $where . " AND " . $doctor;
-        
+        $query = "Select distinct(doctors.Doctor_id),doctors.fullname FROM appointment JOIN session ON appointment.session_id = session.session_id JOIN doctors ON session.Doctor_Id=doctors.Doctor_id  JOIN user_db ON user_db.`User_Id` = doctors.`Doctor_id` WHERE " . $where . " AND " . $doctor;
+
         $result = $this->executeQuery($query);
-        // print_r($result);
+        // print_r($query);
         $data = [];
         $i = 0;
         // print_r($result);

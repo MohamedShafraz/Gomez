@@ -50,9 +50,10 @@ class PatientModel extends Database
     public function updateUserDetails($id, $userDetails)
     {
         $where = 'ID=' . $id;
-        print_r($_POST);
+        // print_r($userDetails);
         foreach ($userDetails as $userDetail) {
             print_r($userDetail);
         }
+        exit();
     }
 }

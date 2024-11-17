@@ -75,7 +75,13 @@
         }
         ?>
     </ul>
-    <button onclick="m('popup1')" style="padding: 9px 22px;" class="button" id='update'>Update</button>
+    <div style="flex-direction: row;
+  display: flex;
+  gap: 4rem;
+">
+        <button onclick="back()" style="padding: 9px 22px;" class="button" id='back'>Back</button>
+        <button onclick="m('popup1')" style="padding: 9px 22px;" class="button" id='update'>Update</button>
+    </div>
 </div>
 <article class="dashboard">
 
@@ -113,9 +119,16 @@
         document.getElementsByClassName('dashboard')[0].style.filter = 'blur(4px)';
     }
 
+    function back() {
+        window.location.href = window.location.href.split('#')[0];
+        document.getElementById('popup1').style.visibility = 'none';
+        document.getElementsByClassName('dashboard')[0].style.filter = '';
+    }
+
+
     function m($id) {
         const url = window.location.href.split('#')[0];
-        window.location.href = '../updateUserDetails/id=' + url.split('=')[1];
+        window.location.href = '../updatePatientDetails/id=' + url.split('=')[1];
         document.getElementById($id.toString()).style.visibility = 'hidden';
     }
     if (window.location.href.split('#').length != 2 && window.location.href.split('=').length == 2) {

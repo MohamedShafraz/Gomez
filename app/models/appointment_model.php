@@ -176,7 +176,7 @@ class appointmentModel extends Database
     public function getAppoinmentbyDoctorName($doctorName)
     {
         $where = 1;
-        $doctor = "doctors.fullname = \"" . $doctorName . "%\"";
+        $doctor = "doctors.fullname LIKE \"" . $doctorName . "%\"";
         $this->setTable(Appointment);
         $result = $this->filterByDoctor($where, $doctor);
         return $result;
