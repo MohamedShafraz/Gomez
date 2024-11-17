@@ -54,6 +54,7 @@ class Doctor extends Controller
         }
     }
 
+
     public function appointments()
     {
         if (!isset($_SESSION)) {
@@ -66,7 +67,6 @@ class Doctor extends Controller
 
             $doctor = $this->doctorModel->getDoctor($user["User_Id"]);
             $sessions = $this->doctorModel->getSessions($doctor[0]['Doctor_id']);
-
 
             $this->view('Doctor/appointment_view', ['sessions' => $sessions]);
         } else {
@@ -231,8 +231,10 @@ public function AddMedicine() {
         unset($_SESSION['prescription']);
     
         $this->doctorModel->addPrescription($prescription);
+
         $_SESSION["message"] = "Prescription Added Successfully";
         header("Location: ".URLROOT."/Doctor/appointments");
+
         exit();
         
         

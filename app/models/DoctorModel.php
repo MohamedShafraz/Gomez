@@ -202,6 +202,7 @@ class DoctorModel extends Database
         return $result;
     }
 
+
   // public function getPatientbyappointment($userid)
  // {
   //  $where = "ID =''"; // 
