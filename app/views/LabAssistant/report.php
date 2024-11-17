@@ -1,7 +1,7 @@
 <?php
 
 ?>
-
+<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
 <link rel="stylesheet" href="<?= URLROOT ?>/css/LabAssisstant/dashboard.css">
 <link rel="stylesheet" href="<?= URLROOT ?>/css/new.css">
 <link rel="stylesheet" href="<?= URLROOT ?>/css/Admin/manageuser.css">
@@ -36,31 +36,24 @@
         line-height: 7vh;
         border-radius: 8px;
     }
-
     .action-buttons button {
-        margin-right: 1px;
-        /* Adjust the margin between buttons */
-        padding: 5px 10px;
-        /* Adjust button padding */
-        background-color: var(--Gomez-Blue);
-        /* Green background */
-        color: white;
-        /* White text */
-        border: none;
-        /* No border */
-        border-radius: 4px;
-        /* Rounded corners */
-        cursor: pointer;
-        /* Cursor on hover */
+        margin-right: 1px; /* Adjust the margin between buttons */
+        padding: 5px 10px; /* Adjust button padding */
+        background-color: var(--Gomez-Blue); /* Green background */
+        color: white; /* White text */
+        border: none; /* No border */
+        border-radius: 4px; /* Rounded corners */
+        cursor: pointer; /* Cursor on hover */
     }
 
-    .action-buttons {
-        padding: 17%;
+    .action-buttons{
+        padding:17%;
     }
+    
 </style>
 
 <article>
-    <div style="text-align: center; margin-bottom: 20px; margin-left:100px;background-color:white;padding:3%;">
+<div style="text-align: center; margin-bottom: 20px; margin-left:100px;padding:3%;">
         <form method="GET" action="<?= $_SERVER['PHP_SELF'] ?>">
             <label for="refnoSearch">Ref_No:</label>
             <input type="text" id="refnoSearch" onkeyup="filterTable()" placeholder="Search by Ref_No">
@@ -70,7 +63,7 @@
         </form>
     </div>
     <div class="complainttext">Reports</div>
-    <div class="complaintheader" style="width: 26%;margin-bottom: 0.4%;font-size:16px;">
+    <div class="complaintheader" style="width: 26%;margin-top: 15px;font-size:16px;">
         <a>Ref_No</a>
         <a>Name</a>
         <a>Test</a>
@@ -78,32 +71,36 @@
         <a>file</a>
         <a style="margin-left: 12%;">Actions</a>
     </div>
-    <table class="complainttable" style="height: 50vh;">
+    <table class="complainttable" style="height: 30vh;">
         <tbody class="complaint">
-            <?php foreach ($data as $row) : ?>
+            <?php foreach ($data as $row): ?>
                 <?php
                 // Filter logic based on search inputs
                 $refno = isset($_GET['search_refno']) ? $_GET['search_refno'] : '';
                 $patientName = isset($_GET['search_patientName']) ? $_GET['search_patientName'] : '';
 
                 // Perform filtering
-                if ((!$refno || $row['refno'] == $refno) && (!$patientName || $row['patientName'] == $patientName)) :
-                ?>
+                if ((!$refno || $row['refno'] == $refno) && (!$patientName || $row['patientName'] == $patientName)):
+                    ?>
                     <tr style='color:black;margin: 3%;font-size: 16px'>
                         <td style='width: 1%;'><?= $row['refno'] ?></td>
-                        <td style='width: 3%;'><?= $row['patientName'] ?? "unknown" ?></td>
+                        <td style='width: 3%;'><?= $row['patientName'] ?></td>
                         <td style='width: 4%;'><?= $row['testname'] ?></td>
-                        <?php $status =  $row['status'] == "" ? "pending" : $row['status'] ?>
-                        <td style='width: 8%;'><?= $status ?></td>
-                        <td style='width: 39%;'><?= $row['filename'] ?></td>
+                        <td style='width: 8%;'><?= $row['status']!="completed"?"Not completed":$row['status'] ?></td>
+                        <td style='width: 39%;'><?= $row['filename']??"Not Available" ?></td>
                         <td style='width:4%;'>
-                            <div class="action-buttons">
-                                <div style="display:flex;width:3%;">
-                                    <button onclick="window.location.href='<?= URLROOT . '/LabAssistant/ReportView/' . $row['filename'] ?>'">View</button>
-                                    <button onclick="openPopup('<?= $row['refno'] ?>')">Upload</button>
-                                </div>
+                        <div class="action-buttons">
+                            <div style="display:flex;width:3%;">
+                                <!-- Conditionally display the 'View' button based on status and file availability -->
+                                <?php if ($row['status'] == "completed" && !empty($row['filename'])): ?>
+                                    <button onclick="window.location.href='<?=URLROOT.'/LabAssistant/ReportView/'.$row['filename']?>'">View</button>
+                                <?php else: ?>
+                                    <button disabled style="background-color: grey;">View</button>
+                                <?php endif; ?>
+                                <button onclick="openPopup('<?= $row['refno'] ?>')">Upload</button>
                             </div>
-                        </td>
+                        </div>
+                    </td>
                     </tr>
                 <?php endif; ?>
             <?php endforeach; ?>

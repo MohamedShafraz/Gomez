@@ -59,40 +59,35 @@
     li.option:hover {
         box-shadow: 3px 3px 7px black;
     }
-
     li.option {
-        margin-bottom: 20px;
-        /* Add space between each content box */
-        padding: 20px;
-        /* Optional: Add padding for additional space inside each content box */
-    }
+    margin-bottom: 20px; /* Add space between each content box */
+    padding: 20px; /* Optional: Add padding for additional space inside each content box */
+}
 
-    .dashboard {
-        display: flex;
-        flex-wrap: wrap;
-        /* Allow content boxes to wrap to the next line */
-        justify-content: space-between;
-        /* Distribute content boxes evenly across the container */
-    }
+.dashboard {
+    display: flex;
+    flex-wrap: wrap; /* Allow content boxes to wrap to the next line */
+    justify-content: space-between; /* Distribute content boxes evenly across the container */
+}
 </style>
 <article class="dashboard">
 
     <!-- <a>Welcome to Gomez</a> -->
     <div class="scrollable-container">
-        <ul class="horizontal-scroll" style="overflow-x: initial">
-            <ul style="display:flex;flex-direction:row;">
-                <li class="option">
-                    <div><img src=<?php echo URLROOT . "/resources/lab2.png" ?> style="width:150px"></div>
-                    <div><br>Total Reports<br><a style="font-size:8vh"><?php echo $data['totalnumber'] ?? 9 ?></a></div><br><br>
-                </li>
-                <li class="option">
-                    <div><img src=<?php echo URLROOT . "/resources/lab1.png" ?> style="width:150px"></div>
-                    <div><br>Completed Reports<br><a style="font-size:8vh"><?php echo $data['status']['completed'] ?? 7 ?></a><br>
-                </li>
-
-
-
-            </ul>
-
+    <ul class="horizontal-scroll"  style="overflow-x: visible">
+        <ul style="display:flex;flex-direction:row;">
+            <li class="option">
+            <div><img src=<?php echo URLROOT . "/resources/lab2.png" ?> style="width:150px"></div>
+                <div><br>Total Reports<br><a style="font-size:8vh"><?php echo $data['totalnumber']??9 ?></a></div><br><br>
+            </li>
+            <li class="option">
+            <div><img src=<?php echo URLROOT . "/resources/lab1.png" ?> style="width:150px"></div>
+                <div><br>Completed Reports<br><a style="font-size:8vh"><?php echo $data['status']['completed']??7 ?></a><br>
+            </li>
+            
+            
+            
+        </ul>
+        
 </article>
 <?php require_once(APPROOT . "/views/LabAssistant/footer_view.php"); ?>
