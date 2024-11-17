@@ -7,6 +7,7 @@
 <link rel="stylesheet" href="<?=URLROOT?>/css/patient/appointments.css">
 <link rel="stylesheet" href="<?=URLROOT?>/css/new.css">
 
+
 <style>
     #grad1 {
   height: 200px;
@@ -46,6 +47,7 @@ button{
 
 
     <?php
+        date_default_timezone_set('Asia/Colombo');
         echo '<table>';
         echo '<tr>';
         echo '<td style="width: 20%;"> Name</td>';
@@ -58,18 +60,27 @@ button{
             echo '<td style="width: 20%;">'.$row[0]['fullname'].'</td>';
             echo '<td style="width: 20%;">'.$row[0]['phonenumber'].'</td>';
             
-            // Calculate age
             $age = date_diff(date_create($row[0]["date_of_birth"]), date_create('now'))->y;
             echo '<td style="width: 20%;">'.$age.' </td>';
-            
-            if($row["prescription"] != null){
+        
+            if ($row["prescription"] != null) {
                 echo '<td style="width: 20%;"><a><button onclick="window.location.href=\''.URLROOT.'/Doctor/ViewMorePrescription/'.$row['Appointment_Id'].'/'.$row[0]['ID'].'\'">View Prescription</button></a></td>';
-            }else{
-                echo '<td style="width: 20%;style;"><a><button onclick="window.location.href=\''.URLROOT.'/Doctor/AddprescriptionView/'.$row['Appointment_Id'].'\'">Add Prescription</button></a></td>';
+            } else {
+                // Get current time
+                $current_time = time();
+                
+                // Convert start_time and end_time to Unix timestamps
+                $start_time = strtotime($patients[0]['start_time']);
+                $end_time = strtotime($patients[0]['end_time']);
+                
+                if ($current_time >= $start_time && $current_time <= $end_time) {
+                    echo '<td style="width: 20%;"><a><button onclick="window.location.href=\''.URLROOT.'/Doctor/AddprescriptionView/'.$row['Appointment_Id'].'\'">Add Prescription</button></a></td>';
+                } else {
+                    echo '<td style="width: 30%; color:red">Not available </td>';
+                }                
             }
-            
             echo '</tr>';
-            echo '<tr style="color:white;margin: 1%;"></tr>'; // Not sure why you need this line
+            echo '<tr style="color:white;margin: 1%;"></tr>'; 
         }
         echo '</table>';
 ?>
