@@ -23,10 +23,16 @@ define('Patients', 'patients'); // this changed
 define('Appointment', 'appointment'); //
 //Prescription Table
 define('Prescription', 'prescription'); //
-define('Receptionists', 'receptionist');
 
-define('Medicine', 'medicine_data');
+define('Medicine','medicine_data');
 
-define('Report', 'report');
+define('Labtest','labtests');
 
-define('Session', 'session');
+
+define('Receptionists','receptionist');
+
+define('Session','session');
+
+define('Drug','medicines');
+
+define('Disease','disease');

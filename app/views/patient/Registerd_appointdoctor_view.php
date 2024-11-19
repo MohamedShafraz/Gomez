@@ -56,120 +56,46 @@
 
       <!-- Your JavaScript Code -->
       <div style="margin: -3rem 0rem 0rem -4.7rem;height: fit-content;align-self: center;width: 72.7rem;">
-        <div class="flex-container" style="margin-top: 3rem; border-left:solid 5px">
-          <!-- Your flex items go here -->
-          <div class="flex-item" style="padding: 0.5rem;">
-            <div style="width: 73%;display: flex;flex-direction: row;">
-              <div><img src="<?= URLROOT . "/public/resources/doctor1.png" ?>" style="padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;"></div>
-              <div style="margin:-1rem 0rem 0rem 0rem;;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;">
-                <ul style="list-style-type: none;padding:0;">
-                  <li>Dr.Shamath</li>
-                  <li style="font-size: medium;">Heart specialist</li>
-                </ul>
-              </div>
-            </div>
-            <div style="width: 27%;">
-              <div class='logbutton' style="height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;background:#8393ca;border-radius: 0.5rem;">
-                <a href="<?= URLROOT . "/" . $_SESSION['userType'] . "/appointments/make/ShowDoc/bookappo" ?>" style="text-decoration: none;">
-                  <font class="font1">Chanel</font>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="flex-item" style="padding: 0.5rem;">
-            <div style="width: 73%;display: flex;flex-direction: row;">
-              <div><img src="<?= URLROOT . "/public/resources/doctor1.png" ?>" style="padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;"></div>
-              <div style="margin: -1rem 0rem 0rem 0rem;;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;">
-                <ul style="list-style-type: none;padding:0;">
-                  <li>Dr.sajini</li>
-                  <li style="font-size: medium;">Child specialist</li>
-                </ul>
-              </div>
-            </div>
-            <div style="width: 27%;">
-              <div class='logbutton' style="height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;background:#8393ca;border-radius: 0.5rem;">
-                <a href="<?= URLROOT . "/" . $_SESSION['userType'] . "/appointments/make/ShowDoc/bookappo" ?>" style="text-decoration: none;">
-                  <font class="font1">Chanel</font>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="flex-item" style="padding: 0.5rem;">
-            <div style="width: 73%;display: flex;flex-direction: row;">
-              <div><img src="<?= URLROOT . "/public/resources/doctor1.png" ?>" style="padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;"></div>
-              <div style="margin: -1rem 0rem 0rem 0rem;;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;">
-                <ul style="list-style-type: none;padding:0;">
-                  <li>Dr.Shaf</li>
-                  <li style="font-size: medium;">ENT specialist</li>
-                </ul>
-              </div>
-            </div>
-            <div style="width: 27%;">
-              <div class='logbutton' style="height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;background:#8393ca;border-radius: 0.5rem;">
-                <a href="<?= URLROOT . "/" . $_SESSION['userType'] . "/appointments/make/ShowDoc/bookappo" ?>" style="text-decoration: none;">
-                  <font class="font1">Chanel</font>
-                </a>
-              </div>
-            </div>
-          </div>
+        <div id="appointments" style="height: 59vh;    
+    height: 59vh;
+    width: 77rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+">
+          <?php
+          $size = sizeof($data) ?? 5;
 
-          <div class="flex-item" style="padding: 0.5rem;">
-            <div style="width: 73%;display: flex;flex-direction: row;">
-              <div><img src="<?= URLROOT . "/public/resources/doctor1.png" ?>" style="padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;"></div>
-              <div style="margin: -1rem 0rem 0rem 0rem;;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;">
-                <ul style="list-style-type: none;padding:0;">
-                  <li>Dr.Shamath</li>
-                  <li style="font-size: medium;">Heart specialist</li>
-                </ul>
-              </div>
-            </div>
-            <div style="width: 27%;">
-              <div class='logbutton' style="height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;background:#8393ca;border-radius: 0.5rem;">
-                <a href="<?= URLROOT . "/" . $_SESSION['userType'] . "/appointments/make/ShowDoc/bookappo" ?>" style="text-decoration: none;">
-                  <font class="font1">Chanel</font>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="flex-item" style="padding: 0.5rem;">
-            <div style="width: 73%;display: flex;flex-direction: row;">
-              <div><img src="<?= URLROOT . "/public/resources/doctor1.png" ?>" style="padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;"></div>
-              <div style="margin: -1rem 0rem 0rem 0rem;;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;">
-                <ul style="list-style-type: none;padding:0;">
-                  <li>Dr.sajini</li>
-                  <li style="font-size: medium;">Child specialist</li>
-                </ul>
-              </div>
-            </div>
-            <div style="width: 27%;">
-              <div class='logbutton' style="height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;background:#8393ca;border-radius: 0.5rem;">
-                <a href="<?= URLROOT . "/" . $_SESSION['userType'] . "/appointments/make/ShowDoc/bookappo" ?>" style="text-decoration: none;">
-                  <font class="font1">Chanel</font>
-                </a>
-              </div>
-            </div>
-          </div>
-          <div class="flex-item" style="padding: 0.5rem;">
-            <div style="width: 73%;display: flex;flex-direction: row;">
-              <div><img src="<?= URLROOT . "/public/resources/doctor1.png" ?>" style="padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;"></div>
-              <div style="margin: -1rem 0rem 0rem 0rem;;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;">
-                <ul style="list-style-type: none;padding:0;">
-                  <li>Dr.Shaf</li>
-                  <li style="font-size: medium;">ENT specialist</li>
-                </ul>
-              </div>
-            </div>
-            <div style="width: 27%;">
-              <div class='logbutton' style="height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;background:#8393ca;border-radius: 0.5rem;">
-                <a href="<?= URLROOT . "/" . $_SESSION['userType'] . "/appointments/make/ShowDoc/bookappo" ?>" style="text-decoration: none;">
-                  <font class="font1">Chanel</font>
-                </a>
-              </div>
-            </div>
-          </div>
-          <!-- Add more items as needed -->
+          for ($i = 0; $i < $size; $i++) {
+
+            $image = $data[$i]['image'] ?? "http://localhost/gomez/public/resources/doctor1.png'";
+            $name = $data[$i]['fullname'] ?? "Samar";
+            $url = "appointment/make?fullname=" . $name . "&specialization=&date=";
+            // $Date =$data[$i]['Date'];
+            $special = $data[$i]['Specialization'] ?? "Heart specialist";
+            echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:69rem;margin-left:1rem'>
+             <div style='display: flex;flex-direction: row;'>
+                 <div style='width: 20%;'><img src='" . $image . " style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
+                 <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
+                     <ul style='list-style-type: none;padding:0;'>
+                         <li>" . $name . "</li>
+                         <li style='font-size: medium;'>" . $special . "</li>
+                     </ul>
+                 </div>
+                 
+                  <div style='width: 27%;'>
+                  
+                     <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 27rem;border-radius: 0.5rem;box-shadow:none'>
+                         <a href=" . $url . " style='text-decoration: none;'>
+                             <font class='font1'>Channel</font>
+                         </a>
+                     </div>
+                 </div></div></div><br>";
+          }
+          ?>
         </div>
       </div>
+
 
     </ul>
     </div>
