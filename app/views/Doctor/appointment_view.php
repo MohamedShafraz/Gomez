@@ -48,7 +48,11 @@ button{
 
 
 <?php
-  if(isset($message)){
+if (session_status() == PHP_SESSION_NONE) {
+  session_start(); 
+}
+if (isset($_SESSION["message"]) && $_SESSION["message"] != null) {
+    $message = $_SESSION["message"];
     echo "<script>
             // Show the overlay and alert box
             document.getElementById('overlay').style.display = 'block';
@@ -56,8 +60,10 @@ button{
             // Set the alert message
             document.getElementById('alertMessage').innerHTML = '<p>$message</p>';
           </script>";
-  }
+    unset($_SESSION["message"]);
+}
 ?>
+
 
 </aside>
 <article class="dashboard">

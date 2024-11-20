@@ -14,7 +14,7 @@ class DoctorModel extends Database
 
     public function getSessions($id)
     {
-        $where = "doctor_id='$id'";
+        $where = "doctor_id='$id' AND date = CURDATE() AND start_time <= CURTIME() ORDER BY date ASC, start_time ASC";
         $this->setTable(Session);
         $result = $this->fetchData($where);
 
@@ -193,6 +193,12 @@ class DoctorModel extends Database
     public function findDisease($disease){
         $this->setTable(Disease);
         $result = $this->fetchData("disease = '$disease'");
+        return $result;
+    }
+
+    public function getSessionbyID($id){
+        $this->setTable(Session);
+        $result = $this->fetchData("session_id = '$id'");
         return $result;
     }
 
