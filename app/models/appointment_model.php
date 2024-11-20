@@ -92,34 +92,34 @@ class appointmentModel extends Database
             }
 
             $this->setTable(Doctors);
-            // $result = $this->fetchDataByUser($where, 1);
+            $result = $this->fetchDataByUser($where, 1);
         }
 
 
         return $result;
     }
-    public function getAllAppointmnetforDoctor($doctor = Null, $specialization = Null, $date = Null)
-    {
-        $where = 1;
-        if (empty($doctor) && empty($specialization) && empty($date)) {
+    // public function getAllAppointmnetforDoctor($doctor = Null, $specialization = Null, $date = Null)
+    // {
+    //     $where = 1;
+    //     if (empty($doctor) && empty($specialization) && empty($date)) {
 
-            $this->setTable(Doctors);
-            $result = $this->fetchAppointmentByDoctors($where);
-        } else {
-            if (!empty($doctor)) {
-                $doctor = "users_db.Username = \"" . $doctor . "\"";
+    //         $this->setTable(Doctors);
+    //         $result = $this->fetchAppointmentByDoctors($where);
+    //     } else {
+    //         if (!empty($doctor)) {
+    //             $doctor = "users_db.Username = \"" . $doctor . "\"";
 
-                $where .= ' AND ' . $doctor;
-                $result = $this->fetchAppointmentByDoctors($where, 1);
-            }
+    //             $where .= ' AND ' . $doctor;
+    //             $result = $this->fetchAppointmentByDoctors($where, 1);
+    //         }
 
-            $this->setTable(Doctors);
-            // $result = $this->fetchDataByUser($where, 1);
-        }
+    //         $this->setTable(Doctors);
+    //         // $result = $this->fetchDataByUser($where, 1);
+    //     }
 
 
-        return $result;
-    }
+    //     return $result;
+    // }
     public function getAllAppoinmentbyDate($date = Null)
     {
         if (empty($date)) {
@@ -173,7 +173,24 @@ class appointmentModel extends Database
 
         return $result;
     }
-    public function getAppoinmentbyDoctor($doctor = Null)
+    public function getAppoinmentbyDoctorName($doctorName)
+    {
+        $where = 1;
+        $doctor = "doctors.fullname = \"" . $doctorName . "%\"";
+        $this->setTable(Appointment);
+        $result = $this->filterByDoctor($where, $doctor);
+        return $result;
+    }
+    public function getAppoinmentbyDoctorDate($date)
+    {
+        $where = 1;
+        $doctor = "session.date = \"" . $date . "\"";
+        $this->setTable(Appointment);
+        $result = $this->filterByDoctor($where, $doctor);
+        return $result;
+    }
+
+    public function getAppoinmentbyDoctorByDate($doctor = Null)
     {
         if (empty($doctor)) {
             $where = 1;

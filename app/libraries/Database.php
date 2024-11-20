@@ -287,12 +287,13 @@ class Database
     }
     public function filterByDoctor($where, $doctor)
     {
-        $query = "Select * FROM " . $this->table . " JOIN session ON session.Doctor_Id=doctors.Doctor_id JOIN appointment ON appointment.session_id = session.session_id JOIN user_db ON user_db.`User_Id` = doctors.`Doctor_id` WHERE " . $where . " AND " . $doctor;
-
+        $query = "Select * FROM appointment JOIN session ON appointment.session_id = session.session_id JOIN doctors ON session.Doctor_Id=doctors.Doctor_id  JOIN user_db ON user_db.`User_Id` = doctors.`Doctor_id` WHERE " . $where . " AND " . $doctor;
+        
         $result = $this->executeQuery($query);
         // print_r($result);
         $data = [];
         $i = 0;
+        // print_r($result);
         if ($result && $result->num_rows > 0) {
             while ($row = $result->fetch_assoc()) {
                 $data[$i] = $row;
