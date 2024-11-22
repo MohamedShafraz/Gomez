@@ -181,11 +181,11 @@ class manageuser extends Controller
     }
     public function updatePatientDetails($id)
     {
-
         $this->model($_SESSION['userType'] . "/patient_model");
         $patientModel = new PatientModel();
         $patientModel->setTable(Patients);
-        $UsersList = $patientModel->updateUserDetails($id, $_POST);
+        $patientModel->updateUserDetails(explode('=', $id)[1], $_POST);
+        // print_r($UsersList);
     }
     public function updateDoctorDetails($id)
     {

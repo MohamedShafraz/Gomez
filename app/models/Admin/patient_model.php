@@ -49,11 +49,17 @@ class PatientModel extends Database
     }
     public function updateUserDetails($id, $userDetails)
     {
-        $where = 'ID=' . $id;
-        // print_r($userDetails);
-        foreach ($userDetails as $userDetail) {
-            print_r($userDetail);
-        }
+        $where = "id = " . $id;
+        $user = [];
+        $user["fullname"] = $userDetails['Fullname'];
+        $user['phonenumber'] = $userDetails['Phonenumber'];
+        $user['age'] =  $userDetails['Age'];
+        $this->updateData($user, $where);
+        $this->setTable(User);
+        $patient['Email'] = $userDetails['Email'];
+        $where = "User_Id = " . $id;
+        $response = $this->updateData($patient, $where);
+        header("location:../patient/id=" . $id);
         exit();
     }
 }

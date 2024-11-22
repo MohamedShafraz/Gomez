@@ -57,7 +57,8 @@
 
 <div class="lay" style="
     position: fixed;
-    margin: 1% 0% 0% 31%;z-index:100
+    margin: 1% 0% 0% 31%;z-index:100;
+    padding-bottom: 6%;
 " id='popup1'>
     <h1>Update Profile</h1>
     <script>
@@ -66,21 +67,26 @@
     <ul>
 
         <?php
+        $keyId = $data['id'];
+        echo " <form action='../updatePatientDetails/id= " . $keyId
+            . "' method='post'>";
         foreach ($data as $key => $value) {
-
             if ($key == 'id' || $key == 'type') {
                 continue;
-            }
-            echo "<li class='users'><label for=$key>$key :</label><br><input id=$key name=$key value=$value><br><br></li><script>data.push($key)</script>";
+            };
+            echo "
+            <li class='users'><label for=$key>$key :</label><br><input id=$key name=$key value=$value><br><br></li>";
         }
+        echo "<div style='display:flex;flex-direction:row;gap:10px'><button onclick='back()' style='padding: 9px 22px;' class='button' id='back'>Back</button>
+        <input type='submit' style='padding: 9px 22px;' class='button' id='update' value='Update'></div></form>";
+
         ?>
     </ul>
     <div style="flex-direction: row;
   display: flex;
   gap: 4rem;
 ">
-        <button onclick="back()" style="padding: 9px 22px;" class="button" id='back'>Back</button>
-        <button onclick="m('popup1')" style="padding: 9px 22px;" class="button" id='update'>Update</button>
+
     </div>
 </div>
 <article class="dashboard">
