@@ -54,7 +54,8 @@ class Doctor extends Controller
         }
     }
 
-    public function appointments($message=null)
+
+    public function appointments()
     {
         if (!isset($_SESSION)) {
             session_start();
@@ -65,13 +66,10 @@ class Doctor extends Controller
             $this->doctorModel = new DoctorModel(new Database());
 
             $doctor = $this->doctorModel->getDoctor($user["User_Id"]);
-            $sessions = $this->doctorModel->getSessionsToday($doctor[0]['Doctor_id']);
+            $sessions = $this->doctorModel->getSessions($doctor[0]['Doctor_id']);
 
-            if($message != null){
-                $message = "Prescription Added Successfully";
-            }
 
-            $this->view('Doctor/appointment_view', ['sessions' => $sessions, 'message' => $message]);
+            $this->view('Doctor/appointment_view', ['sessions' => $sessions]);
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
@@ -89,6 +87,7 @@ class Doctor extends Controller
             $this->doctorModel = new DoctorModel(new Database());
             
             $appointments = $this->doctorModel->getAppointmentbySession($sessionid);
+            $session = $this->doctorModel->getSessionbyID($sessionid);
 
             $patients = [];
 
@@ -96,6 +95,8 @@ class Doctor extends Controller
                // $patient = $this->doctorModel->getPatientbyappointment($appointment['Patient_Id']);
                 $patient = $this->doctorModel->getPatientbyPatiend($appointment['Patient_Id']);
                 $prescription = $this->doctorModel->getPrescriptionbyAppointment($appointment['Appointment_Id']);
+                $patient['end_time'] = $session[0]['end_time'];
+                $patient['start_time'] = $session[0]['start_time'];
                 $patient['prescription'] = $prescription;
                 $patient['Appointment_Id'] = $appointment['Appointment_Id']; // Assuming 'Appointment_Id' is the key in the $appointment array
                 $patients[] = $patient;
@@ -231,7 +232,11 @@ public function AddMedicine() {
         unset($_SESSION['prescription']);
     
         $this->doctorModel->addPrescription($prescription);
-        header("Location: ".URLROOT."/Doctor/appointments/message");
+
+
+        $_SESSION["message"] = "Prescription Added Successfully";
+        header("Location: ".URLROOT."/Doctor/appointments");
+
         exit();
         
         
@@ -246,10 +251,16 @@ public function AddMedicine() {
             $this->model("DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
             $prescription = $this->doctorModel->getPrescriptionbyAppointment($appointmentid);
+            $appoiment = $this->doctorModel->getAppoinmentbyID($appointmentid);
             $patient = $this->doctorModel->getPatient($patientid);
             $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
+            $session_id = $appoiment[0]['session_id'];
+            $session = $this->doctorModel->getSessionbyID($session_id);
+            
+            $start_time = $session[0]["start_time"];
+            $end_time = $session[0]["end_time"];
 
-            $this->view('Doctor/moreprescription_view', ['prescription' => $prescription,'patient' => $patient[0], 'medicine' => $medicine]);
+            $this->view('Doctor/moreprescription_view', ['prescription' => $prescription,'patient' => $patient[0], 'medicine' => $medicine, 'end_time'=>$end_time, 'start_time'=>$start_time]);
         }
         else {
             header("Location: ".URLROOT."/Users/login"); 
@@ -267,7 +278,6 @@ public function AddMedicine() {
             $this->doctorModel = new DoctorModel(new Database());
             $prescription = $this->doctorModel->getPrescriptionbyID($prescriptionid);
             $patient = $this->doctorModel->getPatient($prescription[0]["patientid"]);
-            
             $this->view('Doctor/editprescription_view', ['prescription' => $prescription[0], 'patient' => $patient[0]]);
         }
         else {

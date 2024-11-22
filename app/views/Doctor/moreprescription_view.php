@@ -76,15 +76,48 @@
                     echo '</div>';
                 }
                 ?>
-           
         </div>
     </div>
-    <button class="bluebutton" onclick="editprescription()" style="margin-left:24%;margin-top:2%;width:200px;background-color: blue; color: white;">Edit Prescription</button>
-    <script>
-        function editprescription() {
-            window.location.href = '<?= URLROOT ?>/Doctor/EditPrescriptionView/<?= $prescription[0]["prescriptionnumber"] ?>';
-        }
-    </script>
-</body>
+
+<div>
+    <button id="editButton" class="bluebutton" onclick="editprescription()" 
+            style="margin-left:24%;margin-top:2%;width:200px;background-color: blue; color: white;">
+        Edit Prescription
+    </button>
+</div>
+
+<script>
+    // Getting the end_time in "HH:mm:ss" format
+    const endTimeString = '<?= $end_time ?>'; // e.g., "15:00:00"
+    const [endHours, endMinutes, endSeconds] = endTimeString.split(':').map(Number);
+
+    // Get the current date and time
+    const currentDate = new Date();
+    const endTime = new Date(currentDate.getFullYear(), currentDate.getMonth(), currentDate.getDate(), endHours, endMinutes, endSeconds);
+
+    const currentTime = new Date();
+
+    // Calculate the difference in milliseconds
+    const timeDifference =  currentTime.getTime() -endTime.getTime();
+
+    // Check if the button should be disabled
+    if (timeDifference <= 0 || timeDifference > 3600000) { // Disable if time has passed or > 1 hour
+        document.getElementById('editButton').disabled = true;
+        document.getElementById('editButton').style.backgroundColor = "gray";
+        document.getElementById('editButton').innerText = "Time Expired";
+    } else {
+        // Set a timeout to disable the button after the time has elapsed
+        setTimeout(() => {
+            document.getElementById('editButton').disabled = true;
+            document.getElementById('editButton').style.backgroundColor = "gray";
+            document.getElementById('editButton').innerText = "Time Expired";
+        }, timeDifference);
+    }
+
+    function editprescription() {
+        window.location.href = '<?= URLROOT ?>/Doctor/EditPrescriptionView/<?= $prescription[0]["prescriptionnumber"] ?>';
+    }
+</script>
+
 </body>
 <?php require_once(APPROOT . "/views/Admin/footer_view.php");?>
