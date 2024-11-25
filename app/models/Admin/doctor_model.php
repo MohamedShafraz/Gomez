@@ -24,6 +24,10 @@ class DoctorModel extends Database
         $where = "Doctor_id=" . $id;
         $this->setTable('doctors');
         $data = $this->fetchData($where);
+        $where = "User_Id=" . $id;
+        $this->setTable(User);
+        $data1 = $this->fetchData($where);
+        $data = array_merge($data, $data1);
 
         $users = [];
         $i = 0;
@@ -40,8 +44,8 @@ class DoctorModel extends Database
             if (isset($row['Specialization'])) {
                 $users['specialization'] = $row['Specialization'];
             }
-            if (isset($row['email'])) {
-                $users['email'] = $row['email'];
+            if (isset($row['Email'])) {
+                $users['email'] = $row['Email'];
             }
             if (isset($row['age'])) {
                 $users['age'] = $row['age'];
@@ -52,5 +56,26 @@ class DoctorModel extends Database
             $i++;
         }
         return $users;
+    }
+    public function updateUserDetails($details, $filecontent)
+    {
+        $where = "ID = " . $_SESSION['User_Id'];
+        $this->setTable('gm_admin');
+        print_r($details);
+        // $users['userName'] = $_POST["Fullname"];
+        // $users['GM_AD_Phone_Number'] = $_POST['phonenumber'];
+
+        // $users['gender'] = $_POST['gender'];
+        // // $users['email'] = $_POST['email'];
+        // $users['age'] = $_POST['age'];
+        // $picture["profilepicture"] = $details;
+        // $data = $this->updateData($users, $where);
+        // $this->setTable('user_db');
+        // $where1 = "User_Id = " . $_SESSION['User_Id'];
+        // $data = $this->updateData($picture, $where1);
+
+        // $_SESSION["USER"]["profilepicture"] = $filecontent;
+        // // print_r($_SESSION["USER"]["profilepicture"]);
+        // return $data;
     }
 }

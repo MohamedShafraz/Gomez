@@ -57,7 +57,8 @@
 
 <div class="lay" style="
     position: fixed;
-    margin: 1% 0% 0% 31%;z-index:100
+    margin: 1% 0% 0% 31%;z-index:100;
+    padding-bottom: 6%;
 " id='popup1'>
     <h1>Update Profile</h1>
     <script>
@@ -66,16 +67,27 @@
     <ul>
 
         <?php
+        $keyId = $data['id'];
+        echo " <form action='../updatePatientDetails/id= " . $keyId
+            . "' method='post'>";
         foreach ($data as $key => $value) {
-
             if ($key == 'id' || $key == 'type') {
                 continue;
-            }
-            echo "<li class='users'><label for=$key>$key :</label><br><input id=$key name=$key value=$value><br><br></li><script>data.push($key)</script>";
+            };
+            echo "
+            <li class='users'><label for=$key>$key :</label><br><input id=$key name=$key value=$value><br><br></li>";
         }
+        echo "<div style='display:flex;flex-direction:row;gap:10px'><button onclick='back()' style='padding: 9px 22px;' class='button' id='back'>Back</button>
+        <input type='submit' style='padding: 9px 22px;' class='button' id='update' value='Update'></div></form>";
+
         ?>
     </ul>
-    <button onclick="m('popup1')" style="padding: 9px 22px;" class="button" id='update'>Update</button>
+    <div style="flex-direction: row;
+  display: flex;
+  gap: 4rem;
+">
+
+    </div>
 </div>
 <article class="dashboard">
 
@@ -113,9 +125,16 @@
         document.getElementsByClassName('dashboard')[0].style.filter = 'blur(4px)';
     }
 
+    function back() {
+        window.location.href = window.location.href.split('#')[0];
+        document.getElementById('popup1').style.visibility = 'none';
+        document.getElementsByClassName('dashboard')[0].style.filter = '';
+    }
+
+
     function m($id) {
         const url = window.location.href.split('#')[0];
-        window.location.href = '../updateUserDetails/id=' + url.split('=')[1];
+        window.location.href = '../updatePatientDetails/id=' + url.split('=')[1];
         document.getElementById($id.toString()).style.visibility = 'hidden';
     }
     if (window.location.href.split('#').length != 2 && window.location.href.split('=').length == 2) {

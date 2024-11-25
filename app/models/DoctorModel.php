@@ -153,7 +153,6 @@ class DoctorModel extends Database
     {
         $where = "Doctor_id = " . $_SESSION['User_Id'];
         $this->setTable(Doctors);
-
         $users['fullname'] = $_POST["Fullname"];
         $users['phonenumber'] = $_POST['phonenumber'];
         // $users['NIC'] = $_POST['NIC'];

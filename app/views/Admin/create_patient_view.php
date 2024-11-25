@@ -89,13 +89,7 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
   width: 10%;
 
    "><img style="width:100%;postion:fixed" src="<?= URLROOT . "/resources/back-button-svgrepo-com.svg" ?>"></a><br>
-    <a href="./" style="position: relative;
-  margin: 0% 0% 0% -171%;
-  width: 10%;
 
-   "><img style="width:100%;postion:fixed" src="<?= URLROOT . "/resources/back-button-svgrepo-com.svg" ?>"></a><br>
-
-    <h1 style="">Create New Patient</h1>
     <h1 style="">Create New Patient</h1>
 
     <form action="./created" method="post" enctype="multipart/form-data">
@@ -190,8 +184,6 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
                 })
                 .catch(error => console.error('Error:', error));
         }
-
-
         usernameInput.addEventListener('input', () => {
             if (usernameInput.value.length > 0) {
                 checkUsername();
@@ -200,7 +192,6 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
             }
         });
     </script>
-    <!-- <a>Welcome to Gomez</a> -->
 
     </div>
 </article>

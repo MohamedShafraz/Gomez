@@ -33,17 +33,25 @@
 <table class="complainttable">
 
 
-    <tbody class="complaint" style="margin-top: 6%;">
-        <tr style="    position: fixed;
-    padding: 0% 7.2% 0% 7.8%;
-    margin-top: 0%;
-    gap: 10.7rem;background-color:beige">
+    <tbody class="complaint" style="margin-top: 6%;height:20rem">
+        <tr style="color:white;margin: 5%;"></tr>
+        <tr style="position: fixed;
+  background-color: #5998ff;
+  left: 28%;
+  display: flex;
+  top: 24%;
+  padding: 0% 21% 0% 8%;
+  width: 30.3%;
+  font-family: 'inter';
+  color: var(--Gomez-Blue);
+  color: white;
+  gap: 36%;">
             <td>Name</td>
             <td>NIC</td>
             <td>Specialization</td>
         </tr>
 
-        <tr style="color:white;margin: 5%;"></tr>\
+
 
         <tr style="color:white;margin: 14%;"></tr>
 
