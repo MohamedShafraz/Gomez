@@ -47,35 +47,37 @@
 </script>
 <br><br>
 <div class="complainttext">Appointments</div>
-<ul style="height: 26rem;padding: 5%;margin-left:22%">
+<ul style="height: 26rem;padding: 5%;margin-left:22%;display: flex;flex-direction: column;">
     <form action="<?= URLROOT . '/' . $_SESSION['userType'] . '/manageappointment/search' ?>" method="get">
         <section class="make" id="make" style="    margin-top: -4rem;
     margin-left: 1rem;
     background: #FFF;
     display: flex;
-    flex-direction: row;
+    flex-direction: column;
     width: 54rem;
     padding: 2%;">
+            <div style="display:flex;flex-direction:row">
+                <div class="dis" style="width: 37rem;">
+                    <label for="Doctor" style="font-weight: bold;font-size: 22px;"> Doctor Name :&ensp; </label>
+                    <input type="text" name="doctor" id="Doctor" placeholder="Max- 20 Characters" class="holder" value="<?= $_GET['doctor'] ?? '' ?>">
+                </div>
 
-            <div class="dis">
-                <label for="Doctor" style="font-weight: bold;font-size: 22px;"> Doctor Name :&ensp; </label>
-                <input type="text" name="doctor" id="Doctor" placeholder="Max- 20 Characters" class="holder" value="<?= $_GET['doctor'] ?? '' ?>">
+                <div class="dis">
+                    <label for="Date" style="font-weight: bold;font-size: 22px;">Date :&ensp;</label>
+                    <input type="date" name="Date" id="Date" date-placeholder="11/6/2023" class="holder" value="<? $_GET['Date'] ?? '' ?>" require>
+                </div>
             </div>
+            <div style="display:flex;flex-direction:row">
+                <div class="dis" style="width: 34rem;">
+                    <label for="startDate" style="font-weight: bold;font-size: 22px;">Start Date :&ensp;</label>
+                    <input type="date" name="startDate" id="startDate" date-placeholder="11/6/2023" class="holder" value="<? $_GET['startDate'] ?? '' ?>" onchange="qw()" require>
+                </div>
 
-            <div class="dis">
-                <label for="Date" style="font-weight: bold;font-size: 22px;">Date :&ensp;</label>
-                <input type="date" name="Date" id="Date" date-placeholder="11/6/2023" class="holder" value="<? $_GET['Date'] ?? '' ?>" require>
+                <div class="dis">
+                    <label for="endDate" style="font-weight: bold;font-size: 22px;">End Date :&ensp;</label>
+                    <input type="date" name="endDate" id="endDate" date-placeholder="11/6/2023" class="holder" value="<? $_GET['endDate'] ?? '' ?>" require>
+                </div>
             </div>
-            <div class="dis">
-                <label for="startDate" style="font-weight: bold;font-size: 22px;">Start Date :&ensp;</label>
-                <input type="date" name="startDate" id="startDate" date-placeholder="11/6/2023" class="holder" value="<? $_GET['startDate'] ?? '' ?>" onchange="qw()" require>
-            </div>
-
-            <div class="dis">
-                <label for="endDate" style="font-weight: bold;font-size: 22px;">End Date :&ensp;</label>
-                <input type="date" name="endDate" id="endDate" date-placeholder="11/6/2023" class="holder" value="<? $_GET['endDate'] ?? '' ?>" require>
-            </div>
-
 
 
             <input class='logbutton font1' id=" maked" style="border-radius: 15%;
@@ -83,7 +85,6 @@
     box-shadow: none;width:7%;color:white;
 " type="submit" value="search">
 
-            <br>
         </section>
     </form><br><br>
 
@@ -94,8 +95,8 @@
 ">
         <?php
         if (sizeof($data) == 0) {
-            echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
-             <div style='display: flex;flex-direction: row;'>
+            echo "<div class='flex-item' style='padding: 3% 1%;;background: white;width:55.5rem;margin-left:1rem'>
+             <div style='display: flex;flex-direction: row;justify-content:center;font-size: xx-large;font-style: normal;'>
              No Appointments
                  </div></div><br>";
         }
@@ -134,8 +135,6 @@
         ?> </div>
 
 
-    <!-- Your JavaScript Code -->
-
 </ul>
 
 </article>
@@ -144,6 +143,7 @@
     function qw() {
         document.getElementById('endDate').min = document.getElementById('startDate').value;
     }
+    console.log(window.location);
 </script>
 <script src="<?= URLROOT ?>./javascript/dashboard.js"></script>
 

@@ -52,7 +52,7 @@
 
     </aside>
     <article class="dashboard">
-        <div class="complaint" style="margin-left:24%; margin-top:50px;font-family: inter;">
+        <div class="complaint" style="margin-left:17%; margin-top:50px;font-family: inter;">
 
 
             <?php
@@ -83,7 +83,7 @@
                 // }
 
                 echo '</tr>';
-                echo '<tr style="color:white;margin: 1%;"></tr>'; // Not sure why you need this line
+                echo '<tr style="color:white;margin: 0.1%;"></tr>'; // Not sure why you need this line
             }
             echo '</table>';
             ?>
