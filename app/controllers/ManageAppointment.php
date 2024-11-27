@@ -28,8 +28,7 @@ class manageappointment extends Controller
             $patients[] = $patient;
         }
 
-        $this->view('Doctor/timeslotpatients', ['patients' => $patients]);
-        $this->view('Admin/sidebar');
+        $this->view('Admin/doctor_appointments', ['patients' => $patients]);
         exit();
         // $this->view($_SESSION['userType'] . "/report_view");
     }
