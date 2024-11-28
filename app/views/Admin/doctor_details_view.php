@@ -111,8 +111,6 @@
     function m($id) {
         const url = window.location.href.split('#')[0];
         window.location.href = '../updateDoctorDetails/id=' + url.split('=')[1];
-        const url = window.location.href.split('#')[0];
-        window.location.href = '../updateDoctorDetails/id=' + url.split('=')[1];
         document.getElementById($id.toString()).style.visibility = 'hidden';
     }
     if (window.location.href.split('#').length != 2 && window.location.href.split('=').length == 2) {
