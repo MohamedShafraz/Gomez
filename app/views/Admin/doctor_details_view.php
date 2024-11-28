@@ -62,7 +62,7 @@
     <h1>Update Profile</h1>
     <ul>
         <li class="users">
-            <label for="fullname">Full Name :</label><br><input id='fullname' name='fullname' value='<?= $data['userName'] ?>'><br><br>
+            <label for="fullname">Full Name :</label><br><input id='fullname' name='fullname' value='<?= $data['full name'] ?>'><br><br>
         </li>
         <li class="users">
             <label for="gender">Gender :</label><br><input id='gender' name='gender' value='<?= $data['gender'] ?>'><br><br>
@@ -77,21 +77,22 @@
             <label for="email">Email :</label><br><input id='email' name='email' value='<?= $data['email'] ?>'><br><br>
         </li>
     </ul>
-    <button onclick="m('popup1')" style="float:center" class="logbutton1" id='update'>Update</button>
+    <button onclick="m('popup1')" style="padding: 9px 22px;" class="button" id='update'>Update</button>
 </div>
 <article class="dashboard">
 
     <!-- <a>Welcome to Gomez</a> -->
     <ul style="background-color: white;padding:5%; width:50%">
         <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div>
-        <li class="users">Full Name : <?= $data['userName'] ?><br><br></li>
+        <li class="users">Full Name : <?= $data['full name'] ?><br><br></li>
         <li class="users">Gender : <?= $data['gender'] ?><br><br></li>
         <li class="users">Age : <?= $data['age'] ?><br><br></li>
         <li class="users">Phone number : 0<?= $data['phonenumber'] ?><br><br></li>
         <li class="users">Email : <?= $data['email'] ?><br><br></li>
-
-        <div id="chartContainer"></div>
-        <div style="display:flex;gap:10px"><button onclick="window.location.href = '<?= URLROOT . '/Admin/Manageuser/doctor' ?>'" style="float:right" class="logbutton1">back</button><button onclick="f()" style="float:right" class="logbutton1">Edit</button>
+        <div style="display:flex;gap:10px;float:left;padding: 9px 22px;">
+            <button onclick="window.location.href = '<?= URLROOT . '/Admin/Manageuser/doctor' ?>'" style="float:right;padding: 9px 22px;" class="button">Back</button>
+            <button onclick="f()" style="float:right;padding: 9px 22px;" class="button">Edit</button>
+        </div>
     </ul>
     </div>
 </article>
@@ -99,7 +100,6 @@
 <script>
     if (window.location.href.split('?').length !== 2) {
         document.getElementById('popup1').style.visibility = 'hidden';
-        // console.log("test");
     }
 
     function f() {
@@ -109,7 +109,8 @@
     }
 
     function m($id) {
-        window.location.href = './id=7';
+        const url = window.location.href.split('#')[0];
+        window.location.href = '../updateDoctorDetails/id=' + url.split('=')[1];
         document.getElementById($id.toString()).style.visibility = 'hidden';
     }
     if (window.location.href.split('#').length != 2 && window.location.href.split('=').length == 2) {

@@ -52,8 +52,25 @@ include_once(APPROOT . '/views/header_view.php');
     scrollbar-width: none;
 ">
       <?php
-      $size = sizeof($data) ?? 5;
 
+      $size = sizeof($data);
+      if ($size == 0) {
+        echo "<div id='appointments' style='height: 59vh; 
+    height: 59vh;
+    width: 77.5rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    scrollbar-width: none;
+'>
+      <div class='flex-item' style='padding: 0.5rem;background: white;width:98%;margin-left:1rem;text-align: center;justify-content: center;'>
+            <div style='display: flex;flex-direction: row;'>
+                <div style='font-family:Inter;margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;/*! width:53% */'>
+                    <center>No matches found</center>
+                </div>
+                
+                
+                </div></div><br>    </div>";
+      }
       for ($i = 0; $i < $size; $i++) {
 
         $image = $data[$i]['image'] ?? "http://localhost/gomez/public/resources/doctor1.png'";

@@ -140,29 +140,26 @@ class patient extends Controller
                 if ($ShowDoc == 'ShowDoc') {
                     $result = $this->appointmodel->getDoctors();
                     if (isset($_GET['doctor']) || isset($_GET['Date']) || isset($_GET['specialization'])) {
-
-                        // if ($_GET['doctor']) {
-
-                        //     $result = $this->appointmodel->getAllAppoinmentbyDoctor($_GET['doctor']);
-
-                        // }
+                        $result = $this->appointmodel->getAllDoctorsforSession($_GET['doctor'], $_GET['specialization'], $_GET['Date']);
+                        if ($_GET['doctor']) {
+                            // print_r($_GET['doctor']);
+                            $result = $this->appointmodel->getAllAppoinmentbyDoctor($_GET['doctor']);
+                        }
                         if ($_GET['Date']) {
                             // $where = $_GET['Date'];
                             $_GET['Date'] = DateTime::createFromFormat('Y-m-d', $_GET['Date']);
                             $_GET['Date'] = $_GET['Date']->format('Y-m-d');
 
-                            // $result = $this->appointmodel->getAllAppoinmentbyDate($where);
-
+                            $result = $this->appointmodel->getAllAppoinmentbyDate($where);
                         }
-                        // if ($_GET['specialization']) {
-                        //     $result = $this->appointmodel->getAllAppoinmentbySpecialization($_GET['specialization']);
-                        //     // $this->view('Patient/appointments_view', $result);
-                        // }
-
+                        if ($_GET['specialization']) {
+                            $result = $this->appointmodel->getAllAppoinmentbySpecialization($_GET['specialization']);
+                        }
+                        print_r($result);
+                        // $this->view('Patient/appointments_view', $result);
                         // exit();
-                        $result = $this->appointmodel->getAllDoctorsforSession($_GET['doctor'], $_GET['specialization'], $_GET['Date']);
-                    }
-                    if ($bookappo == 'bookappo') {
+
+                    } else if ($bookappo == 'bookappo') {
 
 
                         if ($fixed == 'fixed') {
