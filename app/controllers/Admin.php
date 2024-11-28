@@ -42,11 +42,15 @@ class Admin extends Controller
     public function UserInfo($rest = Null)
     {
         $UserInfo = new UserInfo();
-
-        if ($rest == Null or $rest == "id") {
+        if ($rest == Null || $rest == "id" || $rest == 'profile') {
             $UserInfo->Index();
+            exit();
+        } else if ($rest == "update") {
+            $UserInfo->update();
+            exit();
         } else {
-            $UserInfo->$rest();
+            $UserInfo->$rest;
+            print_r($rest);
             exit();
         }
     }
