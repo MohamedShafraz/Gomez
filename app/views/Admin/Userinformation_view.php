@@ -53,6 +53,17 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         text-decoration: solid;
     }
 
+    .preview {
+        margin-top: 5px;
+        max-width: 300px;
+        max-height: 300px;
+        display: block;
+        padding: 0% 20%;
+        margin-right: 79px;
+        margin-left: -59px;
+
+    }
+
     /* input[type="file"] {
         display: none;
     }
@@ -67,45 +78,70 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
 
 <div class="lay" style="
     position: fixed;
-    margin: 1% 10% 0% 28%;z-index:100;
-    padding: 4% 11% 5% 11%;
+  margin: 6% 10% 0% 28%;
+  z-index: 100;
+  padding: 5% 0% 5% 5%;;
+  visibility: visible;
+  min-width: 200px;
+  justify-content: center;
+  flex-direction:column;
 " id='popup2'>
     <form action="./update" method="post" enctype="multipart/form-data">
-        <div class="users" style="float: left;gap: 5%;width:50% ;">
+        <!-- <div class="users" style="float: left;gap: 5%;width:50% ;"> -->
 
-            <label for="fileupload">&emsp;Image</label><br><br>
+        <div>
+            <label for="fileupload" style="font-family: inter;
+  padding: 0% 14%;">&emsp;Image</label><br><br>
             <label for="file" id="fileupload" class="uploadimage">Upload Image</label><br>
-            <!-- <label for="image" class="custom-file-upload">
-                    Upload Image
-                </label> -->
             <br>
-            <input style="display: none;" id="file" type="file" name="file" required>
-
-            <br>
-
         </div>
+        <div id="buttonbox" style="display:flex;flex-direction:row;gap:20px">
+            <input style="display: none;" id="file" type="file" name="file" required>
+            <button class="button" style="padding:16px 20px" onclick='history.back()'>back</button>
+            <!-- <img id="imagePreview" class="preview" style="display: none;" alt="Image Preview"> -->
+            <input class="button" id="imagesubmit" style="padding: 16px 20px;display: none;" type="submit" value="submit">
+        </div>
+
+        <br>
+
+
+        <script>
+            const fileInput = document.getElementById('file');
+            // const imagePreview = document.getElementById('imagePreview');
+            const buttonbox = document.getElementById('buttonbox');
+            const button = document.getElementById('imagesubmit');
+            fileInput.addEventListener('change', (event) => {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        document.getElementById('fileupload').innerText = file.name;
+                        // imagePreview.src = e.target.result;
+                        // imagePreview.style.display = 'block';
+
+                        buttonbox.style.margin = "0px -19px";
+                        button.style.display = 'block';
+                    };
+
+                    reader.readAsDataURL(file);
+                }
+            });
+        </script>
+        <!-- </div> -->
     </form>
 </div>
 <div class="lay" style="
     position: fixed;
     margin: 1% 10% 0% 28%;z-index:100;
     padding: 4% 11% 5% 11%;
+     visibility: visible;
 " id='popup1'>
 
 
     <h1>Update Profile</h1>
 
-    <form action="./update" method="post" enctype="multipart/form-data">
+    <form action="update" method="post" enctype="multipart/form-data">
         <div style="display:flex">
-
-            <!-- <script>
-                function v() {
-                    console.log("<?= $_FILES ?? "test" ?>");
-                }
-            </script> -->
-            <div id="img">
-
-            </div>
             <div class="users" style="float: right;gap: 5%;width:50% ;">
                 <script>
                     $data.forEach(element => {
@@ -140,7 +176,7 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         <!-- <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div> -->
         <div class="users" style="float: left;gap: 8%;width:50% ;">
             <div style="display:flex;flex-direction:column;gap:5%"><?= "<img src='data:image/png;base64," . base64_encode($data['image']) . "' alt='Profile Picture' style='    width: 12.3rem;margin-bottom: 8px;
-    height: 12.3rem;;'>" ?><br /><button class="button" style="padding: 9px 22px;" onclick="document.getElementById('popup2').style.visibility = 'visible';">Update Profile Picture</button></div>
+    height: 12.3rem;;'>" ?><br /><button class="button" style="padding: 9px 22px;" onclick="window.location.href += '/profile?'+.<?= $_SESSION['User_Id'] ?>">Update Profile Picture</button></div>
         </div>
 
         <script>
@@ -164,11 +200,16 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         document.getElementById('popup2').style.visibility = 'hidden';
     }
 
+
     function m($id) {
 
         console.log($data);
         // window.location.href = '.';
         document.getElementById($id.toString()).style.visibility = 'hidden';
+    }
+    if (window.location.href.split('?').length == 2 && window.location.href.split('?')[0].split('/')[6] == "profile") {
+        document.getElementById('popup1').style.visibility = 'hidden';
+        document.getElementById('popup2').style.visibility = 'visible';
     }
     if (window.location.href.split('?').length == 2) {
         document.getElementsByClassName('dashboard')[0].style.filter = 'blur(4px)';
