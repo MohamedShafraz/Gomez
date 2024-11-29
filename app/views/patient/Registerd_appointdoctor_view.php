@@ -52,28 +52,28 @@
 
     <!-- <a>Welcome to Gomez</a> -->
 
-    <ul style="height: 26rem;background-color: white;padding: 5%;width: 62rem;">
 
-      <!-- Your JavaScript Code -->
-      <div style="margin: -3rem 0rem 0rem -4.7rem;height: fit-content;align-self: center;width: 72.7rem;">
-        <div id="appointments" style="height: 59vh;    
-    height: 59vh;
-    width: 77rem;
+
+
+    <!-- <a>Welcome to Gomez</a> -->
+
+
+    <ul style="height: 26rem;padding: 5%;margin-left:22%">
+      <div class="complainttext">Available Doctors</div>
+      <br>
+
+      <div id="appointments" style="height: 59vh;width:57rem;
     overflow-y: scroll;
     overflow-x: hidden;
     scrollbar-width: none;
 ">
-          <?php
-          $size = sizeof($data) ?? 5;
-
-          for ($i = 0; $i < $size; $i++) {
-
-            $image = $data[$i]['image'] ?? "http://localhost/gomez/public/resources/doctor1.png'";
-            $name = $data[$i]['fullname'] ?? "Samar";
-            $url = "appointment/make?fullname=" . $name . "&specialization=&date=";
-            // $Date =$data[$i]['Date'];
-            $special = $data[$i]['Specialization'] ?? "Heart specialist";
-            echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:69rem;margin-left:1rem'>
+        <?php
+        for ($i = 0; $i < sizeof($data); $i++) {
+          $image = $data[$i]['image'] ?? "http://localhost/gomez/public/resources/doctor1.png'";
+          $name = $data[$i]['fullname'];
+          // $Date =$data[$i]['Date'];
+          $special = $data[$i]['Specialization'] ?? "Heart specialist";
+          echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
              <div style='display: flex;flex-direction: row;'>
                  <div style='width: 20%;'><img src='" . $image . " style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
                  <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
@@ -85,19 +85,20 @@
                  
                   <div style='width: 27%;'>
                   
-                     <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 27rem;border-radius: 0.5rem;box-shadow:none'>
-                         <a href=" . $url . " style='text-decoration: none;'>
+                     <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 17rem;border-radius: 0.5rem;box-shadow:none'>
+                         <a href=" . URLROOT . '/' . $_SESSION['userType'] . "/appointments/make/ShowDoc/bookappo?doctor=" . $data[$i]['Username'] . "&Date=" . "&specialization=" . $special . " style='text-decoration: none;'>
                              <font class='font1'>Channel</font>
                          </a>
                      </div>
                  </div></div></div><br>";
-          }
-          ?>
-        </div>
+        }
+        ?>
       </div>
 
-
     </ul>
+
+    </div>
+
     </div>
   </article>
 </body>

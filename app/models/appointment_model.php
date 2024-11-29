@@ -5,6 +5,17 @@ use LDAP\Result;
 class appointmentModel extends Database
 {
 
+    public function getAppoinmentOneDoctorOneSession($doctor = Null, $sessionId = Null)
+    {
+
+        $where = "session.session_id = " . $sessionId;
+        $doctor = "user_db.Username = \"" . $doctor . "\"";
+        $this->setTable(Appointment);
+        $result = $this->fetchAppointmentbydoctor($where, $doctor);
+
+
+        return $result;
+    }
     public function getAppoinmentbyPatient($doctor = Null)
     {
         if (empty($doctor)) {
