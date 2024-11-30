@@ -93,6 +93,7 @@ class patient extends Controller
             $this->model('appointment_model');
             $this->appointmodel = new appointmentModel();
             $result = $this->appointmodel->getAppoinmentbyPatient();
+            $checkappointment = $result;
             if ($ShowDoc == null && (isset($_GET['doctor']) || isset($_GET['Date']))) {
                 if ($_GET['doctor'] != NULL && $_GET['Date'] == NULL) {
                     $result = $this->appointmodel->getAppoinmentbyPatient($_GET['doctor']);
@@ -130,8 +131,16 @@ class patient extends Controller
                 if ($prescription) {
                     $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
                 }
-                $this->view('patient/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
+                $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
                 $this->view('patient/sidebar');
+                exit();
+            }
+            if ($make == 'making') {
+                $appointment['session_id'] = $_GET['id'];
+                $appointment['Patient_Id'] =  $_SESSION['User_Id'];
+                $this->appointmodel->setTable('appointment');
+                $this->appointmodel->insertData($appointment);
+                header("location:" . URLROOT . "/Patient/appointments");
                 exit();
             }
             if ($make == 'make') {
@@ -173,7 +182,7 @@ class patient extends Controller
 
                                 $result2 = $this->appointmodel->checkSessionbyDoctor($result[0]['Doctor_id']);
                                 // print_r([0=>$result,1=>$result2]);
-                                $this->view('patient/bookdoc_view_registered', [0 => $result, 1 => $result2]);
+                                $this->view('patient/bookdoc_view_registered', [0 => $result, 1 => $result2, 2 => $checkappointment]);
                             }
                             if (isset($_POST['create']) && isset($_POST['Date'])) {
                                 $data['date'] = $_POST['Date'];
@@ -197,8 +206,6 @@ class patient extends Controller
                             }
 
                             exit();
-
-                            $this->view('patient/bookdoc_view_registered');
                         }
                     } else {
                         // print_r(sizeof($result));

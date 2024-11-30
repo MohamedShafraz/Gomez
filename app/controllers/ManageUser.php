@@ -103,44 +103,7 @@ class manageuser extends Controller
         // $patientDetails  = $patientModel->getUserDetails();
         $this->getUserPage($id, $patientModel, "patient");
     }
-    // public function checkPatientUserName()
-    // {
-    //     // $username = $_POST;
-    //     $json = file_get_contents('php://input');
 
-    //     // Decode the JSON data into an associative array
-    //     $data = json_decode($json, true);
-    //     $username = $data['username'] ?? '';
-
-    //     // Load the patient model based on the user type in session
-    //     $this->model($_SESSION['userType'] . "/patient_model");
-    //     $patientModel = new PatientModel();
-    //     $patientModel->setTable(User); // Fix the argument to 'User' as a string
-
-    //     // // Fetch all users with user type 'Patient'
-    //     $UsersList = $patientModel->fetchData("`usertype` = 'Patient'");
-
-    //     // // Extract usernames from the result
-    //     $UsersListdata = [];
-    //     foreach ($UsersList as $user) {
-    //         array_push($UsersListdata, $user["Username"]);
-    //     }
-
-    //     // // Get the username from the POST request (sent by fetch)
-    //     // $json = file_get_contents('php://input'); // Fetch the raw POST data
-    //     // $data = json_decode($json, true); // Decode the JSON input
-    //     // $username = $data['username'] ?? ""; // Extract the 'username' field
-    //     // print_r($username);
-    //     // // Check if the username exists in the fetched user data
-    //     if (in_array($username, $UsersListdata)) {
-    //         // Return a JSON response indicating that the username exists
-    //         echo json_encode(['exists' => true]);
-    //     } else {
-    //         // Return a JSON response indicating that the username does not exist
-    //         echo json_encode(['exists' => false]);
-    //     }
-    //     exit();
-    // }
     public function checkPatientUserName()
     {
         // $username = $_POST;

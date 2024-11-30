@@ -139,8 +139,9 @@ class Database
                 $id =  'ID';
                 break;
         }
+        // print_r($where);
         $query = "SELECT * FROM doctors JOIN user_db ON user_db.User_Id = $this->table.$id JOIN `session` ON session.Doctor_id = $this->table.$id WHERE " . $where . " AND " . $data;
-
+        // print_r($query);
         $result = $this->executeQuery($query);
         $data = [];
         $i = 0;

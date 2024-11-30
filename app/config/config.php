@@ -28,6 +28,7 @@ define('Medicine', 'medicine_data');
 
 define('Labtest', 'labtests');
 
+
 define('Report', 'report');
 
 define('Receptionists', 'receptionist');
