@@ -28,7 +28,7 @@ define('Medicine','medicine_data');
 
 define('Test_data','test_data');
 
-define('Labtest','testing');
+define('Labtest','labtests');
 
 define('Report','report');
 

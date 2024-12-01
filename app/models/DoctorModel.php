@@ -203,6 +203,12 @@ class DoctorModel extends Database
         return $result;
     }
 
+    public function getSessionsbyId($id){
+        $this->setTable(Session);
+        $result = $this->fetchData("session_id = '$id'");
+        return $result;
+    }
+
   // public function getPatientbyappointment($userid)
  // {
   //  $where = "ID =''"; // 
