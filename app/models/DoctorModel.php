@@ -3,29 +3,29 @@
 class DoctorModel extends Database
 {
 
-    public function getDoctor($userid): array
+    public function getDoctor($userid)
     {
         $where = "Doctor_id ='$userid'";
-        $this->setTable(table: Doctors);
-        $result = $this->fetchData(where: $where);
+        $this->setTable(Doctors);
+        $result = $this->fetchData($where);
 
         return $result;
     }
 
-    public function getSessions($id): array
+    public function getSessions($id)
     {
         $where = "doctor_id='$id'";
-        $this->setTable(table: Session);
-        $result = $this->fetchData(where: $where);
+        $this->setTable(Session);
+        $result = $this->fetchData($where);
 
         return $result;
     }
 
-    public function getSessionsToday($id): array
+    public function getSessionsToday($id)
     {
         $where = "date = CURDATE() AND Doctor_id='$id'";
-        $this->setTable(table: Session);
-        $result = $this->fetchData(where: $where);
+        $this->setTable(Session);
+        $result = $this->fetchData($where);
 
         return $result;
     }
@@ -38,27 +38,27 @@ class DoctorModel extends Database
         return $result;
     }
 
-    public function getPatientbyPatiend($id): array
+    public function getPatientbyPatiend($id)
     {
         $where = "ID='$id'";
-        $this->setTable(table: Patients);
-        $result = $this->fetchData(where: $where);
+        $this->setTable(Patients);
+        $result = $this->fetchData($where);
         return $result;
     }
 
 
-    public function getPatient($id): array
+    public function getPatient($id)
     {
         $where = "ID='$id'";
-        $this->setTable(table: Patients);
-        $result = $this->fetchData(where: $where);
+        $this->setTable(Patients);
+        $result = $this->fetchData($where);
         return $result;
     }
 
-    public function addPrescription($data): bool|mysqli_result|string
+    public function addPrescription($data)
     {
-        $this->setTable(table: Prescription);
-        $result = $this->insertData(data: $data);
+        $this->setTable(Prescription);
+        $result = $this->insertData($data);
         return $result;
     }
 
@@ -66,60 +66,60 @@ class DoctorModel extends Database
     public function getAppoinmentbyID($id)
     {
         $where = "Appointment_Id='$id'";
-        $this->setTable(table: Appointment);
-        $result = $this->fetchData(where: $where);
+        $this->setTable(Appointment);
+        $result = $this->fetchData($where);
         return $result;
     }
 
-    public function getPrescriptionbyID($id): array
+    public function getPrescriptionbyID($id)
     {
         $where = "prescriptionnumber='$id'";
-        $this->setTable(table: Prescription);
-        $result = $this->fetchData(where: $where);
+        $this->setTable(Prescription);
+        $result = $this->fetchData($where);
         return $result;
     }
 
 
-    public function getPrescriptionbyAppointment($id): array
+    public function getPrescriptionbyAppointment($id)
     {
         $where = "Appointment_Id='$id'";
-        $this->setTable(table: Prescription);
-        $result = $this->fetchData(where: $where);
+        $this->setTable(Prescription);
+        $result = $this->fetchData($where);
         return $result;
     }
 
 
-    public function updateprescription($id, $data): bool|mysqli_result|string
+    public function updateprescription($id, $data)
     {
         $query = "UPDATE Prescription SET otherremarks='$data[otherremarks]' WHERE prescriptionnumber='$id'";
-        $result = $this->executeQuery(query: $query);
+        $result = $this->executeQuery($query);
         return $result;
     }
 
-    public function updatedoctor($id, $data): bool|mysqli_result|string
+    public function updatedoctor($id, $data)
     {
         $query = "UPDATE Doctors SET fullname='$data[fullname]', email='$data[email]', phonenumber='$data[phonenumber]',Username='$data[Username]' WHERE doctor_id='$id'";
-        $result = $this->executeQuery(query: $query);
+        $result = $this->executeQuery($query);
         return $result;
     }
 
-    public function updatedoctorinuser($id, $data): bool|mysqli_result|string
+    public function updatedoctorinuser($id, $data)
     {
         $query = "UPDATE user_db SET Username='$data[Username]',Email='$data[email]' WHERE User_Id='$id'";
-        $result = $this->executeQuery(query: $query);
+        $result = $this->executeQuery($query);
         return $result;
     }
 
-    public function getUserData($id): array
+    public function getUserData($id)
     {
         $where = "User_Id='$id'";
-        $this->setTable(table: User);
-        $result = $this->fetchData(where: $where);
+        $this->setTable(User);
+        $result = $this->fetchData($where);
         return $result;
     }
 
 
-    public function deactivateAccount($username): bool|mysqli_result|string
+    public function deactivateAccount($username)
     {
         $query = "UPDATE Doctors SET 'Status'='Inactive' WHERE 	Username='$username'";
         $result = $this->executeQuery($query);
@@ -127,7 +127,7 @@ class DoctorModel extends Database
     }
 
 
-    public function addMedicine($data): bool|mysqli_result|string
+    public function addMedicine($data)
     {
         $this->setTable(Medicine);
         $result = $this->insertData($data);
@@ -136,20 +136,27 @@ class DoctorModel extends Database
 
     public function addDisese($data): bool|mysqli_result|string
     {
-        $this->setTable(table: Disease);
+        $this->setTable(Disease);
+        $result = $this->insertData($data);
+        return $result;
+    }
+
+    public function addTest($data): bool|mysqli_result|string
+    {
+        $this->setTable(table:Test_data);
         $result = $this->insertData(data: $data);
         return $result;
     }
 
     public function getMedicinebyUniqeid($unique_id): array{
         $where = "unique_id='$unique_id'";
-        $this->setTable(table: Medicine);
-        $result = $this->fetchData(where: $where);
+        $this->setTable(Medicine);
+        $result = $this->fetchData($where);
         return $result;
         
     }
 
-    public function updateUserDetails($details=null, $filecontent=null): bool|mysqli_result|string
+    public function updateUserDetails($details=null, $filecontent=null)
     {
         $where = "Doctor_id = " . $_SESSION['User_Id'];
         $this->setTable(Doctors);
@@ -160,7 +167,7 @@ class DoctorModel extends Database
         $users['gender'] = $_POST['gender'];
         $users['age'] = $_POST['age'];
         $picture["profilepicture"] = $details;
-        $data = $this->updateData(data: $users, condition: $where);
+        $data = $this->updateData($users, $where);
         
        // $this->setTable('user_db');
       //  $where1 = "User_Id = " . $_SESSION['User_Id'];
@@ -172,27 +179,27 @@ class DoctorModel extends Database
         return $data;
     }
 
-    public function getLabtest(): array{
-        $this->setTable(table: Labtest);
-        $result = $this->fetchData(where: "test_id != ''");
+    public function getLabtest(){
+        $this->setTable(Labtest);
+        $result = $this->fetchData("test_id != ''");
         return $result;
     }
 
-    public function getDrugs(): array{
-        $this->setTable(table: Drug);
-        $result = $this->fetchData(where: "id != ''");
+    public function getDrugs(){
+        $this->setTable(Drug);
+        $result = $this->fetchData("id != ''");
         return $result;
     }
 
-    public function getDisease(): array{
-        $this->setTable(table: Disease);
-        $result = $this->fetchData(where: "diseaseid  != ''");
+    public function getDisease(){
+        $this->setTable(Disease);
+        $result = $this->fetchData("diseaseid  != ''");
         return $result;
     }
 
-    public function findDisease($disease): array{
-        $this->setTable(table: Disease);
-        $result = $this->fetchData(where: "disease = '$disease'");
+    public function findDisease($disease){
+        $this->setTable(Disease);
+        $result = $this->fetchData("disease = '$disease'");
         return $result;
     }
 

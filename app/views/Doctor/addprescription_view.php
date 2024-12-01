@@ -145,14 +145,14 @@
             </div>
 
             <label for="prescription">Instructions</label>
-            <textarea id="prescription" name="prescription" rows="4" cols="50"></textarea>
+            <textarea id="prescription" name="prescription" rows="4" cols="50" required></textarea>
 
             <label for="labtesting">Lab Testing</label>
             <table id="selectedValuesTable"></table>
             <div class="input-group">
                 <select id="labtestinglist" name="labtesting">
                     <?php foreach ($labtests as $test) : ?>
-                    <option value="<?php echo $test['test']; ?>"><?php echo $test['test']; ?></option>
+                    <option value="<?php echo $test['testName']; ?>"><?php echo $test['testName']; ?></option>
                     <?php endforeach; ?>
                     <option value="custom">Enter custom Labtest</option>
                 </select>
@@ -164,7 +164,7 @@
             <label for="otherremarks">Other Remarks</label>
             <textarea id="otherremarks" name="otherremarks" rows="4" cols="50"></textarea>
 
-            <input type="hidden" id="labtesting" name="labtesting" value="">
+            <input type="hidden" id="labtesting" name="labtesting" value="" >
             <input type="hidden" id="priscription_date" name="priscription_date" value="<?= date('Y-m-d'); ?>">
             <br></br>
             <input type="submit" value="Submit">
@@ -237,7 +237,7 @@
             var selectedValuesTable = document.getElementById("selectedValuesTable");
             var newRow = selectedValuesTable.insertRow();
             var cell1 = newRow.insertCell(0);
-            var cell2 = newRow.insertCell(1);
+           // var cell2 = newRow.insertCell(1);
 
             cell1.textContent = selectedText;
 
