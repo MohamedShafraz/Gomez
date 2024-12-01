@@ -24,17 +24,21 @@ define('Appointment', 'appointment'); //
 //Prescription Table
 define('Prescription', 'prescription'); //
 
-define('Medicine', 'medicine_data');
+define('Medicine','medicine_data');
 
-define('Labtest', 'labtests');
+define('Test_data','test_data');
 
+define('Labtest','labtests');
 
-define('Report', 'report');
+define('Report','report');
 
-define('Receptionists', 'receptionist');
+define('Test_Data','test_data');
 
-define('Session', 'session');
+define('Receptionists','receptionist');
 
-define('Drug', 'medicines');
+define('Session','session');
 
-define('Disease', 'disease');
+define('Drug','medicines');
+
+define('Disease','disease');
+

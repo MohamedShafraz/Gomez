@@ -136,12 +136,14 @@
             <div class="input-group">
                 <select id="disease" name="disease">
                     <?php foreach ($diseases as $disease) : ?>
-                    <option value="<?php echo $disease['disease']; ?>"><?php echo $disease['disease']; ?></option>
+                        <option value="<?= htmlspecialchars($disease['disease'], ENT_QUOTES, 'UTF-8') ?>">
+                            <?= htmlspecialchars($disease['disease'], ENT_QUOTES, 'UTF-8') ?>
+                        </option>
                     <?php endforeach; ?>
                     <option value="custom">Enter custom Disease</option>
                 </select>
-                <input type="text" id="customDisease" style="display: none;" name="disease" placeholder="Enter Disease Name" class="hidden" />
-                <button type="button" id="customDiseaseClose" class="hidden">X</button>
+                <input type="text" id="customDisease" name="customDisease" style="display: none;" placeholder="Enter Disease Name" />
+                <button type="button" id="customDiseaseClose" style="display: none;">X</button>
             </div>
 
             <label for="prescription">Instructions</label>
