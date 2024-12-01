@@ -9,7 +9,7 @@ class dashboard extends Controller
         session_start();
         if (isset($_SESSION["userType"])) {
             // Load the DashboardModel
-            $this->model('dashboard_model');
+            $this->model($_SESSION["userType"] . '/dashboard_model');
             $dashboardModel = new DashboardModel();
             // Call the method from the DashboardModel
             $users = $dashboardModel->getUserCounts();

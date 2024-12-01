@@ -41,3 +41,4 @@ define('Session','session');
 define('Drug','medicines');
 
 define('Disease','disease');
+

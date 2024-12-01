@@ -18,7 +18,7 @@
 
     <header class="header">
         <nav class="navbar">
-            <img src="<?= URLROOT . "/resources/user.png" ?>" class="profilepic">
+            <img src="<?= 'data:image/png;base64,' . base64_encode($_SESSION["USER"]["profilepicture"]) ?>" class="profilepic">
             <a href="<?= URLROOT . '/logout' ?>">
                 <div class="selected">
                     <font class="GMfont" style="font-family: 'inter';" onclick="windows.location.href = 'location:logout'"> Hello, Shaf</font>
@@ -27,4 +27,4 @@
         </nav>
     </header>
     <?php include APPROOT . '/views/Admin/sidebar.php' ?>
-    <article>
+    <article></article>

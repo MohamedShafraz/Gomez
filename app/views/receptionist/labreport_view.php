@@ -1,151 +1,164 @@
-<?php
+<?php require_once(APPROOT . "/views/receptionist/navbar_view.php"); ?>
+<!DOCTYPE html>
+<html lang="en">
 
-?>
-<link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
-<link rel="stylesheet" href="<?=URLROOT?>/css/Admin/dashboard.css">
-<link rel="stylesheet" href="<?=URLROOT?>/css/patient/appointments.css">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./home - Copy_files/GMZ.css">
+    <link href='https://fonts.googleapis.com/css?family=Inter' rel='stylesheet'>
+    <link rel="stylesheet" href="<?= URLROOT ?>/css/patient/dashboard.css">
+    <link rel="stylesheet" href="<?= URLROOT ?>/css/new.css">
+    <link rel="stylesheet" href="<?= URLROOT ?>/css/Admin/manageuser.css">
+    <style>
+        .heading {
+            position: fixed;
+            padding: 0% 8.0% 0% 9%;
+            margin-top: 0.7%;
+            width: 70%;
+            margin-left: 27.6%;
+            padding: 8px 10px;
+            border-radius: 9px;
+            color: var(--Gomez-Blue);
+            font-family: inter;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(13rem, 0fr));
+            gap: 1.5rem;
+            display: flex;
+            flex-direction: row;
+            align-content: center;
+            gap: 85px;
+            font-size: large;
+            /* width: 795px; */
+            background-color: beige;
+            width: 679px;
+            padding: 0% 7.9% 0% 9.1%;
+            line-height: 7vh;
+            border-radius: 8px;
+        }
 
-<link rel="stylesheet" href="<?=URLROOT?>/css/new.css">
-<style>
-    .buttonspace{
-    display: flex;
-    justify-content: end;
-    font-size: 30px;
-    grid-template-columns: repeat(auto-fit, minmax(1rem, 0.3fr));
-    gap: 1rem;
-}
-.popup{
-    height: 10vh;
-    background-color: white;
-    color:black;
-    width: 50%;
-    align-items: center;
-    gap: 1rem;
-    position: fixed;
-    padding: 5%;
-    z-index: 5;
-}
-.button{
-    height: 31px;
-  flex-direction: column;
-  justify-content: center;
-  flex-shrink: 0;
-  color: #FFF;
-  font-family: 'inter-bold';
-  font-size: 10px;
-  font-style: normal;
-  font-weight: 700;
-  line-height: normal;
-  padding: 10px;
-  background-color: var(--Gomez-Purple);
-  border-style: hidden;
-  border-radius: 6px;
-}
-</style>
+        .action-buttons button {
+            margin-left: 60px;
+            /* Adjust the margin between buttons */
+            padding: 5px 10px;
+            /* Adjust button padding */
+            background-color: var(--Gomez-Blue);
+            /* Green background */
+            color: white;
+            /* White text */
+            border: none;
+            /* No border */
+            border-radius: 4px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Cursor on hover */
+        }
 
-<!-- background-color:#E9F3FD -->
-<body style="background-image:linear-gradient(90deg,white,#E9F3FD)">
-<?php include APPROOT.'/views/patient/navbar_view.php'?>
+        .action-buttons {
+            padding: 17%;
+        }
 
-<div class="popup" style="margin-top:9%;margin-right:29%;margin-left:29%;display:none">
-    Are you sure you want to deactivate your account<br>
-    <br><div class="buttonspace" style="justify-content:center"><button class="button" style="background-color:red;padding-left: 5%;
-  padding-right: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;" id ="yes">yes</button><br><button id="no" class="button" style="background-color:green;padding-right: 5%;padding-left: 5%;
-  padding-top: 2%;
-  padding-bottom: 4%;">no</button></div>
+        .action-button1 button {
+            margin-left: 1000px;
+            /* Adjust the margin between buttons */
+            padding: 5px 10px;
+            /* Adjust button padding */
+            background-color: var(--Gomez-Blue);
+            /* Green background */
+            color: white;
+            /* White text */
+            border: none;
+            /* No border */
+            border-radius: 4px;
+            /* Rounded corners */
+            cursor: pointer;
+            /* Cursor on hover */
+
+            display: flex;
+            justify-content: flex-end;
+            /* Align buttons to the right */
+            margin-top: 60px;
+
+        }
+    </style>
+    <article>
+
+        <center>
+
+</head>
+
+<div class="complainttext" style="width: 65%;">Lab Receipts</div>
+<div class="complaintheader" style="
+    width: 350px;margin-bottom: 0.4%;
+">
+    <a>Ref_No</a>
+    <a>patientName</a>
+    <a>Test_Name</a>
+    <a>Contact_No</a>
+    <a>Actions</a>
 </div>
-<article class="dashboard">
-    
-    <!-- <a>Welcome to Gomez</a> -->
-    
-    <ul style="background-color: white;padding:5%;width: 64%;height:61%; ">
-    <div class="d" style="margin-left: 10%;">
-        <a class="search">
-           <b> Doctor: </b>
-            <input type="text" placeholder="Search.." name="search" class="searchbox">
-        </a><br>
-        <a class="search">
-           <b> Date: </b>
-            <input type="text" placeholder="Search.." name="search" class="searchbox">
-        </a>
-        <br>
-        <table class="complainttable" style="margin-left: -11%; width: 111%;">
+<table class="complainttable" style="height: 30vh;margin-left: 30.4%;">
+    <tbody class="complaint">
 
+        <?php foreach ($data as $row) : ?>
+            <?php
+            // Filter logic based on search inputs
+            $refno = isset($_GET['search_refno']) ? $_GET['search_refno'] : '';
+            $patientName = isset($_GET['search_patientName']) ? $_GET['search_patientName'] : '';
 
-    <tbody class="complaint" style="margin-left: -33%;">
-        <tr>
-            <td style="width: 20%;">Reference Number</td>
-            <td style="width: 20%;">Category</td>
-            <td style="width: 20%;">Date</td>
-            <td style="width: 20%;">Time</td>
-            <td style="width: 20%;"> </td>
-        </tr>
-        
-        <tr style='color:white;margin: 3%;'></tr>
+            // Perform filtering
+            if ((!$refno || $row['refno'] == $efno) && (!$patientName || $row['patientName'] == $patientName)) :
+            ?>
+                <tr style='color:black;margin: 3%;'>
+                    <td style='width: 300px;'><?= $row['refno'] ?></td>
+                    <td style='width: 1500px;'><?= $row['patientName'] ?? "test" ?></td>
+                    <td style='width: 130px;'><?= $row['testname'] ?></td>
+                    <td style='width: 30px;'><?= $row['contactNo'] ?? "test" ?></td>
+                    <td style='width: 60px;'>
+                        <div class="action-buttons">
+                            <div>
+                                <button onclick="window.location.href='<?= URLROOT . '/receptionist/labreports/' . $row['refno'] ?>'">View</button>
 
-        <tr>
-            <td style='width: 20%;'>001245</td>
-            <td style='width: 20%;'>X-Ray</td>
-            <td style='width: 20%;'>18/03/2024</td>
-            <td style='width: 20%;'>08.00 AM</td>
-            <td style='width: 20%;'><a href="make_appointment.php" style="margin-left: -54%;"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">View More</button></a></td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-        <tr>
-            <td style='width: 20%;'>001356</td>
-            <td style='width: 20%;'>Blood Count</td>
-            <td style='width: 20%;'>04/04/2024</td>
-            <td style='width: 20%;'>07.00 PM</td>
-            <td style='width: 20%;'><a href="make_appointment.php" style="margin-left: -54%;"><button class="button" style="font-size: initial;height: max-content;width: max-content;margin-left: 81%;">View More</button></a></td>
-        </tr>
-        <tr style='color:white;margin: 3%;'></tr>
-    </tbody>
+                                </ul>
+                            </div>
 
+                        </div>
+                        </div>
+                    </td>
+                </tr>
+            <?php endif; ?>
+        <?php endforeach; ?>
 </table>
-    </div></div>
-    <!--
-         Your JavaScript Code -->
-    <script>
-        // Sample Data: Replace this with your actual appointment data
-        const appointmentsData = [5, 8, 12, 6, 10, 15, 7];
+<div class="action-button1">
 
-        // Get the chart container element
-        const chartContainer = document.getElementById('chartContainer');
+    <button onclick="window.location.href='<?= URLROOT . '/receptionist/labreceipt/' . $row['refno'] ?>'">Create Lab receipt</button>
 
-        // Create bars based on the data
-        appointmentsData.forEach((count, index) => {
-            const bar = document.createElement('div');
-            bar.className = 'bar';
-            bar.style.height = `${count * 10}px`; // Adjust the scaling factor as needed
-            chartContainer.appendChild(bar);
-        });
-    </script>
-    </ul>
+
 </div>
+<div id="uploadpdf" style="display:none;margin-left:20%; justify-content:center;background-color:white;padding:6% 4;">
+    <form id="uploadForm<?= $row['refno'] ?>" action="<?= URLROOT ?>/LabAssistant/uploadReport" method="post" enctype="multipart/form-data">
+        <input type="file" name="file" style="" accept=".pdf" onchange="document.getElementById('uploadForm<?= $row['refno'] ?>').submit()">
+        <input type="hidden" name="refno" value="<?= $row['refno'] ?>">
+        <button onclick="document.getElementById('uploadInput<?= $row['refno'] ?>').click()">Upload</button>
+    </form>
+
+
+
+
+
+</div>
+
+
+</center>
 </article>
 </body>
-<script src="<?=URLROOT?>./javascript/dashboard.js"></script>
+<script src="<?= URLROOT ?>./javascript/dashboard.js"></script>
 <script>
-    function select2()
-{if(document.getElementsByClassName("navbar")[0].style.display=="none"){
-    document.getElementsByClassName("navbar")[0].style.display="flex";
-}
-else{
-    document.getElementsByClassName("navbar")[0].style.display="none";
-}
-}
-document.getElementById("deactivate").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="block";
-            document.getElementsByClassName("dashboard")[0].style.filter = "blur(3px)";
-        };
-        document.getElementById("no").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="none";
-            document.getElementsByClassName("dashboard")[0].style.filter = "";
-        }
-        document.getElementById("yes").onclick = function () {
-            document.getElementsByClassName("popup")[0].style.display="none";
-            document.getElementsByClassName("dashboard")[0].style.filter = "";
-        }   
+    var $URLROOT = '<?= URLROOT ?>';
+</script>;
+<script>
+    var $usertype = '<?= $_SESSION['userType'] ?>'
 </script>
+<script src="<?= URLROOT ?>/javascript/dashboard.js"></script>
+
+</html>

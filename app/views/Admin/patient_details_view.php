@@ -57,40 +57,54 @@
 
 <div class="lay" style="
     position: fixed;
-    margin: 1% 0% 0% 31%;z-index:100
+    margin: 1% 0% 0% 31%;z-index:100;
+    padding-bottom: 6%;
 " id='popup1'>
     <h1>Update Profile</h1>
+    <script>
+        data = []
+    </script>
     <ul>
-        <li class="users">
-            <label for="fullname">Full Name :</label><br><input id='fullname' name='fullname' value='<?= $data['userName'] ?>'><br><br>
-        </li>
-        <li class="users">
-            <label for="gender">Gender :</label><br><input id='gender' name='gender' value='<?= $data['gender'] ?>'><br><br>
-        </li>
-        <li class="users">
-            <label for="age">Age :</label><br><input id='age' name='age' value='<?= $data['age'] ?>'><br><br>
-        </li>
-        <li class="users">
-            <label for="phonenumber">Phone number :</label><br><input id='phonenumber' name='phonenumber' value='<?= $data['phonenumber'] ?>'><br><br>
-        </li>
-        <li class="users">
-            <label for="email">Email :</label><br><input id='email' name='email' value='<?= $data['email'] ?>'><br><br>
-        </li>
+
+        <?php
+        $keyId = $data['id'];
+        echo " <form action='../updatePatientDetails/id= " . $keyId
+            . "' method='post'>";
+        foreach ($data as $key => $value) {
+            if ($key == 'id' || $key == 'type') {
+                continue;
+            };
+            echo "
+            <li class='users'><label for=$key>$key :</label><br><input id=$key name=$key value=$value><br><br></li>";
+        }
+        echo "<div style='display:flex;flex-direction:row;gap:10px'><button onclick='back()' style='padding: 9px 22px;' class='button' id='back'>Back</button>
+        <input type='submit' style='padding: 9px 22px;' class='button' id='update' value='Update'></div></form>";
+
+        ?>
     </ul>
-    <button onclick="m('popup1')" style="float:center" class="logbutton1" id='update'>Update</button>
+    <div style="flex-direction: row;
+  display: flex;
+  gap: 4rem;
+">
+
+    </div>
 </div>
 <article class="dashboard">
 
     <!-- <a>Welcome to Gomez</a> -->
     <ul style="background-color: white;padding:5%; width:50%">
         <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div>
-        <li class="users">Full Name : <?= $data['userName'] ?><br><br></li>
-        <li class="users">Gender : <?= $data['gender'] ?><br><br></li>
-        <li class="users">Age : <?= $data['age'] ?><br><br></li>
-        <li class="users">Phone number : 0<?= $data['phonenumber'] ?><br><br></li>
-        <li class="users">Email : <?= $data['email'] ?><br><br></li>
 
-        <div style="display:flex;gap:10px"><button onclick="window.location.href = '<?= URLROOT . '/Admin/Manageuser/patient' ?>'" style="float:right" class="logbutton1">back</button><button onclick="f()" style="float:right" class="logbutton1">Edit</button>
+        <?php
+        foreach ($data as $key => $value) {
+            if ($key == 'id' || $key == 'type') {
+                continue;
+            }
+            echo "<li class='users'>$key:  $value <br><br></li>";
+        }
+        ?>
+        <div style="display:flex;gap:10px;float:left;padding: 9px 22px;"><button onclick="window.location.href = '<?= URLROOT . '/Admin/Manageuser/patient' ?>'" style="padding: 9px 22px;" class="button">back</button>
+            <button onclick="f()" style="padding: 9px 22px;" class="button">Edit</button>
 
         </div>
 
@@ -111,8 +125,16 @@
         document.getElementsByClassName('dashboard')[0].style.filter = 'blur(4px)';
     }
 
+    function back() {
+        window.location.href = window.location.href.split('#')[0];
+        document.getElementById('popup1').style.visibility = 'none';
+        document.getElementsByClassName('dashboard')[0].style.filter = '';
+    }
+
+
     function m($id) {
-        window.location.href = './id=7';
+        const url = window.location.href.split('#')[0];
+        window.location.href = '../updatePatientDetails/id=' + url.split('=')[1];
         document.getElementById($id.toString()).style.visibility = 'hidden';
     }
     if (window.location.href.split('#').length != 2 && window.location.href.split('=').length == 2) {

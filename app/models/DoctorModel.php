@@ -134,21 +134,21 @@ class DoctorModel extends Database
         return $result;
     }
 
-    public function addDisese($data): bool|mysqli_result|string
+    public function addDisese($data)
     {
         $this->setTable(Disease);
         $result = $this->insertData($data);
         return $result;
     }
 
-    public function addTest($data): bool|mysqli_result|string
+    public function addTest($data)
     {
-        $this->setTable(table:Test_data);
-        $result = $this->insertData(data: $data);
+        $this->setTable(Test_data);
+        $result = $this->insertData($data);
         return $result;
     }
 
-    public function getMedicinebyUniqeid($unique_id): array{
+    public function getMedicinebyUniqeid($unique_id){
         $where = "unique_id='$unique_id'";
         $this->setTable(Medicine);
         $result = $this->fetchData($where);
