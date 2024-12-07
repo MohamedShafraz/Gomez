@@ -50,13 +50,18 @@
                     </div>
                     
                 </div><br><div id='appointments' style='height: 11rem;width:58rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;'>";
+            usort($data[0], function ($a, $b) {
+                return strtotime($b['date']) - strtotime($a['date']);
+            });
+            $currentDate = date('Y-m-d'); // Get the current date in 'YYYY-MM-DD' format
             for ($i = 0; $i < sizeof($data[0]); $i++) {
 
                 $date = $data[0][$i]['date'];
                 $start_time = $data[0][$i]['start_time'];
                 $end_time = $data[0][$i]['end_time'];
                 $session_id = $data[0][$i]['session_id'];
-                echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
+                if (strtotime($date) >= strtotime($currentDate)) {
+                    echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
                     <div style='display: flex;flex-direction: row;'>
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: x-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
                             $date
@@ -77,6 +82,7 @@
                     </div>
                     
                 </div><br>";
+                }
             }
             echo "</div>
 

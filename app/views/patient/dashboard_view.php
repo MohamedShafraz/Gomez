@@ -76,7 +76,7 @@
                     <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Appointments</div>
                     <div>
                         <?php
-                        $length = 2;
+                        $length = 3;
 
                         // Get the current date
                         $currentDate = date('Y-m-d');

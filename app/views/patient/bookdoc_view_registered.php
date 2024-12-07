@@ -51,6 +51,9 @@
                     </div>
                     
                 </div><br><div id='appointments' style='height: 11rem;width:58rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;'>";
+            usort($data[0], function ($a, $b) {
+                return strtotime($b['date']) - strtotime($a['date']);
+            });
             $currentDate = date('Y-m-d'); // Get the current date in 'YYYY-MM-DD' format
 
             for ($i = 0; $i < sizeof($data[0]); $i++) {

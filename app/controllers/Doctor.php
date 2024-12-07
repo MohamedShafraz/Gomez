@@ -59,6 +59,7 @@ class Doctor extends Controller
 
     public function appointments()
     {
+        $message = "";
         if (!isset($_SESSION)) {
             session_start();
         }

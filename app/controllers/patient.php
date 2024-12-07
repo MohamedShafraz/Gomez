@@ -138,10 +138,11 @@ class patient extends Controller
             if ($make == 'making') {
                 $appointment['session_id'] = $_GET['id'];
                 $appointment['Patient_Id'] =  $_SESSION['User_Id'];
+
                 $this->appointmodel->setTable('appointment');
                 $this->appointmodel->insertData($appointment);
                 $error = $this->appointmodel->printErrno();
-                if ($error = '1062') {
+                if ($error == '1062') {
                     echo "<script>
     alert(' Session Already Created');
     history.go(-1);
@@ -149,8 +150,10 @@ class patient extends Controller
                 } else {
                     echo "<script>
     alert(' Session Created');
+     history.go(-4);
 </script>";
-                    header("location:" . URLROOT . "/Patient/appointments");
+
+                    // header("location:" . URLROOT . "/Patient/appointments");
                 }
                 // header("location:" . URLROOT . "/Patient/appointments");
                 exit();
@@ -206,7 +209,7 @@ class patient extends Controller
                                 $this->appointmodel->setTable('session');
                                 $result2 = $this->appointmodel->insertData($data);
                                 $error = $this->appointmodel->printErrno();
-                                if ($error = '1062') {
+                                if ($error == '1062') {
                                     echo "<script>
                     alert(' Session Already Created');
                 </script>";
