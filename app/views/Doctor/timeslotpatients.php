@@ -76,6 +76,7 @@
                 } else {
                     echo '<td style="width: 20%; color: red;">Session Expired</td>';
                 }
+
             }
 
             echo '</tr>';

@@ -90,6 +90,7 @@
             echo '<button class="bluebutton" onclick="editprescription()" style="margin-left:24%;margin-top:2%;width:200px;background-color: blue; color: white;font-family: inter;display:none;">Edit Prescription</button>';
         }
     ?>
+
     <script>
         function editprescription() {
             window.location.href = '<?= URLROOT ?>/Doctor/EditPrescriptionView/<?= $prescription[0]["prescriptionnumber"] ?>';

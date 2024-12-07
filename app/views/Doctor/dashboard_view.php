@@ -91,6 +91,7 @@ button{
             <?php
             if (empty($nexttwosessions)) {
                 echo "<div style='text-align:center; font-size:x-large; font-weight:bold;'>No sessions today</div>";
+
             } else {
                 foreach($nexttwosessions as $session) {
                     echo "<div class='custom-div' style='align-self: center; width: 98%; background-color: #fff; height: fit-content; display: flex; flex-direction:row'>";

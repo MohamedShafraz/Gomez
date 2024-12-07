@@ -143,6 +143,7 @@
                     <option value="custom">Enter custom Disease</option>
                 </select>
                 <input type="text" id="customDisease" name="customDisease" style="display: none;" placeholder="Enter Disease Name" required />
+
                 <button type="button" id="customDiseaseClose" style="display: none;">X</button>
             </div>
 

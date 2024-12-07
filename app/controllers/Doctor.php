@@ -65,7 +65,7 @@ class Doctor extends Controller
             $this->doctorModel = new DoctorModel(new Database());
 
             $doctor = $this->doctorModel->getDoctor($user["User_Id"]);
-            $sessions = $this->doctorModel->getSessions($doctor[0]['Doctor_id']);
+            $sessions = $this->doctorModel->getSessionsToday($doctor[0]['Doctor_id']);
 
 
             $this->view('Doctor/appointment_view', ['sessions' => $sessions]);
