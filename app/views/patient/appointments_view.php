@@ -110,7 +110,14 @@
                   
                      <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
                          <a href='" . URLROOT . "/Patient/appointments/more' style='text-decoration: none;'>
-                             <font class='font1'>View Prescription</font>
+                             
+                        <button 
+                            class='font1 view-prescription-button' 
+                            data-date='$Date' 
+                            data-start-time='$start_time' 
+                            style='display: none; background-color:transparent;border:none;padding:1px'>
+                            View Prescription
+                        </button>
                          </a>
                      </div>
                  </div></div></div><br>";
@@ -124,4 +131,34 @@
 
     </article>
 </body>
-<script src="<?= URLROOT ?>./javascript/dashboard.js"></script>
+<!-- <script src="<?= URLROOT ?>./javascript/dashboard.js">
+
+</script> -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll('.view-prescription-button');
+
+        const checkAvailability = () => {
+            const currentDateTime = new Date();
+
+            buttons.forEach(button => {
+                const appointmentDate = button.getAttribute('data-date');
+                const appointmentStartTime = button.getAttribute('data-start-time');
+
+                if (appointmentDate && appointmentStartTime) {
+                    const [year, month, day] = appointmentDate.split('-').map(Number);
+                    const [hours, minutes] = appointmentStartTime.split(':').map(Number);
+
+                    const appointmentDateTime = new Date(year, month - 1, day, hours, minutes, 0);
+
+                    if (currentDateTime >= appointmentDateTime) {
+                        button.style.display = "block";
+                    }
+                }
+            });
+        };
+
+        checkAvailability();
+        setInterval(checkAvailability, 60000); // Recheck every minute
+    });
+</script>

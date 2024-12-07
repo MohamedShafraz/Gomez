@@ -27,7 +27,7 @@
                     <font class="GMfont" style="font-family: 'inter';" onclick="windows.location.href = 'location:logout'"> Hello, <?= $_SESSION['uname'] ?></font>
                 </div>
                 <script>
-                    console.log(<?= $_SESSION["USER"] ?>);
+
                 </script>
             </a>
         </nav>

@@ -140,7 +140,19 @@ class patient extends Controller
                 $appointment['Patient_Id'] =  $_SESSION['User_Id'];
                 $this->appointmodel->setTable('appointment');
                 $this->appointmodel->insertData($appointment);
-                header("location:" . URLROOT . "/Patient/appointments");
+                $error = $this->appointmodel->printErrno();
+                if ($error = '1062') {
+                    echo "<script>
+    alert(' Session Already Created');
+    history.go(-1);
+</script>";
+                } else {
+                    echo "<script>
+    alert(' Session Created');
+</script>";
+                    header("location:" . URLROOT . "/Patient/appointments");
+                }
+                // header("location:" . URLROOT . "/Patient/appointments");
                 exit();
             }
             if ($make == 'make') {
