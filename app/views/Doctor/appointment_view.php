@@ -68,13 +68,16 @@ button{
 <article class="dashboard">
 <ul style="height: 26rem;background-color: white;padding: 5%;width: 60rem ; margin-top:2%">
                         
-                        <div style="display:flex ;width: 71.5rem;background-color: darkgray;margin-top: -4.7rem;height: 25rem;flex-direction: column;    margin-left: -4.8rem;">
+                        <div style="display:flex ;width: 70rem;background-color: darkgray;margin-top: -4.7rem;height: 25rem;flex-direction: column;    margin-left: -4.8rem;">
                             <div><br></div>
                             
                                 <div><br></div>
 
                                 <?php
-                                                        
+                                                 
+                                        if (empty($sessions)) {
+                                            echo "<div style='display: flex; flex-direction:row;'><div style='margin-left: 10rem;'><h1>No Sessions Available</h1></div></div>";
+                                        } else {
                                         foreach($sessions as $session) {
                                           echo "<div class='custom-div' style='align-self: center;width: 98%;background-color: #fff;height: fit-content;display: flex; flex-direction:row'>";
                                           echo "<div style='display: flex; flex-direction:row'>";
@@ -87,7 +90,7 @@ button{
                                           echo "</div></div></div>";
                                           echo "<br>";
                                       }
-                                        
+                                    }
                                 ?>
 
                                

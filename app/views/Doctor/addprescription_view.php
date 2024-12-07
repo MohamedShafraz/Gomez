@@ -126,7 +126,7 @@
 </style>
 
 
-<article class="dashboard">
+<article class="dashboard" style="font-family: inter;">
     <div>
         <form id="labForm" class="card" onsubmit="return submitForm()" action="<?= URLROOT . '/Doctor/AddPrescription' ?>" method="post">
             <input type="hidden" name="Appointment_Id" value="<?php echo $appointment[0]['Appointment_Id'] ?>">
@@ -142,7 +142,7 @@
                     <?php endforeach; ?>
                     <option value="custom">Enter custom Disease</option>
                 </select>
-                <input type="text" id="customDisease" name="customDisease" style="display: none;" placeholder="Enter Disease Name" />
+                <input type="text" id="customDisease" name="customDisease" style="display: none;" placeholder="Enter Disease Name" required />
                 <button type="button" id="customDiseaseClose" style="display: none;">X</button>
             </div>
 
