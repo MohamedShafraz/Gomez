@@ -14,7 +14,7 @@ class DoctorModel extends Database
 
     public function getSessions($id)
     {
-        $where = "doctor_id='$id' AND date = CURDATE() AND start_time <= CURTIME() ORDER BY date ASC, start_time ASC";
+        $where = "doctor_id='$id'";
         $this->setTable(Session);
         $result = $this->fetchData($where);
 
@@ -141,6 +141,13 @@ class DoctorModel extends Database
         return $result;
     }
 
+    public function addTest($data)
+    {
+        $this->setTable(Test_data);
+        $result = $this->insertData($data);
+        return $result;
+    }
+
     public function getMedicinebyUniqeid($unique_id){
         $where = "unique_id='$unique_id'";
         $this->setTable(Medicine);
@@ -153,6 +160,7 @@ class DoctorModel extends Database
     {
         $where = "Doctor_id = " . $_SESSION['User_Id'];
         $this->setTable(Doctors);
+
         $users['fullname'] = $_POST["Fullname"];
         $users['phonenumber'] = $_POST['phonenumber'];
         // $users['NIC'] = $_POST['NIC'];
@@ -195,7 +203,7 @@ class DoctorModel extends Database
         return $result;
     }
 
-    public function getSessionbyID($id){
+    public function getSessionsbyId($id){
         $this->setTable(Session);
         $result = $this->fetchData("session_id = '$id'");
         return $result;

@@ -20,5 +20,7 @@
                 
             </a>
         </nav>
-        <?php include APPROOT.'/views/Doctor/sidebar.php'?>
     </header>
+    <?php include APPROOT . '/views/Admin/sidebar.php' ?>
+    <article>
+

@@ -29,6 +29,7 @@
             </form>
             <br>
             <?php
+
             $name = $data[0][0]['fullname'];
             $name = $data[0][0]['Username'];
             $specialization = $data[0][0]['Specialization'];
@@ -51,7 +52,7 @@
                     
                 </div><br><div id='appointments' style='height: 11rem;width:58rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;'>";
             for ($i = 0; $i < sizeof($data[0]); $i++) {
-
+                $sessionId = $data[0][$i]['session_id'];
                 $date = $data[0][$i]['date'];
                 $start_time = $data[0][$i]['start_time'];
                 $end_time = $data[0][$i]['end_time'];
@@ -68,7 +69,7 @@
                         <div style='width: 27%;'>
 
                             <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 0.3rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
-                                <a href='" . URLROOT . "/patient/appointments/making' style='text-decoration: none;'>
+                                <a href='" . URLROOT . "/patient/appointments/making?id=" . $sessionId . "' style='text-decoration: none;'>
                                     <font class='font1'>Make</font>
                                 </a>
                             </div>

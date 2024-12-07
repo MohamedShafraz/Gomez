@@ -17,8 +17,6 @@
     .card{
                 border-radius: 27px;
                 background: #ffffff;
-                box-shadow:  5px 5px 10px #b0b0b0,
-                            -5px -5px 10px #ffffff;
                 padding: 20px;
             }
             textarea {

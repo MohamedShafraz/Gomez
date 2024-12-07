@@ -5,6 +5,17 @@ use LDAP\Result;
 class appointmentModel extends Database
 {
 
+    public function getAppoinmentOneDoctorOneSession($doctor = Null, $sessionId = Null)
+    {
+
+        $where = "session.session_id = " . $sessionId;
+        $doctor = "user_db.Username = \"" . $doctor . "\"";
+        $this->setTable(Appointment);
+        $result = $this->fetchAppointmentbydoctor($where, $doctor);
+
+
+        return $result;
+    }
     public function getAppoinmentbyPatient($doctor = Null)
     {
         if (empty($doctor)) {
@@ -47,25 +58,28 @@ class appointmentModel extends Database
     public function getAllAppoinmentbyDoctor($doctor = Null, $specialization = Null, $date = Null)
     {
         $where = 1;
-        if (empty($doctor) && empty($specialization) && empty($date)) {
 
+        if (empty($doctor) && empty($specialization) && empty($date)) {
+            $where .= " AND session.`date` >='" . date('Y/m/d') . "'";
             $this->setTable(Doctors);
+
             $result = $this->fetchDataByUser($where);
         } else {
             if (!empty($doctor)) {
-                $doctor = "fullname REGEXP \"" . $doctor . "*\"";
+                $doctor = "fullname LIKE \"" . $doctor . "%\"";
 
                 $where .= ' AND ' . $doctor;
             }
             if (!empty($specialization)) {
-                $specialization = "Specialization REGEXP \"" . $specialization . "*\"";
+                $specialization = "Specialization = \"" . $specialization . "\"";
                 $where .= ' AND ' . $specialization;
             }
             if (!empty($date)) {
+
                 $date = "date = \"" . $date . "\"";
                 $where .= ' AND ' . $date;
             }
-            $where .= " AND session.`date` >='" . date('Y/m/d') . "'";
+
             $this->setTable(Doctors);
             $result = $this->fetchDataByUser($where, 1);
         }
