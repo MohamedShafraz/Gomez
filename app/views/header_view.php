@@ -17,7 +17,7 @@
                 <img src=<?= URLROOT . "/resources/gomezlogo1.jpg" ?> class="logo">
             </div>
             <a href="./" id="set1" onmouseenter="select()" onmouseleave="unselect()" class="">Home</a>
-            <a href="<?= URLROOT . "contactus" ?>" id="set" onmouseenter="select1()" onmouseleave="unselect1()" class="">Contact us</a>
+            <a href="<?= URLROOT . "/contactus" ?>" id="set" onmouseenter="select1()" onmouseleave="unselect1()" class="">Contact us</a>
             <a href="<?= URLROOT . "#b1" ?>" id="set2" onmouseenter="select2()" onmouseleave="unselect2()" class="">Facilities</a>
             </a>
             <a href="<?= URLROOT . "#make" ?>">
