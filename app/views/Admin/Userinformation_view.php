@@ -176,7 +176,7 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         <!-- <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div> -->
         <div class="users" style="float: left;gap: 8%;width:50% ;">
             <div style="display:flex;flex-direction:column;gap:5%"><?= "<img src='data:image/png;base64," . base64_encode($data['image']) . "' alt='Profile Picture' style='    width: 12.3rem;margin-bottom: 8px;
-    height: 12.3rem;;'>" ?><br /><button class="button" style="padding: 9px 22px;" onclick="window.location.href += '/profile?'+.<?= $_SESSION['User_Id'] ?>">Update Profile Picture</button></div>
+    height: 12.3rem;border-radius:12.3rem;'>" ?><br /><button class="button" style="padding: 9px 22px;" onclick="window.location.href += '/profile?'+.<?= $_SESSION['User_Id'] ?>">Update Profile Picture</button></div>
         </div>
 
         <script>
