@@ -66,6 +66,9 @@
     scrollbar-width: none;
 ">
                 <?php
+                usort($data, function ($a, $b) {
+                    return strtotime($b['date']) - strtotime($a['date']);
+                });
                 if (sizeof($data) == 0) {
                     echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
             <div style='display: flex;flex-direction: row;'>
@@ -84,6 +87,8 @@
                     $image = $data[$i]['image'] ?? "http://localhost/gomez/public/resources/doctor1.png'";
                     $name = $data[$i]['fullname'];
                     $Date = $data[$i]['date'];
+                    $start_time = $data[$i]['start_time'];
+                    $end_time = $data[$i]['end_time'];
                     $special = $data[$i]['Specialization'] ?? "Heart specialist";
                     echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
              <div style='display: flex;flex-direction: row;'>
@@ -97,7 +102,7 @@
                  <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
                      <ul style='list-style-type: none;padding:0;'>
                          <li>" . $Date . "</li>
-                         
+                         <li style ='font-size:medium'>" . $start_time . " - " . $end_time . "</li>
                      </ul>
                  </div>
                  

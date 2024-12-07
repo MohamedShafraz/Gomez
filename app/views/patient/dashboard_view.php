@@ -77,27 +77,38 @@
                     <div>
                         <?php
                         $length = 2;
-                        if (empty($data)) {
-                            echo "<div style='text-align: center; font-size: large; font-weight: bold;line-height:8'>No related data found.</div>";
-                        }
-                        if (sizeof($data) < 2) {
-                            $length = sizeof($data);
-                        }
-                        for ($i = 0; $i < $length; $i++) {
 
+                        // Get the current date
+                        $currentDate = date('Y-m-d');
+
+                        // Filter data for current and future dates only
+                        $filteredData = array_filter($data, function ($appointment) use ($currentDate) {
+                            return strtotime($appointment['date']) >= strtotime($currentDate);
+                        });
+
+                        // Check if there is any filtered data
+                        if (empty($filteredData)) {
+                            echo "<div style='text-align: center; font-size: large; font-weight: bold; line-height:8'>No related data found.</div>";
+                        }
+
+                        // Determine the length of data to display
+                        $length = min($length, count($filteredData));
+                        $filteredData = array_slice($filteredData, 0, $length);
+
+                        // Display filtered data
+                        foreach ($filteredData as $appointment) {
                             echo "
-                <div class='flex-scroll-item' style= 'line-height: 2;'>
-                <div  style='border-radius: 7px;flex-basis: 69%;height: 4rem;width: 23.5rem;'>
-                <img src='" . URLROOT . "/public/resources/doctor1.png' " . "style=' padding: 0.5rem 0rem 0rem 0.5rem; width: 14%;' >
-                <div style='text-align: center;font-size: x-large;font-weight: bolder;margin: -14% 0% 0% -35%;'>" . $data[$i]['fullname'] . "</div>
-                
-                
-
-            </div></div>
-            ";
+        <div class='flex-scroll-item' style='line-height: 2;'>
+            <div style='border-radius: 7px; flex-basis: 69%; height: 4rem; width: 23.5rem;'>
+                <img src='" . URLROOT . "/public/resources/doctor1.png' style='padding: 0.5rem 0rem 0rem 0.5rem; width: 14%;'>
+                <div style='text-align: center; font-size: x-large; font-weight: bolder; margin: -14% 0% 0% -35%;'>" . $appointment['fullname'] . "</div>
+                <div style='text-align: center; font-size: x-large; font-weight: bolder; margin: -13% 0% 0% 43%;'>" . $appointment['date'] . "</div>
+            </div>
+        </div>";
                         }
                         ?>
                     </div>
+
                 </div>
                 <!-- <div style="    width: 33rem;">
                     <div style="border-block-end: 1px solid;text-align: center;align-items: center;font-weight: bolder;font-size: xx-large;line-height: 3rem;">Time Remaining</div>

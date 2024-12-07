@@ -56,12 +56,12 @@ require_once(APPROOT . "/views/LabAssistant/navbar_view.php");
 
     <ul style="background-color: white;padding:5%; width:50%">
         <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div>
-        <li class="users">Full Name : <?= $data['fullname']??"bhagya" ?><br><br></li>
-        <li class="users">Gender : <?= $data['gender']??"female" ?><br><br></li>
-        <li class="users">NIC : <?= $data['NIC']??"200177601885"  ?><br><br></li>
-        <li class="users">Phone number : <?= $data['phonenumber']??"0777123456" ?><br><br></li>
-        <li class="users">Email : <?= $data['email']??"Bhag@live.com" ?><br><br></li>
-        <li><?print_r($data)?></li>
+        <li class="users">Full Name : <?= $data['fullname'] ?? "bhagya" ?><br><br></li>
+        <li class="users">Gender : <?= $data['gender'] ?? "female" ?><br><br></li>
+        <li class="users">NIC : <?= $data['NIC'] ?? "200177601885"  ?><br><br></li>
+        <li class="users">Phone number : <?= $data['phonenumber'] ?? "0777123456" ?><br><br></li>
+        <li class="users">Email : <?= $data['email'] ?? "Bhag@live.com" ?><br><br></li>
+        <li><? print_r($data) ?></li>
 
         <div id="chartContainer"></div>
         <button onclick="window.location.href += '/id?'+.<?= $_SESSION['User_Id'] ?>" style="float:right" class="button">Edit</button>

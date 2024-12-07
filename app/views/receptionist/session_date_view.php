@@ -85,7 +85,7 @@
             ?>
             <hr style="margin-left: -5.1rem;border-width: medium;width: 74.6rem;">
             <div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem;height: 8rem;'>
-                <form action="" method="post">
+                <form action="./more3?doctor=<?= $username ?>" method="post">
                     <div style="font-size: x-large;font-weight: bold;">New Session</div>
                     <div style='display: flex;flex-direction: row;'>
 
@@ -96,19 +96,19 @@
                             </ul>
                         </div>
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: larger;    padding: 2rem 0rem 1rem 0rem;width: 11rem;'>
-                            <form action="" <?= URLROOT . "/receptionist/appointments/create" ?>"" method="post">
-                                <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
-                                    <li>Start Time</li>
-                                    <li style='font-size: medium;'>
-                                        <select name="start_time" id="start_time" style="padding: 3%;width: 10rem;" onchange="document.getElementById('end_time').options.selectedIndex = document.getElementById('start_time').options.selectedIndex" required>
-                                            <script>
 
-                                            </script>
+                            <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
+                                <li>Start Time</li>
+                                <li style='font-size: medium;'>
+                                    <select name="start_time" id="start_time" style="padding: 3%;width: 10rem;" onchange="document.getElementById('end_time').options.selectedIndex = document.getElementById('start_time').options.selectedIndex" required>
+                                        <script>
+
+                                        </script>
 
 
-                                        </select>
-                                    </li>
-                                </ul>
+                                    </select>
+                                </li>
+                            </ul>
                         </div>
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: larger;padding: 2rem 0rem 1rem 0rem;width: 11rem;'>
                             <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
@@ -145,12 +145,12 @@
         </ul>
         </div>
         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: larger;padding: 2rem 0rem 1rem 0rem;width:11rem'>
-            <form action="" <?= URLROOT . "/receptionist/appointments/create" ?>"" method="post">
-                <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
-                    <li>Maximum Patients</li>
-                    <input type="number" style="width: 10rem;height: 1.8rem;">
-                    </li>
-                </ul>
+
+            <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
+                <li>Maximum Patients</li>
+                <input type="number" style="width: 10rem;height: 1.8rem;">
+                </li>
+            </ul>
         </div>
 
         <div style='width: 20%;'>
