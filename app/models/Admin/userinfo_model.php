@@ -13,7 +13,7 @@ class UserModel extends Database
         $i = 0;
         foreach ($data as $row) {
             $users['id'] = $row["GM_AD_ID"];
-            $users['userName'] = $row["Username"];
+            $users['userName'] = $row["GM_AD_Name"];
             $users['phonenumber'] = $row['GM_AD_Phone_Number'];
             $users['NIC'] = $row['NIC'];
             $users['gender'] = $row['GM_AD_Gender'];
@@ -24,29 +24,32 @@ class UserModel extends Database
         }
         return $users;
     }
-    public function updateUserDetails($details, $filecontent)
+    public function updateUserDetails($details = null, $filecontent = null)
     {
 
-        if ($_SESSION['userType'] == 'Admin') {
-            $where = "GM_AD_ID = " . $_SESSION['User_Id'];
+        $where = "GM_AD_ID = " . $_SESSION['User_Id'];
+        print_r($details);
+        if (isset($_POST['email'])) {
+            $this->setTable('gm_admin');
+            $users['GM_AD_Name'] = $_POST["Fullname"];
+            $users['GM_AD_Phone_Number'] = $_POST['phonenumber'];
+            // $users['NIC'] = $_POST['NIC'];
+            $users['GM_AD_Gender'] = $_POST['gender'];
+            $users['age'] = $_POST['age'];
+            $picture["profilepicture"] = $details;
+            $data = $this->updateData($users, $where);
+            $user['email'] = $_POST['email'];
+            $this->setTable(User);
+            $where = "User_ID = " . $_SESSION['User_Id'];
+            $data = $this->updateData($user, $where);
         }
+        if ($details != null) {
+            $this->setTable('user_db');
+            $where1 = "User_Id = " . $_SESSION['User_Id'];
+            $data = $this->updateData($picture, $where1);
 
-        $this->setTable('gm_admin');
-
-        $users['GM_AD_User_Name'] = $_POST["Fullname"];
-        $users['GM_AD_Phone_Number'] = $_POST['phonenumber'];
-        // $users['NIC'] = $_POST['NIC'];
-        $users['GM_AD_Gender'] = $_POST['gender'];
-        $users['email'] = $_POST['email'];
-        $users['age'] = $_POST['age'];
-        $picture["profilepicture"] = $details;
-        $data = $this->updateData($users, $where);
-        $this->setTable('user_db');
-        $where1 = "User_Id = " . $_SESSION['User_Id'];
-        $data = $this->updateData($picture, $where1);
-
-        $_SESSION["USER"]["profilepicture"] = $filecontent;
-        // print_r($_SESSION["USER"]["profilepicture"]);
+            $_SESSION["USER"]["profilepicture"] = $filecontent;
+        }
         return $details;
     }
 }
