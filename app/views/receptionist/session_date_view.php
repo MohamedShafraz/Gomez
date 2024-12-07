@@ -30,7 +30,7 @@
             <br>
             <?php
             $name = $data[0][0]['fullname'];
-            $username = $data[0][0]['Username'];
+            $name = $data[0][0]['Username'];
             $specialization = $data[0][0]['Specialization'];
             echo "
             <div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
@@ -55,7 +55,6 @@
                 $date = $data[0][$i]['date'];
                 $start_time = $data[0][$i]['start_time'];
                 $end_time = $data[0][$i]['end_time'];
-                $session_id = $data[0][$i]['session_id'];
                 echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
                     <div style='display: flex;flex-direction: row;'>
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: x-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
@@ -69,7 +68,7 @@
                         <div style='width: 27%;'>
 
                             <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 0.3rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
-                                <a href='" . URLROOT . "/receptionist/appointments/more2?doctor=$username&id=$session_id' style='text-decoration: none;'>
+                                <a href='" . URLROOT . "/receptionist/appointments/more2?doctor=$name' style='text-decoration: none;'>
                                     <font class='font1'>More</font>
                                 </a>
                             </div>

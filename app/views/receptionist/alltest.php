@@ -1,4 +1,5 @@
 <?php require_once(APPROOT."/views/receptionist/navbar_view.php");?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -20,7 +21,7 @@
         padding: 8px 10px;
         border-radius: 9px;
         color: var(--Gomez-Blue);
-
+        font-family: inter;
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(13rem, 0fr));
         gap: 1.5rem;
@@ -49,28 +50,14 @@
     .action-buttons{
         padding:17%;
     }
-    .action-button1 {
-        margin-left: 1000px; /* Adjust the margin between buttons */
-        padding: 5px 10px; /* Adjust button padding */
-        background-color: var(--Gomez-Blue); /* Green background */
-        color: white; /* White text */
-        border: none; /* No border */
-        border-radius: 4px; /* Rounded corners */
-        cursor: pointer; /* Cursor on hover */
-        
-        display: flex;
-        justify-content: flex-end; /* Align buttons to the right */
-        margin-top: 60px;
-        
-    }
-
+    
     button {
         height: 31px;
         flex-direction: column;
         justify-content: center;
         flex-shrink: 0;
         color: #FFF;
-        font-family: 'inter-bold';
+        font-family: inter;
         font-size: 10px;
         font-style: normal;
         font-weight: 700;
@@ -86,16 +73,16 @@
         color: white;
     }
 
-    tbody {
-        background-color: #fff09e;
-    }
-
-    td , th{
+    td, th {
         padding: 10px;
         text-align: center;
-        width: 23%;
+        width: 20%;
         border: none;
         font-family: inter;
+    }
+
+    table {
+        border-collapse: collapse;
     }
     
     </style>
@@ -106,51 +93,33 @@
 </head>
 
 <pre></pre>
-<div class="complainttext" style="width: 65%;margin-left: 23%; margin-top:2%; margin-bottom: 1%;">Lab Receipts</div>
+<div class="complainttext" style="width: 55%;
+    margin-top:2%; margin-bottom: 1%;">Lab Receipts</div>
 <pre></pre>
+   
 </div>
-<table  style="margin-left: 23%; background-color: beige ">
-    <tbody style="background-color: beige !important" >
+<table  style="margin-left: 23%; ">
+    <tbody style="background-color: beige !important"  >
         <tr>
-            <th >Ref No</th>
-            <th >Patient Name</th>
+            <th >Test ID </th>
+            <th >Prescription ID</th>
             <th >Test Name</th>
-            <th >Contact No</th>
-            <th >Actions</th>
+            <th >Status</th>
+            <th >Action</th>
         </tr>
-    
-    <?php foreach ($data as $row): ?>
-        <?php
-            // Filter logic based on search inputs
-            $refno = isset($_GET['search_refno']) ? $_GET['search_refno'] : '';
-            $patientName = isset($_GET['search_patientName']) ? $_GET['search_patientName'] : '';
-            
-            // Perform filtering
-            if ((!$refno || $row['refno'] == $efno) && (!$patientName || $row['patientName'] == $patientName)):
-            ?>
-            <tr style='margin: 3%; '>
-                <td ><?= $row['refno'] ?></td>
-                <td ><?= $row['patientName'] ?></td>
-                <td ><?= $row['testname'] ?></td>
-                <td ><?= $row['contactNo'] ?></td>
-                <td>
-                    <button class="action-button" onclick="window.location.href='<?=URLROOT.'/receptionist/labdetails/'.$row['refno']?>'" >View</button>
-                </td>
-            </tr>
-    <?php endif; ?>
-    <?php endforeach; ?>
+        <?php foreach($reports as $row){ ?>
+        <tr>
+            <td><?= $row['id'] ?></td>
+            <td><?= $row['prescriptionnumber'] ?></td>
+            <td><?= $row['test_name'] ?></td>
+            <td><?= $row['status'] ?></td>
+            <td>
+            <button onclick="window.location.href='<?=URLROOT.'/receptionist/createlabreciept/'.$row['unique_id'].'/'.$row['test_name'].'/'.$row['id']?>'" >Create Lab Receipt</button>
+            </td>
+        </tr>
+        <?php } ?>
+        
 </table>
-    
-    
-    
-</div>
 
-
-    </center>
-    </article>
-</body>
-<script src="<?= URLROOT ?>./javascript/dashboard.js"></script>
-<script>var $URLROOT = '<?=URLROOT?>'; </script>;
-<script>var $usertype = '<?=$_SESSION['userType']?>'</script>
+    
 <script src="<?=URLROOT?>/javascript/dashboard.js"></script>
-</html>

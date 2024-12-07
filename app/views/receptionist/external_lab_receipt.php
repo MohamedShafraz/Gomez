@@ -67,42 +67,52 @@ require_once(APPROOT."/views/receptionist/navbar_view.php");
     <form action="<?=URLROOT."/receptionist/createreciept"?>" method='post'>
         <div class="form-group">
             <label for="labReportNumber">Lab Report Reference Number:</label>
-            <p><?= $data['refno']+1?></p>
-            <input type="hidden" id="labReportNumber" name="labReportNumber" required value="<?= $data['refno']+1?>">
+            <input type="hidden" id="labReportNumber" name="labReportNumber" required>
         </div>
 
         <input type="hidden" name="patient_id" value="<?= $data['patient_id']?>">
         <input type="hidden" name="test_id" value="<?= $data['test_id']?>">
-        <input type="hidden" name="prescription_id" value="<?= $data['prescription_id']?>">
     
         <div class="form-group">
             <label for="patientName">Name:</label>
-            <p><?= $data['patientName']?></p>
-            <input type="hidden" id="patientName" name="patientName" required class="input" value='<?= $data['patientName']?>'>
-        </div>
-       
-
-        <div class="form-group">
-            <label for="contactNo">Contact No:</label>
-            <p><?= $data['contactNo']?></p>
-            <input type="hidden" id="contactNo" name="contactNo" required class="input" value='<?= $data['contactNo']?>'>
-        </div>
-
-        <div class="form-group">
-            <label for="age">Age:</label>
-            <p><?= $data['age']?></p>
-            <input type="hidden" id="age" name="age" required class="input" value='<?= $data['age']?>'>
-        </div>
-
-        <div class="form-group">
-            <label for="testname">Test Name:</label>
-            <p><?= $data['testname']?></p>
-            <input type="hidden" id="testname" name="testname" required class="input" value='<?= $data['testname']?>'>
+            <input type="text" id="patientName" name="patientName" required class="input" value='<?= $data['patientName']?>'>
         </div>
 
         <div class="form-group">
             <label for="passcode">Passcode:</label>
             <input type="password" id="passcode" name="passcode" required class="input">
+        </div>
+
+        <div class="form-group">
+            <label for="contactNo">Contact No:</label>
+            <input type="text" id="contactNo" name="contactNo" required class="input" value='<?= $data['contactNo']?>'>
+        </div>
+
+        <div class="form-group">
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age" required class="input" value='<?= $data['age']?>'>
+        </div>
+
+        <div class="form-group">
+            <label for="register">Registered or Unregistered:</label>
+            <select id="register" name="register" required class="input" onchange="toggleUsername()">
+                <option value="Unregistered">Unregistered</option>
+                <option value="Registered">Registered</option>
+            </select>
+        </div>
+
+        <div id="Username" class="form-group" style="display: none;">
+            <label for="patientUsername">Username:</label>
+            <select id="patientUsername" name="Username" class="input">
+                <?php foreach ($patients as $fullname): ?>
+                    <option><?= $fullname['fullname'] ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="testname">Test Name:</label>
+            <input type="text" id="testname" name="testname" required class="input" value='<?= $data['testname']?>'>
         </div>
         
         <div class="form-group">
@@ -111,6 +121,21 @@ require_once(APPROOT."/views/receptionist/navbar_view.php");
         </div>
     </form>
 
+    <script>
+        function toggleUsername() {
+            var registerSelect = document.getElementById('register');
+            var usernameDiv = document.getElementById('Username');
+            var usernameSelect = document.getElementById('patientUsername');
+
+            if (registerSelect.value === 'Registered') {
+                usernameDiv.style.display = 'flex';
+                usernameSelect.required = true;
+            } else {
+                usernameDiv.style.display = 'none';
+                usernameSelect.required = false;
+            }
+        }
+    </script>
 </body>
 <script src="<?= URLROOT ?>./javascript/dashboard.js"></script>
 <script>var $URLROOT = '<?=URLROOT?>'; </script>;
