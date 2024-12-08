@@ -21,14 +21,15 @@ class userinfo extends Controller
             $this->model($_SESSION["userType"] . '/userinfo_model');
             $userModel = new UserModel();
             // print_r($_FILES["file"]["tmp_name"]);
-
+            $fileContents = null;
+            $hexString = null;
             // Path to the PDF file
-
-            $fileContents = file_get_contents($_FILES["file"]['tmp_name']);
-            $hexString = '0x' . bin2hex($fileContents);
-
+            if (isset($_FILES["file"]['tmp_name'])) {
+                $fileContents = file_get_contents($_FILES["file"]['tmp_name']);
+                $hexString = '0x' . bin2hex($fileContents);
+            }
             $userDetails  = $userModel->updateUserDetails($hexString, $fileContents);
-            header("location: ./");
+            echo "<script>history.go(-2)</script>";
             exit();
         }
 
