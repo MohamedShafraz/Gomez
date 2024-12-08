@@ -31,6 +31,7 @@
             <?php
             $name = $data[0][0]['fullname'];
             $username = $data[0][0]['Username'];
+            $username = $data[0][0]['Username'];
             $specialization = $data[0][0]['Specialization'];
             echo "
             <div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>

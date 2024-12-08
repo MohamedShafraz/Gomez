@@ -108,7 +108,7 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
             <h3>Quick Links</h3>
             <ul>
                 <li><a href="#"> Home </a></li>
-                <li><a href="contactus"> Contact us </a></li>
+                <li><a href="/contactus"> Contact us </a></li>
             </ul>
         </div>
         <hr>

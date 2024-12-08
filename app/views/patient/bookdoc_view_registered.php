@@ -30,6 +30,7 @@
             <br>
             <?php
 
+
             $name = $data[0][0]['fullname'];
             $name = $data[0][0]['Username'];
             $specialization = $data[0][0]['Specialization'];

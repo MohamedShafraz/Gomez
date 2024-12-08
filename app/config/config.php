@@ -26,10 +26,13 @@ define('Prescription', 'prescription'); //
 
 define('Medicine', 'medicine_data');
 
+define('Test_data', 'test_data');
+
 define('Labtest', 'labtests');
 
-
 define('Report', 'report');
+
+define('Test_Data', 'test_data');
 
 define('Receptionists', 'receptionist');
 

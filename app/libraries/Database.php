@@ -83,7 +83,9 @@ class Database
             case 'patients':
                 $datas = 'ID';
                 break;
-
+            case 'owner':
+                $datas = 'Owner_ID';
+                break;
             case 'doctors':
                 $datas = 'Doctor_id';
                 break;
@@ -98,7 +100,6 @@ class Database
                 break;
         }
         $query = "SELECT * FROM " . $this->table . " JOIN user_db ON user_db.`User_Id` = " . $this->table . "." . $datas . " WHERE " . $where;
-
         $result = $this->executeQuery($query);
         $data = [];
         $i = 0;

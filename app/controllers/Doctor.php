@@ -56,8 +56,7 @@ class Doctor extends Controller
         }
     }
 
-
-    public function appointments()
+    public function appointments($message = null)
     {
         $message = "";
         if (!isset($_SESSION)) {
@@ -69,7 +68,7 @@ class Doctor extends Controller
             $this->doctorModel = new DoctorModel(new Database());
 
             $doctor = $this->doctorModel->getDoctor($user["User_Id"]);
-            $sessions = $this->doctorModel->getSessions($doctor[0]['Doctor_id']);
+            $sessions = $this->doctorModel->getSessionsToday($doctor[0]['Doctor_id']);
 
             if ($message != null) {
                 $message = "Prescription Added Successfully";
@@ -94,7 +93,8 @@ class Doctor extends Controller
             $this->doctorModel = new DoctorModel(new Database());
 
             $appointments = $this->doctorModel->getAppointmentbySession($sessionid);
-            $session = $this->doctorModel->getSessionbyID($sessionid);
+
+            $session = $this->doctorModel->getSessionsbyId($sessionid);
 
             $patients = [];
 
@@ -102,12 +102,13 @@ class Doctor extends Controller
                 // $patient = $this->doctorModel->getPatientbyappointment($appointment['Patient_Id']);
                 $patient = $this->doctorModel->getPatientbyPatiend($appointment['Patient_Id']);
                 $prescription = $this->doctorModel->getPrescriptionbyAppointment($appointment['Appointment_Id']);
-                $patient['end_time'] = $session[0]['end_time'];
-                $patient['start_time'] = $session[0]['start_time'];
                 $patient['prescription'] = $prescription;
                 $patient['Appointment_Id'] = $appointment['Appointment_Id']; // Assuming 'Appointment_Id' is the key in the $appointment array
+                $patient["start_time"] = $session[0]["start_time"];
+                $patient["end_time"] = $session[0]["end_time"];
                 $patients[] = $patient;
             }
+
 
             $this->view('Doctor/timeslotpatients', ['patients' => $patients]);
             exit();
@@ -177,6 +178,7 @@ class Doctor extends Controller
 
             $_SESSION['uniqueid'] = $uniqueid;
             $_SESSION['prescription'] = $data;
+            $_SESSION['labtesting'] = $_POST['labtesting'];
 
 
             header("Location: " . URLROOT . "/Doctor/addMedicineView");
@@ -233,17 +235,28 @@ class Doctor extends Controller
             $result = $this->doctorModel->addMedicine($data);
         }
 
+        $test_data = $_SESSION['labtesting'];
+
+        $tests = explode(',', $test_data);
+
+        foreach ($tests as $test) {
+            $test = trim($test);
+            $testData = [
+                'unique_id' => $_SESSION['uniqueid'],
+                'test_name' => $test,
+            ];
+            $this->doctorModel->addTest($testData);
+        }
+
 
         $prescription = $_SESSION['prescription'];
         unset($_SESSION['uniqueid']);
         unset($_SESSION['prescription']);
 
+        $_SESSION['message'] = "Prescription Added Successfully";
+
         $this->doctorModel->addPrescription($prescription);
-
-
-        $_SESSION["message"] = "Prescription Added Successfully";
         header("Location: " . URLROOT . "/Doctor/appointments");
-
         exit();
     }
 
@@ -258,16 +271,11 @@ class Doctor extends Controller
             $this->model("DoctorModel");
             $this->doctorModel = new DoctorModel(new Database());
             $prescription = $this->doctorModel->getPrescriptionbyAppointment($appointmentid);
-            $appoiment = $this->doctorModel->getAppoinmentbyID($appointmentid);
             $patient = $this->doctorModel->getPatient($patientid);
             $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
-            $session_id = $appoiment[0]['session_id'];
-            $session = $this->doctorModel->getSessionbyID($session_id);
 
-            $start_time = $session[0]["start_time"];
-            $end_time = $session[0]["end_time"];
 
-            $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine, 'end_time' => $end_time, 'start_time' => $start_time]);
+            $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
         } else {
             header("Location: " . URLROOT . "/Users/login");
             exit();
@@ -286,6 +294,7 @@ class Doctor extends Controller
             $this->doctorModel = new DoctorModel(new Database());
             $prescription = $this->doctorModel->getPrescriptionbyID($prescriptionid);
             $patient = $this->doctorModel->getPatient($prescription[0]["patientid"]);
+
             $this->view('Doctor/editprescription_view', ['prescription' => $prescription[0], 'patient' => $patient[0]]);
         } else {
             header("Location: " . URLROOT . "/Users/login");
@@ -395,29 +404,10 @@ class Doctor extends Controller
     }
 
 
-    //public function moreappointments($message=null)
-    //{
-    // if (!isset($_SESSION)) {
-    //session_start();
-    //  }
-    // $user = $_SESSION["USER"];
-    // if ($user["usertype"] == "Doctor") {
-    //  $this->model("DoctorModel");
-    //  $this->doctorModel = new DoctorModel(new Database());
-
-    //  $doctor = $this->doctorModel->getDoctor($user["User_Id"]);
-    //   $sessions = $this->doctorModel->getSessionsToday($doctor[0]['Doctor_id']);
-
-    //  if($message != null){
-    //      $message = "Prescription Added Successfully";
-    //  }
-
-    //   $this->view('Doctor/moreappoin_view', ['sessions' => $sessions, 'message' => $message]);
-    //   } else {
-    //   header("Location: " . URLROOT . "/Users/login");
-    //   exit();
-    //  }
-
-    //}
-
+    public function logout()
+    {
+        session_destroy();
+        header("location:" . URLROOT . "/Users/login");
+        exit();
+    }
 }

@@ -94,6 +94,7 @@ class patient extends Controller
             $this->appointmodel = new appointmentModel();
             $result = $this->appointmodel->getAppoinmentbyPatient();
             $checkappointment = $result;
+            $checkappointment = $result;
             if ($ShowDoc == null && (isset($_GET['doctor']) || isset($_GET['Date']))) {
                 if ($_GET['doctor'] != NULL && $_GET['Date'] == NULL) {
                     $result = $this->appointmodel->getAppoinmentbyPatient($_GET['doctor']);
@@ -131,6 +132,7 @@ class patient extends Controller
                 if ($prescription) {
                     $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
                 }
+                $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
                 $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
                 $this->view('patient/sidebar');
                 exit();

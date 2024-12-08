@@ -64,6 +64,7 @@ class receptionist extends Controller
                     $result2 = $this->appointmodel->checkSessionbyDoctor($result[0]['Doctor_id']);
                     // print_r([0=>$result,1=>$result2]);
 
+
                     $this->view('receptionist/session_date_view', [0 => $result, 1 => $result2]);
                 }
 
@@ -109,25 +110,27 @@ class receptionist extends Controller
             if ($make == 'more2') {
                 if (isset($_GET['doctor']) && isset($_GET['id'])) {
                     $result = $this->appointmodel->getAppoinmentOneDoctorOneSession($_GET['doctor'], $_GET['id']);
+                    if (isset($_GET['doctor']) && isset($_GET['id'])) {
+                        $result = $this->appointmodel->getAppoinmentOneDoctorOneSession($_GET['doctor'], $_GET['id']);
+
+                        // print_r($result);
+
+                        $this->view('receptionist/session_appointments_view', $result);
+                    }
+
+                    exit();
+                } else {
 
                     // print_r($result);
-
-                    $this->view('receptionist/session_appointments_view', $result);
+                    $this->view('receptionist/appointment_view', $result);
+                    // print_r("hello");
                 }
-
                 exit();
             } else {
-
-                // print_r($result);
-                $this->view('receptionist/appointment_view', $result);
-                // print_r("hello");
+                header("location:" . URLROOT . "/users/login");
             }
-            exit();
-        } else {
-            header("location:" . URLROOT . "/users/login");
         }
     }
-
     public function dashboard()
     {
         $this->view('receptionist/dashboard_view');

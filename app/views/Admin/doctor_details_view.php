@@ -60,35 +60,35 @@
     margin: 1% 0% 0% 31%;z-index:100
 " id='popup1'>
     <h1>Update Profile</h1>
-    <ul>
-        <li class="users">
-            <label for="fullname">Full Name :</label><br><input id='fullname' name='fullname' value='<?= $data['full name'] ?>'><br><br>
-        </li>
-        <li class="users">
-            <label for="gender">Gender :</label><br><input id='gender' name='gender' value='<?= $data['gender'] ?>'><br><br>
-        </li>
-        <li class="users">
-            <label for="age">Age :</label><br><input id='age' name='age' value='<?= $data['age'] ?>'><br><br>
-        </li>
-        <li class="users">
-            <label for="phonenumber">Phone number :</label><br><input id='phonenumber' name='phonenumber' value='<?= $data['phonenumber'] ?>'><br><br>
-        </li>
-        <li class="users">
-            <label for="email">Email :</label><br><input id='email' name='email' value='<?= $data['email'] ?>'><br><br>
-        </li>
-    </ul>
-    <button onclick="m('popup1')" style="padding: 9px 22px;" class="button" id='update'>Update</button>
+    <?php $keyId = $data['id']; ?>
+    <form action="../updateDoctorDetails/id=<?= $keyId ?>" method="post">
+        <label for="fullname">Full Name :</label><br><input id='fullname' name='fullname' value='<?= $data['full name'] ?>'><br><br>
+        <label for="gender">Gender :</label><br><input id='gender' name='gender' value='<?= $data['gender'] ?>'><br><br>
+        <label for="age">Age :</label><br><input id='age' name='age' value='<?= $data['age'] ?>'><br><br>
+        <label for="phonenumber">Phone number :</label><br><input id='phonenumber' name='phonenumber' value='<?= $data['phonenumber'] ?>'><br><br>
+        <label for="email">Email :</label><br><input id='email' name='email' value='<?= $data['email'] ?>'><br><br>
+        <div style="display:flex;flex-direction:row;gap:20px">
+            <button onclick='back()' style='padding: 9px 22px;' class='button' id='back'>Back</button>
+            <input type="submit" style="padding: 9px 22px;" class="button" id='update' value="update">
+        </div>
+    </form>
+
 </div>
 <article class="dashboard">
 
     <!-- <a>Welcome to Gomez</a> -->
     <ul style="background-color: white;padding:5%; width:50%">
-        <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div>
-        <li class="users">Full Name : <?= $data['full name'] ?><br><br></li>
-        <li class="users">Gender : <?= $data['gender'] ?><br><br></li>
-        <li class="users">Age : <?= $data['age'] ?><br><br></li>
-        <li class="users">Phone number : 0<?= $data['phonenumber'] ?><br><br></li>
-        <li class="users">Email : <?= $data['email'] ?><br><br></li>
+        <div style="display:flex;flex-direction:row">
+            <div class="users" style="width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div>
+            <div>
+                <li class="users">Full Name : <?= $data['full name'] ?><br><br></li>
+                <li class="users">Gender : <?= $data['gender'] ?><br><br></li>
+                <li class="users">Specializaton: <?= $data['specialization'] ?><br><br></li>
+                <li class="users">Age : <?= $data['age'] ?><br><br></li>
+                <li class="users">Phone number : 0<?= $data['phonenumber'] ?><br><br></li>
+                <li class="users">Email : <?= $data['email'] ?><br><br></li>
+            </div>
+        </div>
         <div style="display:flex;gap:10px;float:left;padding: 9px 22px;">
             <button onclick="window.location.href = '<?= URLROOT . '/Admin/Manageuser/doctor' ?>'" style="float:right;padding: 9px 22px;" class="button">Back</button>
             <button onclick="f()" style="float:right;padding: 9px 22px;" class="button">Edit</button>
@@ -109,6 +109,8 @@
     }
 
     function m($id) {
+        const url = window.location.href.split('#')[0];
+        window.location.href = '../updateDoctorDetails/id=' + url.split('=')[1];
         const url = window.location.href.split('#')[0];
         window.location.href = '../updateDoctorDetails/id=' + url.split('=')[1];
         document.getElementById($id.toString()).style.visibility = 'hidden';
