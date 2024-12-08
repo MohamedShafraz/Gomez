@@ -227,6 +227,8 @@ class Database
 
         return $data;
     }
+
+
     public function checkSession($where)
     {
 

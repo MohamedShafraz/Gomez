@@ -18,14 +18,16 @@
 
     <header class="header">
         <nav class="navbar">
-            <img style="border-radius: 41px;
-    height: 41px;
-    width: 46px;
-    border: 1px solid black;" src="<?= 'data:image/png;base64,' . base64_encode($_SESSION["USER"]["profilepicture"]) ?>" class="profilepic">
-            <a href="<?= URLROOT . '/logout' ?>">
+            <img src="<?= isset($_SESSION["USER"]["profilepicture"]) && !empty($_SESSION["USER"]["profilepicture"])
+                            ? 'data:image/png;base64,' . base64_encode($_SESSION["USER"]["profilepicture"])
+                            : URLROOT . '\resources\new_pat.png' ?>" class="profilepic">
+            <a href="<?= URLROOT . "/logout" ?>">
                 <div class="selected">
-                    <font class="GMfont" style="font-family: 'inter';" onclick="windows.location.href = 'location:logout'"> Hello, Bhag</font>
+                    <font class="GMfont" style="font-family: 'inter';" onclick="windows.location.href = 'location:logout'"> Hello, <?= $_SESSION['uname'] ?></font>
                 </div>
+                <script>
+                    console.log(<?= $_SESSION["USER"] ?>);
+                </script>
             </a>
         </nav>
     </header>
