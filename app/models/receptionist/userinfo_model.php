@@ -10,7 +10,7 @@ class UserReceptionistModel extends Database
         $data = $this->fetchData($where);
 
         $users = [];
-        
+
         $i = 0;
         foreach ($data as $row) {
             $users['receptionist_id'] = $row["receptionist_id"];
@@ -23,7 +23,7 @@ class UserReceptionistModel extends Database
             $users['image'] = $_SESSION["USER"]["profilepicture"];
             $i++;
         }
-        
+
         return $users;
     }
     public function updateUserDetails($details, $filecontent)

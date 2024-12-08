@@ -138,7 +138,7 @@ class LabAssistant extends Controller
         $this->model($_SESSION["userType"] . '/userinfo_model');
         $this->userinfo_model = new UserlabassistantModel();
 
-        $result = $this->userinfo_model->fetchLabAssistant(); // Fetch user details
+        $result = $this->userinfo_model->getUserDetails();
 
         if ($update == 'update') {
             $fileContents = file_get_contents($_FILES["file"]['tmp_name']);

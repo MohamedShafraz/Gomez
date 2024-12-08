@@ -95,6 +95,9 @@ class Database
             case 'receptionist':
                 $datas = 'receptionist_id';
                 break;
+            case 'lab_assistants':
+                $datas = 'id';
+                break;
             case 'gm_admin':
                 $datas = 'GM_AD_ID';
                 break;
