@@ -30,6 +30,7 @@
             <br>
             <?php
 
+
             $name = $data[0][0]['fullname'];
             $name = $data[0][0]['Username'];
             $specialization = $data[0][0]['Specialization'];
@@ -51,32 +52,37 @@
                     </div>
                     
                 </div><br><div id='appointments' style='height: 11rem;width:58rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;'>";
+            usort($data[0], function ($a, $b) {
+                return strtotime($b['date']) - strtotime($a['date']);
+            });
+            $currentDate = date('Y-m-d'); // Get the current date in 'YYYY-MM-DD' format
+
             for ($i = 0; $i < sizeof($data[0]); $i++) {
                 $sessionId = $data[0][$i]['session_id'];
                 $date = $data[0][$i]['date'];
                 $start_time = $data[0][$i]['start_time'];
                 $end_time = $data[0][$i]['end_time'];
-                echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
-                    <div style='display: flex;flex-direction: row;'>
-                        <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: x-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
-                            $date
-                        </div>
-                        <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: x-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
-                        $start_time -$end_time
-                        </div>
 
-
-                        <div style='width: 27%;'>
-
-                            <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 0.3rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
-                                <a href='" . URLROOT . "/patient/appointments/making?id=" . $sessionId . "' style='text-decoration: none;'>
-                                    <font class='font1'>Make</font>
-                                </a>
+                // Compare session date with current date
+                if (strtotime($date) >= strtotime($currentDate)) {
+                    echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
+                            <div style='display: flex;flex-direction: row;'>
+                                <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: x-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
+                                    $date
+                                </div>
+                                <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: x-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
+                                    $start_time - $end_time
+                                </div>
+                                <div style='width: 27%;'>
+                                    <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 0.3rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
+                                        <a href='" . URLROOT . "/patient/appointments/making?id=" . $sessionId . "' style='text-decoration: none;'>
+                                            <font class='font1'>Make</font>
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    
-                </div><br>";
+                        </div><br>";
+                }
             }
             echo "</div>
 

@@ -64,6 +64,7 @@ class receptionist extends Controller
                     $result2 = $this->appointmodel->checkSessionbyDoctor($result[0]['Doctor_id']);
                     // print_r([0=>$result,1=>$result2]);
 
+
                     $this->view('receptionist/session_date_view', [0 => $result, 1 => $result2]);
                 }
 
@@ -77,6 +78,7 @@ class receptionist extends Controller
             }
             if ($make == "more3") {
                 if (isset($_POST['create']) && isset($_POST['Date'])) {
+                    $result = $this->appointmodel->getAppoinmentbyDoctors($_GET['doctor']);
                     // print_r($_POST);
                     $data['date'] = $_POST['Date'];
                     $start_time = $_POST['start_time'];
@@ -87,7 +89,11 @@ class receptionist extends Controller
                     $data['Doctor_Id'] = $result[0]['Doctor_id'];
                     $this->appointmodel->setTable('session');
                     // print_r($data);
+                    // 
                     $result2 = $this->appointmodel->insertData($data);
+                    $doctorname = $_GET['doctor'];
+                    print_r($result2);
+                    // print_r($data);
                     $error = $this->appointmodel->printErrno();
                     if ($error == '1062') {
                         echo "<script>
@@ -97,32 +103,34 @@ class receptionist extends Controller
                         echo "<script>
                     alert(' Session Created');
                 </script>";
+                        header("location:./more1?doctor=" . $doctorname);
                     }
                 }
-                header("location:./more1?doctor=" . $_POST['doctor']);
             }
             if ($make == 'more2') {
                 if (isset($_GET['doctor']) && isset($_GET['id'])) {
                     $result = $this->appointmodel->getAppoinmentOneDoctorOneSession($_GET['doctor'], $_GET['id']);
+                    if (isset($_GET['doctor']) && isset($_GET['id'])) {
+                        $result = $this->appointmodel->getAppoinmentOneDoctorOneSession($_GET['doctor'], $_GET['id']);
+
+                        // print_r($result);
+
+                        $this->view('receptionist/session_appointments_view', $result);
+                    }
+
+                    exit();
+                } else {
 
                     // print_r($result);
-
-                    $this->view('receptionist/session_appointments_view', $result);
+                    $this->view('receptionist/appointment_view', $result);
+                    // print_r("hello");
                 }
-
                 exit();
             } else {
-
-                // print_r($result);
-                $this->view('receptionist/appointment_view', $result);
-                // print_r("hello");
+                header("location:" . URLROOT . "/users/login");
             }
-            exit();
-        } else {
-            header("location:" . URLROOT . "/users/login");
         }
     }
-
     public function dashboard()
     {
         $this->view('receptionist/dashboard_view');
