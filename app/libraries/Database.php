@@ -247,16 +247,8 @@ class Database
     public function fetchdoctorforsession($where, $data = 1)
     {
         $id = null;
-        // switch ($this->table) {
-        //     case  Doctors:
-        //         $id = 'Doctor_id';
-        //         break;
-        //     case Patients:
-        //         $id =  'ID';
-        //         break;
-        // }
-        $query = "SELECT * FROM doctors JOIN user_db ON user_db.User_Id = $this->table.Doctor_id WHERE " . $where . " AND " . $data;
-
+        $query = "SELECT distinct(doctors.fullname),specialization.specialization_name as Specialization FROM doctors JOIN user_db ON user_db.User_Id = $this->table.Doctor_id JOIN specialization ON specialization.specialization_id = $this->table.specialization_id JOIN session ON session.Doctor_id = $this->table.Doctor_id WHERE " . $where . " AND " . $data;
+        // print_r($query);
         $result = $this->executeQuery($query);
         $data = [];
         $i = 0;

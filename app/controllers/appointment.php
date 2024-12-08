@@ -65,7 +65,7 @@ class appointment extends Controller
         // $this->view('appointdoctordetail_view'); 
 
         // }
-        //   // print_r(sizeof($result));
+
         $result = $this->appointmodel->getAllDoctorsforSession($_GET['fullname'], $_GET['specialization'], $_GET['date']);
         $this->view('appointdoctordetail_view', $result);
         exit();

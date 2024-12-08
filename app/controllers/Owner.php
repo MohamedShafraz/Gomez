@@ -35,7 +35,7 @@ class Owner extends Controller
             exit();
         } else {
             $UserInfo->$rest;
-            print_r($rest);
+            // print_r($rest);
             exit();
         }
     }
