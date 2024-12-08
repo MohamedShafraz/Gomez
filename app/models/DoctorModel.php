@@ -149,15 +149,15 @@ class DoctorModel extends Database
         return $result;
     }
 
-    public function getMedicinebyUniqeid($unique_id){
+    public function getMedicinebyUniqeid($unique_id)
+    {
         $where = "unique_id='$unique_id'";
         $this->setTable(Medicine);
         $result = $this->fetchData($where);
         return $result;
-        
     }
 
-    public function updateUserDetails($details=null, $filecontent=null)
+    public function updateUserDetails($details = null, $filecontent = null)
     {
         $where = "Doctor_id = " . $_SESSION['User_Id'];
         $this->setTable(Doctors);
@@ -169,76 +169,61 @@ class DoctorModel extends Database
         $users['age'] = $_POST['age'];
         $picture["profilepicture"] = $details;
         $data = $this->updateData($users, $where);
-        
-       // $this->setTable('user_db');
-      //  $where1 = "User_Id = " . $_SESSION['User_Id'];
-       // $data = $this->updateData($picture, $where1);
 
-       // $_SESSION["USER"]["profilepicture"] = $filecontent;
+        // $this->setTable('user_db');
+        //  $where1 = "User_Id = " . $_SESSION['User_Id'];
+        // $data = $this->updateData($picture, $where1);
+
+        // $_SESSION["USER"]["profilepicture"] = $filecontent;
         // print_r($_SESSION["USER"]["profilepicture"]);
         //return $details;
         return $data;
     }
 
-    public function getLabtest(){
+    public function getLabtest()
+    {
         $this->setTable(Labtest);
         $result = $this->fetchData("test_id != ''");
         return $result;
     }
 
-    public function getDrugs(){
+    public function getDrugs()
+    {
         $this->setTable(Drug);
         $result = $this->fetchData("id != ''");
         return $result;
     }
 
-    public function getDisease(){
+    public function getDisease()
+    {
         $this->setTable(Disease);
         $result = $this->fetchData("diseaseid  != ''");
         return $result;
     }
 
-    public function findDisease($disease){
+    public function findDisease($disease)
+    {
         $this->setTable(Disease);
         $result = $this->fetchData("disease = '$disease'");
         return $result;
     }
 
-    public function getSessionsbyId($id){
+    public function getSessionsbyId($id)
+    {
         $this->setTable(Session);
         $result = $this->fetchData("session_id = '$id'");
         return $result;
     }
 
-  // public function getPatientbyappointment($userid)
- // {
-  //  $where = "ID =''"; // 
-   // $this->setTable('Patients'); // 
+    // public function getPatientbyappointment($userid)
+    // {
+    //  $where = "ID =''"; // 
+    // $this->setTable('Patients'); // 
     //$result = $this->fetchData($where);
 
-  //  return $result;
- //}
+    //  return $result;
+    //}
 
-    
-    
+
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

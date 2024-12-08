@@ -4,7 +4,7 @@
 class Users extends Controller
 {
     private $loginModel;
-
+    private $labreportmodel;
     public function index()
     {
         header('location:' . URLROOT);
@@ -54,7 +54,19 @@ class Users extends Controller
     }
     public function labreport()
     {
-        $this->view('Patient/labreport_view');
+        $this->model('Labreport_model');
+
+        if (isset($_POST['passcode'])) {
+            $refno = $_POST['refno'];
+            $passcode = $_POST['passcode'];
+            $this->labreportmodel = new LabReportModel();
+            $result = $this->labreportmodel->getLabreport($refno, $passcode);
+            // print_r($result[0]);
+            // echo "<script>window.location.href =" . URLROOT . "/LabAssistant/ReportView/" . $result[0]['filename'] . "</script>";
+            $this->view('labreport_view', $result[0]);
+        } else {
+            $this->view('labreport_view');
+        }
         exit();
     }
     public function forgetpassword()

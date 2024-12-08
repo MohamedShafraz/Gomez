@@ -24,11 +24,20 @@ class Owner extends Controller
             $ManageUser->$user($rest);
         }
     }
-    public function UserInfo()
+    public function UserInfo($rest = Null)
     {
-        session_start();
-        $this->view("Owner/Userinformation_view");
-        exit();
+        $UserInfo = new UserInfo();
+        if ($rest == Null || $rest == "id" || $rest == 'profile') {
+            $UserInfo->Index();
+            exit();
+        } else if ($rest == "update") {
+            $UserInfo->update();
+            exit();
+        } else {
+            $UserInfo->$rest;
+            // print_r($rest);
+            exit();
+        }
     }
     public function Logout()
     {

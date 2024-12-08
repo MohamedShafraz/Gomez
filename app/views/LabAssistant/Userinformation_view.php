@@ -1,7 +1,7 @@
 <?php
 
 
-require_once(APPROOT . "/views/Admin/navbar_view.php");
+require_once(APPROOT . "/views/LabAssistant/navbar_view.php");
 ?>
 
 <script>
@@ -215,4 +215,4 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         document.getElementsByClassName('dashboard')[0].style.filter = 'blur(4px)';
     }
 </script>
-<?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
+<?php require_once(APPROOT . "/views/LabAssistant/footer_view.php"); ?>

@@ -1,41 +1,41 @@
 <?php
 
-class UserReceptionistModel extends Database
+class UserlabassistantModel extends Database
 {
     public function getUserDetails()
     {
-
-        $where = "receptionist_id = " . $_SESSION['User_Id'];
-        $this->setTable('receptionists');
-        $data = $this->fetchData($where);
+        $where = "lab_assistants.id = " . $_SESSION['User_Id'];
+        $this->setTable('lab_assistants');
+        $data = $this->fetchUsers($where);
 
         $users = [];
-
         $i = 0;
         foreach ($data as $row) {
-            $users['receptionist_id'] = $row["receptionist_id"];
-            $users['userName'] = $row["fullname"];
+            $users['id'] = $row["id"];
+            $users['userName'] = $row["Username"];
             $users['phonenumber'] = $row['phonenumber'];
-            // $users['NIC'] = $row['nic'];
-            // $users['gender'] = $row['gender'];
-            // $users['email'] = $row['Email'];
-            // $users['age'] = $row['age'];
+            $users['NIC'] = $row['NIC'];
+            $users['gender'] = $row['gender'];
+            $users['age'] = $row['age'];
             $users['image'] = $_SESSION["USER"]["profilepicture"];
             $i++;
         }
-
         return $users;
     }
     public function updateUserDetails($details, $filecontent)
     {
-        $where = "receptionist_id = " . $_SESSION['User_Id'];
-        $this->setTable('receptionists');
 
-        $users['fullname'] = $_POST["Fullname"];
-        $users['phonenumber'] = $_POST['phonenumber'];
+        if ($_SESSION['userType'] == 'lab_assistant') {
+            $where = "id = " . $_SESSION['User_Id'];
+        }
+
+        $this->setTable('lab_assistant');
+
+        $users['GM_AD_User_Name'] = $_POST["Fullname"];
+        $users['GM_AD_Phone_Number'] = $_POST['phonenumber'];
         // $users['NIC'] = $_POST['NIC'];
-        $users['gender'] = $_POST['gender'];
-        // $users['email'] = $_POST['email'];
+        $users['GM_AD_Gender'] = $_POST['gender'];
+        $users['email'] = $_POST['email'];
         $users['age'] = $_POST['age'];
         $picture["profilepicture"] = $details;
         $data = $this->updateData($users, $where);
@@ -45,6 +45,6 @@ class UserReceptionistModel extends Database
 
         $_SESSION["USER"]["profilepicture"] = $filecontent;
         // print_r($_SESSION["USER"]["profilepicture"]);
-        return $data;
+        return $details;
     }
 }

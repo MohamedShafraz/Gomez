@@ -52,12 +52,17 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
             <label for="Specialization">Specialization</label>
             <select style="width: 100%;" placeholder="Any Specialization" name="specialization" id="Specialization" class="holder">
                 <option value="" selected>Specialization</option>
-                <option value="0" data-area="0">Psychotherapist</option>
+                <?php
+                for ($i = 0; $i < sizeof($data); $i++) {
+                    echo "<option value='" . $data[$i]['specialization_id'] . "' data-area='" . $data[$i]['specialization_id'] . "'>" . $data[$i]['specialization_name'] . "</option>";
+                }
+                ?>
+                <!-- <option value="0" data-area="0">Psychotherapist</option>
                 <option value="1" data-area="1">Dentist</option>
                 <option value="2" data-area="2">Psychotherapist</option>
                 <option value="3" data-area="3">ENT</option>
                 <option value="4" data-area="4">Eye surgeon</option>
-                <option value="5" data-area="5">Pediatrician</option>
+                <option value="5" data-area="5">Pediatrician</option> -->
             </select>
             <label for="Date">Date</label>
 
@@ -108,7 +113,7 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
             <h3>Quick Links</h3>
             <ul>
                 <li><a href="#"> Home </a></li>
-                <li><a href="contactus"> Contact us </a></li>
+                <li><a href="/contactus"> Contact us </a></li>
             </ul>
         </div>
         <hr>

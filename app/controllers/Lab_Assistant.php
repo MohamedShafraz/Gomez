@@ -2,9 +2,7 @@
 class Lab_Assistant extends Controller
 {
 
-    public function __construct()
-    {
-    }
+    public function __construct() {}
     public function index()
     {
         $this->view("Lab-Assistant/dashboard_view");

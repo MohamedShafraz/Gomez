@@ -83,7 +83,9 @@ class Database
             case 'patients':
                 $datas = 'ID';
                 break;
-
+            case 'owner':
+                $datas = 'Owner_ID';
+                break;
             case 'doctors':
                 $datas = 'Doctor_id';
                 break;
@@ -93,12 +95,14 @@ class Database
             case 'receptionist':
                 $datas = 'receptionist_id';
                 break;
+            case 'lab_assistants':
+                $datas = 'id';
+                break;
             case 'gm_admin':
                 $datas = 'GM_AD_ID';
                 break;
         }
         $query = "SELECT * FROM " . $this->table . " JOIN user_db ON user_db.`User_Id` = " . $this->table . "." . $datas . " WHERE " . $where;
-
         $result = $this->executeQuery($query);
         $data = [];
         $i = 0;
@@ -226,6 +230,8 @@ class Database
 
         return $data;
     }
+
+
     public function checkSession($where)
     {
 
@@ -246,16 +252,24 @@ class Database
     public function fetchdoctorforsession($where, $data = 1)
     {
         $id = null;
-        // switch ($this->table) {
-        //     case  Doctors:
-        //         $id = 'Doctor_id';
-        //         break;
-        //     case Patients:
-        //         $id =  'ID';
-        //         break;
-        // }
-        $query = "SELECT * FROM doctors JOIN user_db ON user_db.User_Id = $this->table.Doctor_id WHERE " . $where . " AND " . $data;
-
+        $query = "SELECT distinct(doctors.fullname),specialization.specialization_name as Specialization FROM doctors JOIN user_db ON user_db.User_Id = $this->table.Doctor_id JOIN specialization ON specialization.specialization_id = $this->table.specialization_id JOIN session ON session.Doctor_id = $this->table.Doctor_id WHERE " . $where . " AND " . $data;
+        // print_r($query);
+        $result = $this->executeQuery($query);
+        $data = [];
+        $i = 0;
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[$i] = $row;
+                $i++;
+            }
+        }
+        // print_r($query);
+        return $data;
+    }
+    public function fetchdoctorforsessiononly($where, $data = 1)
+    {
+        $id = null;
+        $query = "SELECT * FROM doctors JOIN user_db ON user_db.User_Id = $this->table.Doctor_id  WHERE " . $where . " AND " . $data;
         $result = $this->executeQuery($query);
         $data = [];
         $i = 0;
