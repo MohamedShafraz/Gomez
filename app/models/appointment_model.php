@@ -96,7 +96,7 @@ class appointmentModel extends Database
         if (empty($doctor) && empty($specialization) && empty($date)) {
 
             $this->setTable(Doctors);
-            $result = $this->fetchdoctorforsession($where);
+            $result = $this->fetchdoctorforsession($where, 1);
         } else {
             if (!empty($doctor)) {
                 $doctor = "user_db.Username REGEXP \"" . $doctor . "\"";
@@ -105,8 +105,22 @@ class appointmentModel extends Database
                 $result = $this->fetchdoctorforsession($where, 1);
             }
 
+            if (!empty($specialization)) {
+                $doctor = "specialization.specialization_id = \"" . $specialization . "\"";
+
+                $where .= ' AND ' . $doctor;
+                $result = $this->fetchdoctorforsession($where, 1);
+            }
+            if (!empty($date)) {
+                $doctor = "session.date = \"" . $date . "\"";
+
+                $where .= ' AND ' . $doctor;
+                $result = $this->fetchdoctorforsession($where, 1);
+            }
+
             $this->setTable(Doctors);
-            $result = $this->fetchDataByUser($where, 1);
+            // $result = $this->fetchDataByUser($where, 1);
+            // $result = $this->fetchdoctorforsession($where, 1);
         }
 
 
