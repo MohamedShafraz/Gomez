@@ -64,18 +64,36 @@ require_once(APPROOT."/views/receptionist/navbar_view.php");
 <body>
     <h2>Lab Reports</h2>
 
-    <form action="<?=URLROOT."/receptionist/createreciept"?>" method='post'>
+    <form action="<?=URLROOT."/receptionist/createrecieptexternal"?>" method='post'>
         <div class="form-group">
             <label for="labReportNumber">Lab Report Reference Number:</label>
-            <input type="hidden" id="labReportNumber" name="labReportNumber" required>
+            <p><?= $data['refno']+1 ?></p>
+            <input type="hidden" id="labReportNumber" name="labReportNumber" required value="<?= $data['refno']+1 ?>">
         </div>
 
-        <input type="hidden" name="patient_id" value="<?= $data['patient_id']?>">
-        <input type="hidden" name="test_id" value="<?= $data['test_id']?>">
-    
         <div class="form-group">
+            <label for="register">Registered or Unregistered:</label>
+            <select id="register" name="register" required class="input" onchange="toggleUserFields()">
+                <option value="Unregistered">Unregistered</option>
+                <option value="Registered">Registered</option>
+            </select>
+        </div>
+
+        <div id="registeredFields" class="form-group" style="display: none;">
+            <label for="patientUsername">Name:</label>
+            <select id="patientName" name="patientData" class="input">
+                <?php foreach ($patients as $patient): ?>
+                    <option value="<?= htmlspecialchars($patient['ID'], ENT_QUOTES, 'UTF-8') . '|' . htmlspecialchars($patient['fullname'], ENT_QUOTES, 'UTF-8') ?>">
+                        <?= htmlspecialchars($patient['fullname'], ENT_QUOTES, 'UTF-8') ?>
+                    </option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+
+
+        <div id="unregisteredFields" class="form-group">
             <label for="patientName">Name:</label>
-            <input type="text" id="patientName" name="patientName" required class="input" value='<?= $data['patientName']?>'>
+            <input type="text" id="patientName" name="patientName" class="input">
         </div>
 
         <div class="form-group">
@@ -85,36 +103,36 @@ require_once(APPROOT."/views/receptionist/navbar_view.php");
 
         <div class="form-group">
             <label for="contactNo">Contact No:</label>
-            <input type="text" id="contactNo" name="contactNo" required class="input" value='<?= $data['contactNo']?>'>
+            <input type="text" id="contactNo" name="contactNo" required class="input">
         </div>
 
         <div class="form-group">
             <label for="age">Age:</label>
-            <input type="text" id="age" name="age" required class="input" value='<?= $data['age']?>'>
+            <input type="number" id="age" name="age" required class="input">
         </div>
 
         <div class="form-group">
-            <label for="register">Registered or Unregistered:</label>
-            <select id="register" name="register" required class="input" onchange="toggleUsername()">
-                <option value="Unregistered">Unregistered</option>
-                <option value="Registered">Registered</option>
-            </select>
-        </div>
-
-        <div id="Username" class="form-group" style="display: none;">
-            <label for="patientUsername">Username:</label>
-            <select id="patientUsername" name="Username" class="input">
-                <?php foreach ($patients as $fullname): ?>
-                    <option><?= $fullname['fullname'] ?></option>
-                <?php endforeach; ?>
+            <label for="gender">Gender:</label>
+            <select name="gender" class="input">
+                <option value="Male">Male</option>
+                <option value="Female">Female</option>
+                <option value="Other">Other</option>
             </select>
         </div>
 
         <div class="form-group">
             <label for="testname">Test Name:</label>
-            <input type="text" id="testname" name="testname" required class="input" value='<?= $data['testname']?>'>
+            <select name="testname" id="testname" class="input">
+                <?php 
+                    foreach($tests as $test) { // Iterate over $tests
+                        echo "<option value='" . htmlspecialchars($test['test'], ENT_QUOTES, 'UTF-8') . "'>" 
+                            . htmlspecialchars($test['test'], ENT_QUOTES, 'UTF-8') . 
+                            "</option>";
+                    }
+                ?>
+            </select>
         </div>
-        
+
         <div class="form-group">
             <button type="submit" class="button">Submit</button>
             <button type="button" onclick="history.go(-1)" class="button" style="margin-left: 10px;">Back</button>
@@ -122,23 +140,55 @@ require_once(APPROOT."/views/receptionist/navbar_view.php");
     </form>
 
     <script>
-        function toggleUsername() {
+        function toggleUserFields() {
             var registerSelect = document.getElementById('register');
-            var usernameDiv = document.getElementById('Username');
-            var usernameSelect = document.getElementById('patientUsername');
+            var registeredFields = document.getElementById('registeredFields');
+            var unregisteredFields = document.getElementById('unregisteredFields');
+            var patientUsernameSelect = document.getElementById('patientUsername');
+            var patientNameInput = document.getElementById('patientName');
+            var ageField = document.getElementById('age');
+            var contactField = document.getElementById('contactNo');
 
             if (registerSelect.value === 'Registered') {
-                usernameDiv.style.display = 'flex';
-                usernameSelect.required = true;
+                // Show registered user fields
+                registeredFields.style.display = 'flex';
+                unregisteredFields.style.display = 'none';
+
+                // Hide and remove validation for age and contact fields
+                ageField.parentNode.style.display = 'none';
+                contactField.parentNode.style.display = 'none';
+                ageField.required = false;
+                contactField.required = false;
+
+                // Enable validation for the patientUsername field
+                patientUsernameSelect.required = true;
+                patientNameInput.required = false;
             } else {
-                usernameDiv.style.display = 'none';
-                usernameSelect.required = false;
+                // Show unregistered user fields
+                registeredFields.style.display = 'none';
+                unregisteredFields.style.display = 'flex';
+
+                // Show and enable validation for age and contact fields
+                ageField.parentNode.style.display = 'flex'; // Make visible
+                contactField.parentNode.style.display = 'flex'; // Make visible
+                ageField.required = true;
+                contactField.required = true;
+
+                // Disable validation for the patientUsername field
+                patientUsernameSelect.required = false;
+                patientNameInput.required = true;
             }
         }
+
+        // Trigger toggleUserFields on page load to set the initial state
+        document.addEventListener('DOMContentLoaded', toggleUserFields);
     </script>
+
 </body>
 <script src="<?= URLROOT ?>./javascript/dashboard.js"></script>
-<script>var $URLROOT = '<?=URLROOT?>'; </script>;
-<script>var $usertype = '<?=$_SESSION['userType']?>'</script>
+<script>
+    var $URLROOT = '<?=URLROOT?>';
+    var $usertype = '<?= $_SESSION['userType'] ?>';
+</script>
 <script src="<?=URLROOT?>/javascript/dashboard.js"></script>
 </html>

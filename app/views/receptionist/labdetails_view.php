@@ -104,7 +104,14 @@ require_once(APPROOT."/views/receptionist/navbar_view.php");
         <ul style="width: max-content;">
            
             <li>Reference No :  <?=$data[0]['refno']?></li><br>
-            <li>Lab Prescription No : <?=$data[0]['prescription_id']?></li><br>
+            <?php 
+             if($data[0]['prescription_id']== -1){
+                echo "<li>Prescription ID :  External</li><br>";
+             } else {
+                echo "<li>Prescription ID :  ".$data[0]['prescription_id']."</li><br>";
+             }
+               
+            ?>
             <li>Patient Name : <?=$data[0]['patientName']?></li><br>
             <li>Age : <?=$data[0]['age']?></li><br>
             <li>Test Name : <?=$data[0]['testname']?></li><br>

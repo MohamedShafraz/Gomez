@@ -98,28 +98,38 @@
 <pre></pre>
    
 </div>
-<table  style="margin-left: 23%; ">
-    <tbody style="background-color: beige !important"  >
+<table style="margin-left: 23%;">
+    <tbody style="background-color: beige !important">
         <tr>
-            <th >Test ID </th>
-            <th >Prescription ID</th>
-            <th >Test Name</th>
-            <th >Status</th>
-            <th >Action</th>
+            <th>Test ID</th>
+            <th>Prescription ID</th>
+            <th>Test Name</th>
+            <th>Status</th>
+            <th>Action</th>
         </tr>
-        <?php foreach($reports as $row){ ?>
-        <tr>
-            <td><?= $row['id'] ?></td>
-            <td><?= $row['prescriptionnumber'] ?></td>
-            <td><?= $row['test_name'] ?></td>
-            <td><?= $row['status'] ?></td>
-            <td>
-            <button onclick="window.location.href='<?=URLROOT.'/receptionist/createlabreciept/'.$row['unique_id'].'/'.$row['test_name'].'/'.$row['id']?>'" >Create Lab Receipt</button>
-            </td>
-        </tr>
+        <?php if (!empty($reports)) { // Check if $reports is not empty ?>
+            <?php foreach ($reports as $row) { ?>
+                <tr>
+                    <td><?= htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($row['prescriptionnumber'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($row['test_name'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td><?= htmlspecialchars($row['status'], ENT_QUOTES, 'UTF-8') ?></td>
+                    <td>
+                        <button onclick="window.location.href='<?= URLROOT . '/receptionist/createlabreciept/' . htmlspecialchars($row['unique_id'], ENT_QUOTES, 'UTF-8') . '/' . urlencode($row['test_name']) . '/' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') ?>'">
+                            Create Lab Receipt
+                        </button>
+                    </td>
+                </tr>
+            <?php } ?>
+        <?php } else { ?>
+            <tr>
+                <td colspan="5" style="text-align: center;">No Records Found</td>
+            </tr>
         <?php } ?>
-        
+    </tbody>
 </table>
-
+<div class="action-buttons">
+    <button onclick="window.location.href='<?= URLROOT . '/receptionist/externalcreatelabreciept' ?>'">Create External Lab Report</button>
+</div>
     
 <script src="<?=URLROOT?>/javascript/dashboard.js"></script>

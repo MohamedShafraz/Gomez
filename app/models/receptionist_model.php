@@ -38,7 +38,7 @@ class ReceptionistModel extends Database
 
 public function getReportData()
     {
-        $where = "status = 'Complete'";
+        $where = "status = 'Completed'";
         $this->setTable(Report);
         $result = $this->fetchData($where);
         return $result;
@@ -132,6 +132,23 @@ public function getTestNames()
         $query = "UPDATE test_data SET status='$status' WHERE id='$id'";
         $result = $this->executeQuery($query);
         return $result;
+    }
+
+    // get last inserted id patient table
+    public function getlastinsertedid()
+    {
+        $where = "SELECT MAX(`ID`) as  m FROM `patients` WHERE 1";
+        
+        $result = $this->executeQuery($where);
+        $i = 0;
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[$i] = $row;
+                $i++;
+            }
+        }
+
+        return $data[0]['m'];
     }
 
 }

@@ -170,7 +170,7 @@ private $labtestModel;
         $data['patient_id'] = $_POST['patient_id'];
         $data['status'] = 'Completed';
         $test['test_id'] = $_POST['test_id'];
-        $test['type'] = 'Internal';
+        $data['type'] = 'Internal';
         $data['prescription_id'] = $_POST['prescription_id'];
 
         $this->labtestModel->setTable('report');
@@ -268,6 +268,79 @@ private $labtestModel;
         
         $this->view('receptionist/lab_receipt', ['data' => $data, 'patients' => $patients]);
         exit();
+    }
+
+    public function externalcreatelabreciept(){
+        $this->model('receptionist_model');
+        $this->labtestModel = new ReceptionistModel(new Database());
+        $patients = $this->labtestModel->getPatientNames();
+        $tests = $this->labtestModel->getTestNames();
+        
+
+        $data['refno'] = $this->labtestModel->getlastref();
+
+        $this->view('receptionist/external_lab_receipt', ['data' => $data, 'patients' => $patients, 'tests' => $tests]);
+        exit();
+    }
+
+    public function createrecieptexternal(){
+        $this->model('receptionist_model');
+        $this->labtestModel = new ReceptionistModel(new Database());
+
+        if ($_POST['register'] == 'Registered') {
+            $patientData = explode('|', $_POST['patientData']);
+            $patientID = $patientData[0];
+            $patientName = $patientData[1];
+
+            $data = [];
+            $data['refno'] = $_POST['labReportNumber'];
+            $data['passcode'] = $_POST['passcode'];
+            $data['testname'] = $_POST['testname'];
+            $data['patient_id'] = $patientID;
+            $data['status'] = 'Completed';
+            $data['type'] = 'External';
+            $data['patientName'] = $patientName;
+
+            // instert data
+            $this->labtestModel->setTable('report');
+            $this->labtestModel->insertData($data);
+            header("Location: " . URLROOT . "/Receptionist/labreports");
+            
+        } else {
+            // get last patient id + 1 for new patient
+            $patientID = $this->labtestModel->getlastinsertedid() + 1;
+            $data = [];
+            $patient = [];
+            $data['refno'] = $_POST['labReportNumber'];
+            $data['passcode'] = $_POST['passcode'];
+            $data['testname'] = $_POST['testname'];
+            $data['status'] = 'Completed';
+            $data['type'] = 'External';
+            $data['prescription_id'] = -1;
+
+            $patient['phonenumber'] = $_POST['contactNo'];
+            $patient['fullname'] = $_POST['patientName'];
+            $patient['age'] = $_POST['age'];
+            $patient['ID'] = $patientID;
+            $patient['registration_date'] = date('Y-m-d H:i:s');
+            $patient['gender'] = $_POST['gender'];
+            $patient['type'] = '"Unregister"';
+
+            // insert patient data
+            $this->labtestModel->setTable('patients');
+            $this->labtestModel->insertData($patient);
+
+            // insert report data
+            $data['patient_id'] = $patientID;
+            $this->labtestModel->setTable('report');
+            $this->labtestModel->insertData($data);
+            header("Location: " . URLROOT . "/Receptionist/labreports");
+        }
+
+    
+
+        exit();
+
     }
 
     public function logout(){
