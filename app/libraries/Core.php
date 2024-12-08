@@ -48,7 +48,7 @@ class Core
                 call_user_func_array([$this->currentController, $this->currentMethod], $this->parameters);
             }
         } else {
-            require_once(APPROOT . '/views/home_view.php');
+            header("location: ./home");
         }
     }
     public function getURL()

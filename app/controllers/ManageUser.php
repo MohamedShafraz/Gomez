@@ -43,7 +43,7 @@ class manageuser extends Controller
         } else if ($id == 'created') {
 
             $users = [];
-            print_r($_POST);
+            // print_r($_POST);
             $users["Username"] = $_POST["User_name"];
             $users['Email'] = $_POST["Email"];
             $users['Password'] = md5($_POST["Password"]);
@@ -156,7 +156,7 @@ class manageuser extends Controller
         $this->model($_SESSION['userType'] . "/doctor_model");
         $patientModel = new DoctorModel();
         $patientModel->setTable(Doctors);
-        print_r($_POST);
+        // print_r($_POST);
         $UsersList = $patientModel->updateUserDetails($id, $_POST);
     }
 

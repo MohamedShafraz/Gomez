@@ -94,6 +94,7 @@ class patient extends Controller
             $this->appointmodel = new appointmentModel();
             $result = $this->appointmodel->getAppoinmentbyPatient();
             $checkappointment = $result;
+            $checkappointment = $result;
             if ($ShowDoc == null && (isset($_GET['doctor']) || isset($_GET['Date']))) {
                 if ($_GET['doctor'] != NULL && $_GET['Date'] == NULL) {
                     $result = $this->appointmodel->getAppoinmentbyPatient($_GET['doctor']);
@@ -132,15 +133,31 @@ class patient extends Controller
                     $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
                 }
                 $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
+                $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
                 $this->view('patient/sidebar');
                 exit();
             }
             if ($make == 'making') {
                 $appointment['session_id'] = $_GET['id'];
                 $appointment['Patient_Id'] =  $_SESSION['User_Id'];
+
                 $this->appointmodel->setTable('appointment');
                 $this->appointmodel->insertData($appointment);
-                header("location:" . URLROOT . "/Patient/appointments");
+                $error = $this->appointmodel->printErrno();
+                if ($error == '1062') {
+                    echo "<script>
+    alert(' Session Already Created');
+    history.go(-1);
+</script>";
+                } else {
+                    echo "<script>
+    alert(' Session Created');
+     history.go(-4);
+</script>";
+
+                    // header("location:" . URLROOT . "/Patient/appointments");
+                }
+                // header("location:" . URLROOT . "/Patient/appointments");
                 exit();
             }
             if ($make == 'make') {
@@ -194,7 +211,7 @@ class patient extends Controller
                                 $this->appointmodel->setTable('session');
                                 $result2 = $this->appointmodel->insertData($data);
                                 $error = $this->appointmodel->printErrno();
-                                if ($error = '1062') {
+                                if ($error == '1062') {
                                     echo "<script>
                     alert(' Session Already Created');
                 </script>";

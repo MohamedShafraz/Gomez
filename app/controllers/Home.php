@@ -1,14 +1,16 @@
 <?php
-class Home extends Controller {
+
+class Home extends Controller
+{
     private $appointmodel;
     private $contactusmodel;
-    public function __construct() {
-          session_start(); 
+    public function index()
+    {
+        $this->model("specialization_model");
+        $specializaitonmodel = new SpecializationModel();
+        $results = $specializaitonmodel->getSpecialization();
+        $this->view('home_view', $results);
     }
-    public function index(){
-        $this->view('home_view');
-    }
-    
 }
 /*a
  *param = hello c

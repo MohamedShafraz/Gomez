@@ -66,6 +66,9 @@
     scrollbar-width: none;
 ">
                 <?php
+                usort($data, function ($a, $b) {
+                    return strtotime($b['date']) - strtotime($a['date']);
+                });
                 if (sizeof($data) == 0) {
                     echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
             <div style='display: flex;flex-direction: row;'>
@@ -84,6 +87,8 @@
                     $image = $data[$i]['image'] ?? "http://localhost/gomez/public/resources/doctor1.png'";
                     $name = $data[$i]['fullname'];
                     $Date = $data[$i]['date'];
+                    $start_time = $data[$i]['start_time'];
+                    $end_time = $data[$i]['end_time'];
                     $special = $data[$i]['Specialization'] ?? "Heart specialist";
                     echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
              <div style='display: flex;flex-direction: row;'>
@@ -97,7 +102,7 @@
                  <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
                      <ul style='list-style-type: none;padding:0;'>
                          <li>" . $Date . "</li>
-                         
+                         <li style ='font-size:medium'>" . $start_time . " - " . $end_time . "</li>
                      </ul>
                  </div>
                  
@@ -105,7 +110,14 @@
                   
                      <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
                          <a href='" . URLROOT . "/Patient/appointments/more' style='text-decoration: none;'>
-                             <font class='font1'>View Prescription</font>
+                             
+                        <button 
+                            class='font1 view-prescription-button' 
+                            data-date='$Date' 
+                            data-start-time='$start_time' 
+                            style='display: none; background-color:transparent;border:none;padding:1px'>
+                            View Prescription
+                        </button>
                          </a>
                      </div>
                  </div></div></div><br>";
@@ -119,4 +131,34 @@
 
     </article>
 </body>
-<script src="<?= URLROOT ?>./javascript/dashboard.js"></script>
+<!-- <script src="<?= URLROOT ?>./javascript/dashboard.js">
+
+</script> -->
+<script>
+    document.addEventListener("DOMContentLoaded", () => {
+        const buttons = document.querySelectorAll('.view-prescription-button');
+
+        const checkAvailability = () => {
+            const currentDateTime = new Date();
+
+            buttons.forEach(button => {
+                const appointmentDate = button.getAttribute('data-date');
+                const appointmentStartTime = button.getAttribute('data-start-time');
+
+                if (appointmentDate && appointmentStartTime) {
+                    const [year, month, day] = appointmentDate.split('-').map(Number);
+                    const [hours, minutes] = appointmentStartTime.split(':').map(Number);
+
+                    const appointmentDateTime = new Date(year, month - 1, day, hours, minutes, 0);
+
+                    if (currentDateTime >= appointmentDateTime) {
+                        button.style.display = "block";
+                    }
+                }
+            });
+        };
+
+        checkAvailability();
+        setInterval(checkAvailability, 60000); // Recheck every minute
+    });
+</script>
