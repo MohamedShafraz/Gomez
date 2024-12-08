@@ -37,6 +37,16 @@
         border-radius: 8px;
     }
 
+    .complainttext {
+    text-align: center; /* Centers the text horizontally */
+    margin-left: 450px; /* Remove margin */
+    padding: 10px; /* Add padding if needed */
+    font-size: 1.5em; /* Adjust font size for better visibility */
+    color: #000; /* Adjust color if needed */
+    font-weight: bold; /* Make it bold */
+
+}
+
     .action-buttons button {
         margin-right: 1px;
         /* Adjust the margin between buttons */
@@ -70,7 +80,7 @@
         </form>
     </div>
     <div class="complainttext">Reports</div>
-    <div class="complaintheader" style="width: 26%;margin-bottom: 0.4%;font-size:16px;">
+    <div class="complaintheader" style="width: 26%;margin-bottom: 0.4%;font-size:16px; background-color:#f6eca9">
         <a>Ref_No</a>
         <a>Name</a>
         <a>Test</a>
@@ -89,7 +99,7 @@
                 // Perform filtering
                 if ((!$refno || $row['refno'] == $refno) && (!$patientName || $row['patientName'] == $patientName)) :
                 ?>
-                    <tr style='color:black;margin: 3%;font-size: 16px'>
+                    <tr style='color:black;margin: 5%;font-size: 16px'>
                         <td style='width: 1%;'><?= $row['refno'] ?></td>
                         <td style='width: 3%;'><?= $row['patientName'] ?? "unknown" ?></td>
                         <td style='width: 4%;'><?= $row['testname'] ?></td>

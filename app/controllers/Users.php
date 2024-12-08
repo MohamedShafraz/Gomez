@@ -61,7 +61,7 @@ class Users extends Controller
             $passcode = $_POST['passcode'];
             $this->labreportmodel = new LabReportModel();
             $result = $this->labreportmodel->getLabreport($refno, $passcode);
-            print_r($result[0]);
+            // print_r($result[0]);
             // echo "<script>window.location.href =" . URLROOT . "/LabAssistant/ReportView/" . $result[0]['filename'] . "</script>";
             $this->view('labreport_view', $result[0]);
         } else {
