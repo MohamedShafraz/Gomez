@@ -88,37 +88,37 @@
                 <div style="display: flex; flex-direction: row; justify-content: center;">
                 <label for="medicineName">Medicine Name</label>
                 <select name="medicineName" id="medicineName" style="border: none;" required>
-                    <?php foreach ($drugs as $drug) {
-                        echo "<option value='{$drug['name']}'>{$drug['name']}</option>";
-                    } ?>
-                    <option value="custom">Enter Custom Medicine</option>
+                    <?php foreach ($drugs as $drug) { ?>
+                        <option value="<?php echo $drug['name']; ?>" data-dosage-type="<?php echo $drug['dosage_type']; ?>">
+                            <?php echo $drug['name']; ?>
+                        </option>
+                    <?php } ?>
+                    <!-- <option value="custom" data-dosage-type="">Enter Custom Medicine</option> -->
                 </select>
+
                 <input type="text" id="customMedicineName" name="customMedicineName" placeholder="Enter Medicine Name" style="display: none; height: 40px;" />
                 <button type="button" id="customMedicineClose" style="display: none;">X</button>
 
-                    <label style="margin-left: 2%;" for="dose">Dose</label>
-                    <input type="number" id="dose" name="dose" min="1" required>
+                <label style="margin-left: 2%;" for="dose">Dose</label>
+                <input type="number" id="dose" name="dose" min="1" required>
 
-                    <select name="dosage_type" id="dosage_type">
-                        <option value="ml">ml</option>
-                        <option value="tablets">tablets</option>
-                        <option value="drops">drops</option>
-                    </select>
-
-                    <label style="margin-left: 2%;">Timing</label>
-                    <select name="timing" id="timing">
+                <label style="margin-left: 2%;" for="dosage_type">Dosage Type</label>
+                <input type="hidden" id="dosage_type" name="dosage_type" value="">
+                <p id="dosageTypeDisplay"></p>
+                <label style="margin-left: 2%;">Timing</label>
+                <select name="timing" id="timing">
                         <option value="Morning">Morning</option>
                         <option value="Evening">Evening</option>
                         <option value="Night">Night</option>
                         <option value="morningevening">Morning and Evening</option>
                         <option value="morningnight">Morning and Night</option>
-                    </select>
+                </select>
 
-                    <label style="margin-left: 2.5%;">Before/After Meal</label>
-                    <select name="meal" id="meal">
+                <label style="margin-left: 2.5%;">Before/After Meal</label>
+                <select name="meal" id="meal">
                         <option value="Before">Before</option>
                         <option value="After">After</option>
-                    </select>
+                </select>
 
                     <button class="bluebutton" onclick="addMedicine(event)" style="margin-left: 5%;">Add</button>
                 </div>
@@ -135,153 +135,152 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script>
         var medicineItems = [];
-        var doses = [];
-        var timings = [];
-        var meals = [];
-        var dosageTypes = [];
+    var doses = [];
+    var timings = [];
+    var meals = [];
+    var dosageTypes = [];
 
-        document.addEventListener('DOMContentLoaded', function() {
-            var customMedicineInput = document.getElementById('customMedicineName');
-            var medicineNameSelect = document.getElementById('medicineName');
-            var customMedicineClose = document.getElementById('customMedicineClose');
+    document.addEventListener('DOMContentLoaded', function () {
+        var customMedicineInput = document.getElementById('customMedicineName');
+        var medicineNameSelect = document.getElementById('medicineName');
+        var customMedicineClose = document.getElementById('customMedicineClose');
+        var dosageTypeDisplay = document.getElementById('dosageTypeDisplay');
 
-            medicineNameSelect.addEventListener('change', function() {
-                if (this.value === 'custom') {
-                    customMedicineInput.style.display = 'inline';
-                    medicineNameSelect.style.display = 'none';
-                    customMedicineInput.setAttribute('required', 'required');
-                    customMedicineClose.style.display = 'inline';
-                } else {
-                    customMedicineInput.style.display = 'none';
-                    customMedicineInput.removeAttribute('required');
-                    medicineNameSelect.setAttribute('required', 'required');
-                    medicineNameSelect.style.display = 'inline';
-                    customMedicineClose.style.display = 'none';
-                }
-            });
+        medicineNameSelect.addEventListener('change', handleMedicineSelection);
 
-            customMedicineClose.addEventListener('click', function() {
-                customMedicineInput.style.display = 'none';
-                customMedicineInput.removeAttribute('required');
-                medicineNameSelect.setAttribute('required', 'required');
-                medicineNameSelect.style.display = 'inline';
-                customMedicineClose.style.display = 'none';
-                medicineNameSelect.value = '';  // Reset the dropdown to the default state
-            });
+        customMedicineClose.addEventListener('click', resetCustomMedicineInput);
+    });
+
+    function handleMedicineSelection() {
+        var medicineNameSelect = document.getElementById('medicineName');
+        var customMedicineInput = document.getElementById('customMedicineName');
+        var customMedicineClose = document.getElementById('customMedicineClose');
+        var dosageTypeDisplay = document.getElementById('dosageTypeDisplay');
+        var dosageTypeHiddenInput = document.getElementById('dosage_type');
+
+        var selectedOption = medicineNameSelect.options[medicineNameSelect.selectedIndex];
+        var dosageType = selectedOption.getAttribute('data-dosage-type');
+
+        if (medicineNameSelect.value === 'custom') {
+            customMedicineInput.style.display = 'inline-block';
+            customMedicineClose.style.display = 'inline-block';
+            dosageTypeDisplay.textContent = 'Custom';
+            dosageTypeHiddenInput.value = ''; 
+        } else {
+            customMedicineInput.style.display = 'none';
+            customMedicineClose.style.display = 'none';
+            dosageTypeDisplay.textContent = dosageType ? dosageType : '';
+            dosageTypeHiddenInput.value = dosageType; // Update hidden input
+        }
+    }
+
+    function resetCustomMedicineInput() {
+        var customMedicineInput = document.getElementById('customMedicineName');
+        var customMedicineClose = document.getElementById('customMedicineClose');
+        var medicineNameSelect = document.getElementById('medicineName');
+        var dosageTypeDisplay = document.getElementById('dosageTypeDisplay');
+        var dosageTypeHiddenInput = document.getElementById('dosage_type');
+
+        customMedicineInput.value = '';
+        customMedicineInput.style.display = 'none';
+        customMedicineClose.style.display = 'none';
+        medicineNameSelect.value = ''; 
+        dosageTypeDisplay.textContent = '';
+        dosageTypeHiddenInput.value = ''; 
+    }
+
+    function addMedicine(event) {
+        event.preventDefault(); 
+
+        var medicineNameSelect = document.getElementById('medicineName');
+        var customMedicineName = document.getElementById('customMedicineName');
+        var dose = document.getElementById('dose').value;
+        var timing = document.getElementById('timing').value;
+        var meal = document.getElementById('meal').value;
+        var dosageType = document.getElementById('dosage_type').value;
+
+        var medicineName = medicineNameSelect.value === 'custom'
+            ? customMedicineName.value
+            : medicineNameSelect.value;
+
+        if (!medicineName) {
+            alert('Please enter a medicine name.');
+            return;
+        }
+
+        medicineItems.push(medicineName);
+        doses.push(dose);
+        timings.push(timing);
+        meals.push(meal);
+        dosageTypes.push(dosageType);
+
+        renderMedicineList();
+    }
+
+    function renderMedicineList() {
+        var ul = document.getElementById('medicinelist');
+        ul.innerHTML = ''; 
+
+        var table = document.createElement('table');
+        table.classList.add('medicine-table');
+
+        var headerRow = document.createElement('tr');
+        var headers = ['Medicine', 'Dose', 'Dosage Type', 'Timings', 'Meals', 'Actions'];
+        headers.forEach(function (headerText) {
+            var th = document.createElement('th');
+            th.appendChild(document.createTextNode(headerText));
+            headerRow.appendChild(th);
         });
+        table.appendChild(headerRow);
 
+        for (var i = 0; i < medicineItems.length; i++) {
+            var tr = document.createElement('tr');
 
-        function addMedicine(event) {
-            event.preventDefault(); // Prevent form submission
+            tr.appendChild(createTableCell(medicineItems[i]));
+            tr.appendChild(createTableCell(doses[i]));
+            tr.appendChild(createTableCell(dosageTypes[i]));
+            tr.appendChild(createTableCell(timings[i]));
+            tr.appendChild(createTableCell(meals[i]));
 
-            var medicineNameSelect = document.getElementById('medicineName');
-            var customMedicineName = document.getElementById('customMedicineName');
-            var dose = document.getElementById('dose').value;
-            var timing = document.getElementById('timing').value;
-            var meal = document.getElementById('meal').value;
-            var dosageType = document.getElementById('dosage_type').value;
-
-            var medicineName = medicineNameSelect.value === 'custom' ? customMedicineName.value : medicineNameSelect.value;
-
-            if (!medicineName) {
-                alert('Please enter a medicine name.');
-                return;
-            }
-
-            medicineItems.push(medicineName);
-            doses.push(dose);
-            timings.push(timing);
-            meals.push(meal);
-            dosageTypes.push(dosageType);
-
-            renderMedicineList();
-        }
-
-        function renderMedicineList() {
-            var ul = document.getElementById('medicinelist');
-            ul.innerHTML = '';
-
-            // Create table element
-            var table = document.createElement('table');
-            table.classList.add('medicine-table');
-
-            // Create table header row
-            var headerRow = document.createElement('tr');
-            var headers = ['Medicine', 'Dose', 'Dosage Type', 'Timings', 'Meals', 'Actions'];
-            headers.forEach(function(headerText) {
-                var th = document.createElement('th');
-                th.appendChild(document.createTextNode(headerText));
-                headerRow.appendChild(th);
+            var tdActions = document.createElement('td');
+            var deleteButton = document.createElement('button');
+            deleteButton.appendChild(document.createTextNode('Delete'));
+            deleteButton.classList.add('delete-button');
+            deleteButton.setAttribute('data-index', i);
+            deleteButton.addEventListener('click', function (event) {
+                deleteMedicine(event.target.getAttribute('data-index'));
             });
-            table.appendChild(headerRow);
-
-            for (var i = 0; i < medicineItems.length; i++) {
-                var tr = document.createElement('tr');
-
-                // Create and append cells with medicine details
-                var tdMedicine = document.createElement('td');
-                tdMedicine.appendChild(document.createTextNode(medicineItems[i]));
-                tr.appendChild(tdMedicine);
-
-                var tdDose = document.createElement('td');
-                tdDose.appendChild(document.createTextNode(doses[i]));
-                tr.appendChild(tdDose);
-
-                var tdDosageType = document.createElement('td');
-                tdDosageType.appendChild(document.createTextNode(dosageTypes[i]));
-                tr.appendChild(tdDosageType);
-
-                var tdTimings = document.createElement('td');
-                tdTimings.appendChild(document.createTextNode(timings[i]));
-                tr.appendChild(tdTimings);
-
-                var tdMeals = document.createElement('td');
-                tdMeals.appendChild(document.createTextNode(meals[i]));
-                tr.appendChild(tdMeals);
-
-                // Create and append cell with delete button
-                var tdActions = document.createElement('td');
-                var deleteButton = document.createElement('button');
-                deleteButton.appendChild(document.createTextNode('Delete'));
-                deleteButton.classList.add('delete-button');
-                deleteButton.setAttribute('data-index', i);
-                deleteButton.addEventListener('click', function(event) {
-                    deleteMedicine(event.target.getAttribute('data-index'));
-                });
-                tdActions.appendChild(deleteButton);
-                tr.appendChild(tdActions);
-
-                table.appendChild(tr);
-            }
-
-            // Append the table to the ul element
-            ul.appendChild(table);
+            tdActions.appendChild(deleteButton);
+            tr.appendChild(tdActions);
+            table.appendChild(tr);
         }
 
-        function deleteMedicine(index) {
-            medicineItems.splice(index, 1);
-            doses.splice(index, 1);
-            timings.splice(index, 1);
-            meals.splice(index, 1);
-            dosageTypes.splice(index, 1);
-            renderMedicineList();
-        }
+        ul.appendChild(table);
+    }
 
-        function submitForm() {
-            var medicineNameValues = document.getElementById('medicineNameValues');
-            var doseValues = document.getElementById('doseValues');
-            var timingValues = document.getElementById('timingValues');
-            var mealValues = document.getElementById('mealValues');
-            var dosageTypeValues = document.getElementById('dosageTypeValues');
+    function createTableCell(content) {
+        var td = document.createElement('td');
+        td.appendChild(document.createTextNode(content));
+        return td;
+    }
 
-            medicineNameValues.value = JSON.stringify(medicineItems);
-            doseValues.value = JSON.stringify(doses);
-            timingValues.value = JSON.stringify(timings);
-            mealValues.value = JSON.stringify(meals);
-            dosageTypeValues.value = JSON.stringify(dosageTypes);
+    function deleteMedicine(index) {
+        medicineItems.splice(index, 1);
+        doses.splice(index, 1);
+        timings.splice(index, 1);
+        meals.splice(index, 1);
+        dosageTypes.splice(index, 1);
+        renderMedicineList();
+    }
 
-            return true; // Allow form submission
-        }
+    function submitForm() {
+        document.getElementById('medicineNameValues').value = JSON.stringify(medicineItems);
+        document.getElementById('doseValues').value = JSON.stringify(doses);
+        document.getElementById('timingValues').value = JSON.stringify(timings);
+        document.getElementById('mealValues').value = JSON.stringify(meals);
+        document.getElementById('dosageTypeValues').value = JSON.stringify(dosageTypes);
+        return true; 
+    }
     </script>
 </article>
 
