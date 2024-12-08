@@ -260,7 +260,7 @@ class Database
                 $i++;
             }
         }
-        // print_r($query);
+        print_r($query);
         return $data;
     }
 
