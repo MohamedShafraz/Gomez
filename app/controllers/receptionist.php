@@ -13,7 +13,9 @@ class receptionist extends Controller
     private $labreceiptModel;
     public function __construct()
     {
-        session_start();
+        if (!isset($_SESSION)) {
+            session_start();
+        }
         if (!isset($_SESSION["userType"])) {
             header("location:" . URLROOT . "/users/login");
         }
@@ -127,8 +129,10 @@ class receptionist extends Controller
                 }
                 exit();
             } else {
-                header("location:" . URLROOT . "/users/login");
+                $this->view("receptionist/appointment_view", $result);
             }
+        } else {
+            header("location:" . URLROOT . "/users/login");
         }
     }
     public function dashboard()
