@@ -75,7 +75,7 @@
                         <div style='width: 27%;'>
 
                             <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 0.3rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
-                                <a href='" . URLROOT . "/receptionist/appointments/more2?doctor=$username&id=$session_id' style='text-decoration: none;'>
+                                <a href='" . URLROOT . "/receptionist/appointments/more2?doctor=$name' style='text-decoration: none;'>
                                     <font class='font1'>More</font>
                                 </a>
                             </div>
@@ -155,7 +155,7 @@
 
             <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
                 <li>Maximum Patients</li>
-                <input type="number" style="width: 10rem;height: 1.8rem;">
+                <input name="max_appointments" type="number" style="width: 10rem;height: 1.8rem;">
                 </li>
             </ul>
         </div>
