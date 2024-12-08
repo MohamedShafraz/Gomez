@@ -1,12 +1,11 @@
 <?php
 
-class UserModel extends Database
+class UserlabassistantModel extends Database
 {
     public function getUserDetails()
     {
-
-        $where = "GM_AD_ID = " . $_SESSION['User_Id'];
-        $this->setTable('lab_assistant');
+        $where = "lab_assistants.id = " . $_SESSION['User_Id'];
+        $this->setTable('lab_assistants');
         $data = $this->fetchUsers($where);
 
         $users = [];
