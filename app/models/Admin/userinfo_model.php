@@ -28,7 +28,6 @@ class UserModel extends Database
     {
 
         $where = "GM_AD_ID = " . $_SESSION['User_Id'];
-        print_r($details);
         if (isset($_POST['email'])) {
             $this->setTable('gm_admin');
             $users['GM_AD_Name'] = $_POST["Fullname"];
@@ -36,7 +35,7 @@ class UserModel extends Database
             // $users['NIC'] = $_POST['NIC'];
             $users['GM_AD_Gender'] = $_POST['gender'];
             $users['age'] = $_POST['age'];
-            $picture["profilepicture"] = $details;
+
             $data = $this->updateData($users, $where);
             $user['email'] = $_POST['email'];
             $this->setTable(User);
@@ -45,6 +44,7 @@ class UserModel extends Database
         }
         if ($details != null) {
             $this->setTable('user_db');
+            $picture["profilepicture"] = $details;
             $where1 = "User_Id = " . $_SESSION['User_Id'];
             $data = $this->updateData($picture, $where1);
 
