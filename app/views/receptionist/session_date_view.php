@@ -155,7 +155,7 @@
 
             <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
                 <li>Maximum Patients</li>
-                <input type="number" style="width: 10rem;height: 1.8rem;">
+                <input name="max_appointments" type="number" style="width: 10rem;height: 1.8rem;">
                 </li>
             </ul>
         </div>
