@@ -9,6 +9,7 @@ class patient extends Controller
     private $labreport_model;
     private $appointmodel;
     private $doctorModel;
+    private $prescription_model;
     public function __construct()
     {
         session_start();
@@ -121,20 +122,20 @@ class patient extends Controller
 
                 $user = $_SESSION["USER"];
 
-                $this->model("DoctorModel");
+                $this->model("patient/prescription_model");
 
-                $this->doctorModel = new DoctorModel(new Database());
+                $this->prescription_model = new prescription_model(new Database());
                 $where = 'appointment.Patient_Id = ' . $_SESSION['User_Id'];
-                $appointmentid = $this->doctorModel->fetchAppointment($where);
-                $prescription = $this->doctorModel->getPrescriptionbyAppointment($appointmentid[0]['Appointment_Id']);
-                $patient = $this->doctorModel->getPatient($_SESSION['User_Id']);
+                $appointmentid = $this->prescription_model->fetchAppointment($where);
+                $prescription = $this->prescription_model->getPrescriptionbyAppointment($appointmentid[0]['Appointment_Id']);
+                $patient = $this->prescription_model->getPatient($_SESSION['User_Id']);
                 $medicine = null;
-                if ($prescription) {
-                    $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
-                }
-                $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
-                $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
-                $this->view('patient/sidebar');
+                // if ($prescription) {
+                //     $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
+                // }
+                // $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
+                $this->view('patient/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
+                // $this->view('patient/sidebar');
                 exit();
             }
             if ($make == 'making') {
