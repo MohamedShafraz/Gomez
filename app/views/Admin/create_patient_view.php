@@ -15,17 +15,21 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
     $data.push("<?= "Phone number : " .  "0771234567 :" ?>");
     $data.push("<?= "Email : " .  "Johndoe@live.com :"  ?>");
     $data.push("<?= "Password : " .  "******* :" ?>");
-    $data.push("<?= "Full name :" .  "John Doe :" ?>");
-    $data.push("<?= "User name :" .  "John Doe :" ?>");
-    $data.push("<?= "Gender :" . "Male :" ?>");
-    $data.push("<?= "DOB : " . "2021-03-25 :" ?>");
-    $data.push("<?= "Phone number : " .  "0771234567 :" ?>");
-    $data.push("<?= "Email : " .  "Johndoe@live.com :"  ?>");
-    $data.push("<?= "Password : " .  "******* :" ?>");
 
     console.log($data);
 </script>
 <style>
+    .users-container {
+        /* display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-between; */
+        display: grid;
+        grid-template: auto/200px 200px;
+    }
+
+
+
     .button {
         display: flex;
         flex-direction: row;
@@ -66,7 +70,7 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
    position: fixed;
   margin: 1% 10% 0% 27%;
   z-index: 100;
-  padding: 2% 22% 5% 23%;
+  padding: 2% 22% 7% 23%;
   top: 81;
   width: 282px;
   justify-content: center;
@@ -93,36 +97,55 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
     <h1 style="">Create New Patient</h1>
 
     <form action="./created" method="post" enctype="multipart/form-data">
-        <div style="display:flex">
-        </div>
-        <div class="users" style="gap: 5%;width:69% ;">
+        <div class="users-container" style="gap: 5%;width:69% ;">
             <script>
                 let $date = new Date().toJSON().slice(0, 10);;
                 $data.forEach(element => {
                     if (element.split(" :")[0] == "Password") {
                         document.writeln(
+                            "<div class='users'>" +
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
-                            "<input type='password' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + "  required ><br><br>");
+                            "<input type='password' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + "  required ><br><br>" +
+                            "</div>");
+                        document.writeln(
+                            "<div class='users'>" +
+                            " <label for='Confirm " + element.split(" :")[0] + "1" + "' class='users'>Confirm " + element.split(" :")[0] + ": </label><br>" +
+                            "<input type='password' id='Confirm " + element.split(" :")[0] + "1" + "' name='confirm_" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + "  required ><div id='passwordError' style='display:none; color:red;width:200px'>password mismatch</div><br><br><br>" +
+                            "</div>");
                     } else if (element.split(" :")[0] == "User name") {
                         document.writeln(
+                            "<div class='users'>" +
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
-                            "<input type='text' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + "  aria-describedby='usernameStatus' required><div id='usernameStatus' style='width:200px'></div><br>");
+                            "<input type='text' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + "  aria-describedby='usernameStatus' required><div id='usernameStatus' style='display:none; color:red;width:200px'></div><br>" +
+                            "</div>");
                     } else if (element.split(" :")[0] == "Phone number") {
                         document.writeln(
+                            "<div class='users'>" +
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
-                            "<input type='tel' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' pattern='0[0-9]{9}' class='users' placeholder=" + element.split(" :")[1] + "  required><br><div id='phoneError' style='display:none; color:red;width:200px'>Invalid phone number</div><br>");
+                            "<input type='tel' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' pattern='0[0-9]{9}' class='users' placeholder=" + element.split(" :")[1] + "  required><br><div id='phoneError' style='display:none; color:red;width:200px'>Invalid phone number</div><br>" + "</div>");
                     } else if (element.split(" :")[0] == "DOB") {
                         document.writeln(
+                            "<div class='users'>" +
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
-                            "<input type='date' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + " max=" + $date + " required ><br><br>");
+                            "<input type='date' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + " max=" + $date + " required ><br><br>" + "</div>");
                     } else if (element.split(" :")[0] == "Email") {
                         document.writeln(
+                            "<div class='users'>" +
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
-                            "<input type='email' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' pattern='' class='users' placeholder=" + element.split(" :")[1] + "  required ><br><div id='emailError' style='display:none; color:red;width:200px'>Invalid email address</div><br>");
+                            "<input type='email' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + "  required ><br><div id='emailError' style='display:none; color:red;width:200px'>Invalid email address</div>" + "</div>");
+                    } else if (element.split(" :")[0] == "Gender") {
+                        document.writeln(
+                            "<div class='users'>" +
+                            " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
+                            "<select type='text' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users holder' placeholder=" + element.split(" :")[1] + " required>" +
+                            "<option value = 'Male'> Male </option>" +
+                            "<option value='Female'>Female</option>" +
+                            "<option value='Other'>Other</option></select><br><br>" + "</div>");
                     } else {
                         document.writeln(
+                            "<div class='users'>" +
                             " <label for='" + element.split(" :")[0] + "1" + "' class='users'>" + element.split(" :")[0] + ": </label><br>" +
-                            "<input type='text' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + " required><br><br>")
+                            "<input type='text' id='" + element.split(" :")[0] + "1" + "' name='" + element.split(" :")[0] + "' class='users' placeholder=" + element.split(" :")[1] + " required><br><br>" + "</div>");
                     }
                 });
             </script>
@@ -144,7 +167,9 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
         const emailError = document.getElementById('emailError');
         const phoneInput = document.getElementById('Phone number1')
         const phoneError = document.getElementById('phoneError');
-
+        const passwordInput = document.getElementById('Password1');
+        const confirmpasswordInput = document.getElementById('Confirm Password1');
+        const confirmpasswordError = document.getElementById('passwordError');
         phoneInput.addEventListener('input', function() {
             if (phoneInput.value !== "" && !phoneInput.validity.valid) {
                 phoneError.style.display = 'block';
@@ -157,6 +182,13 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
                 emailError.style.display = 'block';
             } else {
                 emailError.style.display = 'none';
+            }
+        });
+        confirmpasswordInput.addEventListener('input', function() {
+            if (confirmpasswordInput.value !== "" && confirmpasswordInput.value !== passwordInput.value) {
+                confirmpasswordError.style.display = 'block';
+            } else {
+                confirmpasswordError.style.display = 'none';
             }
         });
 
@@ -177,9 +209,11 @@ require_once(APPROOT . "/views/Admin/navbar_view.php");
                     if (data.exists) {
                         statusDisplay.textContent = 'Username is taken';
                         statusDisplay.style.color = 'red';
+                        statusDisplay.style.display = 'block';
                     } else {
                         statusDisplay.textContent = 'Username is available';
                         statusDisplay.style.color = 'green';
+                        statusDisplay.style.display = 'block';
                     }
                 })
                 .catch(error => console.error('Error:', error));
