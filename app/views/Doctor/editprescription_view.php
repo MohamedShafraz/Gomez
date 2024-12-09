@@ -30,7 +30,7 @@
         }
 </style>
 <body>
-    <div style="margin-left:23%;">
+    <div style="margin-left:23%;font-family: inter;">
             <div class="details-container" style="display: flex; flex-direction:column; justify-content:flex-start; width :100%;margin-top:2%">
                 <div class="card" style="display: flex; flex-direction:row">
                     <div class="details" style="width:50%">
@@ -57,7 +57,7 @@
                         <input type="hidden" name="prescriptionnumber" value="<?php echo $prescription["prescriptionnumber"]; ?>">
                         <input type="hidden" name="Appointment_Id" value="<?php echo $prescription["Appointment_Id"]; ?>">
                         <input type="hidden" name="patientid" value="<?php echo $prescription["patientid"]; ?>">
-                        <input style="width: 200px;"  class="bluebutton" type="submit" value="Save Changes">
+                        <input style="width: 200px;background-color: blue ;color: white;"  class="bluebutton" type="submit" value="Save Changes">
                 </form>
 
                 </div>
