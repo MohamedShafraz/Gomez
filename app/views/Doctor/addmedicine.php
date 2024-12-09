@@ -87,7 +87,8 @@
             <div id="medicineItems">
                 <div style="display: flex; flex-direction: row; justify-content: center;">
                 <label for="medicineName">Medicine Name</label>
-                <select name="medicineName" id="medicineName" style="border: none;" required>
+                <select name="medicineName" id="medicineName" style="border: none;">
+                    <option value="">Select Medicine</option>
                     <?php foreach ($drugs as $drug) { ?>
                         <option value="<?php echo $drug['name']; ?>" data-dosage-type="<?php echo $drug['dosage_type']; ?>">
                             <?php echo $drug['name']; ?>
@@ -100,7 +101,7 @@
                 <button type="button" id="customMedicineClose" style="display: none;">X</button>
 
                 <label style="margin-left: 2%;" for="dose">Dose</label>
-                <input type="number" id="dose" name="dose" min="1" required>
+                <input type="number" id="dose" name="dose" min="1">
 
                 <label style="margin-left: 2%;" for="dosage_type">Dosage Type</label>
                 <input type="hidden" id="dosage_type" name="dosage_type" value="">
