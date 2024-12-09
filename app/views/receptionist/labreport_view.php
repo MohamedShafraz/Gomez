@@ -105,6 +105,30 @@
     
 </head>
 
+<div id="overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.5); z-index: 999; display: none;"></div>
+
+<div id="alertBox" style="position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 5px; z-index: 1000; display: none;">
+  <div id="alertMessage"></div> <!-- Alert message will be displayed here -->
+  <button onclick="closeAlert()" style="display: block; margin: 0 auto;">Close</button> <!-- Close button -->
+</div>
+<?php
+  if (session_status() === PHP_SESSION_NONE) {
+      session_start();
+  }
+  if(isset($_SESSION['message'])){
+    $message = $_SESSION['message'];
+    echo "<script>
+            // Show the overlay and alert box
+            document.getElementById('overlay').style.display = 'block';
+            document.getElementById('alertBox').style.display = 'block';
+            // Set the alert message
+            document.getElementById('alertMessage').innerHTML = '<p>$message</p>';
+          </script>";
+  }
+  unset($_SESSION['message']);
+?>
+
+
 <pre></pre>
 <div class="complainttext" style="width: 65%;margin-left: 23%; margin-top:2%; margin-bottom: 1%;">Lab Receipts</div>
 <pre></pre>
@@ -115,7 +139,7 @@
             <th >Ref No</th>
             <th >Patient Name</th>
             <th >Test Name</th>
-            <th >Contact No</th>
+            <th> Status </th>
             <th >Actions</th>
         </tr>
     
@@ -132,7 +156,7 @@
                 <td ><?= $row['refno'] ?></td>
                 <td ><?= $row['patientName'] ?></td>
                 <td ><?= $row['testname'] ?></td>
-                <td ><?= $row['contactNo'] ?></td>
+                <td ><?= $row['status'] ?></td>
                 <td>
                     <button class="action-button" onclick="window.location.href='<?=URLROOT.'/receptionist/labdetails/'.$row['refno']?>'" >View</button>
                 </td>
@@ -153,4 +177,12 @@
 <script>var $URLROOT = '<?=URLROOT?>'; </script>;
 <script>var $usertype = '<?=$_SESSION['userType']?>'</script>
 <script src="<?=URLROOT?>/javascript/dashboard.js"></script>
+<script>
+function closeAlert() {
+    // Hide the overlay and alert box
+    document.getElementById('overlay').style.display = 'none';
+    document.getElementById('alertBox').style.display = 'none';
+  }
+
+</script>
 </html>
