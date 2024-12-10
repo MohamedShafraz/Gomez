@@ -42,7 +42,7 @@ class appointment extends Controller
           if ($error) {
             print_r($error);
             echo "<script>
-              alert('Appointment Created');
+              alert('Appointment not Created'+" . $error . ");
               history.go(-1);
           </script>";
           } else {

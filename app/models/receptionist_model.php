@@ -5,11 +5,11 @@ class ReceptionistModel extends Database
 
     public function getreceptionist($username)
     {
-        
+
         $where = "Username='$username'";
         $this->setTable("receptionists");
         $result = $this->fetchData($where);
-        
+
         return $result;
     }
 
@@ -34,26 +34,26 @@ class ReceptionistModel extends Database
         $this->setTable(User);
         $result = $this->fetchData($where);
         return $result;
-}
+    }
 
-public function getReportData()
+    public function getReportData()
     {
         $where = "status = 'Completed' or status = 'Add PDF'";
         $this->setTable(Report);
         $result = $this->fetchData($where);
         return $result;
-}
-    
-public function updatereceipt($id, $data)
-{
-    $query = "UPDATE report SET refno='$data[refno]',patientName='$data[patientName]', contactNo='$data[contactNo]', age='$data[age]',testname='$data[testname]']'WHERE id='$id'";
-    $result = $this->executeQuery($query);
-    return $result;
-}
+    }
 
-public function getTestNames()
+    public function updatereceipt($id, $data)
     {
-        
+        $query = "UPDATE report SET refno='$data[refno]',patientName='$data[patientName]', contactNo='$data[contactNo]', age='$data[age]',testname='$data[testname]']'WHERE id='$id'";
+        $result = $this->executeQuery($query);
+        return $result;
+    }
+
+    public function getTestNames()
+    {
+
         $where = 1;
         $this->setTable(Labtest);
         $result = $this->fetchData($where);
@@ -62,9 +62,9 @@ public function getTestNames()
 
     public function getlastref()
     {
-        
+
         $where = "SELECT MAX(`refno`) as  m FROM `report` WHERE 1";
-        
+
         $result = $this->executeQuery($where);
         $i = 0;
         if ($result && $result->num_rows > 0) {
@@ -79,7 +79,7 @@ public function getTestNames()
 
     public function getPatientNames()
     {
-        
+
         $where = 1;
         $this->setTable(Patients);
         $result = $this->fetchData($where);
@@ -138,7 +138,7 @@ public function getTestNames()
     public function getlastinsertedid()
     {
         $where = "SELECT MAX(`ID`) as  m FROM `patients` WHERE 1";
-        
+
         $result = $this->executeQuery($where);
         $i = 0;
         if ($result && $result->num_rows > 0) {
@@ -167,27 +167,11 @@ public function getTestNames()
         $where = "test_id='$testid'";
         $this->setTable(Labtest);
         $result = $this->fetchData($where);
-        $result = $result[0]['test'];
+        if (isset($result[0]['test'])) {
+            $result = $result[0]['test'];
+        } else {
+            $result = '';
+        }
         return $result;
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-?>

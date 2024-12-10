@@ -274,8 +274,11 @@ class receptionist extends Controller
         } else {
             foreach ($reports as &$report) {
                 $prescription = $this->labreceiptModel2->getPrescriptionDataByUniqueID($report["unique_id"]);
-
-                $report["prescriptionnumber"] = $prescription[0]["prescriptionnumber"];
+                if (isset($prescription[0])) {
+                    $report["prescriptionnumber"] = $prescription[0]["prescriptionnumber"];
+                } else {
+                    $report["prescriptionnumber"] = "No Prescription";
+                }
             }
             $this->view('receptionist/alltest', ["reports" => $reports]);
         }
