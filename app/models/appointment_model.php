@@ -9,7 +9,7 @@ class appointmentModel extends Database
     {
 
         $where = "session.session_id = " . $sessionId;
-        $doctor = "user_db.Username = \"" . $doctor . "\"";
+        $doctor = "user_db.Username = \"" . $doctor . "\" or doctors.fullname = \"" . $doctor . "\"";
         $this->setTable(Appointment);
         $result = $this->fetchAppointmentbydoctor($where, $doctor);
 
@@ -36,7 +36,7 @@ class appointmentModel extends Database
     {
 
         $where = 1;
-        $doctor = "user_db.Username REGEXP \"" . $doctor . "*\"";
+        $doctor = "user_db.Username = \"" . $doctor . "\"";
         $this->setTable(Appointment);
         $result = $this->fetchSession($where, $doctor);
 
@@ -258,6 +258,15 @@ class appointmentModel extends Database
             $this->setTable(Doctors);
             $result = $this->filterDoctor($where, $doctor);
         }
+        return $result;
+    }
+
+    public function getUserByUsername($doctor = Null)
+    {
+        $where = 1;
+        $doctor = User . ".Username = \"" . $doctor . "\"";
+        $this->setTable('doctors');
+        $result = $this->fetchUsers($doctor);
         return $result;
     }
     public function getAppoinmentbyDateAndDoctor($date = Null, $doctor = Null)
