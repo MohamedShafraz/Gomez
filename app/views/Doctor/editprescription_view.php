@@ -89,9 +89,9 @@
             <!-- Patient Information Card -->
             <div class="card">
                 <div class="details">
-                    <p>Patient Name: <?= htmlspecialchars($patient["fullname"]) ?></p>
-                    <p>Patient Age: <?= htmlspecialchars($prescription["age"]) ?></p>
-                    <p>Patient Gender: <?= htmlspecialchars($patient["gender"]) ?></p>
+                    <p>Patient Name: <?= $patient["fullname"] ?></p>
+                    <p>Patient Age: <?= $prescription["age"] ?></p>
+                    <p>Patient Gender: <?= $patient["gender"] ?></p>
                 </div>
             </div>
 
@@ -102,13 +102,13 @@
             <div class="card" style="width: 96%;">
                 <form action="<?= URLROOT . "/Doctor/EditPrescription" ?>" method="post">
                     <label for="otherremarks">Other Remarks:</label><br>
-                    <textarea id="otherremarks" name="otherremarks" rows="4"><?= htmlspecialchars($prescription["otherremarks"]); ?></textarea>
+                    <textarea id="otherremarks" name="otherremarks" rows="4"><?= $prescription["otherremarks"]; ?></textarea>
                     <br><br>
 
                     <!-- Hidden Inputs -->
-                    <input type="hidden" name="prescriptionnumber" value="<?= htmlspecialchars($prescription["prescriptionnumber"]); ?>">
-                    <input type="hidden" name="Appointment_Id" value="<?= htmlspecialchars($prescription["Appointment_Id"]); ?>">
-                    <input type="hidden" name="patientid" value="<?= htmlspecialchars($prescription["patientid"]); ?>">
+                    <input type="hidden" name="prescriptionnumber" value="<?= $prescription["prescriptionnumber"]; ?>">
+                    <input type="hidden" name="Appointment_Id" value="<?= $prescription["Appointment_Id"]; ?>">
+                    <input type="hidden" name="patientid" value="<?= $prescription["patientid"]; ?>">
 
                     <input class="bluebutton" type="submit" value="Save Changes">
                 </form>

@@ -21,25 +21,36 @@ class appointment extends Controller
           $data['fullname'] = $_POST['name'];
           $data['date_of_birth'] = $_POST['date_of_birth'];
           $data['phonenumber'] = 0777123456;
-          $user['Username']  = $data['fullname'] . $data['phonenumber'];
+          $data['type'] = "\'Unregister\'";
+          $user['Username']  = $data['fullname'];
           $user['usertype'] = 'Patient';
           $this->appointmodel->setTable('user_db');
           // print_r($this->appointmodel->printId());
           // print_r(explode("-", $_GET['id'])[1]);
           $this->appointmodel->insertData($user);
+          // print_r($this->appointmodel->printErrno());
           $data['ID'] = $this->appointmodel->printId();
+          // print_r($data['ID']);
           $this->appointmodel->setTable('patients');
           $this->appointmodel->insertData($data);
-          $appointment['session_id'] = explode("-", $_GET['id'])[1];
-          $appointment['Patient_Id'] =  $data['ID'];
+          $appointment['session_id'] = $this->appointmodel->printId();
+          $appointment['Patient_Id'] = explode("-", $_GET['id'])[1];
+          $error = $this->appointmodel->printErrno();
           $this->appointmodel->setTable('appointment');
-          $this->appointmodel->insertData($appointment);
-          //   print_r($result1[0]['session_id']);
-          //  print_r('<br>');
+          $this->appointmodel->addNewAppointment($appointment['session_id'], $appointment['Patient_Id']);
 
-          session_start();
-          $_SESSION['status'] = "<script>alert('appointment created successfully')</script>";
-          header("location: " . URLROOT);
+          if ($error) {
+            print_r($error);
+            echo "<script>
+              alert('Appointment Created');
+              history.go(-1);
+          </script>";
+          } else {
+            echo "<script>
+            alert('Appointment Created');
+            window.location.href = '" . URLROOT . "';
+        </script>";
+          }
           exit();
           // $this->appointmodel->insertData();
         }

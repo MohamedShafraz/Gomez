@@ -34,7 +34,7 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
                 <img src=<?= URLROOT . "/resources/medical_report1.png" ?> alt="online lab reports" id="lab"><br><b style="color: #054f7d;">lab reports</b></a></div>
         <div><a href=<?= URLROOT . "/Users/consultation" ?> style="text-decoration: none;">
                 <img src=<?= URLROOT . "/resources/consultation.png" ?> alt="online consultation" id="consult"><br><b style="color: #054f7d;">online consultation</b></a></div>
-        <div><a href=<?= URLROOT . "/Users/registration" ?> style="text-decoration: none;">
+        <div><a href=<?= URLROOT . "/registration" ?> style="text-decoration: none;">
                 <img src=<?= URLROOT . "/resources/registration.png" ?> alt="pre registration" id="prereg"><br><b style="color: #054f7d;">pre registration</b></a></div>
     </div>
     <div class="Welcome">
