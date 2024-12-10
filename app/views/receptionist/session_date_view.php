@@ -91,7 +91,7 @@
             
             </div><br>";
             }
-            
+
             ?>
             <hr style="margin-left: -5.1rem;border-width: medium;width: 74.6rem;">
             <div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem;height: 8rem;'>
@@ -103,7 +103,7 @@
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: larger;padding: 2rem 0rem 1rem 0rem;width:11rem'>
                             <ul style='list-style-type: none;padding:0;margin:0px 3px 0px 3px;'>
                                 <li>Date</li>
-                                <li style='font-size: medium;'><input style="padding: 3%;width:10rem" type="date" name="Date" id="Date" class="holder" min="<?php echo date('Y-m-d'); ?>" max="<?php echo date('Y-m-d', strtotime('+7 days')); ?>" required></li>
+                                <li style='font-size: medium;'><input style="padding: 3%;width:10rem" type="date" name="Date" id="Date" class="holder" min="<?php echo date('Y-m-d', strtotime(' +1 day')) ?>" max="<?php echo date('Y-m-d', strtotime('+7 days')); ?>" required></li>
                             </ul>
                         </div>
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: larger;    padding: 2rem 0rem 1rem 0rem;width: 11rem;'>
