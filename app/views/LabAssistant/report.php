@@ -94,7 +94,7 @@
             <input type="text" id="patientNameSearch" onkeyup="filterTable()" placeholder="Search by Name">
         </form>
     </div>
-    <div class="complainttext" style="width: 67.3%;">Reports</div>
+    <div class="complainttext" style="width: 67.3%;color:white;">Reports</div>
     <ul style="    position: fixed;
     width:52.2%;
     background-color: #5998ff;

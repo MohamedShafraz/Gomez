@@ -37,25 +37,54 @@
             background-color: blue;
             color: white;
         }
+
+        .complaint tr {
+            color: black;
+            margin: 5%;
+            font-size: 15px;
+            padding: 1.2% 20.8% 1.2% 57.8%;
+            width: 1004px;
+            gap: 0px;
+        }
     </style>
 
     </aside>
     <article class="dashboard">
         <div class="complaint" style="margin-left:24%; margin-top:50px;font-family: inter;">
+            <ul style="    position: fixed;
+    width:52.2%;
+    background-color: #5998ff;
+    left: 24%;
+    display: flex
+;
+    top: 19%;
+    padding: 1.2% 7.8% 1.2% 7.8%;
+    font-family: 'inter';
+    color: var(--Gomez-Blue);
+    color: white;
+    margin: 0% 1%;">
+                <li style="width:226px">Name</li>
+                <li style="width:226px">Contact Number</li>
+                <li style="width:226px">Age</li>
+                <li style="width:226px">More</li>
+
+
+
+
+
+            </ul>
+            <br><br>
             <?php
-            echo '<table>';
-            echo '<tr>';
-            echo '<td style="width: 20%;"> Name</td>';
-            echo '<td style="width: 20%;"> Contact Number </td>';
-            echo '<td style="width: 20%;"> Age </td>';
-            echo '<td style="width: 20%;"> More </td>';
-            echo '</tr>';
+            echo '<table class="complainttable" style="height: 50vh;margin-top:5%;margin-left: -1%;">';
+            echo '<tbody>';
+
+
 
             // Get current time as DateTime
             $current_time = new DateTime('now', new DateTimeZone('Asia/Colombo'));
 
             foreach ($patients as $row) {
-                echo '<tr>';
+                echo '<tr style="background-color: white;">';
                 echo '<td style="width: 20%;">' . $row[0]['fullname'] . '</td>';
                 echo '<td style="width: 20%;">' . $row[0]['phonenumber'] . '</td>';
 
@@ -80,8 +109,9 @@
                 }
 
                 echo '</tr>';
-                echo '<tr style="color:white;margin: 1%;"></tr>';
+                echo '<tr style="color:white;margin: 1%;background-color: transparent;"></tr>';
             }
+            echo '</tbody>';
             echo '</table>';
             ?>
         </div>

@@ -88,6 +88,7 @@
 
         .horizontal-scroll {
             overflow-x: visible;
+            /* scrollbar-width: none; */
             margin-left: 0%;
         }
 
@@ -222,9 +223,9 @@
                 <div class="testing">
                     <canvas style="width:100px;height:100px;background:#f5f5f5;margin-top:-6%" id="myChart1"></canvas>
                 </div>
-                <div class="testing">
+                <!-- <div class="testing">
                     <canvas style="width:100px;height:100px;background:#f5f5f5;margin-top:-6%" id="myChart"></canvas>
-                </div>
+                </div> -->
                 <div class="testing">
                     <canvas style="width:200px;height:200px;background:#f5f5f5;margin-top:-6%" id="myChart2"></canvas>
 
@@ -237,9 +238,9 @@
                 <div class="testing">
                     <canvas style="width:100px;height:100px;background:#f5f5f5;margin-top:-6%" id="myChart4"></canvas>
                 </div>
-                <div class="testing">
+                <!-- <div class="testing">
                     <canvas style="width:100px;height:100px;background:#f5f5f5;margin-top:-6%" id="myChart5"></canvas>
-                </div>
+                </div> -->
             </div>
 
             <div class="tested">
@@ -250,10 +251,10 @@
                 <div class="testing">
                     <canvas style="width:200px;height:200px;background:#f5f5f5;margin-top:-6%" id="myChart7"></canvas>
                 </div>
-                <div class="testing">
+                <!-- <div class="testing">
                     <canvas style="width:200px;height:200px;background:#f5f5f5;margin-top:-6%" id="myChart8"></canvas>
 
-                </div>
+                </div> -->
             </div>
 
 
@@ -262,94 +263,92 @@
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
         <script>
-            const ctx = document.getElementById('myChart');
+            // const ctx = document.getElementById('myChart');
             const ctx1 = document.getElementById('myChart1');
             const ctx2 = document.getElementById('myChart2');
             const ctx3 = document.getElementById('myChart3');
             const ctx4 = document.getElementById('myChart4');
-            const ctx5 = document.getElementById('myChart5');
+            // const ctx5 = document.getElementById('myChart5');
             const ctx6 = document.getElementById('myChart6');
             const ctx7 = document.getElementById('myChart7');
-            const ctx8 = document.getElementById('myChart8');
+            // const ctx8 = document.getElementById('myChart8');
 
-            new Chart(ctx, {
-                type: 'line',
-                data: {
-                    labels: ['Solved', 'Unsolved', 'check', 'need to check'],
-                    datasets: [{
-                        label: 'Issues',
-                        data: [60, 50, 70, 40],
-                        borderWidth: 1
-                    }]
-                },
-                hoverOffset: 4,
 
-            });
-            new Chart(ctx8, {
-                type: 'line',
-                data: {
-                    labels: ['Solved', 'Unsolved', 'check', 'need to check'],
-                    datasets: [{
-                        label: 'Issues',
-                        data: [60, 50, 70, 40],
-                        borderWidth: 1
-                    }]
-                },
-                hoverOffset: 4,
-
-            });
             new Chart(ctx6, {
-                type: 'line',
+                type: 'bar',
                 data: {
-                    labels: ['Solved', 'Unsolved', 'check', 'need to check'],
+                    labels: ['FBS', 'Lipid', 'CBC', 'PPET'],
                     datasets: [{
-                        label: 'Issues',
-                        data: [60, 50, 70, 40],
-                        borderWidth: 1
+                        label: 'Appointments',
+                        data: [5, 10, 8, 2],
+                        backgroundColor: [
+                            'rgba(13, 71, 128)',
+                            'rgb(54, 162, 235)',
+                            'rgb(104, 170, 255)',
+                            'rgb(94, 120, 240)',
+                        ],
+                        hoverOffset: 4,
                     }]
                 },
-                hoverOffset: 4,
-
+                animation: {
+                    animateRotate: true,
+                }
             });
             new Chart(ctx7, {
-                type: 'line',
+                type: 'bar',
                 data: {
-                    labels: ['Solved', 'Unsolved', 'check', 'need to check'],
+                    labels: ['Dentenl', 'ENT', 'Eyesurgery'],
                     datasets: [{
-                        label: 'Issues',
-                        data: [60, 50, 70, 40],
-                        borderWidth: 1
+                        label: 'Appointments',
+                        data: [5, 10, 8],
+                        backgroundColor: [
+                            'rgba(13, 71, 128)',
+                            'rgb(54, 162, 235)',
+                            'rgb(104, 170, 255)',
+                        ],
+                        hoverOffset: 4,
                     }]
                 },
-                hoverOffset: 4,
+                animation: {
+                    animateRotate: true,
+                }
+
 
             });
             new Chart(ctx4, {
-                type: 'line',
+                type: 'bar',
                 data: {
-                    labels: ['Solved', 'Unsolved', 'check', 'need to check'],
+                    labels: ['Registerd User', 'Un Registered User'],
                     datasets: [{
-                        label: 'Issues',
-                        data: [60, 50, 70, 40],
-                        borderWidth: 1
+                        label: 'Lap Reports',
+                        data: [20, 15],
+                        backgroundColor: [
+                            'rgba(13, 71, 128)',
+                            'rgb(54, 162, 235)',
+                        ],
+                        hoverOffset: 4,
                     }]
                 },
-                hoverOffset: 4,
+                animation: {
+                    animateRotate: true,
+                }
+
+
 
             });
-            new Chart(ctx5, {
-                type: 'line',
-                data: {
-                    labels: ['Solved', 'Unsolved', 'check', 'need to check'],
-                    datasets: [{
-                        label: 'Issues',
-                        data: [60, 50, 70, 40],
-                        borderWidth: 1
-                    }]
-                },
-                hoverOffset: 4,
+            // new Chart(ctx5, {
+            //     type: 'line',
+            //     data: {
+            //         labels: ['Solved', 'Unsolved', 'check', 'need to check'],
+            //         datasets: [{
+            //             label: 'Issues',
+            //             data: [60, 50, 70, 40],
+            //             borderWidth: 1
+            //         }]
+            //     },
+            //     hoverOffset: 4,
 
-            });
+            // });
             new Chart(ctx1, {
                 type: 'doughnut',
                 data: {
@@ -363,30 +362,24 @@
                 hoverOffset: 4,
             });
             new Chart(ctx2, {
-                type: 'bar',
+                type: 'doughnut',
                 data: {
-                    labels: ['2024-04-29', '2024-04-30', '2024-05-01', '2024-05-02', '2024-05-03', '2024-05-04', '2024-05-05'],
+                    labels: ['Doctor', 'LabAssistant', 'Admin', 'Receptionist'],
                     datasets: [{
-                        label: 'Appointments',
-                        data: [3, 11, 0, 0, 0, 0, 0],
-                        backgroundColor: [
-                            'rgba(13, 71, 128)',
-                            'rgb(54, 162, 235)',
-                        ],
-                        hoverOffset: 4,
+                        label: 'Employee',
+                        data: [5, 2, 1, 2],
+                        borderWidth: 1
                     }]
                 },
-                animation: {
-                    animateRotate: true,
-                }
+                hoverOffset: 4,
             });
             new Chart(ctx3, {
                 type: 'bar',
                 data: {
-                    labels: ['2024-04-29', '2024-04-30', '2024-05-01', '2024-05-02', '2024-05-03', '2024-05-04', '2024-05-05'],
+                    labels: ['Registered', 'Un Registered'],
                     datasets: [{
                         label: 'Appointments',
-                        data: [3, 11, 0, 0, 0, 0, 0],
+                        data: [30, 10],
                         backgroundColor: [
                             'rgba(13, 71, 128)',
                             'rgb(54, 162, 235)',
@@ -398,6 +391,24 @@
                     animateRotate: true,
                 }
             });
+            // new Chart(ctx3, {
+            //     type: 'bar',
+            //     data: {
+            //         labels: ['2024-04-29', '2024-04-30', '2024-05-01', '2024-05-02', '2024-05-03', '2024-05-04', '2024-05-05'],
+            //         datasets: [{
+            //             label: 'Appointments',
+            //             data: [3, 11, 0, 0, 0, 0, 0],
+            //             backgroundColor: [
+            //                 'rgba(13, 71, 128)',
+            //                 'rgb(54, 162, 235)',
+            //             ],
+            //             hoverOffset: 4,
+            //         }]
+            //     },
+            //     animation: {
+            //         animateRotate: true,
+            //     }
+            // });
         </script>
 
 

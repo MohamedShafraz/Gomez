@@ -265,12 +265,20 @@ class receptionist extends Controller
         $this->model('receptionist_model');
         $this->labreceiptModel2 = new ReceptionistModel();
         $reports = $this->labreceiptModel2->getAlltestdata();
-        foreach ($reports as &$report) {
-            $prescription = $this->labreceiptModel2->getPrescriptionDataByUniqueID($report["unique_id"]);
+        if (empty($reports)) {
+            // If no data, pass an empty reports array and a message to the view
+            $this->view('receptionist/alltest', [
+                "reports" => [],
+                "message" => "No reports to show"
+            ]);
+        } else {
+            foreach ($reports as &$report) {
+                $prescription = $this->labreceiptModel2->getPrescriptionDataByUniqueID($report["unique_id"]);
 
-            $report["prescriptionnumber"] = $prescription[0]["prescriptionnumber"];
+                $report["prescriptionnumber"] = $prescription[0]["prescriptionnumber"];
+            }
+            $this->view('receptionist/alltest', ["reports" => $reports]);
         }
-        $this->view('receptionist/alltest', ["reports" => $reports]);
         exit();
     }
 
