@@ -34,10 +34,11 @@
                 $username = $data[0][0]['Username'];
                 $username = $data[0][0]['Username'];
                 $specialization = $data[0][0]['Specialization'];
+                $image = $data[0][0]['profilepicture'] ? "data:image/png;base64," . base64_encode($data[0][0]['profilepicture']) : URLROOT . "/resources/doctor1.png";
                 echo "
             <div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
                     <div style='display: flex;flex-direction: row;'>
-                        <div style='width: 20%;'><img src='" . URLROOT . "/resources/doctor1.png' style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
+                        <div style='width: 20%;'><img src='" . $image . "' style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
                             <ul style='list-style-type: none;padding:0;'>
                                 <li>$name</li>

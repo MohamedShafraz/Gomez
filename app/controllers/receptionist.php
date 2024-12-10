@@ -112,7 +112,6 @@ class receptionist extends Controller
             }
             if ($make == 'more2') {
                 if (isset($_GET['doctor'])) {
-                    $result = $this->appointmodel->getAppoinmentOneDoctorOneSession($_GET['doctor'], $_GET['id']);
                     if (isset($_GET['doctor']) && isset($_GET['id'])) {
                         $result = $this->appointmodel->getAppoinmentOneDoctorOneSession($_GET['doctor'], $_GET['id']);
 

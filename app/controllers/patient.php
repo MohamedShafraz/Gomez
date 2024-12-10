@@ -142,8 +142,7 @@ class patient extends Controller
                 $appointment['Patient_Id'] =  $_SESSION['User_Id'];
 
                 $this->appointmodel->setTable('appointment');
-                $this->appointmodel->insertData($appointment);
-                $this->appointmodel->printId();
+                $this->appointmodel->addNewAppointment($_SESSION['User_Id'], $_GET['id']);
                 $error = $this->appointmodel->printErrno();
                 if ($error) {
                     echo "<script>
