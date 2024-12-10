@@ -34,10 +34,11 @@
                 $username = $data[0][0]['Username'];
                 $username = $data[0][0]['Username'];
                 $specialization = $data[0][0]['Specialization'];
+                $image = $data[0][0]['profilepicture'] ? "data:image/png;base64," . base64_encode($data[0][0]['profilepicture']) : URLROOT . "/resources/doctor1.png";
                 echo "
             <div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
                     <div style='display: flex;flex-direction: row;'>
-                        <div style='width: 20%;'><img src='" . URLROOT . "/resources/doctor1.png' style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
+                        <div style='width: 20%;'><img src='" . $image . "' style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
                             <ul style='list-style-type: none;padding:0;'>
                                 <li>$name</li>
@@ -76,6 +77,7 @@
 
                             <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 0.3rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
                                 <a href='" . URLROOT . "/receptionist/appointments/more2?doctor=$name&id=$session_id' style='text-decoration: none;'>
+                                <a href='" . URLROOT . "/receptionist/appointments/more2?doctor=$name&id=$session_id' style='text-decoration: none;'>
                                     <font class='font1'>More</font>
                                 </a>
                             </div>
@@ -90,10 +92,12 @@
             
             </div><br>";
             }
+            
             ?>
             <hr style="margin-left: -5.1rem;border-width: medium;width: 74.6rem;">
             <div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem;height: 8rem;'>
                 <form action="./more3?doctor=<?= $username ?? $_GET['doctor'] ?>" method="post">
+
                     <div style="font-size: x-large;font-weight: bold;">New Session</div>
                     <div style='display: flex;flex-direction: row;'>
 

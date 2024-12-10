@@ -342,6 +342,12 @@ class Database
         // print_r($query);
         return $this->executeQuery($query);
     }
+    public function addNewAppointment($session_id, $patientID)
+    {
+        $query = "CALL AddNewAppointment2($session_id,$patientID)";
+        return $this->executeQuery($query);
+    }
+
 
     public function updateData($data, $condition)
     {
