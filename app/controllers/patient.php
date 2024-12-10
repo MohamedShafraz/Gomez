@@ -143,6 +143,7 @@ class patient extends Controller
 
                 $this->appointmodel->setTable('appointment');
                 $this->appointmodel->insertData($appointment);
+                $this->appointmodel->printId();
                 $error = $this->appointmodel->printErrno();
                 if ($error) {
                     echo "<script>
