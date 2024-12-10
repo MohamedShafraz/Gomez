@@ -261,6 +261,7 @@ class appointmentModel extends Database
         return $result;
     }
 
+
     public function getUserByUsername($doctor = Null)
     {
         $where = 1;

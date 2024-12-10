@@ -87,7 +87,8 @@
             <div id="medicineItems">
                 <div style="display: flex; flex-direction: row; justify-content: center;">
                 <label for="medicineName">Medicine Name</label>
-                <select name="medicineName" id="medicineName" style="border: none;" required>
+                <select name="medicineName" id="medicineName" style="border: none;">
+                    <option value="">Select Medicine</option>
                     <?php foreach ($drugs as $drug) { ?>
                         <option value="<?php echo $drug['name']; ?>" data-dosage-type="<?php echo $drug['dosage_type']; ?>">
                             <?php echo $drug['name']; ?>
@@ -100,7 +101,7 @@
                 <button type="button" id="customMedicineClose" style="display: none;">X</button>
 
                 <label style="margin-left: 2%;" for="dose">Dose</label>
-                <input type="number" id="dose" name="dose" min="1" required>
+                <input type="number" id="dose" name="dose" min="1">
 
                 <label style="margin-left: 2%;" for="dosage_type">Dosage Type</label>
                 <input type="hidden" id="dosage_type" name="dosage_type" value="">
@@ -203,8 +204,21 @@
             ? customMedicineName.value
             : medicineNameSelect.value;
 
+        // Check if medicine name is provided
         if (!medicineName) {
             alert('Please enter a medicine name.');
+            return;
+        }
+
+        // Check if dose is provided
+        if (!dose || dose <= 0) {
+            alert('Please enter a valid dose.');
+            return;
+        }
+
+        // Check if the medicine is already added
+        if (medicineItems.map(item => item.toLowerCase()).includes(medicineName.toLowerCase())) {
+            alert('This medicine has already been added.');
             return;
         }
 
@@ -216,6 +230,8 @@
 
         renderMedicineList();
     }
+
+
 
     function renderMedicineList() {
         var ul = document.getElementById('medicinelist');
