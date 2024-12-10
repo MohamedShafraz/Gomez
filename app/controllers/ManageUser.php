@@ -47,18 +47,23 @@ class manageuser extends Controller
             $users["Username"] = $_POST["User_name"];
             $users['Email'] = $_POST["Email"];
             $users['Password'] = md5($_POST["Password"]);
+            $users['usertype'] = ucfirst($user);
             $Model->setTable(User);
             $Model->insertData($users);
             $data = [];
-            $data['ID'] = $Model->printId();
-            $data["phonenumber"] = $_POST["Phone_number"];
-            $data["fullname"] = $_POST["Full_name"];
-            $data["gender"] = $_POST["Gender"];
-            $data["date_of_birth"] = $_POST['DOB'];
-            $data["NIC"] = $_POST['NIC'] ?? "";
-            $Model->setTable($user . "s");
-            $result1 = $Model->insertData($data);
-            print_r("<script>alert('" . $result1 . "')</script>");
+            if ($user == "patient") {
+                $data['ID'] = $Model->printId();
+                $data["phonenumber"] = $_POST["Phone_number"];
+                $data["fullname"] = $_POST["Full_name"];
+                $data["gender"] = $_POST["Gender"];
+                $data["date_of_birth"] = $_POST['DOB'];
+                $data["NIC"] = $_POST['NIC'] ?? "";
+                $data["type"] = "\'Register\'";
+                $data["registration_date"] = date("Y-m-d");
+                $Model->setTable($user . "s");
+                $result1 = $Model->insertData($data);
+                print_r("<script>alert('" . $result1 . "')</script>");
+            }
             header("Location:" . URLROOT . "/" . $_SESSION['userType'] . "/manageuser/" . $user);
             exit();
         } else {

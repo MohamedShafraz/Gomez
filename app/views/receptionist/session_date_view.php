@@ -29,10 +29,12 @@
             </form>
             <br>
             <?php
-            $name = $data[0][0]['fullname'];
-            $name = $data[0][0]['Username'];
-            $specialization = $data[0][0]['Specialization'];
-            echo "
+            if (isset($data[0][0])) {
+                $name = $data[0][0]['fullname'];
+                $username = $data[0][0]['Username'];
+                $username = $data[0][0]['Username'];
+                $specialization = $data[0][0]['Specialization'];
+                echo "
             <div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
                     <div style='display: flex;flex-direction: row;'>
                         <div style='width: 20%;'><img src='" . URLROOT . "/resources/doctor1.png' style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
@@ -50,12 +52,17 @@
                     </div>
                     
                 </div><br><div id='appointments' style='height: 11rem;width:58rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;'>";
-            for ($i = 0; $i < sizeof($data[0]); $i++) {
-
-                $date = $data[0][$i]['date'];
-                $start_time = $data[0][$i]['start_time'];
-                $end_time = $data[0][$i]['end_time'];
-                echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
+                usort($data[0], function ($a, $b) {
+                    return strtotime($b['date']) - strtotime($a['date']);
+                });
+                $currentDate = date('Y-m-d'); // Get the current date in 'YYYY-MM-DD' format
+                for ($i = 0; $i < sizeof($data[0]); $i++) {
+                    $date = $data[0][$i]['date'];
+                    $start_time = $data[0][$i]['start_time'];
+                    $end_time = $data[0][$i]['end_time'];
+                    $session_id = $data[0][$i]['session_id'];
+                    if (strtotime($date) >= strtotime($currentDate)) {
+                        echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>
                     <div style='display: flex;flex-direction: row;'>
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: x-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
                             $date
@@ -68,7 +75,7 @@
                         <div style='width: 27%;'>
 
                             <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 0.3rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
-                                <a href='" . URLROOT . "/receptionist/appointments/more2?doctor=$name' style='text-decoration: none;'>
+                                <a href='" . URLROOT . "/receptionist/appointments/more2?doctor=$name&id=$session_id' style='text-decoration: none;'>
                                     <font class='font1'>More</font>
                                 </a>
                             </div>
@@ -76,15 +83,17 @@
                     </div>
                     
                 </div><br>";
-            }
-            echo "</div>
+                    }
+                }
+                echo "</div>
 
             
             </div><br>";
+            }
             ?>
             <hr style="margin-left: -5.1rem;border-width: medium;width: 74.6rem;">
             <div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem;height: 8rem;'>
-                <form action="" method="post">
+                <form action="./more3?doctor=<?= $username ?? $_GET['doctor'] ?>" method="post">
                     <div style="font-size: x-large;font-weight: bold;">New Session</div>
                     <div style='display: flex;flex-direction: row;'>
 
@@ -144,13 +153,12 @@
         </ul>
         </div>
         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: larger;padding: 2rem 0rem 1rem 0rem;width:11rem'>
-            <form action="" <?= URLROOT . "/receptionist/appointments/create" ?>"" method="post">
-                <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
-                    <li>Maximum Patients</li>
-                    <input type="number" style="width: 10rem;height: 1.8rem;">
-                    </li>
-                </ul>
 
+            <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
+                <li>Maximum Patients</li>
+                <input name="max_appointments" type="number" style="width: 10rem;height: 1.8rem;" min="10">
+                </li>
+            </ul>
         </div>
 
         <div style='width: 20%;'>

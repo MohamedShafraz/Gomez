@@ -64,7 +64,6 @@ include_once(APPROOT . '/views/header_view.php');
                 if (isset($data)) {
                     for ($i = 0; $i < sizeof($data); $i++) {
                         $appointmentDate = $data[$i]['date'] ?? '03/15/2024';
-
                         // Compare appointment date with the current date
                         if (strtotime($appointmentDate) >= strtotime($currentDate)) {
                             $startTime = $data[$i]['start_time'];
@@ -98,7 +97,7 @@ include_once(APPROOT . '/views/header_view.php');
                                                     <li>
                                                         <div style='width: 27%;'>
                                                             <div class='logbutton1' style='height: fit-content;margin: 2rem 0rem 0rem 0rem;background:#5998ff;'>
-                                                                <a href='" . URLROOT . "/appointment/finalized/data?fullname=" . $data[$i]['fullname'] . "&specialization=" . $data[$i]['Specialization'] . "&date=" . $data[$i]['date'] . "&strt_time=" . $data[$i]['start_time'] . "&end_time=" . $data[$i]['end_time'] . "&id=3-" . $data[$i]['Doctor_id'] . "' style='text-decoration: none;'>
+                                                                <a href='" . URLROOT . "/appointment/finalized/data?fullname=" . $data[$i]['fullname'] . "&specialization=" . $data[$i]['Specialization'] . "&date=" . $data[$i]['date'] . "&strt_time=" . $data[$i]['start_time'] . "&end_time=" . $data[$i]['end_time'] . "&id=3-" . $data[$i]['session_id'] . "' style='text-decoration: none;'>
                                                                     <font class='font1' style='color:white'>Finalize</font>
                                                                 </a>
                                                             </div>

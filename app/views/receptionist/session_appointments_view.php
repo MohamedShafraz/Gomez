@@ -31,26 +31,29 @@
                 </section>
             </form>
             <br>
+            <?php if (isset($data[0])) {
+                $image = $data[0]['profilepicture'] ? "data:image/png;base64," . base64_encode($data[0]['profilepicture']) : URLROOT . "/resources/doctor1.png";
+                echo "
             <div class='flex-item' style='padding: 0.5rem;background: white;width: 62.5rem;margin-left: 1rem;'>
                 <div style='display: flex;flex-direction: row;'>
-                    <div style='width: 20%;'><img src="<?= URLROOT . "/resources/doctor1.png" ?>" style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
+                    <div style='width: 20%;'><img src= '" . $image . "' style='padding: 1rem 1rem 1rem 1rem;height: 5rem;width: 5rem;border:1px solid;'></div>
                     <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
                         <ul style='list-style-type: none;padding:0;'>
-                            <li><?php echo $data[0]['doctor_name']; ?></li>
-                            <li style='font-size: medium;'><?php echo $data[0]['Specialization']; ?></li>
+                            <li>" . $data[0]['doctor_name'] . "</li>
+                            <li style='font-size: medium;'>" . $data[0]['Specialization'] . "</li>
                         </ul>
                     </div>
                     <div style='margin: -0.5rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width: 53%;'>
-                        <?php echo $data[0]['date']; ?>
+                       " . $data[0]['date'] . "
                     </div>
-                    <div style='margin: -0.5rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width: 48%;'>
-                        <?php echo explode(':', $data[0]['start_time'])[0] . "-" . explode(':', $data[0]['end_time'])[0]; ?>
-                    </div>
+                    <div style='margin: -0.5rem 0rem 0rem 0rem;font-weight: bold;font-size: xx-large;padding: 2rem 0rem 1rem 0rem;width: 48%;'>"
+                    . explode(':', $data[0]['start_time'])[0] .  "-" . explode(':', $data[0]['end_time'])[0] .
+                    "</div>
 
                     <div style='width: 27%;'>
 
                         <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
-                            <a href="" style='text-decoration: none;'>
+                            <a href=' style='text-decoration: none;'>
                                 <font class='font1'>Cancel Session</font>
                             </a>
                         </div>
@@ -60,15 +63,25 @@
             </div>
 
             <br>
-            <div style="height: 22rem;width: 65rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;">
-
-
-                <?php
-                for ($i = 0; $i < sizeof($data); $i++) {
-                    $name = $data[$i]['full'];
-                    $phone_number = $data[$i]['phonenumber'];
-                    $nic = $data[$i]['nic'];
-                    echo "
+            <div style='height: 22rem;width: 65rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;'>";
+            } else {
+                echo "
+                <div class='flex-item' style='padding: 0.5rem;background: white;width: 62.5rem;margin-left: 1rem;'>
+                    <div style='display: flex;flex-direction: row;'>
+                        No Appointments
+                    </div>
+    
+                </div>
+    
+                <br>
+                <div style='height: 22rem;width: 65rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;'>";
+            } ?>
+            <?php
+            for ($i = 0; $i < sizeof($data); $i++) {
+                $name = $data[$i]['full'];
+                $phone_number = $data[$i]['phonenumber'];
+                $nic = $data[$i]['nic'];
+                echo "
                 <div class='flex-item' style='padding: 0.5rem;background: white;width:62.5rem;margin-left:1rem'>
                     <div style='display: flex;flex-direction: row;'>
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: x-large;padding: 2rem 0rem 1rem 0rem;width:53%'>
@@ -93,8 +106,8 @@
 
                         
                     </div></div><br>";
-                }
-                ?>
+            }
+            ?>
 
 
 

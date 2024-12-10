@@ -93,7 +93,7 @@
 
     <!-- <a>Welcome to Gomez</a> -->
     <ul style="background-color: white;padding:5%; width:50%">
-        <div class="users" style="float: left;gap: 5%;width:50% ;"><img src="<?= URLROOT . "/public/resources/user.jpeg" ?>" alt="Profile Picture" style="width: 73%;"></div>
+        <div class="users" style="float: left;gap: 5%;width:28% ;"><img src="<?= URLROOT . "/resources/new_pat.png" ?>" alt="Profile Picture" style="width: 73%;"></div>
 
         <?php
         foreach ($data as $key => $value) {
