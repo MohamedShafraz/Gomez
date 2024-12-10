@@ -144,8 +144,9 @@ class patient extends Controller
 
                 $this->appointmodel->setTable('appointment');
                 $this->appointmodel->insertData($appointment);
+                $this->appointmodel->printId();
                 $error = $this->appointmodel->printErrno();
-                if ($error == '1062') {
+                if ($error) {
                     echo "<script>
     alert(' Session Already Created');
     history.go(-1);

@@ -91,7 +91,7 @@
             </ul>
         </div>
 
-        <div style="display:flex; width: 71.5rem;  margin-top: 15.7rem; height: 25rem; flex-direction: column; margin-left: -78rem;">
+        <div style="display:flex; width: 71.5rem;  margin-top: 15.7rem; height: 25rem; flex-direction: column; margin-left: -72.8rem;gap:0.5rem">
             <div><br></div>
             <div><br></div>
 
@@ -111,9 +111,7 @@
                     echo "<ul style='display:flex; flex-direction:row'><li style='font-weight: bold; font-size: x-large;'>Start Time: </li> <li style='font-weight: bold; font-size: x-large;'>" . $session['start_time'] . "</li><li style='font-weight: bold; font-size: x-large;'>End Time: </li> <li style='font-weight: bold; font-size: x-large;'> " . $session['end_time'] . "</li></ul>";
                     echo "</div>";
                     echo "<div style='width: 30rem;'>";
-                    echo "<ul style='list-style-type: none; text-align: left;'><div style='flex-direction: row; display: flex; margin-left:14rem'><div style='margin-top: -1.75rem;'><li><div style='width: 27%;'><div class='logbutton' style='height: fit-content; padding: 0.5rem; margin: 2rem 0rem 0rem 0rem; '><a onclick='viewtimeslot(" . $session['session_id'] . ")' style='text-decoration: none;'><font class='font1'>View Appointments</font></a></div></div></li></div>
-                    
-                    </div></ul>";
+                    echo "<ul style='list-style-type: none; text-align: left;'><div style='flex-direction: row; display: flex; margin-left:14rem'><div style='margin-top: -1.75rem;'><li><div style='width: 27%;'><div class='logbutton' style='height: fit-content; padding: 0.5rem; margin: 2rem 0rem 0rem 0rem; '><a onclick='viewtimeslot(" . $session['session_id'] . ")' style='text-decoration: none;'><font class='font1'>View Appointments</font></a></div></div></li></div><div style='margin-left: 1rem; margin-top: 0.75rem; width: 10rem;'><li style='font-weight: bold; font-size: x-large; width: 10rem;'></li></div></div></ul>";
                     echo "</div></div></div>";
                     echo "<br>";
                 }
