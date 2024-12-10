@@ -38,7 +38,7 @@ class ReceptionistModel extends Database
 
 public function getReportData()
     {
-        $where = "status = 'Completed'";
+        $where = "status = 'Completed' or status = 'Add PDF'";
         $this->setTable(Report);
         $result = $this->fetchData($where);
         return $result;
@@ -151,6 +151,25 @@ public function getTestNames()
         return $data[0]['m'];
     }
 
+    // find test id by test name
+    public function getTestIdByTestName($testname)
+    {
+        $where = "test='$testname'";
+        $this->setTable(Labtest);
+        $result = $this->fetchData($where);
+        $result = $result[0]['test_id'];
+        return $result;
+    }
+
+    // get test name by id 
+    public function getTestNameByTestId($testid)
+    {
+        $where = "test_id='$testid'";
+        $this->setTable(Labtest);
+        $result = $this->fetchData($where);
+        $result = $result[0]['test'];
+        return $result;
+    }
 }
 
 
