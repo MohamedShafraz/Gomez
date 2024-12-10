@@ -1,4 +1,4 @@
-<?php require_once(APPROOT . "/views/Doctor/navbar_view.php"); ?>
+<?php require_once(APPROOT . "/views/Patient/navbar_view.php"); ?>
 <link rel="stylesheet" href="<?= URLROOT ?>/css/Doctor/doctorcommon.css">
 
 <style>
@@ -65,6 +65,7 @@
             <br>
 
             <?php
+
                     if ($medicine != null) {
                         echo '<div class="details" style="width: 98%;">';
                         echo '<h3>Medicines</h3>';
@@ -92,19 +93,15 @@
 
         </div>
     </div>
-<?php if ($_SESSION['userType'] == "Doctor") {
+<?php if ($_SESSION['userType'] == "Patient") {
 
-                        echo "<button class='bluebutton';  onclick='editprescription()' style='margin-left:24%;margin-top:2%;width:200px;background-color: blue; color: white;'>Edit Prescription</button>";
+                        // echo "<button class='bluebutton';  onclick='editprescription()' style='margin-left:24%;margin-top:2%;width:200px;background-color: blue; color: white;'>Edit Prescription</button>";
                     } else {
-                        echo "<button class='bluebutton';  onclick='history.back()' style='margin-left:24%;margin-top:2%;width:200px;background-color: blue; color: white;'>Back</button>";
+                        // echo "<button class='bluebutton';  onclick='history.back()' style='margin-left:24%;margin-top:2%;width:200px;background-color: blue; color: white;'>Back</button>";
                     }
                 }
 ?>
-<script>
-    function editprescription() {
-        window.location.href = '<?= URLROOT ?>/Doctor/EditPrescriptionView/<?= $prescription[0]["prescriptionnumber"] ?>';
-    }
-</script>
+
 </body>
 </body>
 <?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>

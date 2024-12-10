@@ -9,7 +9,8 @@
             border-collapse: collapse;
         }
 
-        th, td {
+        th,
+        td {
             padding: 10px;
             border: 1px solid darkblue;
             text-align: center;
