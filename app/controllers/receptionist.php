@@ -58,10 +58,7 @@ class receptionist extends Controller
             $this->appointmodel = new appointmentModel();
             $result = $this->appointmodel->getAllDoctorsforSession();
 
-            // $resultUser = $this->appointmodel->getUsernamebyPatient(new Database());
-            // print_r($resultUser);
-            // $this->view('Patient/appointments_view',$result);
-            // $this->view('Patient/dashboard_view',$resultUser);
+
             if ($make == 'more1') {
                 $result = $this->appointmodel->getAppoinmentbyDoctors($_GET['doctor']);
                 if (isset($_GET['doctor'])) {
@@ -99,18 +96,18 @@ class receptionist extends Controller
                     $doctorname = $_GET['doctor'];
                     // print_r($data);
                     $error = $this->appointmodel->printErrno();
-                    //     if ($error == '1062') {
-                    //         echo "<script>
-                    //     alert(' Session Already Created');
-                    // </script>";
-                    //         exit();
-                    //     } else {
-                    //         echo "<script>
-                    //     alert(' Session Created');
-                    //     history.go(-2);
-                    // </script>";
-                    //         exit();
-                    //     }
+                    if ($error == '1062') {
+                        echo "<script>
+                        alert(' Session Already Created');
+                    </script>";
+                        exit();
+                    } else {
+                        echo "<script>
+                        alert(' Session Created');
+                        history.go(-2);
+                    </script>";
+                        exit();
+                    }
                 }
             }
             if ($make == 'more2') {
