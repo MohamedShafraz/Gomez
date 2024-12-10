@@ -65,8 +65,10 @@ class receptionist extends Controller
             if ($make == 'more1') {
                 $result = $this->appointmodel->getAppoinmentbyDoctors($_GET['doctor']);
                 if (isset($_GET['doctor'])) {
-
-                    $result2 = $this->appointmodel->checkSessionbyDoctor($result[0]['Doctor_id']);
+                    $result2 = [];
+                    if (isset($result[0])) {
+                        $result2 = $this->appointmodel->checkSessionbyDoctor($result[0]['Doctor_id']);
+                    }
                     // print_r([0=>$result,1=>$result2]);
 
 
@@ -83,8 +85,8 @@ class receptionist extends Controller
             }
             if ($make == "more3") {
                 if (isset($_POST['create']) && isset($_POST['Date'])) {
-                    $result = $this->appointmodel->getAppoinmentbyDoctors($_GET['doctor']);
-                    // print_r($_POST);
+                    $result = $this->appointmodel->getUserByUsername($_GET['doctor']);
+                    print_r($result[0]['Doctor_id']);
                     $data['date'] = $_POST['Date'];
                     $start_time = $_POST['start_time'];
                     $data['max_appointments'] = $_POST['max_appointments'];
@@ -101,20 +103,21 @@ class receptionist extends Controller
                     $error = $this->appointmodel->printErrno();
                     if ($error == '1062') {
                         echo "<script>
-                    alert(' Session Already Created');
-                </script>";
+                        history.go(-1);
+                        alert(' Session Already Created');
+                    </script>";
                         exit();
                     } else {
                         echo "<script>
-                    alert(' Session Created');
-                    history.go(-2);
-                </script>";
+                        alert(' Session Created');
+                        history.go(-2);
+                    </script>";
                         exit();
                     }
                 }
             }
             if ($make == 'more2') {
-                if (isset($_GET['doctor']) && isset($_GET['id'])) {
+                if (isset($_GET['doctor'])) {
                     $result = $this->appointmodel->getAppoinmentOneDoctorOneSession($_GET['doctor'], $_GET['id']);
                     if (isset($_GET['doctor']) && isset($_GET['id'])) {
                         $result = $this->appointmodel->getAppoinmentOneDoctorOneSession($_GET['doctor'], $_GET['id']);

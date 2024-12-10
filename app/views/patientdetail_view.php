@@ -147,9 +147,9 @@ include_once(APPROOT . '/views/header_view.php');
             <label for="name">Patient Name:</label>
             <input type="text" name="name" id="name" placeholder="Perera"><br>
             <label for="date_of_birth">Birth Of Date:</label>
-            <input type="date" name="date_of_birth" id="date_of_birth"><br>
+            <input type="date" name="date_of_birth" id="date_of_birth" required><br>
             <label for="phonenumber">Phone Number</label>
-            <input type="text" name="phonenumber" id="phonenumber"><br>
+            <input type="text" name="phonenumber" id="phonenumber" required><br>
 
             <input type="submit" name="submitted" id="" value="Finished appointment">
         </div>
