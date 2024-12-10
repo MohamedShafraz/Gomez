@@ -65,6 +65,7 @@
             <br>
 
             <?php
+
                     if ($medicine != null) {
                         echo '<div class="details" style="width: 98%;">';
                         echo '<h3>Medicines</h3>';
@@ -94,9 +95,9 @@
     </div>
 <?php if ($_SESSION['userType'] == "Patient") {
 
-                        echo "<button class='bluebutton';  onclick='editprescription()' style='margin-left:24%;margin-top:2%;width:200px;background-color: blue; color: white;'>Edit Prescription</button>";
+                        // echo "<button class='bluebutton';  onclick='editprescription()' style='margin-left:24%;margin-top:2%;width:200px;background-color: blue; color: white;'>Edit Prescription</button>";
                     } else {
-                        echo "<button class='bluebutton';  onclick='history.back()' style='margin-left:24%;margin-top:2%;width:200px;background-color: blue; color: white;'>Back</button>";
+                        // echo "<button class='bluebutton';  onclick='history.back()' style='margin-left:24%;margin-top:2%;width:200px;background-color: blue; color: white;'>Back</button>";
                     }
                 }
 ?>

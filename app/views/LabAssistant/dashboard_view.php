@@ -7,11 +7,10 @@
         width: 200px;
         height: 200px;
         border-radius: 50%;
-        margin: 30px 0 30px 400px; /* Adjust margin to shift the chart left under the first card */
-        background: conic-gradient(
-            #151A7B 0% <?php echo ($data['status']['completed'] / $data['totalnumber']) * 100; ?>%, 
-            green <?php echo ($data['status']['completed'] / $data['totalnumber']) * 100; ?>% 100%
-        );
+        margin: 30px 0 30px 400px;
+        /* Adjust margin to shift the chart left under the first card */
+        background: conic-gradient(#151A7B 0% <?php echo ($data['status']['completed'] / $data['totalnumber']) * 100; ?>%,
+                green <?php echo ($data['status']['completed'] / $data['totalnumber']) * 100; ?>% 100%);
     }
 
     .center-circle {
@@ -39,7 +38,7 @@
         display: flex;
         justify-content: center;
         margin-top: -30px;
-        margin-left:370px;
+        margin-left: 370px;
         text-align: center;
     }
 
@@ -55,19 +54,24 @@
     .dashboard {
         display: flex;
         flex-direction: column;
-        align-items: flex-start; /* Align items to the left */
+        align-items: flex-start;
+        /* Align items to the left */
         width: 100%;
-        padding-left: 100px; /* Shift layout a bit to the right */
+        padding-left: 100px;
+        /* Shift layout a bit to the right */
     }
 
     .card-container {
         display: flex;
-        justify-content: flex-end; /* Align cards to the left */
+        justify-content: flex-end;
+        /* Align cards to the left */
         width: 60%;
         margin-bottom: 30px;
         margin-left: 300px;
-        gap: 20px; /* Add space between the cards */
-        flex-wrap: wrap; /* Allow cards to wrap if screen is small */
+        gap: 20px;
+        /* Add space between the cards */
+        flex-wrap: wrap;
+        /* Allow cards to wrap if screen is small */
     }
 
     li.option {
@@ -75,10 +79,13 @@
         padding: 20px;
         border: 1px solid #ccc;
         border-radius: 8px;
-        margin: 10px; /* Add margin around each card */
+        margin: 10px;
+        /* Add margin around each card */
         text-align: center;
-        width: 250px; /* Fixed width for consistency */
-        flex: 1 1 45%; /* Flex settings to adjust responsiveness */
+        width: 250px;
+        /* Fixed width for consistency */
+        flex: 1 1 45%;
+        /* Flex settings to adjust responsiveness */
     }
 
     li.option img {
@@ -88,19 +95,22 @@
     /* Container for aligning Donut Chart and Calendar horizontally */
     .chart-calendar-container {
         display: flex;
-        flex-direction: row; /* Align horizontally */
-        gap: 90px; /* Add space between the chart and calendar */
+        flex-direction: row;
+        /* Align horizontally */
+        gap: 90px;
+        /* Add space between the chart and calendar */
         margin-top: 20px;
     }
 
     /* Style for the calendar container */
     .month-navigation-container {
-        width: 400px; /* Adjust width to fit calendar */
+        width: 400px;
+        /* Adjust width to fit calendar */
         height: auto;
         border: 2px solid blue;
         border-radius: 10px;
         overflow: hidden;
-        background-color:#151A7B;
+        background-color: #151A7B;
     }
 
     .month-navigation {
@@ -138,39 +148,30 @@
         border-collapse: collapse;
     }
 
-    table.caltable th, table.caltable td {
+    table.caltable th,
+    table.caltable td {
         padding: 10px;
         text-align: center;
     }
 
     /* New CSS to make dates white */
     .caltable td {
-        color: white; /* Set text color to white */
+        color: white;
+        /* Set text color to white */
     }
 
     .today-date {
-    background-color: green; /* Set a color to distinguish today's date */
-    color: white;
-    border-radius: 50%; /* Make it round */
-    padding: 10px;
-    font-weight: bold;
-}
-
+        background-color: f6eca5;
+        /* Set a color to distinguish today's date */
+        color: white;
+        border-radius: 50%;
+        /* Make it round */
+        padding: 10px;
+        font-weight: bold;
+    }
 </style>
 
 <article class="dashboard">
-    <!-- Cards Section -->
-    <div class="card-container">
-        <li class="option">
-            <div><img src=<?php echo URLROOT . "/resources/lab2.png" ?>></div>
-            <div><br>Total Reports<br><a style="font-size:4vh"><?php echo $data['totalnumber'] ?? 9 ?></a></div>
-        </li>
-
-        <li class="option">
-            <div><img src=<?php echo URLROOT . "/resources/lab1.png" ?>></div>
-            <div><br>Completed Reports<br><a style="font-size:4vh"><?php echo $data['status']['completed'] ?? 7 ?></a></div>
-        </li>
-    </div>
 
     <!-- Donut Chart and Calendar Section -->
     <div class="chart-calendar-container">
@@ -181,7 +182,7 @@
         </div>
 
         <!-- Calendar Section -->
-        <div class="month-navigation-container">
+        <div class="month-navigation-container" style="margin-left: 13rem;">
             <div class="month-navigation">
                 <button onclick="prevMonth()">&lt;</button>
                 <span id="month-year">May 2024</span>
@@ -209,7 +210,21 @@
     <div class="donut-chart-text">
         <div class="color-box" style="background-color:#151A7B;"></div> Completed Reports
         <div class="color-box" style="background-color:green; margin-left: 10px;"></div> Pending Reports
+    </div><br><br>
+    <!-- Cards Section -->
+    <div class="card-container">
+        <li class="option">
+            <div><img src=<?php echo URLROOT . "/resources/lab2.png" ?>></div>
+            <div><br>Total Reports<br><a style="font-size:4vh"><?php echo $data['totalnumber'] ?? 9 ?></a></div>
+        </li>
+
+        <li class="option">
+            <div><img src=<?php echo URLROOT . "/resources/lab1.png" ?>></div>
+            <div><br>Completed Reports<br><a style="font-size:4vh"><?php echo $data['status']['completed'] ?? 7 ?></a></div>
+        </li>
     </div>
+
+
 </article>
 
 <script>
@@ -217,42 +232,42 @@
     let currentYear = new Date().getFullYear();
 
     function generateCalendar(month, year) {
-    const monthYearText = document.getElementById("month-year");
-    const calendarBody = document.getElementById("calendar-body");
-    const firstDay = new Date(year, month).getDay(); // Get the first day of the month
-    const daysInMonth = new Date(year, month + 1, 0).getDate(); // Get total days in the month
-    const today = new Date(); // Get today's date
-    const todayDay = today.getDate();
-    const todayMonth = today.getMonth();
-    const todayYear = today.getFullYear();
+        const monthYearText = document.getElementById("month-year");
+        const calendarBody = document.getElementById("calendar-body");
+        const firstDay = new Date(year, month).getDay(); // Get the first day of the month
+        const daysInMonth = new Date(year, month + 1, 0).getDate(); // Get total days in the month
+        const today = new Date(); // Get today's date
+        const todayDay = today.getDate();
+        const todayMonth = today.getMonth();
+        const todayYear = today.getFullYear();
 
-    monthYearText.textContent = `${new Date(year, month).toLocaleString('default', { month: 'long' })} ${year}`;
+        monthYearText.textContent = `${new Date(year, month).toLocaleString('default', { month: 'long' })} ${year}`;
 
-    let days = '';
-    for (let i = 0; i < firstDay; i++) {
-        days += '<td></td>'; // Empty cells before the first day
+        let days = '';
+        for (let i = 0; i < firstDay; i++) {
+            days += '<td></td>'; // Empty cells before the first day
+        }
+
+        for (let day = 1; day <= daysInMonth; day++) {
+            let isToday = (todayDay === day && todayMonth === month && todayYear === year); // Check if it's today
+            if ((firstDay + day - 1) % 7 === 0) {
+                days += '<tr>';
+            }
+
+            // Add the "today-date" class if it's today's date
+            if (isToday) {
+                days += `<td class="today-date">${day}</td>`;
+            } else {
+                days += `<td>${day}</td>`;
+            }
+
+            if ((firstDay + day) % 7 === 0) {
+                days += '</tr>';
+            }
+        }
+
+        calendarBody.innerHTML = days;
     }
-
-    for (let day = 1; day <= daysInMonth; day++) {
-        let isToday = (todayDay === day && todayMonth === month && todayYear === year); // Check if it's today
-        if ((firstDay + day - 1) % 7 === 0) {
-            days += '<tr>';
-        }
-
-        // Add the "today-date" class if it's today's date
-        if (isToday) {
-            days += `<td class="today-date">${day}</td>`;
-        } else {
-            days += `<td>${day}</td>`;
-        }
-
-        if ((firstDay + day) % 7 === 0) {
-            days += '</tr>';
-        }
-    }
-
-    calendarBody.innerHTML = days;
-}
 
 
     function prevMonth() {

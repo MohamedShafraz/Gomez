@@ -72,8 +72,7 @@
             </form>
             <br>
 
-            <div id="appointments" style="height: 59vh;width: 66rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;
-">
+            <div id="appointments" style="height: 59vh;width: 66rem;overflow-y: scroll;overflow-x: hidden;scrollbar-width: none;">
                 <?php
                 if (sizeof($data) == 0) {
                     echo "<div class='flex-item' style='padding: 0.5rem;background: white;width:55.5rem;margin-left:1rem'>

@@ -130,9 +130,9 @@ class patient extends Controller
                 $prescription = $this->prescription_model->getPrescriptionbyAppointment($appointmentid[0]['Appointment_Id']);
                 $patient = $this->prescription_model->getPatient($_SESSION['User_Id']);
                 $medicine = null;
-                // if ($prescription) {
-                //     $medicine = $this->doctorModel->getMedicinebyUniqeid($prescription[0]["unique_id"]);
-                // }
+                if ($prescription) {
+                    $medicine = $this->prescription_model->getMedicinebyUniqeid($prescription[0]["unique_id"]);
+                }
                 // $this->view('Doctor/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
                 $this->view('patient/moreprescription_view', ['prescription' => $prescription, 'patient' => $patient[0], 'medicine' => $medicine]);
                 // $this->view('patient/sidebar');

@@ -67,7 +67,7 @@ class receptionist extends Controller
                 if (isset($_GET['doctor'])) {
 
                     $result2 = $this->appointmodel->checkSessionbyDoctor($result[0]['Doctor_id']);
-                    // print_r([0=>$result,1=>$result2]);
+                    // print_r([0 => $result, 1 => $result2]);
 
 
                     $this->view('receptionist/session_date_view', [0 => $result, 1 => $result2]);
@@ -99,18 +99,18 @@ class receptionist extends Controller
                     $doctorname = $_GET['doctor'];
                     // print_r($data);
                     $error = $this->appointmodel->printErrno();
-                    if ($error == '1062') {
-                        echo "<script>
-                    alert(' Session Already Created');
-                </script>";
-                        exit();
-                    } else {
-                        echo "<script>
-                    alert(' Session Created');
-                    history.go(-2);
-                </script>";
-                        exit();
-                    }
+                    //     if ($error == '1062') {
+                    //         echo "<script>
+                    //     alert(' Session Already Created');
+                    // </script>";
+                    //         exit();
+                    //     } else {
+                    //         echo "<script>
+                    //     alert(' Session Created');
+                    //     history.go(-2);
+                    // </script>";
+                    //         exit();
+                    //     }
                 }
             }
             if ($make == 'more2') {

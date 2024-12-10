@@ -36,4 +36,11 @@ class prescription_model extends Database
         $result = $this->fetchData($where);
         return $result;
     }
+    public function getMedicinebyUniqeid($unique_id)
+    {
+        $where = "unique_id='$unique_id'";
+        $this->setTable(Medicine);
+        $result = $this->fetchData($where);
+        return $result;
+    }
 }
