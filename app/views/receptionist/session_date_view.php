@@ -104,19 +104,19 @@
                             </ul>
                         </div>
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: larger;    padding: 2rem 0rem 1rem 0rem;width: 11rem;'>
+                            <form action="" <?= URLROOT . "/receptionist/appointments/create" ?>"" method="post">
+                                <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
+                                    <li>Start Time</li>
+                                    <li style='font-size: medium;'>
+                                        <select name="start_time" id="start_time" style="padding: 3%;width: 10rem;" onchange="document.getElementById('end_time').options.selectedIndex = document.getElementById('start_time').options.selectedIndex" required>
+                                            <script>
 
-                            <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>
-                                <li>Start Time</li>
-                                <li style='font-size: medium;'>
-                                    <select name="start_time" id="start_time" style="padding: 3%;width: 10rem;" onchange="document.getElementById('end_time').options.selectedIndex = document.getElementById('start_time').options.selectedIndex" required>
-                                        <script>
-
-                                        </script>
+                                            </script>
 
 
-                                    </select>
-                                </li>
-                            </ul>
+                                        </select>
+                                    </li>
+                                </ul>
                         </div>
                         <div style='margin:-1rem 0rem 0rem 0rem;font-weight: bold;font-size: larger;padding: 2rem 0rem 1rem 0rem;width: 11rem;'>
                             <ul style='list-style-type: none;padding:0;margin: 0px 3px 0px 3px;'>

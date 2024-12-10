@@ -1,36 +1,33 @@
 <?php
-
 use LDAP\Result;
-
-class receptionist extends Controller
-{
-    private $registrationmodel;
-    private $userinfo_model;
-    private $userPatientModel;
-    private $contactusmodel;
-    private $appointmodel;
-    private $receptionistModel;
-    private $labreceiptModel;
-    private $labreceiptModel2;
-    private $labtestModel;
-    public function __construct()
-    {
+class receptionist extends Controller {
+private $registrationmodel;
+private $userinfo_model;
+private $userPatientModel;
+private $contactusmodel;
+private $appointmodel;
+private $receptionistModel;
+private $labreceiptModel;
+private $labreceiptModel2;
+private $labtestModel;
+    public function __construct() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+        
+        if(!isset($_SESSION["userType"])){
+            header("location:".URLROOT . "/users/login");
 
-        if (!isset($_SESSION["userType"])) {
-            header("location:" . URLROOT . "/users/login");
         }
+
     }
-    public function index()
-    {
-        header('Location: ' . URLROOT . '/receptionist/Dashboard');
+    public function index(){
+        header('Location: '.URLROOT.'/receptionist/Dashboard');
         exit();
     }
+    
+    public function userdetails($update = Null){
 
-    public function userdetails($update = Null)
-    {
         $this->model($_SESSION["userType"] . '/userinfo_model');
         $this->userinfo_model = new userReceptionistModel();
         $result = $this->userinfo_model->fetchreceptionist();
@@ -47,11 +44,10 @@ class receptionist extends Controller
             $result2  = $this->userinfo_model->updateUserDetails($hexString, $fileContents);
             header("location: ./");
         }
-        $this->view('receptionist/userdetails_view', $result);
+        $this->view('receptionist/userdetails_view',$result);
         exit();
     }
-    public function appointments($make = null, $more1 = null, $more2 = null, $create = null)
-    {
+    public function appointments($make=null,$more1=null,$more2=null,$create=null){
         if (isset($_SESSION["userType"])) {
             // Load the DashboardModel
             $this->model('appointment_model');
@@ -122,65 +118,67 @@ class receptionist extends Controller
                     if (isset($_GET['doctor']) && isset($_GET['id'])) {
                         $result = $this->appointmodel->getAppoinmentOneDoctorOneSession($_GET['doctor'], $_GET['id']);
 
-                        // print_r($result);
-
-                        $this->view('receptionist/session_appointments_view', $result);
-                    }
-
-                    exit();
-                } else {
-
-                    // print_r($result);
-                    $this->view('receptionist/appointment_view', $result);
-                    // print_r("hello");
-                }
-                exit();
-            } else {
-                $this->view("receptionist/appointment_view", $result);
+                // print_r($result);
+                 $this->view('receptionist/session_appointments_view',$result);
             }
+            
+            exit();
+        
+        }
+        else{
+           
+            // print_r($result);
+        $this->view('receptionist/appointment_view',$result);
+        // print_r("hello");
+        }
+        exit();
         } else {
             header("location:" . URLROOT . "/users/login");
         }
     }
-    public function dashboard()
-    {
+    public function treatments(){
+        $this->view('Patient/treatment_view');
+        exit();
+    }
+    public function dashboard(){
         $this->view('receptionist/dashboard_view');
         exit();
     }
-    public function labreports()
-    {
+
+    public function labreports(){
         if (isset($_SESSION["userType"])) {
-            $this->model("receptionist_model");
-            $this->receptionistModel = new ReceptionistModel();
-            $reports = $this->receptionistModel->getReportData();
-
-
-            foreach ($reports as &$report) {
-                $patient = $this->receptionistModel->getPatientbyID($report["patient_id"]);
-
-                // Validate that $patient is not empty and has an element at index 0
-                if (isset($patient[0])) {
-                    $report["patientName"] = $patient[0]["fullname"];
-                    $report["contactNo"] = $patient[0]["phonenumber"];
-                    $report["age"] = $patient[0]["age"];
-                } else {
-                    // Handle the case where the patient data is missing
-                    $report["patientName"] = "Unknown";
-                    $report["contactNo"] = "Not available";
-                    $report["age"] = "N/A";
-                    error_log("Patient data missing for ID: " . $report["patient_id"]);
-                }
+        $this->model("receptionist_model");
+        $this->receptionistModel = new ReceptionistModel();
+        $reports = $this->receptionistModel->getReportData();
+        
+        
+        foreach ($reports as &$report) {
+            $patient = $this->receptionistModel->getPatientbyID($report["patient_id"]);
+        
+            // Validate that $patient is not empty and has an element at index 0
+            if (isset($patient[0])) {
+                $report["patientName"] = $patient[0]["fullname"];
+                $report["contactNo"] = $patient[0]["phonenumber"];
+                $report["age"] = $patient[0]["age"];
+            } else {
+                // Handle the case where the patient data is missing
+                $report["patientName"] = "Unknown";
+                $report["contactNo"] = "Not available";
+                $report["age"] = "N/A";
+                error_log("Patient data missing for ID: " . $report["patient_id"]);
             }
 
-
-            $this->view('receptionist/labreport_view', $reports);
-
-            exit();
         }
+        
+        
+        $this->view('receptionist/labreport_view', $reports);
+        
+        exit();
     }
 
-    public function createreciept()
-    {
+    }
+
+    public function createreciept(){
         $this->model('receptionist_model');
         $this->labtestModel = new ReceptionistModel(new Database());
 
@@ -190,7 +188,8 @@ class receptionist extends Controller
         $data['passcode'] = $_POST['passcode'];
         $data['testname'] = $_POST['testname'];
         $data['patient_id'] = $_POST['patient_id'];
-        $data['status'] = 'Completed';
+
+        $data['status'] = 'Add PDF';
         $test['test_id'] = $_POST['test_id'];
         $data['type'] = 'Internal';
         $data['prescription_id'] = $_POST['prescription_id'];
@@ -198,14 +197,22 @@ class receptionist extends Controller
         $this->labtestModel->setTable('report');
         $this->labtestModel->insertData($data);
         $this->labtestModel->updateTestDataStatus($test['test_id'], 'Completed');
+
+
+        if(PHP_SESSION_NONE){
+            session_start();
+            $_SESSION["message"] = "Lab Report Created Successfully";
+        }
+
         header("Location: " . URLROOT . "/Receptionist/labreports");
         exit();
+
     }
 
 
 
-    public function labdetails($refno)
-    {
+    public function labdetails($refno){
+
         $this->model("receptionist_model");
         $this->receptionistModel = new ReceptionistModel();
 
@@ -215,48 +222,47 @@ class receptionist extends Controller
         $report[0]["contactNo"] = $patient[0]["phonenumber"];
         $report[0]["age"] = $patient[0]["age"];
         $report[0]["prescription_id"] = $report[0]["prescription_id"];
-
+        
         $this->view('receptionist/labdetails_view', $report);
         exit();
     }
-
-    public function labreceipt()
-    {
-        if (!isset($_POST['labReportNumber'])) {
+    
+    public function labreceipt(){
+        if(!isset($_POST['labReportNumber'])){
             $this->model('receptionist_model');
             $this->labtestModel = new ReceptionistModel(new Database());
             $labtest = $this->labtestModel->getTestNames();
             $patient = $this->labtestModel->getPatientNames();
+            $refno = $this->labtestModel->getlastref();  
+            $this->view('receptionist/lab_receipt', ['labtest' => $labtest,'refno' => $refno,'patient' => $patient]);
 
-            $refno = $this->labtestModel->getlastref();
-            $this->view('receptionist/lab_receipt', ['labtest' => $labtest, 'refno' => $refno, 'patient' => $patient]);
-        } else {
-            $this->model('LabAssistantModel'); //call the model
-            $this->labreceiptModel = new LabAssistantModel();
-
-
-            $this->labreceiptModel->setTable('report');
-            $where = 1;
-            $user1 = $this->labreceiptModel->fetchData($where);
-
+        }
+        else{
+            $this->model('LabAssistantModel');//call the model
+            $this->labreceiptModel= new LabAssistantModel();
+        
+        
+        $this->labreceiptModel->setTable('report');
+        $where = 1;
+        $user1 = $this->labreceiptModel->fetchData($where);
+        
             $data = [];
-
-
+       
             $data['refno'] = $_POST['labReportNumber'];
             $data['patientName'] = $_POST['patientName'];
             $data['passcode'] = $_POST['passcode'];
             $data['contactNo'] = $_POST['contactNo'];
             $data['age'] = $_POST['age'];
             $data['testname'] = $_POST['testname'];
-
+            
             $labdetails = $this->labreceiptModel->sendLabreceiptDetails($data);
             header("Location: " . URLROOT . "/Receptionist/labreports");
         }
         exit();
     }
 
-    public function alltests()
-    {
+    public function alltests(){
+
         $this->model('receptionist_model');
         $this->labreceiptModel2 = new ReceptionistModel();
         $reports = $this->labreceiptModel2->getAlltestdata();
@@ -264,13 +270,13 @@ class receptionist extends Controller
             $prescription = $this->labreceiptModel2->getPrescriptionDataByUniqueID($report["unique_id"]);
 
             $report["prescriptionnumber"] = $prescription[0]["prescriptionnumber"];
-        }
-        $this->view('receptionist/alltest', ["reports" => $reports]);
+            
+            }
+        $this->view('receptionist/alltest',["reports" => $reports]);
         exit();
     }
-
-    public function createlabreciept($unique_id, $test_name, $test_id)
-    {
+    
+    public function createlabreciept($unique_id,$test_id){
         $this->model('receptionist_model');
         $this->labtestModel = new ReceptionistModel(new Database());
 
@@ -284,21 +290,20 @@ class receptionist extends Controller
         $data['patientName'] = $patient[0]["fullname"];
         $data['contactNo'] = $patient[0]["phonenumber"];
         $data['age'] = $patient[0]["age"];
-        $data['testname'] = $test_name;
+
+        $data['testname'] = $this->labtestModel->getTestNameByTestID($test_id);
         $data['patient_id'] = $patient[0]["ID"];
         $data['prescription_id'] = $prescription[0]["prescriptionnumber"];
-
+        
         $this->view('receptionist/lab_receipt', ['data' => $data, 'patients' => $patients]);
         exit();
     }
 
-    public function externalcreatelabreciept()
-    {
+    public function externalcreatelabreciept(){
         $this->model('receptionist_model');
         $this->labtestModel = new ReceptionistModel(new Database());
         $patients = $this->labtestModel->getPatientNames();
         $tests = $this->labtestModel->getTestNames();
-
 
         $data['refno'] = $this->labtestModel->getlastref();
 
@@ -306,8 +311,8 @@ class receptionist extends Controller
         exit();
     }
 
-    public function createrecieptexternal()
-    {
+    public function createrecieptexternal(){
+
         $this->model('receptionist_model');
         $this->labtestModel = new ReceptionistModel(new Database());
 
@@ -321,14 +326,22 @@ class receptionist extends Controller
             $data['passcode'] = $_POST['passcode'];
             $data['testname'] = $_POST['testname'];
             $data['patient_id'] = $patientID;
-            $data['status'] = 'Completed';
+            $data['status'] = 'Add PDF';
             $data['type'] = 'External';
-            $data['patientName'] = $patientName;
+            //$data['patientName'] = $patientName;
+
+            if(PHP_SESSION_NONE){
+                session_start();
+                $_SESSION["message"] = "Lab Report Created Successfully";
+            }
+            
 
             // instert data
-            $this->labtestModel->setTable('report');
-            $this->labtestModel->insertData($data);
-            header("Location: " . URLROOT . "/Receptionist/labreports");
+           $this->labtestModel->setTable('report');
+           $this->labtestModel->insertData($data);
+           header("Location: " . URLROOT . "/Receptionist/labreports");
+            
+
         } else {
             // get last patient id + 1 for new patient
             $patientID = $this->labtestModel->getlastinsertedid() + 1;
@@ -337,7 +350,8 @@ class receptionist extends Controller
             $data['refno'] = $_POST['labReportNumber'];
             $data['passcode'] = $_POST['passcode'];
             $data['testname'] = $_POST['testname'];
-            $data['status'] = 'Completed';
+            $data['status'] = 'Add PDF';
+
             $data['type'] = 'External';
             $data['prescription_id'] = -1;
 
@@ -357,18 +371,26 @@ class receptionist extends Controller
             $data['patient_id'] = $patientID;
             $this->labtestModel->setTable('report');
             $this->labtestModel->insertData($data);
+
+            if(PHP_SESSION_NONE){
+                session_start();
+                $_SESSION["message"] = "Lab Report Created Successfully";
+            }
+
             header("Location: " . URLROOT . "/Receptionist/labreports");
         }
 
-
+    
 
         exit();
+
     }
 
-    public function logout()
-    {
+    public function logout(){
         session_destroy();
-        header("location:" . URLROOT . "/users/login");
+        header("location:".URLROOT . "/users/login");
         exit();
     }
+    
 }
+?>
