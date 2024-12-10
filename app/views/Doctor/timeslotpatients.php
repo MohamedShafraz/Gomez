@@ -96,12 +96,12 @@
                 $session_end_time = new DateTime($row["end_time"], new DateTimeZone('Asia/Colombo'));
 
                 // Check if current time is within session time
-                if ($row["prescription"] != null) {
+                 if ($row["prescription"] != null) {
                     echo '<td style="width: 20%;"><a><button class="logbutton" onclick="window.location.href=\'' . URLROOT . '/Doctor/ViewMorePrescription/' . $row['Appointment_Id'] . '/' . $row[0]['ID'] . '\'">View Prescription</button></a></td>';
                 } else {
-                    if ($current_time >= $session_start_time && $current_time <= $session_end_time) {
+                    if ($current_time >= $session_start_time && $current_time <= $session_end_time &&  $session_date->format('Y-m-d') == $current_time->format('Y-m-d')) {
                         echo '<td style="width: 20%;"><a><button class="logbutton" onclick="window.location.href=\'' . URLROOT . '/Doctor/AddprescriptionView/' . $row['Appointment_Id'] . '\'">Add Prescription</button></a></td>';
-                    } else if ($current_time < $session_start_time) {
+                    } else if ($current_time < $session_start_time ||  $session_date->format('Y-m-d') > $current_time->format('Y-m-d')) {
                         echo '<td style="width: 20%; color: red;">Session Not Started</td>';
                     } else {
                         echo '<td style="width: 20%; color: red;">Session Expired</td>';

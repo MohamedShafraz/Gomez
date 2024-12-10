@@ -9,7 +9,7 @@ class appointmentModel extends Database
     {
 
         $where = "session.session_id = " . $sessionId;
-        $doctor = "user_db.Username = \"" . $doctor . "\" or doctors.fullname = \"" . $doctor . "\"";
+        $doctor = "doctors.fullname = \"" . $doctor . "\"";
         $this->setTable(Appointment);
         $result = $this->fetchAppointmentbydoctor($where, $doctor);
 
@@ -260,6 +260,7 @@ class appointmentModel extends Database
         }
         return $result;
     }
+
 
     public function getUserByUsername($doctor = Null)
     {

@@ -141,6 +141,7 @@ column-gap: 8em;
                     echo "</div>";
                     echo "<div style='width: 30rem;'>";
                     echo "<ul style='list-style-type: none; text-align: left;'><div style='flex-direction: row; display: flex; margin-left:14rem'><div style='margin-top: -1.75rem;'><li><div style='width: 27%;'><div class='logbutton' style='height: fit-content; padding: 0.5rem; margin: 2rem 0rem 0rem 0rem; '><a onclick='viewtimeslot(" . $session['session_id'] . ")' style='text-decoration: none;'><font class='font1'>View Appointments</font></a></div></div></li></div><div style='margin-left: 1rem; margin-top: 0.75rem; width: 10rem;'><li style='font-weight: bold; font-size: x-large; width: 10rem;'></li></div></div></ul>";
+                    echo "<ul style='list-style-type: none; text-align: left;'><div style='flex-direction: row; display: flex; margin-left:14rem'><div style='margin-top: -1.75rem;'><li><div style='width: 27%;'><div class='logbutton' style='height: fit-content; padding: 0.5rem; margin: 2rem 0rem 0rem 0rem; '><a onclick='viewtimeslot(" . $session['session_id'] . ")' style='text-decoration: none;'><font class='font1'>View Appointments</font></a></div></div></li></div><div style='margin-left: 1rem; margin-top: 0.75rem; width: 10rem;'><li style='font-weight: bold; font-size: x-large; width: 10rem;'></li></div></div></ul>";
                     echo "</div></div></div>";
                     echo "<br>";
                 }
@@ -151,12 +152,14 @@ column-gap: 8em;
 
 
 
+
 </article>
 <script>
     function viewtimeslot(sessionid) {
         window.location.href = '<?= URLROOT ?>/Doctor/ShowPatientsAllocatedTimeSlot/' + sessionid;
     }
 </script>
+
 
 
 

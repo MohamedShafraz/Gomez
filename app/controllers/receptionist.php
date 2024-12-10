@@ -80,7 +80,7 @@ class receptionist extends Controller
             if ($make == "more3") {
                 if (isset($_POST['create']) && isset($_POST['Date'])) {
                     $result = $this->appointmodel->getUserByUsername($_GET['doctor']);
-                    print_r($result[0]['Doctor_id']);
+                    // print_r($result[0]['Doctor_id']);
                     $data['date'] = $_POST['Date'];
                     $start_time = $_POST['start_time'];
                     $data['max_appointments'] = $_POST['max_appointments'];
@@ -97,8 +97,9 @@ class receptionist extends Controller
                     $error = $this->appointmodel->printErrno();
                     if ($error == '1062') {
                         echo "<script>
+                         alert(' Session Already Created');
                         history.go(-1);
-                        alert(' Session Already Created');
+                       
                     </script>";
                         exit();
                     } else {
@@ -112,7 +113,6 @@ class receptionist extends Controller
             }
             if ($make == 'more2') {
                 if (isset($_GET['doctor'])) {
-                    $result = $this->appointmodel->getAppoinmentOneDoctorOneSession($_GET['doctor'], $_GET['id']);
                     if (isset($_GET['doctor']) && isset($_GET['id'])) {
                         $result = $this->appointmodel->getAppoinmentOneDoctorOneSession($_GET['doctor'], $_GET['id']);
 

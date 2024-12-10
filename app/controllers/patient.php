@@ -68,14 +68,18 @@ class patient extends Controller
             // print_r($_FILES["file"]["tmp_name"]);
 
             // Path to the PDF file
-
-            $fileContents = file_get_contents($_FILES["file"]['tmp_name']);
-            $hexString = '0x' . bin2hex($fileContents);
-
+            $fileContents = null;
+            $hexString = null;
+            // Path to the PDF file
+            if (isset($_FILES["file"]['tmp_name']) && $_FILES["file"]['tmp_name'] != "") {
+                $fileContents = file_get_contents($_FILES["file"]['tmp_name']);
+                $hexString = '0x' . bin2hex($fileContents);
+            }
             $result2  = $this->userinfo_model->updateUserDetails($hexString, $fileContents);
+
             header("location: ./");
         }
-        // print_r($result);
+
         $this->view('Patient/userdetails_view', $result);
         exit();
     }
@@ -143,8 +147,7 @@ class patient extends Controller
                 $appointment['Patient_Id'] =  $_SESSION['User_Id'];
 
                 $this->appointmodel->setTable('appointment');
-                $this->appointmodel->insertData($appointment);
-                $this->appointmodel->printId();
+                $this->appointmodel->addNewAppointment($_SESSION['User_Id'], $_GET['id']);
                 $error = $this->appointmodel->printErrno();
                 if ($error) {
                     echo "<script>
