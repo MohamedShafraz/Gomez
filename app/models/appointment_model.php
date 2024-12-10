@@ -96,7 +96,7 @@ class appointmentModel extends Database
         if (empty($doctor) && empty($specialization) && empty($date)) {
 
             $this->setTable(Doctors);
-            $result = $this->fetchdoctorforsession($where, 1);
+            $result = $this->fetchdoctorforsessiononly($where);
         } else {
             if (!empty($doctor)) {
                 $doctor = "user_db.Username REGEXP \"" . $doctor . "\"";

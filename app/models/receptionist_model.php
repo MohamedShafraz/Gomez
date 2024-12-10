@@ -170,7 +170,6 @@ public function getTestNames()
         $result = $result[0]['test'];
         return $result;
     }
-
 }
 
 

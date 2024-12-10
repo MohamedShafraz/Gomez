@@ -17,6 +17,7 @@ private $labtestModel;
         
         if(!isset($_SESSION["userType"])){
             header("location:".URLROOT . "/users/login");
+
         }
 
     }
@@ -26,6 +27,7 @@ private $labtestModel;
     }
     
     public function userdetails($update = Null){
+
         $this->model($_SESSION["userType"] . '/userinfo_model');
         $this->userinfo_model = new userReceptionistModel();
         $result = $this->userinfo_model->fetchreceptionist();
@@ -82,7 +84,9 @@ private $labtestModel;
                 }
                 else{
                 echo "<script>
+
                     alert(' Session Created');
+                    history.go(-2);
                 </script>";
                 }
             }
@@ -99,14 +103,11 @@ private $labtestModel;
                 $result = $this->appointmodel->getAppoinmentOneDoctor($_GET['doctor']);
 
                 // print_r($result);
-
                  $this->view('receptionist/session_appointments_view',$result);
             }
             
             exit();
-            
-
-            
+        
         }
         else{
            
@@ -127,6 +128,7 @@ private $labtestModel;
         $this->view('receptionist/dashboard_view');
         exit();
     }
+
     public function labreports(){
         if (isset($_SESSION["userType"])) {
         $this->model("receptionist_model");
@@ -149,6 +151,7 @@ private $labtestModel;
                 $report["age"] = "N/A";
                 error_log("Patient data missing for ID: " . $report["patient_id"]);
             }
+
         }
         
         
@@ -156,6 +159,7 @@ private $labtestModel;
         
         exit();
     }
+
     }
 
     public function createreciept(){
@@ -168,6 +172,7 @@ private $labtestModel;
         $data['passcode'] = $_POST['passcode'];
         $data['testname'] = $_POST['testname'];
         $data['patient_id'] = $_POST['patient_id'];
+
         $data['status'] = 'Add PDF';
         $test['test_id'] = $_POST['test_id'];
         $data['type'] = 'Internal';
@@ -191,6 +196,7 @@ private $labtestModel;
 
 
     public function labdetails($refno){
+
         $this->model("receptionist_model");
         $this->receptionistModel = new ReceptionistModel();
 
@@ -211,7 +217,6 @@ private $labtestModel;
             $this->labtestModel = new ReceptionistModel(new Database());
             $labtest = $this->labtestModel->getTestNames();
             $patient = $this->labtestModel->getPatientNames();
-           
             $refno = $this->labtestModel->getlastref();  
             $this->view('receptionist/lab_receipt', ['labtest' => $labtest,'refno' => $refno,'patient' => $patient]);
 
@@ -226,8 +231,7 @@ private $labtestModel;
         $user1 = $this->labreceiptModel->fetchData($where);
         
             $data = [];
-        
-        
+       
             $data['refno'] = $_POST['labReportNumber'];
             $data['patientName'] = $_POST['patientName'];
             $data['passcode'] = $_POST['passcode'];
@@ -242,6 +246,7 @@ private $labtestModel;
     }
 
     public function alltests(){
+
         $this->model('receptionist_model');
         $this->labreceiptModel2 = new ReceptionistModel();
         $reports = $this->labreceiptModel2->getAlltestdata();
@@ -262,13 +267,14 @@ private $labtestModel;
         $prescription = $this->labtestModel->getPrescriptionDataByUniqueID($unique_id);
         $patient = $this->labtestModel->getPatientbyID($prescription[0]["patientid"]);
         $patients = $this->labtestModel->getPatientNames();
-        
+
         $data = [];
         $data["test_id"] = $test_id;
         $data['refno'] = $this->labtestModel->getlastref();
         $data['patientName'] = $patient[0]["fullname"];
         $data['contactNo'] = $patient[0]["phonenumber"];
         $data['age'] = $patient[0]["age"];
+
         $data['testname'] = $this->labtestModel->getTestNameByTestID($test_id);
         $data['patient_id'] = $patient[0]["ID"];
         $data['prescription_id'] = $prescription[0]["prescriptionnumber"];
@@ -282,7 +288,6 @@ private $labtestModel;
         $this->labtestModel = new ReceptionistModel(new Database());
         $patients = $this->labtestModel->getPatientNames();
         $tests = $this->labtestModel->getTestNames();
-        
 
         $data['refno'] = $this->labtestModel->getlastref();
 
@@ -291,6 +296,7 @@ private $labtestModel;
     }
 
     public function createrecieptexternal(){
+
         $this->model('receptionist_model');
         $this->labtestModel = new ReceptionistModel(new Database());
 
@@ -319,6 +325,7 @@ private $labtestModel;
            $this->labtestModel->insertData($data);
            header("Location: " . URLROOT . "/Receptionist/labreports");
             
+
         } else {
             // get last patient id + 1 for new patient
             $patientID = $this->labtestModel->getlastinsertedid() + 1;
@@ -328,6 +335,7 @@ private $labtestModel;
             $data['passcode'] = $_POST['passcode'];
             $data['testname'] = $_POST['testname'];
             $data['status'] = 'Add PDF';
+
             $data['type'] = 'External';
             $data['prescription_id'] = -1;
 
@@ -367,10 +375,6 @@ private $labtestModel;
         header("location:".URLROOT . "/users/login");
         exit();
     }
-    
-   
-
-       
     
 }
 ?>

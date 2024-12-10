@@ -14,7 +14,8 @@ class DoctorModel extends Database
 
     public function getSessions($id)
     {
-        $where = "doctor_id='$id'";
+        $where = "doctor_id='$id' ORDER BY date DESC , end_time DESC";
+
         $this->setTable(Session);
         $result = $this->fetchData($where);
 

@@ -126,7 +126,7 @@
 </style>
 
 
-<article class="dashboard">
+<article class="dashboard" style="font-family: inter;">
     <div>
         <form id="labForm" class="card" onsubmit="return submitForm()" action="<?= URLROOT . '/Doctor/AddPrescription' ?>" method="post">
             <input type="hidden" name="Appointment_Id" value="<?php echo $appointment[0]['Appointment_Id'] ?>">
@@ -159,7 +159,7 @@
                     <option value="custom">Enter custom Labtest</option>
                 </select>
                 <input type="text" id="customLabtest" name="labtesting" style="display: none;" placeholder="Enter Test Name" class="hidden" />
-                <button type="button" id="customMedicineClose" class="hidden">X</button>
+                <button type="button" id="customMedicineClose" style="border: none;"  class="hidden">X</button>
                 <button type="button" style="background-color: darkblue; color: white; border: none; height:34px" onclick="addValue()">Add test</button>
             </div>
 
@@ -181,6 +181,11 @@
         var customDiseaseInput = document.getElementById('customDisease');
         var diseaseList = document.getElementById('disease');
         var customDiseaseClose = document.getElementById('customDiseaseClose');
+        
+        customDiseaseClose.style.backgroundColor = "red";
+        customDiseaseClose.style.color = "white";
+        customDiseaseClose.style.border = "none";
+        customDiseaseClose.style.cursor = "pointer";
 
         if (this.value === 'custom') {
             customDiseaseInput.style.display = 'inline';
@@ -193,9 +198,10 @@
         }
 
         customDiseaseClose.addEventListener('click', function() {
-                customDiseaseInput.style.display = 'none';
-                diseaseList.style.display = 'inline';
-                customDiseaseClose.style.display = 'none';
+            customDiseaseInput.style.display = 'none';
+            diseaseList.style.display = 'inline';
+            customDiseaseClose.style.display = 'none';
+            diseaseList.selectedIndex = 0;
         });
     });
 
@@ -215,10 +221,10 @@
         }
 
         customMedicineClose.addEventListener('click', function() {
-                customLabtestInput.style.display = 'none';
-                labtestingList.style.display = 'inline';
-                customMedicineClose.style.display = 'none';
-            });
+            customLabtestInput.style.display = 'none';
+            labtestingList.style.display = 'inline';
+            customMedicineClose.style.display = 'none';
+        });
     });
 
     function addValue() {
@@ -239,15 +245,20 @@
             var selectedValuesTable = document.getElementById("selectedValuesTable");
             var newRow = selectedValuesTable.insertRow();
             var cell1 = newRow.insertCell(0);
-           // var cell2 = newRow.insertCell(1);
+            var cell2 = newRow.insertCell(1);
 
             cell1.textContent = selectedText;
 
             var deleteButton = document.createElement("button");
-            deleteButton.textContent = "Delete";
+            deleteButton.textContent = "X";
+            deleteButton.style.backgroundColor = "red";
+            deleteButton.style.color = "white";
+            deleteButton.style.border = "none";
+            deleteButton.style.cursor = "pointer";
+            deleteButton.style.marginLeft = "90%";
             deleteButton.onclick = function () {
                 var rowIndex = newRow.rowIndex;
-                selectedValuesTable.deleteRow(rowIndex);
+                selectedValuesTable.deleteRow(rowIndex - 1); // Adjust for the table header if present
                 var index = selectedValues.indexOf(selectedValue);
                 if (index !== -1) {
                     selectedValues.splice(index, 1);
@@ -281,6 +292,7 @@
         return true;
     }
 </script>
+
 </div>
 <?php require_once(APPROOT . "/views/Admin/footer_view.php"); ?>
 

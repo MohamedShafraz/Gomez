@@ -150,6 +150,7 @@
                     <input type="number" style="width: 10rem;height: 1.8rem;">
                     </li>
                 </ul>
+
         </div>
 
         <div style='width: 20%;'>

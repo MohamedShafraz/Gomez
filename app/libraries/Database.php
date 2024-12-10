@@ -95,6 +95,9 @@ class Database
             case 'receptionist':
                 $datas = 'receptionist_id';
                 break;
+            case 'lab_assistants':
+                $datas = 'id';
+                break;
             case 'gm_admin':
                 $datas = 'GM_AD_ID';
                 break;
@@ -251,6 +254,23 @@ class Database
         $id = null;
         $query = "SELECT distinct(doctors.fullname),specialization.specialization_name as Specialization FROM doctors JOIN user_db ON user_db.User_Id = $this->table.Doctor_id JOIN specialization ON specialization.specialization_id = $this->table.specialization_id JOIN session ON session.Doctor_id = $this->table.Doctor_id WHERE " . $where . " AND " . $data;
         // print_r($query);
+        $result = $this->executeQuery($query);
+        $data = [];
+        $i = 0;
+        if ($result && $result->num_rows > 0) {
+            while ($row = $result->fetch_assoc()) {
+                $data[$i] = $row;
+                $i++;
+            }
+        }
+        // print_r($query);
+
+        return $data;
+    }
+    public function fetchdoctorforsessiononly($where, $data = 1)
+    {
+        $id = null;
+        $query = "SELECT * FROM doctors JOIN user_db ON user_db.User_Id = $this->table.Doctor_id  WHERE " . $where . " AND " . $data;
         $result = $this->executeQuery($query);
         $data = [];
         $i = 0;
