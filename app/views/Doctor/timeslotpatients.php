@@ -37,25 +37,54 @@
             background-color: blue;
             color: white;
         }
+
+        .complaint tr {
+            color: black;
+            margin: 5%;
+            font-size: 15px;
+            padding: 1.2% 20.8% 1.2% 57.8%;
+            width: 1004px;
+            gap: 0px;
+        }
     </style>
 
     </aside>
     <article class="dashboard">
         <div class="complaint" style="margin-left:24%; margin-top:50px;font-family: inter;">
+            <ul style="    position: fixed;
+    width:52.2%;
+    background-color: #5998ff;
+    left: 24%;
+    display: flex
+;
+    top: 19%;
+    padding: 1.2% 7.8% 1.2% 7.8%;
+    font-family: 'inter';
+    color: var(--Gomez-Blue);
+    color: white;
+    margin: 0% 1%;">
+                <li style="width:226px">Name</li>
+                <li style="width:226px">Contact Number</li>
+                <li style="width:226px">Age</li>
+                <li style="width:226px">More</li>
+
+
+
+
+
+            </ul>
+            <br><br>
             <?php
-            echo '<table>';
-            echo '<tr>';
-            echo '<td style="width: 20%;"> Name</td>';
-            echo '<td style="width: 20%;"> Contact Number </td>';
-            echo '<td style="width: 20%;"> Age </td>';
-            echo '<td style="width: 20%;"> More </td>';
-            echo '</tr>';
+            echo '<table class="complainttable" style="height: 50vh;margin-top:5%;margin-left: -1%;">';
+            echo '<tbody>';
+
+
 
             // Get current time as DateTime
             $current_time = new DateTime('now', new DateTimeZone('Asia/Colombo'));
 
             foreach ($patients as $row) {
-                echo '<tr>';
+                echo '<tr style="background-color: white;">';
                 echo '<td style="width: 20%;">' . $row[0]['fullname'] . '</td>';
                 echo '<td style="width: 20%;">' . $row[0]['phonenumber'] . '</td>';
 
@@ -67,12 +96,12 @@
                 $session_end_time = new DateTime($row["end_time"], new DateTimeZone('Asia/Colombo'));
 
                 // Check if current time is within session time
-                 if ($row["prescription"] != null) {
+                if ($row["prescription"] != null) {
                     echo '<td style="width: 20%;"><a><button class="logbutton" onclick="window.location.href=\'' . URLROOT . '/Doctor/ViewMorePrescription/' . $row['Appointment_Id'] . '/' . $row[0]['ID'] . '\'">View Prescription</button></a></td>';
                 } else {
-                    if ($current_time >= $session_start_time && $current_time <= $session_end_time &&  $session_date->format('Y-m-d') == $current_time->format('Y-m-d')) {
+                    if ($current_time >= $session_start_time && $current_time <= $session_end_time) {
                         echo '<td style="width: 20%;"><a><button class="logbutton" onclick="window.location.href=\'' . URLROOT . '/Doctor/AddprescriptionView/' . $row['Appointment_Id'] . '\'">Add Prescription</button></a></td>';
-                    } else if ($current_time < $session_start_time ||  $session_date->format('Y-m-d') > $current_time->format('Y-m-d')) {
+                    } else if ($current_time < $session_start_time) {
                         echo '<td style="width: 20%; color: red;">Session Not Started</td>';
                     } else {
                         echo '<td style="width: 20%; color: red;">Session Expired</td>';
@@ -80,8 +109,9 @@
                 }
 
                 echo '</tr>';
-                echo '<tr style="color:white;margin: 1%;"></tr>';
+                echo '<tr style="color:white;margin: 1%;background-color: transparent;"></tr>';
             }
+            echo '</tbody>';
             echo '</table>';
             ?>
         </div>

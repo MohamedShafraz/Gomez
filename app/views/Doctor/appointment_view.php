@@ -76,6 +76,12 @@
       <div style="display:flex ;width: 70rem;margin-top: -4.7rem;height: 25rem;flex-direction: column;    margin-left: -4.8rem;gap:0.5rem">
         <div><br></div>
 
+        <div class="complainttext" style="margin: 0% 0% 0% 1%;
+    width: 96%;
+    color: white;">Today Sessions</div>
+
+
+
         <div><br></div>
 
         <?php
@@ -84,17 +90,46 @@
           echo "<div style='display: flex; flex-direction:row;'><div style='margin-left: 10rem;'><h1>No Sessions Available</h1></div></div>";
         } else {
           foreach ($sessions as $session) {
-            echo "<div class='custom-div' style='align-self: center;width: 98%;background-color: #fff;height: fit-content;display: flex; flex-direction:row'>";
-            echo "<div style='display: flex; flex-direction:row'>";
-            echo "<div style='border-left: solid;width:13rem;'>";
-            echo "<ul style='list-style-type: none;text-align: left;margin: 1rem 0rem 0rem 0rem;'><div><li>Date:</li><li>" . $session['date'] . "</li></div></ul>";
-            echo "<ul style='display:flex;flex-direction:row'><li style='font-weight: bold;font-size: large;'>Start Time: </li> <li style='font-weight: bold;font-size: x-large;'>" . $session['start_time'] . "</li><li style='font-weight: bold;font-size: x-large;'>End Time: </li> <li style='font-weight: bold;font-size: x-large;'> " . $session['end_time'] . "</li></ul>";
+            echo "<div class='custom-div' style='align-self: center;
+            width: 98%;
+            background-color: #fff;
+            height: fit-content;
+            display: flex
+        ;
+            flex-direction: row;'>";
+            echo "<div style='display: flex; flex-direction:row;width:100%'>";
+            echo "<div style=' width:max-content;display:flex'>";
+            echo "<ul style='flex-direction: column;
+            display: flex
+        ;    flex-direction: row;
+        column-gap: 8em;
+            list-style-type: none;
+            text-align: left;
+            margin: 1rem 0rem 0rem 0rem;'><div style='width: max-content;
+            flex-direction: column;
+            display: flex
+        ;'>
+                            
+                            <li style='width: max-content;
+            font-weight: bold;
+            font-size: large;'>Date: </li>
+                            <li> " . $session['date'] . "</li>
+                            </div>";
+            echo "
+                            
+                            <div style='width: max-content;display: flex;flex-direction: column;'>
+                                <li style='width: max-content;
+            font-weight: bold;
+            font-size: large;'>Start Time: </li> <li style='font-size: medium;'>" . $session['start_time'] . "</li>
+                            </div>
+                            <div style='width: max-content;display: flex;flex-direction: column;'>
+                                <li style='width: max-content;
+            font-weight: bold;
+            font-size: large;'>End Time: </li> <li style='width: max-content;display: flex;flex-direction: column;'> " . $session['end_time'] . "</li>
+                            </div></ul>";
             echo "</div>";
             echo "<div style='width: 30rem;'>";
-            echo "<ul style='list-style-type: none;text-align: left;'><div style='flex-direction: row;display: flex;margin-left:14rem'><div style='margin-top: -1.75rem;'><li><div style='width: 27%;'>
-            <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 2rem 0rem 0rem 0rem;'>
-            <a onclick='viewtimeslot(" . $session['session_id'] . ")' style='text-decoration: none;'><font class='font1' >View Appointments</font></a></div></div></li></div>
-            </div></ul>";
+            echo "<ul style='list-style-type: none; text-align: left;'><div style='flex-direction: row; display: flex; margin-left:14rem'><div style='margin-top: -1.75rem;'><li><div style='width: 27%;'><div class='logbutton' style='height: fit-content; padding: 0.5rem; margin: 2rem 0rem 0rem 0rem; '><a onclick='viewtimeslot(" . $session['session_id'] . ")' style='text-decoration: none;'><font class='font1'>View Appointments</font></a></div></div></li></div><div style='margin-left: 1rem; margin-top: 0.75rem; width: 10rem;'><li style='font-weight: bold; font-size: x-large; width: 10rem;'></li></div></div></ul>";
             echo "</div></div></div>";
             echo "<br>";
           }

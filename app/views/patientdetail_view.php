@@ -145,7 +145,7 @@ include_once(APPROOT . '/views/header_view.php');
             <input type="time" name="end_time" value="<?= $_GET['end_time'] ?>" disabled><br>
 
             <label for="name">Patient Name:</label>
-            <input type="text" name="name" id="name" placeholder="Perera"><br>
+            <input type="text" name="name" id="name" placeholder="Perera" required><br>
             <label for="date_of_birth">Birth Of Date:</label>
             <input type="date" name="date_of_birth" id="date_of_birth" required><br>
             <label for="phonenumber">Phone Number</label>
@@ -172,6 +172,17 @@ include_once(APPROOT . '/views/header_view.php');
             maxDate.setDate(maxDate.getDate() - 1); // Add 14 days to the current date
             const maxDateString = maxDate.toISOString().split('T')[0]; // Get max date in YYYY-MM-DD format
             dateInput.setAttribute('max', maxDateString); // Set the maximum date to 14 days from today
+        });
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const phoneInput = document.getElementById('phonenumber').value.trim();
+
+            // Sri Lankan phone number regex
+            const sriLankanPhoneRegex = /^(?:\+94|0)?[7-9]\d{8}$/;
+
+            if (!sriLankanPhoneRegex.test(phoneInput)) {
+                e.preventDefault(); // Prevent form submission
+                alert("Invalid Phone Number. Please enter a valid Sri Lankan phone number.");
+            }
         });
     </script>
 

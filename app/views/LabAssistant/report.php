@@ -38,14 +38,20 @@
     }
 
     .complainttext {
-    text-align: center; /* Centers the text horizontally */
-    margin-left: 450px; /* Remove margin */
-    padding: 10px; /* Add padding if needed */
-    font-size: 1.5em; /* Adjust font size for better visibility */
-    color: #000; /* Adjust color if needed */
-    font-weight: bold; /* Make it bold */
+        text-align: center;
+        /* Centers the text horizontally */
+        margin-left: 450px;
+        /* Remove margin */
+        padding: 10px;
+        /* Add padding if needed */
+        font-size: 1.5em;
+        /* Adjust font size for better visibility */
+        color: #000;
+        /* Adjust color if needed */
+        font-weight: bold;
+        /* Make it bold */
 
-}
+    }
 
     .action-buttons button {
         margin-right: 1px;
@@ -67,6 +73,15 @@
     .action-buttons {
         padding: 17%;
     }
+
+    .complaint tr {
+        color: black;
+        margin: 5%;
+        font-size: 15px;
+        padding: 1.2% 55.8% 1.2% 57.8%;
+        width: 1027px;
+        gap: 0px;
+    }
 </style>
 
 <article>
@@ -79,16 +94,31 @@
             <input type="text" id="patientNameSearch" onkeyup="filterTable()" placeholder="Search by Name">
         </form>
     </div>
-    <div class="complainttext">Reports</div>
-    <div class="complaintheader" style="width: 26%;margin-bottom: 0.4%;font-size:16px; background-color:#f6eca9">
-        <a>Ref_No</a>
-        
-        <a>Test</a>
-        <a>Status</a>
-        <a>file</a>
-        <a style="margin-left: 59%;">Actions</a>
-    </div>
-    <table class="complainttable" style="height: 50vh;">
+    <div class="complainttext" style="width: 67.3%;color:white;">Reports</div>
+    <ul style="    position: fixed;
+    width:52.2%;
+    background-color: #5998ff;
+    left: 24%;
+    display: flex
+;
+    top: 36%;
+    padding: 1.2% 7.8% 1.2% 7.8%;
+    font-family: 'inter';
+    color: var(--Gomez-Blue);
+    color: white;
+    margin: 0% 3%;">
+        <li style="width:151px">Ref_no</li>
+        <li style="width:151px">Name</li>
+        <li style="width:151px">Test</li>
+        <li style="width:151px">Status</li>
+        <li style="width:151px">File</li>
+        <li style="width:151px">Actions</li>
+
+
+
+
+    </ul>
+    <table class="complainttable" style="height: 50vh;margin-top:5%;margin-left: 25.5%;">
         <tbody class="complaint">
             <?php foreach ($data as $row) : ?>
                 <?php
@@ -100,12 +130,12 @@
                 if ((!$refno || $row['refno'] == $refno) && (!$patientName || $row['patientName'] == $patientName)) :
                 ?>
                     <tr style='color:black;margin: 5%;font-size: 16px'>
-                        <td style='width: 1%;'><?= $row['refno'] ?></td>
-                        
-                        <td style='width: 4%;'><?= $row['testname'] ?></td>
+                        <td style='width: 151px;'><?= $row['refno'] ?></td>
+                        <td style='width: 151px;'><?= $row['patientName'] ?? "unknown" ?></td>
+                        <td style='width: 151px;'><?= $row['testname'] ?></td>
                         <?php $status =  $row['status'] == "" ? "pending" : $row['status'] ?>
-                        <td style='width: 8%;'><?= $status ?></td>
-                        <td style='width: 39%;'><?= $row['filename'] ?></td>
+                        <td style='width: 151px'><?= $status ?></td>
+                        <td style='width: 151px;'><?= $row['filename'] ?></td>
                         <td style='width:4%;'>
                             <div class="action-buttons">
                                 <div style="display:flex;width:3%;">
@@ -119,6 +149,10 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+
+
+
 </article>
 <div id="uploadPopup" style="display:none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: white; padding: 20px; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
     <form id="uploadForm" action="<?= URLROOT ?>/LabAssistant/uploadReport" method="post" enctype="multipart/form-data">

@@ -7,7 +7,7 @@ if ($_SESSION != null && isset($_SESSION['status'])) {
 }
 ?>
 
-<div>
+<div style="scrollbar-width: none">
 
     <div>
         <img src=<?= URLROOT . "/resources/home.jpg" ?> alt="" width="100%" height="2%" style="position: relative;margin-left: -2%;width: 103%;height: 95vh;">
