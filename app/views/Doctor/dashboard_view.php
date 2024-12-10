@@ -95,7 +95,6 @@ button{
                 echo "<div style='text-align:center; font-size:x-large; font-weight:bold;'>No sessions today</div>";
             } else {
                 foreach ($nexttwosessions as $session) {
-                foreach ($nexttwosessions as $session) {
                     echo "<div class='custom-div' style='align-self: center; width: 98%; background-color: #fff; height: fit-content; display: flex; flex-direction:row'>";
                     echo "<div style='display: flex; flex-direction:row'>";
                     echo "<div style='border-left: solid; width:13rem;'>";
@@ -109,7 +108,7 @@ button{
                     echo "<br>";
                 }
             }
-        }
+
             ?>
         </div>
 
@@ -126,4 +125,6 @@ button{
 
 
 
-<?php require_once(APPROOT . "/views/doctor/footer_view.php");?>
+
+<?php require_once(APPROOT . "/views/doctor/footer_view.php")?>
+
