@@ -158,6 +158,7 @@
             <label for="disease">Disease</label>
             <div class="input-group">
                 <select id="disease" name="disease">
+                    <option value="">Select Disease</option>
                     <?php foreach ($diseases as $disease) : ?>
                         <option value="<?= htmlspecialchars($disease['disease'], ENT_QUOTES, 'UTF-8') ?>">
                             <?= htmlspecialchars($disease['disease'], ENT_QUOTES, 'UTF-8') ?>
@@ -218,10 +219,12 @@
             customDiseaseInput.style.display = 'inline';
             diseaseList.style.display = 'none';
             customDiseaseClose.style.display = 'inline';
+            customDiseaseInput.setAttribute('required', 'true');
         } else {
             customDiseaseInput.style.display = 'none';
             diseaseList.style.display = 'inline';
             customDiseaseClose.style.display = 'none';
+            customDiseaseInput.removeAttribute('required');
         }
 
         customDiseaseClose.addEventListener('click', function() {
@@ -229,8 +232,17 @@
             diseaseList.style.display = 'inline';
             customDiseaseClose.style.display = 'none';
             diseaseList.selectedIndex = 0;
+            customDiseaseInput.removeAttribute('required');
         });
     });
+
+        customDiseaseClose.addEventListener('click', function() {
+            customDiseaseInput.style.display = 'none';
+            diseaseList.style.display = 'inline';
+            customDiseaseClose.style.display = 'none';
+            diseaseList.selectedIndex = 0;
+            customDiseaseInput.removeAttribute('required');
+        });
 
     document.getElementById('labtestinglist').addEventListener('change', function () {
         var customLabtestInput = document.getElementById('customLabtest');
@@ -312,6 +324,12 @@
         var diseaseSelect = document.getElementById('disease');
         var customDiseaseInput = document.getElementById('customDisease');
 
+        // Prevent submission if a valid disease is not selected
+        if (diseaseSelect.value === '' || (diseaseSelect.value === 'custom' && customDiseaseInput.value.trim() === '')) {
+            alert('Please select or enter a valid disease.');
+            return false;
+        }
+
         if (diseaseSelect.value === 'custom') {
             diseaseSelect.value = customDiseaseInput.value;
         }
@@ -322,6 +340,7 @@
         selectedValues = [];
         return true;
     }
+
 </script>
 
 </div>

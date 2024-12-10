@@ -204,8 +204,21 @@
             ? customMedicineName.value
             : medicineNameSelect.value;
 
+        // Check if medicine name is provided
         if (!medicineName) {
             alert('Please enter a medicine name.');
+            return;
+        }
+
+        // Check if dose is provided
+        if (!dose || dose <= 0) {
+            alert('Please enter a valid dose.');
+            return;
+        }
+
+        // Check if the medicine is already added
+        if (medicineItems.map(item => item.toLowerCase()).includes(medicineName.toLowerCase())) {
+            alert('This medicine has already been added.');
             return;
         }
 
@@ -217,6 +230,8 @@
 
         renderMedicineList();
     }
+
+
 
     function renderMedicineList() {
         var ul = document.getElementById('medicinelist');
