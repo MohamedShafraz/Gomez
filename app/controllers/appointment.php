@@ -42,11 +42,12 @@ class appointment extends Controller
           if ($error) {
             print_r($error);
             echo "<script>
-              alert(' Session Already Created');
+              alert('Appointment Created');
               history.go(-1);
           </script>";
           } else {
             echo "<script>
+            alert('Appointment Created');
             window.location.href = '" . URLROOT . "';
         </script>";
           }
