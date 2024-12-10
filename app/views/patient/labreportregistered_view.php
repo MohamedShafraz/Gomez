@@ -128,7 +128,7 @@
                          </a>
                      </div>
                      <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 1rem 1rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
-                         <a href=" . URLROOT . "/LabAssistant/ReportView/" . $file . " style='text-decoration: none;'>
+                         <a href=" . URLROOT . "/LabAssistant/ReportView/" . $file . " style='text-decoration: none;' download>
                              <font class='font1'>Download</font>
                          </a>
                      </div>
