@@ -76,8 +76,7 @@
                         <div style='width: 27%;'>
 
                             <div class='logbutton' style='height: fit-content;padding: 0.5rem;margin: 0.3rem 0rem 0rem 0rem;border-radius: 0.5rem;box-shadow:none'>
-                                <a href='" . URLROOT . "/receptionist/appointments/more2?doctor=$name&id=$session_id' style='text-decoration: none;'>
-                                <a href='" . URLROOT . "/receptionist/appointments/more2?doctor=$name&id=$session_id' style='text-decoration: none;'>
+                                <a href='" . URLROOT . "/receptionist/appointments/more2?doctor=$name&id=$session_id' style='text-decoration: none;'?>
                                     <font class='font1'>More</font>
                                 </a>
                             </div>
