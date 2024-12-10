@@ -82,11 +82,11 @@
     <div class="complainttext">Reports</div>
     <div class="complaintheader" style="width: 26%;margin-bottom: 0.4%;font-size:16px; background-color:#f6eca9">
         <a>Ref_No</a>
-        <a>Name</a>
+        
         <a>Test</a>
         <a>Status</a>
         <a>file</a>
-        <a style="margin-left: 12%;">Actions</a>
+        <a style="margin-left: 59%;">Actions</a>
     </div>
     <table class="complainttable" style="height: 50vh;">
         <tbody class="complaint">
@@ -101,7 +101,7 @@
                 ?>
                     <tr style='color:black;margin: 5%;font-size: 16px'>
                         <td style='width: 1%;'><?= $row['refno'] ?></td>
-                        <td style='width: 3%;'><?= $row['patientName'] ?? "unknown" ?></td>
+                        
                         <td style='width: 4%;'><?= $row['testname'] ?></td>
                         <?php $status =  $row['status'] == "" ? "pending" : $row['status'] ?>
                         <td style='width: 8%;'><?= $status ?></td>

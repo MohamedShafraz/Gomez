@@ -264,6 +264,7 @@ class Database
             }
         }
         // print_r($query);
+
         return $data;
     }
     public function fetchdoctorforsessiononly($where, $data = 1)

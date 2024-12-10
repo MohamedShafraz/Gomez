@@ -115,7 +115,11 @@
                     <td><?= htmlspecialchars($row['test_name'], ENT_QUOTES, 'UTF-8') ?></td>
                     <td><?= htmlspecialchars($row['status'], ENT_QUOTES, 'UTF-8') ?></td>
                     <td>
-                        <button onclick="window.location.href='<?= URLROOT . '/receptionist/createlabreciept/' . htmlspecialchars($row['unique_id'], ENT_QUOTES, 'UTF-8') . '/' . urlencode($row['test_name']) . '/' . htmlspecialchars($row['id'], ENT_QUOTES, 'UTF-8') ?>'">
+                    <?php 
+                        $url = URLROOT . '/receptionist/createlabreciept/' . $row['unique_id'] . '/' . $row['id'];
+                    ?>
+
+                        <button onclick="window.location.href='<?= $url ?>'">
                             Create Lab Receipt
                         </button>
                     </td>
